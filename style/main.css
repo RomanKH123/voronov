@@ -168,6 +168,8 @@ button{
     width: 25%;
     border-radius: 15px;
     padding: 2vh;
+    margin-left: 3vw;
+    cursor: pointer;
 }
 .ln_2{
     background-color: #F9F9F9;
@@ -176,6 +178,7 @@ button{
     width: 25%;
     border-radius: 15px;
     padding: 2vh;
+    cursor: pointer;
 }
 .ln_3{
     background-color: #C3DEFF;
@@ -184,6 +187,8 @@ button{
     width: 25%;
     border-radius: 15px;
     padding: 2vh;
+    margin-right: 3vw;
+    cursor: pointer;
 }
 .ln_b_1{
     text-align: center;
@@ -192,8 +197,8 @@ button{
 .ln_b_2{
     margin-bottom: 1vh;
 }
-.ln_b_3{
-    
+.ln_b_3 *{
+    margin-top: 1vh;
 }
 .blok_3 button{
     margin-top: 2vh;
@@ -201,4 +206,52 @@ button{
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Жесткое выравнивание высоты */
+.blok_3_ln {
+    
+    align-items: stretch; /* Ключевое свойство! */
+    gap: 3vw;
+    ;
+}
+
+.ln_1, .ln_2, .ln_3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Создаем контейнер для контента */
+.ln_1 > *, .ln_2 > *, .ln_3 > * {
+    flex-shrink: 0; /* Не сжимается */
+}
+
+/* Средний блок растягивается */
+.ln_b_2 {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden; /* Обрезает лишний текст если нужно */
+}
+.blok_4{
+    
+}
+.blok_4_1{
+    background-color: #f6d8f3;
+    border-radius: 15px;
+    padding: 2vh;
+    
+}
+.blok_4_2{
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 2vh;
+}
+.blok_4_3{
+    background-color: #ebffef;
+    border-radius: 15px;
+    padding: 2vh;
+}
+.blok_4_batton{
+    margin-bottom: 0;
 }
