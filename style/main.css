@@ -17,6 +17,7 @@ a{
     color: #000000;
 }
 button{
+    cursor: pointer;
     border: none;
     color: #ffffff;
     background-color: #000000;
@@ -234,12 +235,14 @@ button{
     overflow: hidden; /* Обрезает лишний текст если нужно */
 }
 .blok_4{
-    
+    margin-top: 20vh;
+    align-items: center;
 }
 .blok_4_1{
     background-color: #f6d8f3;
     border-radius: 15px;
     padding: 2vh;
+    margin-left: 3vw;
     
 }
 .blok_4_2{
@@ -251,7 +254,30 @@ button{
     background-color: #ebffef;
     border-radius: 15px;
     padding: 2vh;
+    margin-right: 3vw;
 }
 .blok_4_batton{
-    margin-bottom: 0;
+    margin-top: 3vh;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.blok_5{
+    margin-top: 20vh;
+    align-items: center;
+}
+.blok_5_1{
+    background-color: #f6d8f3;
+    border-radius: 15px;
+    padding: 2vh;
+    margin-left: 3vw;
+   
+}
+.blok_5_2{
+    background-color: #830d77;
+    border-radius: 15px;
+    padding: 2vh;
+    margin-right: 3vw;
+   
 }
