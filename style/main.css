@@ -2,6 +2,20 @@
     margin: 0;
     padding: 0;
 }
+body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            
+            /* Линейный градиент слева направо */
+            background: linear-gradient(to right, white, #cce1fa);
+            
+            /* Или сверху вниз */
+            /* background: linear-gradient(to bottom, white, blue); */
+            
+            /* Или диагональный */
+            /* background: linear-gradient(45deg, white, blue); */
+        }
 .shap_1 img{
     width: 20%;
 }
@@ -214,7 +228,6 @@ button{
     
     align-items: stretch; /* Ключевое свойство! */
     gap: 3vw;
-    ;
 }
 
 .ln_1, .ln_2, .ln_3 {
@@ -264,20 +277,32 @@ button{
     margin-right: auto;
 }
 .blok_5{
+    
     margin-top: 20vh;
     align-items: center;
+    width: 100%;
 }
 .blok_5_1{
-    background-color: #f6d8f3;
+    background-color: #c4dcfa;
     border-radius: 15px;
     padding: 2vh;
     margin-left: 3vw;
+    margin-right: auto;
    
 }
 .blok_5_2{
-    background-color: #830d77;
+    background-color: #ffffff;
     border-radius: 15px;
     padding: 2vh;
     margin-right: 3vw;
+    margin-left: auto;
    
+}
+.blok_5_ln{
+    margin-top: 5vh;
+    display: inline-flex;
+    width: 100%;
+}
+.blok_5_ln *{
+    width: 40vw;
 }
