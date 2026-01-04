@@ -3,25 +3,14 @@
     padding: 0;
 }
 body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+    background: linear-gradient(to right, white, #cce1fa);
             
-            /* Линейный градиент слева направо */
-            background: linear-gradient(to right, white, #cce1fa);
-            
-            /* Или сверху вниз */
-            /* background: linear-gradient(to bottom, white, blue); */
-            
-            /* Или диагональный */
-            /* background: linear-gradient(45deg, white, blue); */
-        }
-.shap_1 img{
-    width: 20%;
+           
 }
 header{
     display: inline-flex;
     width: 100%;
+    
 }
 hr{
     margin-top: 2vh;
@@ -39,9 +28,20 @@ button{
     border-radius: 15px;
 }
 .shap_1{
+    width: 50%;
+    
+}
+.shap_1 img{
+    width: 50%;
 }
 .kontakt{
-    
+    width: 50%;
+
+}
+.kontakt *{
+    display: flex;
+    margin-left: auto;
+    margin-right: 0;
 }
 .menu_st{
     margin-top: 3vh;
@@ -73,17 +73,27 @@ button{
     margin-right: auto  ;
 }
 .blok_1_sp_1{
+    background-color: #ffffffd4;
+    
     z-index: 999;
     position: absolute;
     display: inline-block;
     align-items: center ;
     margin-left: 5vw;
     margin-right: auto  ;
+    border: #000000;
+    border-radius: 25% 10%;
+   
 
     
 }
 .blok_1_sp_1 *{
-    padding-top: 10vh;
+    padding-top: 7vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+}
+.blok_1_sp :last-child{
+    padding-bottom: 7vh;
 }
 .blok_1_sp_2{
     z-index: 1;
@@ -102,6 +112,7 @@ button{
     margin-left: auto;
     margin-right: auto;
     margin-top: 20vh;
+    height: 100vh;
 }
 .blok_2_nm{
     text-align: center;
@@ -156,7 +167,7 @@ button{
 }
 
 .blok_3{
-    margin-top: 20vh;
+    height: 100vh;
 }
 .blok_3_nm{
     margin-left: 10vw;
@@ -248,7 +259,7 @@ button{
     overflow: hidden; /* Обрезает лишний текст если нужно */
 }
 .blok_4{
-    margin-top: 20vh;
+    height: 100vh;
     align-items: center;
 }
 .blok_4_1{
@@ -278,7 +289,7 @@ button{
 }
 .blok_5{
     
-    margin-top: 20vh;
+    height: 100vh;
     align-items: center;
     width: 100%;
 }
