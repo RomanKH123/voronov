@@ -12,6 +12,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Angkor&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
+
 
 body {
     background: linear-gradient(to right, white, #cce1fa);
@@ -61,6 +63,7 @@ button{
     margin-left: auto;
     margin-right: auto;
     width: 80%;
+    font-family: 'Philosopher', sans-serif;
 }
 .menu_st *{
     display: inline-flex;
@@ -76,6 +79,7 @@ button{
     display: flex;
     margin-bottom: 3vw;
     margin-left: 2vw;
+    font-family: 'Abhaya Libre', serif;
 }
 .blok_1_sp{
     display: flex;
