@@ -1,45 +1,71 @@
-*{
+/* Сброс стилей и подключение шрифтов */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
+/* Подключение всех шрифтов */
 @import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Angkor&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
 
-
+/* Основные стили */
 body {
     background: linear-gradient(to right, white, #cce1fa);
-            
-           
+    font-family: 'Inter', sans-serif;
+    color: #000000;
+    overflow-x: hidden;
 }
-header{
-    display: inline-flex;
-    width: 100%;
-    
-}
-hr{
-    margin-top: 2vw;
-}
-a{
+
+/* Ссылки */
+a {
     text-decoration: none;
     color: #000000;
+    transition: color 0.3s ease;
 }
-button{
+
+a:hover {
+    color: #4a6fa5;
+}
+
+/* Кнопки */
+button {
     cursor: pointer;
     border: none;
     color: #ffffff;
     background-color: #000000;
     padding: 2vw;
     border-radius: 15px;
+    font-family: 'Aboreto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+button:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Шапка */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .shap_1{
     width: 50%;
     
@@ -54,24 +80,39 @@ button{
 .kontakt *{
     display: flex;
     margin-left: auto;
+    padding-bottom: 1vh;
     margin-right: 1vw;
 }
-.menu_st{
+/* Меню */
+.menu_st {
     margin-top: 3vw;
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
     width: 80%;
-    font-family: 'Philosopher', sans-serif;
-}
-.menu_st *{
-    display: inline-flex;
     margin-left: auto;
     margin-right: auto;
-    cursor: pointer;
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 400;
 }
 
+.menu_st div {
+    margin: 0 1.5vw;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.menu_st div:hover {
+    background-color: rgba(74, 111, 165, 0.1);
+    color: #4a6fa5;
+}
+
+
+
+/* Блок 1 */
 .blok_1{
     margin-top: 10vw;
 }
@@ -79,7 +120,7 @@ button{
     display: flex;
     margin-bottom: 3vw;
     margin-left: 2vw;
-    font-family: 'Abhaya Libre', serif;
+    font-family: 'Abhaya Libre', sans-serif;
 }
 .blok_1_sp{
     display: flex;
@@ -99,7 +140,7 @@ button{
     margin-right: auto  ;
     border: #000000;
     border-radius: 25% 10%;
-   
+     font-family: 'Abyssinica SIL', sans-serif;
 
     
 }
@@ -122,224 +163,315 @@ button{
     width: 90%;
 }
 
-.blok_2{
+/* Блок 2 - Этапы работы */
+.blok_2 {
     width: 80%;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20vw;
+    margin: 20vw auto 0;
     min-height: 100vh;
 }
-.blok_2_nm{
+
+.blok_2_nm {
     text-align: center;
-    font-weight: bold;    
+    font-family: 'Abhaya Libre', serif;
+    font-weight: 800;
+    font-size: 32px;
+    margin-bottom: 20px;
 }
-.blok_2_zg{
+
+.blok_2_zg {
     text-align: center;
     margin-top: 2vw;
     margin-bottom: 5vw;
+    font-family: 'Abyssinica SIL', serif;
+    font-size: 20px;
+    color: #555;
 }
-.blok_2 .nm{
-    margin-bottom: 2vw;
-    width: 100%;
-    display: flex;
 
+.blok_2 > div {
+    position: relative;
 }
-.nm p{
-    margin-left: auto;
-    margin-right: 0;
-}
-.blok_2_1{
+
+/* Общие стили для блоков этапов */
+.blok_2_1, .blok_2_2, .blok_2_3, .blok_2_4 {
     padding: 2vw;
-    width: 60%;
-    background-color: #ebffef;
     border-radius: 15px;
-    margin-bottom: 2vw;
+    margin-bottom: 3vh;
+    position: relative;
+    transition: transform 0.3s ease;
 }
-.blok_2_2{
+
+.blok_2_1:hover, .blok_2_2:hover, .blok_2_3:hover, .blok_2_4:hover {
+    transform: translateY(-5px);
+}
+
+.blok_2_1 {
+    background-color: #ebffef;
+    width: 60%;
+}
+
+.blok_2_2 {
     margin-left: auto;
     margin-right: 0;
-    padding: 2vw;
     width: 60%;
     color: #ffffff;
     background-color: #000000;
-    border-radius: 15px;
-    margin-bottom: 2vw;
-}
-.blok_2_3{
-    padding: 2vw;
-    width: 60%;
-    background-color: #ffffff;
-    border-radius: 15px;
-    margin-bottom: 2vw;
-}
-.blok_2_4{
-    margin-left: auto;
-    margin-right: 0;
-    padding: 2vw;
-    width: 60%;
-    background-color: #f7def5;
-    border-radius: 15px;
 }
 
-.blok_3{
+.blok_2_3 {
+    background-color: #ffffff;
+    width: 60%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.blok_2_4 {
+    margin-left: auto;
+    margin-right: 0;
+    width: 60%;
+    background-color: #f7def5;
+}
+
+/* Заголовки этапов */
+.nm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vh;
+    width: 100%;
+    font-family: 'Judson', serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.nm p {
+    margin: 0;
+    font-family: 'Jura', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Текст этапов - ВАЖНО: Jura здесь! */
+.nm_txt {
+    font-family: 'Jura', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: inherit;
+}
+
+/* Для черного блока сделаем текст светлее */
+.blok_2_2 .nm_txt {
+    color: #e0e0e0;
+}
+
+/* Блок 3 - Услуги */
+.blok_3 {
     margin-top: 20vw;
     min-height: 100vh;
+    padding: 0 2vw;
 }
-.blok_3_nm{
-    margin-left: 10vw;
+
+.blok_3_nm {
+    display: flex;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4a6fa5;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
-.blok_3_zg{
-    font-weight: bold; 
+
+.blok_3_zg {
+    font-weight: 800;
     text-align: center;
     margin-top: 5vw;
+    font-family: 'Abhaya Libre', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    color: #1a1a1a;
 }
-.blok_3_tg{
+
+.blok_3_tg {
     text-align: center;
     margin-top: 2vw;
     margin-bottom: 4vw;
-
-}
-.blok_3_ln{
-    display: inline-flex;
-    align-items: center;
-}
-.ln_1{
-    background-color: #DEEAF9;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25%;
-    border-radius: 15px;
-    padding: 2vw;
-    margin-left: 3vw;
-    cursor: pointer;
-}
-.ln_2{
-    background-color: #F9F9F9;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25%;
-    border-radius: 15px;
-    padding: 2vw;
-    cursor: pointer;
-}
-.ln_3{
-    background-color: #C3DEFF;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25%;
-    border-radius: 15px;
-    padding: 2vw;
-    margin-right: 3vw;
-    cursor: pointer;
-}
-.ln_b_1{
-    text-align: center;
-    margin-bottom: 2vw;
-}
-.ln_b_2{
-    margin-bottom: 1vw;
-}
-.ln_b_3 *{
-    margin-top: 1vw;
-}
-.blok_3 button{
-    margin-top: 2vw;
-    display: flex;
-    align-items: center;
+    font-family: 'Abyssinica SIL', serif;
+    font-size: 18px;
+    color: #666;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Жесткое выравнивание высоты */
 .blok_3_ln {
-    
-    align-items: stretch; /* Ключевое свойство! */
+    display: flex;
+    justify-content: center;
     gap: 3vw;
+    align-items: stretch;
 }
 
 .ln_1, .ln_2, .ln_3 {
     flex: 1;
+    border-radius: 15px;
+    padding: 2vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.ln_1:hover, .ln_2:hover, .ln_3:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.ln_1 {
+    background-color: #DEEAF9;
+    margin-left: 3vw;
+}
+
+.ln_2 {
+    background-color: #ebe5e5;
+}
+
+.ln_3 {
+    background-color: #C3DEFF;
+    margin-right: 3vw;
+}
+
+.ln_b_1 {
+    text-align: center;
+    margin-bottom: 2vw;
+    font-family: 'Bona Nova SC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    padding-bottom: 2vh;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.ln_b_2 {
+    margin-bottom: 1vw;
+    font-family: 'Abyssinica SIL', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    flex-grow: 1;
+    padding-bottom: 2vh;
+}
+
+.ln_b_3 div {
+    margin-top: 1vw;
+    font-family: 'Abyssinica SIL', serif;
+    font-size: 14px;
+    padding: 8px 12px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 8px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.blok_3 button {
+    margin-top: 2vw;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 40px;
+}
+
+/* Блок 4 - Тарифы */
+.blok_4 {
+    margin-top: 20vw;
+    min-height: 100vh;
+    padding: 0 2vw;
+}
+
+.blok_4_1, .blok_4_2, .blok_4_3 {
+    border-radius: 15px;
+    padding: 2vw;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
 }
 
-/* Создаем контейнер для контента */
-.ln_1 > *, .ln_2 > *, .ln_3 > * {
-    flex-shrink: 0; /* Не сжимается */
+.blok_4_1 {
+    background-color: #f6d8f3;
+    width: 30%;
+    margin-left: 3vw;
 }
 
-/* Средний блок растягивается */
-.ln_b_2 {
-    flex-grow: 1;
-    flex-shrink: 1;
-    overflow: hidden; /* Обрезает лишний текст если нужно */
-}
-.blok_4{
-    min-height: 100vh;
-    align-items: center;
-}
-.blok_4_1{
-    background-color: #f6d8f3;
-    border-radius: 15px;
-    padding: 2vw;
-    margin-left: 3vw;
-    
-}
-.blok_4_2{
+.blok_4_2 {
+    width: 30%;
     background-color: #ffffff;
-    border-radius: 15px;
-    padding: 2vw;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-.blok_4_3{
+
+.blok_4_3 {
+    width: 30%;
     background-color: #ebffef;
-    border-radius: 15px;
-    padding: 2vw;
     margin-right: 3vw;
 }
-.blok_4_batton{
+
+.blok_4_batton {
     margin-top: 3vw;
     display: flex;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    padding: 15px 40px;
 }
-.blok_5{
-    
+
+/* Блок 5 - Стоимость и сроки */
+.blok_5 {
+    margin-top: 20vw;
     min-height: 100vh;
-    align-items: center;
-    width: 100%;
+    padding: 0 2vw;
 }
-.blok_5_1{
-    background-color: #c4dcfa;
-    border-radius: 15px;
-    padding: 2vw;
-    margin-left: 3vw;
-    margin-right: auto;
-   
-}
-.blok_5_2{
-    background-color: #ffffff;
-    border-radius: 15px;
-    padding: 2vw;
-    margin-right: 3vw;
-    margin-left: auto;
-   
-}
-.blok_5_ln{
+
+.blok_5_ln {
     margin-top: 5vw;
-    display: inline-flex;
+    display: flex;
     width: 100%;
+    gap: 3vw;
 }
-.blok_5_ln *{
-    width: 40vw;
+
+.blok_5_1, .blok_5_2 {
+    flex: 1;
+    border-radius: 15px;
+    padding: 2vw;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
 }
-.blok_6_nm{
-    font-weight: bold;
+
+.blok_5_1 {
+    background-color: #c4dcfa;
+    margin-left: 3vw;
+}
+
+.blok_5_2 {
+    background-color: #ffffff;
+    margin-right: 3vw;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Блок 6 - Наши работы */
+.blok_6 {
+    margin-top: 20vw;
+    min-height: 100vh;
+    padding: 0 2vw;
+}
+
+.blok_6_nm {
+    font-weight: 800;
     display: flex;
     justify-content: center;
+    font-family: 'Abhaya Libre', serif;
+    font-size: 32px;
+    margin-bottom: 20px;
 }
-.blok_6_txt{
+
+.blok_6_txt {
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -347,34 +479,94 @@ button{
     width: 80%;
     justify-content: center;
     text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
 }
-.prod{
+
+.prod {
     display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center; 
-}
-.prod_info{
-    padding-top: 10vh;
-    flex: 1 1 300px; /* Базовый размер 300px, но может сжиматься/растягиваться */
-            max-width: 400px; /* Максимальная ширина блока */
-            min-width: 200px; /* Минимальная ширина блока */
-            
-            padding: 20px;
-            border-radius: 8px;
-            box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
+    margin-top: 5vw;
+}
+
+.prod_info {
+    flex: 1 1 300px;
+    max-width: 400px;
+    min-width: 200px;
+   
+    border-radius: 8px;
+    box-sizing: border-box;
     display: flex;
+    justify-content: center;
+    align-items: center;
+   
+   
+    transition: transform 0.3s ease;
 }
-.prod_info img{
-    margin-left: auto;
-    margin-right: auto;
+
+.prod_info:hover {
+    transform: translateY(-10px);
+}
+
+.prod_info img {
     width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
-.blok_6 button{
+
+.blok_6 button {
     display: flex;
     margin-top: 10vh;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    padding: 15px 40px;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .blok_3_ln, .blok_5_ln {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .ln_1, .ln_2, .ln_3,
+    .blok_4_1, .blok_4_2, .blok_4_3,
+    .blok_5_1, .blok_5_2 {
+        width: 90%;
+        margin: 2vw auto;
+    }
+    
+    .blok_2_1, .blok_2_2, .blok_2_3, .blok_2_4 {
+        width: 90%;
+        margin: 2vw auto;
+        margin-bottom: 3vh;
+    }
+    
+    
+    
+    
+}
+
+@media (max-width: 768px) {
+    .menu_st {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    
+    
+    header {
+        
+    }
+    
+   
+    
+    button {
+        padding: 15px 30px;
+    }
 }
