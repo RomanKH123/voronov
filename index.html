@@ -9,20 +9,17 @@
 <body>
     <header>
         <div class="shap_1">
-            <div><img src = "img/logo_syte.png"></div>
+            <img src="/img/logo_2.png" alt="VORONOV.art">
         </div>
         <div class="kontakt">
-            <div><a href="tel:+79950058494">+7(995)-005-84-94</a></div>
-            <div><a>tg:@voronov_std</a></div>
+            <div><a href="tel:+79898182291">+7(989)-818-22-91</a></div>
+            <div><a href="https://t.me/voronov_tg" target="_blank">tg:@voronov_tg</a></div>
         </div>
     </header>
     <div class="menu_st">
-                <div>О компании</div>
-                <div>Услуги</div>
-                <div>Блог</div>
+                <div>О Компании</div>
+                <div>Услуги</div>                
                 <div>Наши работы</div>
-                <div>Акции</div>
-                <div>Отзывы</div>
                 <div>Контакты</div>
     </div>
     <hr>
@@ -54,7 +51,7 @@
                 </div>
             </div>
             <div class="ln_2">
-                <div class = "ln_b_1">Интернет -маркентинг</div>
+                <div class = "ln_b_1">Интернет - маркентинг</div>
                 <div class = "ln_b_2">Помогаем вам повысить узнаваемость и донести целевой аудитории с помощью старагетии  </div>
                 <div class = "ln_b_3">
                     <div>Яндекс Директ</div>
@@ -66,7 +63,8 @@
                 <div class = "ln_b_2">По мимо разработки сайта и интернет-маркентига мы занимаемся другими инструментами торговли что бы сделать вашу работу легче</div>
                 <div class = "ln_b_3">
                     <div>Чат-боты</div>
-                    <div>Телеграмм</div>
+                    <div>Telegram</div>
+                    <div>MAX</div>
                     <div>CRM</div>
                 </div>
             </div>
@@ -119,17 +117,19 @@
             <div class="blok_4_1">
                 <div class = "ln_b_1">Одностраничник</div>
                 <div class = "ln_b_2">Подходит для презентации услуги или продукта, сайта-визитки, портфолио и промо-сайта</div>
+                <button class="blok_4_batton">Обсудить проект</button>
             </div>
             <div class="blok_4_2">
                 <div class = "ln_b_1">Многостраничник</div>
                 <div class = "ln_b_2">Подходит для крупной или быстро развивающейся компании, портфолио, презентации услуги и много всего другого...</div>
+                <button class="blok_4_batton">Обсудить проект</button>
             </div>
             <div class="blok_4_3">
                 <div class = "ln_b_1">Сайт-каталог</div>
                 <div class = "ln_b_2">Может быть как одностраничником, так и многостраничником. Подходит для продажи различных товаров или услуг</div>
+                <button class="blok_4_batton">Обсудить проект</button>
             </div>
         </div>
-        <button class="blok_4_batton">Обсудить проект</button>
     </div>
     <div class="blok_5">
         <div class="blok_2_nm">От чего зависит-стоимость и сроки</div>
@@ -169,6 +169,33 @@
         <button>Подробнее</button>
       
     </div>
-Бы
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title">Оставьте заявку</h2>
+        <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
+        
+        <form id="contactForm" class="modal-form">
+            <div class="form-group">
+                <label for="name">Ваше имя *</label>
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Номер телефона *</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+            </div>
+            
+            <button type="submit" class="modal-submit-btn">Отправить заявку</button>
+        </form>
+        
+        <div id="successMessage" class="success-message" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h3>Спасибо за заявку!</h3>
+            <p>Мы свяжемся с вами в ближайшее время</p>
+        </div>
+    </div>
+</div>
+<script src = "/style/js/main.js"></script>
 </body>
 </html>
