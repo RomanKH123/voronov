@@ -150,13 +150,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Здесь можно добавить реальную отправку данных
                 console.log('Отправка данных:', formData);
-                // fetch('ваш-обработчик.php', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify(formData)
-                // });
+                fetch('/api/main.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
             }, 1500);
         }
     });
