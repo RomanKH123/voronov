@@ -36,9 +36,6 @@ a {
 a:hover {
     color: #4a6fa5;
 }
-hr{
-    margin-top: 1vh;
-}
 /* Кнопки */
 button {
     cursor: pointer;
@@ -67,78 +64,418 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    
-    flex-wrap: wrap; /* Добавил для адаптивности */
+    padding: 20px 2vw;
+    flex-wrap: wrap;
+    background: linear-gradient(to right, white, #cce1fa);
+    position: relative;
+    z-index: 1001;
 }
 
 .shap_1 {
-    flex: 1; /* Занимает доступное пространство */
-    min-width: 200px; /* Минимальная ширина */
+    flex: 1;
+    min-width: 200px;
 }
 
 .shap_1 img {
     width: 100%;
-    max-width: 300px; /* Ограничиваем максимальный размер */
+    max-width: 300px;
     height: auto;
 }
 
 .kontakt {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Выравнивание по правому краю */
-    gap: 5px; /* Отступ между телефоном и телеграмом */
+    align-items: flex-end;
+    gap: 8px;
     padding-right: 2vw;
     min-width: 200px;
+    position: relative;
 }
+
 
 .kontakt div {
     display: flex;
     justify-content: flex-end;
     width: 100%;
     font-family: 'Philosopher', sans-serif;
+    position: relative;
+    padding: 8px 15px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(74, 111, 165, 0.1);
+}
+
+.kontakt div:hover {
+    background: white;
+    border-color: #4a6fa5;
+    transform: translateX(-5px);
+    box-shadow: 0 5px 15px rgba(74, 111, 165, 0.2);
 }
 
 .kontakt a {
-    white-space: nowrap; /* Запрещаем перенос текста */
+    white-space: nowrap;
     font-size: clamp(14px, 1.5vw, 18px);
+    position: relative;
+    padding: 0 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Иконки для контактов */
+.kontakt div:first-child a::before {
+    content: '📞';
+    font-size: 16px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.kontakt div:last-child a::before {
+    content: '📱';
+    font-size: 16px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.kontakt div:hover a::before {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.kontakt div:hover a {
+    color: #4a6fa5;
+}
+
+/* Для красивого отображения телефона */
+.kontakt div:first-child a {
+    word-break: keep-all;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Telegram ссылка */
+.kontakt div:last-child a {
+    font-weight: 400;
+    color: #0088cc;
+}
+
+.kontakt div:last-child:hover a {
+    color: #4a6fa5;
+}
+
+/* Анимация появления */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.kontakt div {
+    animation: slideInRight 0.5s ease forwards;
+}
+
+.kontakt div:first-child {
+    animation-delay: 0.1s;
+}
+
+.kontakt div:last-child {
+    animation-delay: 0.2s;
 }
 
 /* Для красивого отображения телефона в две строки (как на картинке) */
 .kontakt div:first-child a {
     word-break: keep-all;
 }
-/* Меню */
-.menu_st {
-    margin-top: 3vw;
+/* Блок контактов */
+.blok_contacts {
+    margin-top: 10vw;
+    margin-bottom: 30vw;
+    padding: 0 2vw;
+    position: relative;
+}
+
+
+
+.contacts_content {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 400px;
+}
+
+.contact_info {
+    background: white;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(74, 111, 165, 0.2);
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(74, 111, 165, 0.1);
+}
+
+/* Декоративный элемент фона */
+.contact_info::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #4a6fa5, #cce1fa);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.contact_info::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #cce1fa, #4a6fa5);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.contact_item {
+    margin: 30px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+    padding: 15px 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.8));
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(74, 111, 165, 0.1);
+}
+
+.contact_item:hover {
+    transform: translateX(10px);
+    background: white;
+    box-shadow: 0 10px 20px rgba(74, 111, 165, 0.15);
+    border-color: #4a6fa5;
+}
+
+.contact_icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4a6fa5, #6b8fc9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
+    transition: all 0.3s ease;
+}
+
+.contact_item:hover .contact_icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(74, 111, 165, 0.5);
+}
+
+.contact_label {
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 700;
+    min-width: 100px;
+    color: #4a6fa5;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.contact_item a {
+    font-family: 'Inter', sans-serif;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.contact_item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4a6fa5, #6b8fc9);
+    transition: width 0.3s ease;
+}
+
+.contact_item a:hover {
+    color: #4a6fa5;
+}
+
+.contact_item a:hover::after {
+    width: 100%;
+}
+
+/* Заголовок блока контактов */
+.blok_contacts .blok_2_nm {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 40px;
+    font-size: clamp(28px, 4vw, 42px);
+    background: linear-gradient(135deg, #000, #4a6fa5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.blok_contacts .blok_2_nm::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
     width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #4a6fa5, transparent);
+    border-radius: 2px;
+}
+
+/* Социальные ссылки */
+.social_links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.social_link {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a6fa5;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(74, 111, 165, 0.2);
+}
+
+.social_link:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: #4a6fa5;
+    color: white;
+    box-shadow: 0 10px 25px rgba(74, 111, 165, 0.4);
+}
+
+/* Адаптивность для контактов */
+@media (max-width: 768px) {
+    .contact_info {
+        padding: 30px 20px;
+    }
+    
+    .contact_item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .contact_item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .contact_icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .contact_label {
+        min-width: auto;
+        font-size: 14px;
+    }
+    
+    .contact_item a {
+        font-size: 16px;
+    }
+    
+    .social_links {
+        gap: 15px;
+    }
+    
+    .social_link {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+/* ===== ИСПРАВЛЕННОЕ МЕНЮ ===== */
+.menu_st {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     font-size: clamp(12px, 2vw, 22px);
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Philosopher', sans-serif; 
+    font-family: 'Philosopher', sans-serif;
+    background: linear-gradient(to right, white, #cce1fa);
+    padding: 10px 0;
+    margin-top: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
+    gap: 10px;
+    backdrop-filter: blur(5px);
 }
 
 .menu_st div {
     cursor: pointer;
-    padding: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 6px;
+    padding: 8px 20px;
+    border-radius: 30px;
     transition: all 0.3s ease;
+    white-space: nowrap;
+    font-weight: 500;
 }
 
 .menu_st div:hover {
-    background-color: rgba(74, 111, 165, 0.1);
-    color: #4a6fa5;
+    background-color: #4a6fa5;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(74, 111, 165, 0.3);
 }
 
+.menu_st div.active {
+    background-color: #4a6fa5;
+    color: white;
+}
 
+/* ===== КОНЕЦ ИСПРАВЛЕНИЙ ===== */
 
-/* Блок 1 */
+/* Блок 1 - убираем лишний отступ, так как sticky меню не перекрывает контент */
 .blok_1{
-    margin-top: 10vw;
+    margin-top: 5vw;
 }
 .blok_1_zg{
     display: flex;
@@ -774,14 +1111,10 @@ header {
         margin: 2vw auto;
         margin-bottom: 3vh;
     }
-    
-    
-    
-    
 }
 
 @media (max-width: 768px) {
-     header {
+    header {
         flex-direction: column;
         align-items: center;
         gap: 15px;
@@ -804,10 +1137,18 @@ header {
     .kontakt div {
         justify-content: center;
     }
+    
     .menu_st {
-        flex-wrap: wrap;
+        gap: 5px;
+        padding: 8px 0;
     }
-     .modal-content {
+    
+    .menu_st div {
+        padding: 5px 12px;
+        font-size: 14px;
+    }
+    
+    .modal-content {
         padding: 30px 20px;
         width: 95%;
         margin: 20px;

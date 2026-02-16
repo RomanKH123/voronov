@@ -9,12 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для открытия модального окна
     function openModal() {
         modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Запрещаем прокрутку страницы
-        // Сбрасываем форму
+        document.body.style.overflow = 'hidden';
         contactForm.style.display = 'flex';
         successMessage.style.display = 'none';
         contactForm.reset();
-        // Убираем классы ошибок
         document.querySelectorAll('.form-group input').forEach(input => {
             input.classList.remove('error');
         });
@@ -23,17 +21,94 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для закрытия модального окна
     function closeModal() {
         modal.classList.remove('show');
-        document.body.style.overflow = ''; // Возвращаем прокрутку
+        document.body.style.overflow = '';
+    }
+    
+    // Функция для плавной прокрутки к блоку
+    window.scrollToBlock = function(blockId) {
+        const element = document.getElementById(blockId);
+        if (element) {
+            const menuHeight = document.querySelector('.menu_st').offsetHeight;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - menuHeight - 20;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+            
+            highlightActiveMenuItem(blockId);
+        }
+    }
+    
+    // Функция подсветки активного пункта меню
+    function highlightActiveMenuItem(activeId) {
+        document.querySelectorAll('.menu_st div').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        const menuMap = {
+            'about': 0,
+            'services': 1,
+            'works': 2,
+            'contacts': 3
+        };
+        
+        const menuIndex = menuMap[activeId];
+        if (menuIndex !== undefined) {
+            const menuItems = document.querySelectorAll('.menu_st div');
+            if (menuItems[menuIndex]) {
+                menuItems[menuIndex].classList.add('active');
+            }
+        }
+    }
+    
+    // Отслеживание прокрутки для подсветки активного пункта
+    function updateActiveMenuOnScroll() {
+        const sections = [
+            { id: 'about', menuIndex: 0 },
+            { id: 'services', menuIndex: 1 },
+            { id: 'works', menuIndex: 2 },
+            { id: 'contacts', menuIndex: 3 }
+        ];
+        
+        const menuHeight = document.querySelector('.menu_st').offsetHeight;
+        const scrollPosition = window.pageYOffset + menuHeight + 50;
+        
+        let currentSection = null;
+        
+        for (let section of sections) {
+            const element = document.getElementById(section.id);
+            if (element) {
+                const elementTop = element.offsetTop;
+                const elementBottom = elementTop + element.offsetHeight;
+                
+                if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+                    currentSection = section;
+                    break;
+                }
+            }
+        }
+        
+        if (currentSection) {
+            document.querySelectorAll('.menu_st div').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const menuItems = document.querySelectorAll('.menu_st div');
+            if (menuItems[currentSection.menuIndex]) {
+                menuItems[currentSection.menuIndex].classList.add('active');
+            }
+        }
     }
     
     // Находим все кнопки и добавляем им обработчик
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
-        // Проверяем, что это нужные кнопки (Подробнее или Обсудить проект)
         const buttonText = button.textContent.trim().toLowerCase();
         if (buttonText === 'подробнее' || buttonText === 'обсудить проект') {
             button.addEventListener('click', function(e) {
-                e.preventDefault(); // Предотвращаем возможную отправку формы
+                e.preventDefault();
                 openModal();
             });
         }
@@ -94,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const name = document.getElementById('name');
         const phone = document.getElementById('phone');
         
-        // Проверка имени
         if (name.value.trim().length < 2) {
             name.classList.add('error');
             isValid = false;
@@ -102,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
             name.classList.remove('error');
         }
         
-        // Проверка телефона
         const phoneDigits = phone.value.replace(/\D/g, '');
         if (phoneDigits.length < 11) {
             phone.classList.add('error');
@@ -119,13 +192,11 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         
         if (validateForm()) {
-            // Показываем загрузку
             const submitBtn = document.querySelector('.modal-submit-btn');
             const originalText = submitBtn.textContent;
             submitBtn.innerHTML = '<span class="loading-spinner"></span>';
             submitBtn.disabled = true;
             
-            // Собираем данные
             const formData = {
                 name: document.getElementById('name').value.trim(),
                 phone: document.getElementById('phone').value,
@@ -133,31 +204,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 page: window.location.href
             };
             
-            // Имитация отправки на сервер (замените на ваш реальный URL)
-            setTimeout(() => {
-                // Скрываем форму и показываем сообщение об успехе
-                contactForm.style.display = 'none';
-                successMessage.style.display = 'block';
-                
-                // Восстанавливаем кнопку
+            // Отправка на сервер
+            fetch('send_application.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    contactForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        closeModal();
+                    }, 3000);
+                } else {
+                    alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при отправке');
+            })
+            .finally(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-                
-                // Закрываем модальное окно через 3 секунды
-                setTimeout(() => {
-                    closeModal();
-                }, 3000);
-                
-                // Здесь можно добавить реальную отправку данных
-                console.log('Отправка данных:', formData);
-                fetch('/api/main.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-            }, 1500);
+            });
         }
     });
+    
+    // Добавляем отслеживание прокрутки
+    window.addEventListener('scroll', updateActiveMenuOnScroll);
+    
+    // Подсвечиваем первый пункт при загрузке
+    setTimeout(() => {
+        updateActiveMenuOnScroll();
+    }, 100);
 });

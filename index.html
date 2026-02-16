@@ -17,13 +17,13 @@
         </div>
     </header>
     <div class="menu_st">
-                <div>О Компании</div>
-                <div>Услуги</div>                
-                <div>Наши работы</div>
-                <div>Контакты</div>
+        <div onclick="scrollToBlock('about')">О Компании</div>
+        <div onclick="scrollToBlock('services')">Услуги</div>                
+        <div onclick="scrollToBlock('works')">Наши работы</div>
+        <div onclick="scrollToBlock('contacts')">Контакты</div>
     </div>
     <hr>
-    <div class="blok_1">
+    <div class="blok_1" id = "about">
         <div class="blok_1_zg"><H1>РАЗРАБОТКА САЙТОВ ПРОЕКТОВ НА ЗАКАЗ</H1></div>
         <div class="blok_1_sp">
             <div class="blok_1_sp_1">
@@ -36,7 +36,7 @@
         </div>
         
     </div>
-    <div class="blok_3">
+    <div class="blok_3" id = "services">
         <div class="blok_3_nm">Услуги</div>
         <div class="blok_3_zg">Добейтесь максимальных результатов с нашей помощью</div>
         <div class="blok_3_tg">Решения для повышения конверсии, оптимизации рекламы и успешного развития вашего бизнеса.</div>
@@ -147,7 +147,7 @@
         </div>
         <button class="blok_4_batton">Обсудить проект</button>
     </div>
-    <div class="blok_6">
+    <div class="blok_6" id = "works">
         <div class="blok_6_nm">Наши работы</div>
         <div class="blok_6_txt">На протяжении всей истории компании наши специалисты создали, продвинули и прорекламировали интернет-проекты. Многие из них успешно функционируют на российском  рынке. 
             Мы гордимся достигнутыми результатами и продолжаем развиваться. 
@@ -169,6 +169,36 @@
         <button>Подробнее</button>
       
     </div>
+   <div id="contacts" class="blok_contacts">
+    <div class="blok_2_nm">Свяжитесь с нами</div>
+    <div class="contacts_content">
+        <div class="contact_info">
+            <div class="contact_item">
+                <div class="contact_icon">📞</div>
+                <span class="contact_label">Телефон:</span>
+                <a href="tel:+79898182291">+7(989)-818-22-91</a>
+            </div>
+            
+            <div class="contact_item">
+                <div class="contact_icon">✉️</div>
+                <span class="contact_label">Email:</span>
+                <a href="mailto:info@voronov.ru">info@voronov.ru</a>
+            </div>
+            
+            <div class="contact_item">
+                <div class="contact_icon">📱</div>
+                <span class="contact_label">Telegram:</span>
+                <a href="https://t.me/voronov_tg" target="_blank">@voronov_tg</a>
+            </div>
+            
+            <div class="contact_item">
+                <div class="contact_icon">📍</div>
+                <span class="contact_label">Офис:</span>
+                <a href="#" target="_blank">Москва, ул. Примерная, 123</a>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
