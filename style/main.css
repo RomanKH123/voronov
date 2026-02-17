@@ -64,7 +64,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 20px 2vw;
+   
     flex-wrap: wrap;
     background: linear-gradient(to right, white, #cce1fa);
     position: relative;
@@ -78,7 +78,7 @@ header {
 
 .shap_1 img {
     width: 100%;
-    max-width: 300px;
+    max-width: 20vw;
     height: auto;
 }
 
@@ -99,12 +99,12 @@ header {
     width: 100%;
     font-family: 'Philosopher', sans-serif;
     position: relative;
-    padding: 8px 15px;
+    padding: 1vw;
     border-radius: 30px;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(74, 111, 165, 0.1);
+   
+    
+    
 }
 
 .kontakt div:hover {
@@ -438,21 +438,20 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    font-size: clamp(12px, 2vw, 22px);
+    font-size: clamp(15px, 2vw, 22px);
     font-family: 'Philosopher', sans-serif;
     background: linear-gradient(to right, white, #cce1fa);
-    padding: 10px 0;
+    padding: 5vh;
     margin-top: 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5vw;
     backdrop-filter: blur(5px);
 }
 
 .menu_st div {
     cursor: pointer;
-    padding: 8px 20px;
+    padding: 1vh 2vh;
     border-radius: 30px;
     transition: all 0.3s ease;
     white-space: nowrap;
@@ -479,8 +478,9 @@ header {
 }
 .blok_1_zg{
     display: flex;
-    margin-bottom: 3vw;
-    margin-left: 2vw;
+    margin-top: 7vw;
+    margin-bottom: 10vw;
+    margin-left: 7vw;
     font-family: 'Abhaya Libre', sans-serif;
     font-size: clamp(12px, 2vw, 22px);
 }
@@ -517,9 +517,8 @@ header {
 .blok_1_sp_2{
     z-index: 1;
     display: flex;
-     align-items: center ;
-    margin-left: auto;
-    margin-right: auto  ;   
+    align-items: center ;
+    margin-left: auto;  
 }
 .blok_1_sp_2 img{
     width: 90%;
@@ -1118,7 +1117,7 @@ header {
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        padding: 20px 0;
+        padding: 3vw 0;
     }
     
     .shap_1 {
@@ -1126,7 +1125,7 @@ header {
     }
     
     .shap_1 img {
-        max-width: 200px;
+        max-width: 50vw;
     }
     
     .kontakt {
@@ -1140,12 +1139,12 @@ header {
     
     .menu_st {
         gap: 5px;
-        padding: 8px 0;
+        padding: 2vw 0;
     }
     
     .menu_st div {
-        padding: 5px 12px;
-        font-size: 14px;
+        padding: 2vw;
+        
     }
     
     .modal-content {
