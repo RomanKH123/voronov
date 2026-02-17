@@ -1,12 +1,12 @@
 <?php
 // admin.php - просмотр заявок
-$db_host = 'localhost';
-$db_name = 'voronov_studio';
-$db_user = 'root';
-$db_pass = '';
+$db_host = 'localhost';      // обычно localhost
+$db_name = 'vh384894_voronov';  // название вашей базы данных
+$db_user = 'vh384894_voronov';  // пользователь (обычно root на локальном сервере)
+$db_pass = 'voronov20032003'; 
 
 // Простая защита паролем
-$admin_password = 'admin123'; // СМЕНИТЕ ПАРОЛЬ!
+$admin_password = '227227Vst'; // СМЕНИТЕ ПАРОЛЬ!
 
 if (!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_PW'] != $admin_password) {
     header('WWW-Authenticate: Basic realm="Admin Area"');

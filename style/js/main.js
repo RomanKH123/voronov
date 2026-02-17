@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             
             // Отправка на сервер
-            fetch('send_application.php', {
+            fetch('/api/main.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
