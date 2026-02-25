@@ -1,0 +1,95 @@
+/* Importing Google Font - Montserrat */
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Klee+One:wght@400;600&family=Oswald:wght@200..700&family=Play:wght@400;700&family=Rampart+One&family=Triodion&display=swap');
+* {
+  box-sizing: border-box;  
+}
+.boeviki{
+  font-family: "Play", serif;
+  font-size: clamp(25px,2vw,55px);
+  cursor: pointer; 
+}
+.detectiv{
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(25px,2vw,55px);
+  cursor: pointer;  
+}
+.komedy{  
+  font-family: "Oswald", serif;
+  font-size: clamp(25px,2vw,55px);
+  cursor: pointer;
+}
+.anime{
+  font-family: "Klee One", serif;
+  font-size: clamp(25px,2vw,55px);
+  cursor: pointer;
+}
+.horor{
+  font-family: "Amatic SC", serif;
+  font-size: clamp(35px,2vw,61px);
+  cursor: pointer;
+}
+.history{
+  font-family: "Triodion", serif;
+  font-size: clamp(25px,2vw,55px);
+  cursor: pointer;
+}
+.fentezi{
+  font-family: "Yanone Kaffeesatz", serif;
+  font-size: clamp(25px,2vw,55px);
+  cursor: pointer;
+}
+.multfilm{
+  font-family: "Rampart One", serif;
+  font-size: clamp(25px,2vw,55px);
+  cursor: pointer;
+}
+
+
+.slider-wrapper {
+  overflow: hidden;
+  width: 80%;
+  margin: 0 10% 8%;
+}
+
+.card-list .card-item {
+  height: auto;  
+  color: #fff;
+  user-select: none;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  backdrop-filter: blur(30px);
+  background: #141414;
+  border: 3px solid #70009c;
+}
+.card-list .card-item .message-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #9900D6;
+  color: #fff;
+}
+.slider-wrapper .swiper-pagination-bullet {
+  background: #fff;
+  height: 1vw;
+  width: 1vw;
+  opacity: 0.5;
+}
+.slider-wrapper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+.slider-wrapper .swiper-slide-button {
+  color: #fff;
+  margin-top: -40px;
+  transition: 0.2s ease;
+}
+.slider-wrapper .swiper-slide-button:hover {
+  color: #9900D6;;
+}
+@media (max-width: 768px) {
+    .slider-wrapper .swiper-slide-button {
+        display: none;
+    }
+}

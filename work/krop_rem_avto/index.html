@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кропоткин ремонт авто</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="./img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+    <link rel="manifest" href="./img/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href = "./servis/style/style.css">
+    <link rel="stylesheet" href = "./servis/style/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+</head>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <header class = "shap_1">
+        <div class="shap_logo">
+            <table>
+                <tr>
+                    <td>
+                        <a href="#">Кропоткин</a>
+                    </td>
+                    <td class="shap_logo_2">
+                        <ul>
+                            <li><a href = "tel: +7(953)-090-02-00">+7 (953) 090-02-00</a></li>
+                            <li><a href = "tel: +7(918)-621-11-44">+7 (918) 621-11-44</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class = "slog"><ul>
+            <li><a href="#" onclick= "return slowScroll('.time')">График</a></li>
+            <li><a href="#" onclick= "return slowScroll('.zvon_a')">Запись</a></li>
+            <li><a href="#" onclick= "return slowScroll('.short')">Услуги</a></li>
+            
+        </ul></div>
+        <div class="shap_const">
+            <div class="shap_const_1">
+                <div>
+                    В нашей мастерской:</br>
+                        -Ремонт электроники</br>
+                        -Компьютерная диагностика</br>
+                        -Заправка кондиционера</br>
+                        -Чип - тюнинг
+            </div>
+            </div>
+            
+                <img class="shap_const_1_img" src = "./img/logotip.png">
+            
+        </div>
+    </header>
+   <div>
+        
+        <div class="time"><div class="time_1">ЧАСЫ РАБОТЫ</div></div>
+        <div class="blok">
+            
+            <div class="blok-time">
+                <div class="blok-time-1">ПН/ПТ</div>
+                <div class="blok-time-1">9:00 - 18:00</div>
+            </div>
+            <div class="blok-time">
+                <div class="blok-time-1">СБ</div>
+                <div class="blok-time-1">9:00 - 17:00</div>
+            </div>
+            <div class="blok-time-vs">
+                <div class="blok-time-1">ВС</div>
+                <div class="blok-time-1">-</div>
+            </div>
+        </div>
+        <div class = "zvon">
+            <div class="zvon_a">НАШ НОМЕР</div>
+            <div class="zvon_b">
+                <img class="zvon_1_img" src = "./img/4887182.png">
+                <div class="zvon_1">
+                    <div class="zvon_tel">+7 (918) 621-11-44</div>
+                    <div class = "zvon_bat"><a href = "tel: +7(918)-621-11-44">Позвонить</a></div>
+                </div>
+            </div>
+            
+        </div>
+       
+        <div class="slid">                
+            <div class="fotorama"  data-loop="true" data-autoplay="3000" data-nav="false">
+                <img src = "/img/slide/IMG_01.png">
+                <img src = "/img/slide/IMG_02.png">
+                <img src = "/img/slide/IMG_03.png">                                   
+            </div>
+        </div>
+        <div class="uslugi">
+            <div class = "uslugi_1">
+                <p>НАШИ УСЛУГИ</p>
+            </div>
+            <div>
+                <div class = "blok_2">
+                    <div class = "short" id = "r1" onclick="res_1()">
+                        <div class="short_1">
+                            <img src = "./img/957ba27f-6888-44d2-8bfd-32bde951f687.jpg">
+                            <p>Компьютерная диагностика</p> 
+                        </div>
+                    </div>
+                    <div class = "short" id = "r2" onclick="res_2()">
+                        <div class="short_1">
+                            <img src = "./img/50a47463-d7a9-476d-bde2-6a92e1313592.jpg">
+                            <p>Обслуживание кондиционера</p>
+                        </div>
+                        
+                    </div>
+                    <div class = "short" id = "r3" onclick="res_3()">
+                        <div class="short_1">
+                            <img src = "./img/1148b4fd-8dea-4ca4-97c0-9db5bbe39eee.jpg">
+                            <p>Чистка форсунок</p>
+                        </div>
+                        
+                    </div>
+                    <div class = "short" id = "r4" onclick="res_4()">
+                        <div class="short_1">
+                            <img src = "./img/9e67037f-b268-417e-9814-dd0fac1d2513.jpg">
+                            <p>Чип тюнинг</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div id = "root"></div>
+        </div>
+
+        
+   </div>
+   <div class="chek">
+        <div class="chek_1"><p>krop_rem_avto</p></div>
+        <div class="chek_1">
+            <ul>
+                <li><a href = "tel: +7(953)-090-02-00">+7 (953) 090-02-00</a></li>
+                <li><a href = "tel: +7(918)-621-11-44">+7 (918) 621-11-44</a></li>
+                <li><a href="tg://resolve?domain=viktor123ru">Telegram: @viktor123ru</a></li>
+            </ul>
+        </div>
+   </div>
+   <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script src="./servis/js/react.js" type = "text/babel"></script>
+   
+   <script src="./servis/js/main.js"></script>
+</body>
+</html>

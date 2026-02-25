@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "./Web/Style/main.css">
+    <link rel = "stylesheet" href = "./Web/Style/ganre.css">
+    <link rel = "stylesheet" href = "./Web/Style/menu.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/Web/Style/eror.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <title>Kino_stak</title>
+    
+    
+</head>
+<body>
+    
+    <header class = "shap">
+        <div class = "shap_11">
+            <div>Kino</div><img src = "img/kinoset.png">
+        </div>
+        <div class = "shap_12">
+            <div class = "shap_text active" onclick="Map_main()">Главная</div>
+            <div class = "shap_text" onclick="Map_new()" >Новинки</div>
+            <div class = "shap_text" onclick="Map_chek('Боевик'),dop_style() ">Категории</div>
+            <div class = "shap_text" onclick="Map_history()">История</div>
+        </div>
+        <div class = "shap_13 , dropdown">
+            <img class="dropbtn" id = "logo" src = "./img/avotar12424.png">
+            <div class="dropdown-content" id = "menu">
+                
+            </div>
+        </div>
+    </header>
+    <div><input class="poisk" id = "poisk" type="text"  placeholder="Название фильма" onkeyup="searchByName()"></div>
+    <div id = "single"></div>
+    <div id = "dop_root"></div>
+    <div class="filmset" id = "root"></div>
+    
+    
+    <script src="./Web/Style/main.js"></script> 
+    <script  src="/Web/serv_js/main.js"></script>   
+    <script  src="/Web/React/main.js"></script>   
+    <script  src="/Web/React/menu.js"></script>   
+    <script src="/Web/Pages/logout.html"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+
+</html>

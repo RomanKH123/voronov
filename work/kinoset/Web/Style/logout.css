@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+button{
+    border-width: 0;
+}
+input{
+    border-width: 0;
+}
+body{
+    background-color: #1C1C1C;
+    font-family: 'Inter', sans-serif;
+    color: rgb(255, 255, 255);
+}
+.logout_blok{
+    
+    background-color: #000000;
+    width: 35%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 13px;    
+    position: absolute;
+    margin-inline: auto;
+    inset-inline: 0;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    -webkit-box-shadow: 0px 0px 58px 11px rgba(153, 0, 214, 0.2);
+    -moz-box-shadow: 0px 0px 58px 11px rgba(153, 0, 214, 0.2);
+    box-shadow: 0px 0px 58px 11px rgba(153, 0, 214, 0.2);
+    
+}
+.logout_verf{
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.shap_text{
+    font-size: clamp(15px,2vw,25px);    
+    cursor: pointer;
+    position: relative;
+    margin-right: 4vw;
+    
+}
+.shap_text:last-child{
+    margin-right: 0vh;
+}
+.shap_text::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: #9900D6;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    
+}
+.shap_text.active::after {
+    width: 100%;
+}
+
+.logout_form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+}
+form{
+ 
+    width: 100%;
+   
+}
+
+.logout_form input{
+    width: 45%;
+    height: 3vh;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #606060;
+    border-radius: 4px;
+    color:#ffffff;
+    text-align: center;
+    font-size: clamp(13px,2vw,18px);
+}
+.logout_blok a{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #9900D6;
+    font-size: clamp(17px,2vw,23px); 
+    width: 19%;
+    padding: 3px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    cursor: pointer;
+}
+.logout_form button{
+    
+    color: #ffffff;
+    background-color: #9900D6;
+    font-size: clamp(18px,2vw,24px); 
+    width: 21%;
+    padding: 4px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    cursor: pointer;
+}
+.logout_txt{
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(13px,2vw,20px); 
+    justify-content: left;
+}
+.logout_mail{
+    width: 60%;
+    margin-top: 4vh;
+    margin-bottom: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(13px,2vw,20px); 
+    justify-content: left;
+}
+@media (max-width: 800px) {
+    .logout_blok {
+       width: 75%; 
+    }
+    .logout_form input{
+        width: 50%;
+    }
+    .logout_form button{
+        width: 20%;
+    }
+    .logout_txt{
+        width: 50%;
+    }
+}
