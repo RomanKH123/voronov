@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Krd</title>
+    <link href="./style/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Липкое меню (появляется при скролле) -->
+    <div class="sticky-menu" id="stickyMenu">
+        <ul>
+            <li><a href="#" onclick="slowScroll('uslug_1'); return false;">услуги</a></li>
+            <li><a href="#" onclick="slowScroll('komanda'); return false;">команда</a></li>
+            <li><a href="#" onclick="slowScroll('etapy'); return false;">этапы</a></li>
+            <li><a href="#" onclick="slowScroll('kontakty'); return false;">контакты</a></li>               
+        </ul>
+    </div>
+
+    <header class="logo">
+        <div class="logo_2">
+            <div class="logo_part">
+                <div class="logo_part_2">
+                    <img src="img/logo/Site_logo.png" alt="Site Krd">
+                </div>
+                <h1 class="logo_part_txt">web-продакшн создающий решения для вас</h1>
+            </div>
+            <div class="slog">
+                <ul>
+                    <li><a href="#" onclick="slowScroll('uslug_1'); return false;">услуги</a></li>
+                    <li><a href="#" onclick="slowScroll('komanda'); return false;">команда</a></li>
+                    <li><a href="#" onclick="slowScroll('etapy'); return false;">этапы</a></li>
+                    <li><a href="#" onclick="slowScroll('kontakty'); return false;">контакты</a></li>               
+                </ul>
+            </div>
+        </div>        
+    </header>
+
+    <!-- Услуги -->
+    <div class="uslug uslug_1" id="uslug_1">
+        <div class="name_1">Наши услуги</div>        
+        <hr>
+        <div class="cart_1">
+            <div class="cart_1_plus" onmouseover="chetkaImg('chekId_1')" onmouseout="chetkaImg_1('chekId_1')">
+                <img id="chekId_1" src="img/logo/dizaine.png" alt="Дизайн">
+                <div class="cart_1_plus_txt">Создаём дизайн</div>
+            </div>
+            <div class="cart_1_plus" onmouseover="chetkaImg('chekId_2')" onmouseout="chetkaImg_1('chekId_2')">
+                <img id="chekId_2" src="img/logo/site.png" alt="Реклама">
+                <div class="cart_1_plus_txt">Реклама для сайтов</div>
+            </div>
+            <div class="cart_1_plus" onmouseover="chetkaImg('chekId_3')" onmouseout="chetkaImg_1('chekId_3')">
+                <img id="chekId_3" src="img/logo/host.png" alt="Web продукты">
+                <div class="cart_1_plus_txt">Web продукты</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Команда -->
+    <div class="uslug komanda" id="komanda">
+        <div class="name_1">Наша команда</div>        
+        <hr>
+        <div class="cart_1">
+            <div class="cart_1_plus_1">
+                <img src="img/logo/dizainer.png" alt="Дизайнер">
+                <div class="cart_1_plus_txt">Дизайнер</div>
+            </div>
+            <div class="cart_1_plus_1">
+                <img src="img/logo/managr.png" alt="Менеджер">
+                <div class="cart_1_plus_txt_1">Менеджер</div>
+            </div>
+            <div class="cart_1_plus_1">
+                <img src="img/logo/tester.png" alt="Тестеровщик">              
+                <div class="cart_1_plus_txt_1">Тестеровщик</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Этапы работы -->
+    <div class="vopros etapy" id="etapy">
+        <div class="name_1">Этапы работы</div>
+        <hr>
+        <div class="vopros_plus">
+            <div class="vopros_plus_1">
+                <div class="vopros_nmb">01</div>
+                <div class="vopros_txt">Принимаем вашу заявку</div>
+            </div>
+            <div class="vopros_plus_2">
+                <div class="vopros_txt">Обсуждаем объём работы</div>
+                <div class="vopros_nmb">02</div>
+            </div>
+            <div class="vopros_plus_1">
+                <div class="vopros_nmb">03</div>
+                <div class="vopros_txt">Создаём дизайн</div>
+            </div>
+            <div class="vopros_plus_2">
+                <div class="vopros_txt">Привлекаем специалистов</div>
+                <div class="vopros_nmb">04</div>
+            </div>
+            <div class="vopros_plus_1">
+                <div class="vopros_nmb">05</div>
+                <div class="vopros_txt">Выдаём готовый продукт</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Часто задаваемые вопросы -->
+    <div class="vopros">
+        <div class="name_1">Часто задаваемые вопросы</div>
+        <hr>
+        <div class="vopros_2">
+            <div class="vopros_2_pl">
+                <details class="details">
+                    <summary class="vopros_2_txt_1">Какие сроки занимает изготовление дизайна?</summary>
+                    <div class="vopros_2_txt_2">Изготовление дизайна зависит от сложности и объёма работы. Создание дизайна для сайта занимает от 3-х дней.</div>
+                </details>
+            </div>
+            <div class="vopros_2_pl">
+                <details class="details">
+                    <summary class="vopros_2_txt_1">Можно ли у нас купить домен?</summary>
+                    <div class="vopros_2_txt_2">Мы не продаём домены и услуги хостинга, но поможем вам подобрать оптимальное решение на рынке.</div>
+                </details>
+            </div>
+            <div class="vopros_2_pl">
+                <details class="details">
+                    <summary class="vopros_2_txt_1">Сколько времени займёт сделать сайт?</summary>
+                    <div class="vopros_2_txt_2">Создание одностраничного сайта занимает от 3-х дней с заранее готовым дизайном</div>
+                </details>
+            </div>
+            <div class="vopros_2_pl">
+                <details class="details">
+                    <summary class="vopros_2_txt_1">Возможно ли дальнейшее сотрудничество?</summary>
+                    <div class="vopros_2_txt_2">Да, мы предоставляем дальнейшую поддержку всех наших продуктов</div>
+                </details>                
+            </div>
+        </div>
+    </div>
+
+    <!-- Контакты -->
+    <div class="contact kontakty" id="kontakty">
+        <div class="contact_name">Контакты</div>
+        <div class="contact_1">
+            <div class="contact_vk">
+                <div class="contact_vk_name">Группа ВК</div>
+                <div><img src="img/logo/qr28851941.png" alt="QR код ВК"></div>
+            </div>
+            <div class="contact_sc">
+                <div class="contact_1_blok">
+                    <div>Почта</div>
+                    <div>ssitekrd@yandex.ru</div>
+                </div>
+                <div class="contact_1_blok">
+                    <div>Телеграм</div>
+                    <div>@romaaan_101</div>
+                </div>
+            </div>
+        </div>
+        <div class="contact_button" onclick="alert('Заявка отправлена!')">Оставить заявку</div>
+    </div>
+
+    <!-- Подвал -->
+    <div class="splitt">
+        <div class="splitt_1">
+            <div class="splitt_log">site krd</div>
+            <div class="splitt_sel">
+                <div class="splitt_tg">tg:@romaaan_101</div>
+                <div class="splitt_img">                
+                    <div>ssitekrd@yandex.ru</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="root"></div>
+
+    <script src="style/main.js"></script>
+</body>
+</html>
