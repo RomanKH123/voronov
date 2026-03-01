@@ -741,7 +741,7 @@ header {
 
 /* Блок 4 - Тарифы */
 .blok_4 {
-    margin-top: 20vw;
+    margin-top: 10vw;
     min-height: 100vh;
     padding: 0 2vw;
 }
@@ -783,7 +783,7 @@ header {
 
 /* Блок 5 - Стоимость и сроки */
 .blok_5 {
-    margin-top: 20vw;
+    margin-top: 10vw;
     min-height: 100vh;
     padding: 0 2vw;
 }
