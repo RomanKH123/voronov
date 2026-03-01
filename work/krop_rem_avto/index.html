@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кропоткин ремонт авто</title>
+    <title>KROPOTKIN REM AUTO - Автосервис в Кропоткине</title>
+    
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="./img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./img/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./img/apple-icon-72x72.png">
@@ -18,150 +20,339 @@
     <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
     <link rel="manifest" href="./img/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="./ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href = "./servis/style/style.css">
-    <link rel="stylesheet" href = "./servis/style/main.css">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#1e1e1e">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap" rel="stylesheet">
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Fotorama -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./servis/style/main.css">
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-    <header class = "shap_1">
-        <div class="shap_logo">
-            <table>
-                <tr>
-                    <td>
-                        <a href="#">Кропоткин</a>
-                    </td>
-                    <td class="shap_logo_2">
-                        <ul>
-                            <li><a href = "tel: +7(953)-090-02-00">+7 (953) 090-02-00</a></li>
-                            <li><a href = "tel: +7(918)-621-11-44">+7 (918) 621-11-44</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class = "slog"><ul>
-            <li><a href="#" onclick= "return slowScroll('.time')">График</a></li>
-            <li><a href="#" onclick= "return slowScroll('.zvon_a')">Запись</a></li>
-            <li><a href="#" onclick= "return slowScroll('.short')">Услуги</a></li>
-            
-        </ul></div>
-        <div class="shap_const">
-            <div class="shap_const_1">
-                <div>
-                    В нашей мастерской:</br>
-                        -Ремонт электроники</br>
-                        -Компьютерная диагностика</br>
-                        -Заправка кондиционера</br>
-                        -Чип - тюнинг
+    <!-- Header с металлическим эффектом -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-contact">
+                    <span><i class="fas fa-map-marker-alt"></i> г. Кропоткин, ул. Промышленная 1</span>
+                    <span><i class="fas fa-clock"></i> Пн-Пт: 9:00-18:00 | Сб: 9:00-17:00</span>
+                </div>
             </div>
-            </div>
-            
-                <img class="shap_const_1_img" src = "./img/logotip.png">
-            
         </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">
+                            <i class="fas fa-tools"></i>
+                        </span>
+                        <span class="logo-text">
+                            <span class="logo-main">KROPOTKIN</span>
+                            <span class="logo-sub">REM AUTO</span>
+                        </span>
+                    </a>
+                    
+                    <div class="header-phones">
+                        <a href="tel:+79530900200" class="phone-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+7 (953) 090-02-00</span>
+                        </a>
+                        <a href="tel:+79186211144" class="phone-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+7 (918) 621-11-44</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Навигация с эффектом стали -->
+        <nav class="nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="#services" class="nav-link">Услуги</a></li>
+                    <li><a href="#gallery" class="nav-link">Наши работы</a></li>
+                    <li><a href="#schedule" class="nav-link">График</a></li>
+                    <li><a href="#contacts" class="nav-link">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
-   <div>
-        
-        <div class="time"><div class="time_1">ЧАСЫ РАБОТЫ</div></div>
-        <div class="blok">
-            
-            <div class="blok-time">
-                <div class="blok-time-1">ПН/ПТ</div>
-                <div class="blok-time-1">9:00 - 18:00</div>
-            </div>
-            <div class="blok-time">
-                <div class="blok-time-1">СБ</div>
-                <div class="blok-time-1">9:00 - 17:00</div>
-            </div>
-            <div class="blok-time-vs">
-                <div class="blok-time-1">ВС</div>
-                <div class="blok-time-1">-</div>
-            </div>
-        </div>
-        <div class = "zvon">
-            <div class="zvon_a">НАШ НОМЕР</div>
-            <div class="zvon_b">
-                <img class="zvon_1_img" src = "./img/4887182.png">
-                <div class="zvon_1">
-                    <div class="zvon_tel">+7 (918) 621-11-44</div>
-                    <div class = "zvon_bat"><a href = "tel: +7(918)-621-11-44">Позвонить</a></div>
-                </div>
-            </div>
-            
-        </div>
-       
-        <div class="slid">                
-            <div class="fotorama"  data-loop="true" data-autoplay="3000" data-nav="false">
-                <img src = "/img/slide/IMG_01.png">
-                <img src = "/img/slide/IMG_02.png">
-                <img src = "/img/slide/IMG_03.png">                                   
-            </div>
-        </div>
-        <div class="uslugi">
-            <div class = "uslugi_1">
-                <p>НАШИ УСЛУГИ</p>
-            </div>
-            <div>
-                <div class = "blok_2">
-                    <div class = "short" id = "r1" onclick="res_1()">
-                        <div class="short_1">
-                            <img src = "./img/957ba27f-6888-44d2-8bfd-32bde951f687.jpg">
-                            <p>Компьютерная диагностика</p> 
-                        </div>
-                    </div>
-                    <div class = "short" id = "r2" onclick="res_2()">
-                        <div class="short_1">
-                            <img src = "./img/50a47463-d7a9-476d-bde2-6a92e1313592.jpg">
-                            <p>Обслуживание кондиционера</p>
-                        </div>
-                        
-                    </div>
-                    <div class = "short" id = "r3" onclick="res_3()">
-                        <div class="short_1">
-                            <img src = "./img/1148b4fd-8dea-4ca4-97c0-9db5bbe39eee.jpg">
-                            <p>Чистка форсунок</p>
-                        </div>
-                        
-                    </div>
-                    <div class = "short" id = "r4" onclick="res_4()">
-                        <div class="short_1">
-                            <img src = "./img/9e67037f-b268-417e-9814-dd0fac1d2513.jpg">
-                            <p>Чип тюнинг</p>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div id = "root"></div>
-        </div>
 
-        
-   </div>
-   <div class="chek">
-        <div class="chek_1"><p>krop_rem_avto</p></div>
-        <div class="chek_1">
-            <ul>
-                <li><a href = "tel: +7(953)-090-02-00">+7 (953) 090-02-00</a></li>
-                <li><a href = "tel: +7(918)-621-11-44">+7 (918) 621-11-44</a></li>
-                <li><a href="tg://resolve?domain=viktor123ru">Telegram: @viktor123ru</a></li>
-            </ul>
+    <!-- Hero Section с индустриальным фоном -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Профессиональный <span class="text-highlight">автосервис</span> в Кропоткине
+                </h1>
+                <p class="hero-text">
+                    Диагностика • Ремонт электроники • Чип-тюнинг • Кондиционеры
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">Наши услуги</a>
+                    <a href="#contacts" class="btn btn-outline">Записаться</a>
+                </div>
+            </div>
         </div>
-   </div>
-   <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-    <script src="./servis/js/react.js" type = "text/babel"></script>
-   
-   <script src="./servis/js/main.js"></script>
+        <div class="hero-pattern"></div>
+    </section>
+
+    <!-- Металлическая разделительная полоса -->
+    <div class="divider">
+        <div class="divider-line"></div>
+        <i class="fas fa-cog divider-icon"></i>
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- Услуги -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Что мы делаем</span>
+                <h2 class="section-title">НАШИ УСЛУГИ</h2>
+                <p class="section-text">Профессиональный ремонт и обслуживание автомобилей</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Компьютерная диагностика -->
+                <div class="service-card" onclick="res_1()">
+                    <div class="service-card-inner">
+                        <div class="service-front">
+                            <div class="service-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h3>Компьютерная диагностика</h3>
+                        </div>
+                        <div class="service-back">
+                            <p>Полная диагностика всех систем автомобиля</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Обслуживание кондиционера -->
+                <div class="service-card" onclick="res_2()">
+                    <div class="service-card-inner">
+                        <div class="service-front">
+                            <div class="service-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <h3>Обслуживание кондиционера</h3>
+                        </div>
+                        <div class="service-back">
+                            <p>Заправка и диагностика кондиционера</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Чистка форсунок -->
+                <div class="service-card" onclick="res_3()">
+                    <div class="service-card-inner">
+                        <div class="service-front">
+                            <div class="service-icon">
+                                <i class="fas fa-oil-can"></i>
+                            </div>
+                            <h3>Чистка форсунок</h3>
+                        </div>
+                        <div class="service-back">
+                            <p>Ультразвуковая чистка форсунок</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Чип тюнинг -->
+                <div class="service-card" onclick="res_4()">
+                    <div class="service-card-inner">
+                        <div class="service-front">
+                            <div class="service-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3>Чип тюнинг</h3>
+                        </div>
+                        <div class="service-back">
+                            <p>Увеличение мощности двигателя</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- React Root -->
+            <div id="root" class="service-info"></div>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Фотогалерея</span>
+                <h2 class="section-title">НАШИ РАБОТЫ</h2>
+            </div>
+            
+            <div class="fotorama" data-loop="true" data-autoplay="3000" data-nav="false" data-width="100%" data-ratio="16/9">
+                <img src="./img/slide/IMG_01.png" alt="Работа 1">
+                <img src="./img/slide/IMG_02.png" alt="Работа 2">
+                <img src="./img/slide/IMG_03.png" alt="Работа 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- График работы -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Время работы</span>
+                <h2 class="section-title">ГРАФИК РАБОТЫ</h2>
+            </div>
+            
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <div class="schedule-day">
+                        <i class="fas fa-calendar-week"></i>
+                        <span>ПН - ПТ</span>
+                    </div>
+                    <div class="schedule-time">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 - 18:00</span>
+                    </div>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-day">
+                        <i class="fas fa-calendar-day"></i>
+                        <span>СУББОТА</span>
+                    </div>
+                    <div class="schedule-time">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 - 17:00</span>
+                    </div>
+                </div>
+                
+                <div class="schedule-card sunday">
+                    <div class="schedule-day">
+                        <i class="fas fa-calendar-times"></i>
+                        <span>ВОСКРЕСЕНЬЕ</span>
+                    </div>
+                    <div class="schedule-time">
+                        <i class="fas fa-clock"></i>
+                        <span>ВЫХОДНОЙ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contacts-info">
+                    <span class="section-subtitle">Свяжитесь с нами</span>
+                    <h2 class="section-title">КОНТАКТЫ</h2>
+                    
+                    <div class="contacts-list">
+                        <div class="contacts-item">
+                            <div class="contacts-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Телефоны</h4>
+                                <a href="tel:+79530900200" class="contacts-link">+7 (953) 090-02-00</a><br>
+                                <a href="tel:+79186211144" class="contacts-link">+7 (918) 621-11-44</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contacts-item">
+                            <div class="contacts-icon">
+                                <i class="fab fa-telegram"></i>
+                            </div>
+                            <div>
+                                <h4>Telegram</h4>
+                                <a href="tg://resolve?domain=viktor123ru" class="contacts-link">@viktor123ru</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contacts-item">
+                            <div class="contacts-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Адрес</h4>
+                                <p class="contacts-text">г. Кропоткин, ул. Промышленная 1</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contacts-action">
+                        <a href="tel:+79186211144" class="btn btn-primary btn-large">
+                            <i class="fas fa-phone-alt"></i> Позвонить сейчас
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contacts-image">
+                    <img src="./img/logotip.png" alt="Автосервис" class="contacts-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h4>KROPOTKIN<span>AUTO</span></h4>
+                    <p>Профессиональный автосервис в Кропоткине. Качественный ремонт и обслуживание автомобилей.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#gallery">Наши работы</a></li>
+                        <li><a href="#schedule">График работы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contacts">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (953) 090-02-00</p>
+                    <p><i class="fas fa-phone"></i> +7 (918) 621-11-44</p>
+                    <p><i class="fab fa-telegram"></i> @viktor123ru</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 KROPOTKIN AUTO SERVICE. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка наверх -->
+    <button id="scrollTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script src="./servis/js/main.js"></script>
+    <script src="./servis/js/react.js" type="text/babel"></script>
 </body>
 </html>
