@@ -1,5 +1,4 @@
 <?php
-// send_application.php
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -24,7 +23,14 @@ if (!$input) {
 // Извлекаем данные
 $name = isset($input['name']) ? trim($input['name']) : '';
 $phone = isset($input['phone']) ? trim($input['phone']) : '';
+$email = isset($input['email']) ? trim($input['email']) : '';
+$message = isset($input['message']) ? trim($input['message']) : '';
+$form = isset($input['form']) ? trim($input['form']) : 'main';
 $page = isset($input['page']) ? trim($input['page']) : '';
+
+// Получаем IP и User-Agent
+$ip_address = $_SERVER['REMOTE_ADDR'] ?? '';
+$user_agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
 // Валидация
 $errors = [];
@@ -44,6 +50,10 @@ if (empty($phone)) {
     }
 }
 
+if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = 'Введите корректный email';
+}
+
 // Если есть ошибки - возвращаем
 if (!empty($errors)) {
     http_response_code(400);
@@ -52,11 +62,10 @@ if (!empty($errors)) {
 }
 
 // ===== НАСТРОЙКИ БАЗЫ ДАННЫХ =====
-// ЗАМЕНИТЕ НА СВОИ ЗНАЧЕНИЯ!
-$db_host = 'localhost';      // обычно localhost
-$db_name = 'vh384894_voronov';  // название вашей базы данных
-$db_user = 'vh384894_voronov';  // пользователь (обычно root на локальном сервере)
-$db_pass = 'voronov20032003';  // пароль (на локальном сервере часто пустой)
+$db_host = 'localhost';
+$db_name = 'vh384894_voronov';
+$db_user = 'vh384894_voronov';
+$db_pass = 'voronov20032003';
 
 try {
     // Подключение к базе данных
@@ -70,35 +79,29 @@ try {
         ]
     );
     
-    // Создаем таблицу, если её нет
-    $pdo->exec("
-        CREATE TABLE IF NOT EXISTS applications (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            phone VARCHAR(50) NOT NULL,
-            page_url TEXT,
-            created_at DATETIME NOT NULL,
-            status ENUM('new', 'processed', 'completed') DEFAULT 'new',
-            INDEX (created_at)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
-    ");
-    
-    // Вставляем данные
-    $sql = "INSERT INTO applications (name, phone, page_url, created_at, status) 
-            VALUES (:name, :phone, :page, NOW(), 'new')";
+    // Вставляем данные (без проверки структуры - она уже правильная)
+    $sql = "INSERT INTO applications (name, phone, email, message, form_type, page_url, ip_address, user_agent, created_at, status) 
+            VALUES (:name, :phone, :email, :message, :form_type, :page, :ip, :ua, NOW(), 'new')";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':name' => $name,
         ':phone' => $phone,
-        ':page' => $page
+        ':email' => $email,
+        ':message' => $message,
+        ':form_type' => $form,
+        ':page' => $page,
+        ':ip' => $ip_address,
+        ':ua' => $user_agent
     ]);
+    
+    $applicationId = $pdo->lastInsertId();
     
     // Успешный ответ
     echo json_encode([
         'success' => true,
         'message' => 'Спасибо! Ваша заявка принята.',
-        'application_id' => $pdo->lastInsertId()
+        'application_id' => $applicationId
     ]);
     
 } catch (PDOException $e) {

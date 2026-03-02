@@ -194,9 +194,7 @@
             </div>
 
             <div class="projects_grid">
-                
-
-                <!-- Карточка 2: Krop Rem Avto (весь блок кликабельный) -->
+                <!-- Карточка 2: Krop Rem Avto -->
                 <a href="/work/krop_rem_avto/index.html" class="project_card_link" target="_blank">
                     <div class="project_card">
                         <div class="project_preview">
@@ -210,7 +208,7 @@
                     </div>
                 </a>
 
-                <!-- Карточка 3: Sitekrd (весь блок кликабельный) -->
+                <!-- Карточка 3: Sitekrd -->
                 <a href="/work/sitekrd/index.html" class="project_card_link" target="_blank">
                     <div class="project_card">
                         <div class="project_preview">
@@ -223,7 +221,8 @@
                         </div>
                     </div>
                 </a>
-                <!-- Карточка 4: КрасДоставка (первый сайт) -->
+                
+                <!-- Карточка 4: КрасДоставка -->
                 <a href="/work/kras-dostavka/index.html" class="project_card_link" target="_blank">
                     <div class="project_card">
                         <div class="project_preview">
@@ -233,66 +232,111 @@
                         <div class="project_details">
                             <h3 class="project_name">КрасДоставка</h3>
                             <span class="project_category">Сайт грузоперевозок</span>
-                            <p class="project_desc">Сайт для компании по грузоперевозкам в Краснодаре. Современный дизайн, адаптивная верстка, интеграция с Fotorama.</p>
+                            <p class="project_desc">Сайт для компании по грузоперевозкам в Краснодаре.</p>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
-      
     </div>
-   <div id="contacts" class="blok_contacts">
-    <div class="blok_2_nm">Свяжитесь с нами</div>
-    <div class="contacts_content">
-        <div class="contact_info">
-            <div class="contact_item">
-                <div class="contact_icon">📞</div>
-                <span class="contact_label">Телефон:</span>
-                <a href="tel:+79604987864">+7(960)-498-78-64</a>
+
+    <!-- ОБНОВЛЕННЫЙ БЛОК КОНТАКТОВ С ФОРМОЙ -->
+    <div id="contacts" class="blok_contacts">
+        <div class="blok_2_nm">Свяжитесь с нами</div>
+        <div class="contacts_content">
+            <!-- Левая часть - контактная информация -->
+            <div class="contact_info_left">
+                <div class="contact_info">
+                    <div class="contact_item">
+                        <div class="contact_icon">📞</div>
+                        <span class="contact_label">Телефон:</span>
+                        <a href="tel:+79604987864">+7(960)-498-78-64</a>
+                    </div>
+                    
+                    <div class="contact_item">
+                        <div class="contact_icon">✉️</div>
+                        <span class="contact_label">Email:</span>
+                        <a href="mailto:info@voronov.ru">info@voronov.ru</a>
+                    </div>
+                    
+                    <div class="contact_item">
+                        <div class="contact_icon">📱</div>
+                        <span class="contact_label">Telegram:</span>
+                        <a href="https://t.me/voronov_tg" target="_blank">@voronov_tg</a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="contact_item">
-                <div class="contact_icon">✉️</div>
-                <span class="contact_label">Email:</span>
-                <a href="mailto:info@voronov.ru">info@voronov.ru</a>
+
+            <!-- Правая часть - форма обратной связи -->
+            <div class="contact_form_right">
+                <div class="contact_form_card">
+                    <h3 class="form_title">Оставьте заявку</h3>
+                    <p class="form_subtitle">Мы свяжемся с вами в ближайшее время</p>
+                    
+                    <form id="contactFormMain" class="contact_form">
+                        <div class="form_group">
+                            <input type="text" id="name_main" name="name" placeholder="Ваше имя *" required>
+                        </div>
+                        
+                        <div class="form_group">
+                            <input type="tel" id="phone_main" name="phone" placeholder="+7 (___) ___-__-__ *" required>
+                        </div>
+                        
+                        <div class="form_group">
+                            <input type="email" id="email_main" name="email" placeholder="Email (необязательно)">
+                        </div>
+                        
+                        <div class="form_group">
+                            <textarea id="message_main" name="message" rows="3" placeholder="Опишите вашу задачу"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form_submit_btn">Отправить заявку</button>
+                    </form>
+                    
+                    <div id="successMessageMain" class="success_message" style="display: none;">
+                        <div class="success_icon">✓</div>
+                        <h4>Спасибо за заявку!</h4>
+                        <p>Мы свяжемся с вами в ближайшее время</p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="contact_item">
-                <div class="contact_icon">📱</div>
-                <span class="contact_label">Telegram:</span>
-                <a href="https://t.me/voronov_tg" target="_blank">@voronov_tg</a>
-            </div>
-            <button class="blok_4_batton">Оставить заявку</button>
         </div>
     </div>
-</div>
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2 class="modal-title">Оставьте заявку</h2>
-        <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
-        
-        <form id="contactForm" class="modal-form">
-            <div class="form-group">
-                <label for="name">Ваше имя *</label>
-                <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
-            </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Оставьте заявку</h2>
+            <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
             
-            <div class="form-group">
-                <label for="phone">Номер телефона *</label>
-                <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
-            </div>
+            <form id="contactForm" class="modal-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя *</label>
+                    <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Номер телефона *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (необязательно)</label>
+                    <input type="email" id="email" name="email" placeholder="Введите ваш email">
+                </div>
+                
+                <button type="submit" class="modal-submit-btn">Отправить заявку</button>
+            </form>
             
-            <button type="submit" class="modal-submit-btn">Отправить заявку</button>
-        </form>
-        
-        <div id="successMessage" class="success-message" style="display: none;">
-            <div class="success-icon">✓</div>
-            <h3>Спасибо за заявку!</h3>
-            <p>Мы свяжемся с вами в ближайшее время</p>
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3>Спасибо за заявку!</h3>
+                <p>Мы свяжемся с вами в ближайшее время</p>
+            </div>
         </div>
     </div>
-</div>
-<script src = "/style/js/main.js"></script>
+
+    <script src="/style/js/main.js"></script>
 </body>
 </html>
