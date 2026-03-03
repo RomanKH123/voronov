@@ -3,14 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ОСНОВНЫЕ SEO ТЕГИ -->
     <title>Студия веб-разработки Воронова</title>
-    <link rel="stylesheet" href="/style/main.css">
+    <meta name="description" content="Студия веб-разработки Воронова создает продающие сайты под ключ. Разработка на Tilda и WordPress, интернет-маркетинг, SEO-оптимизация, чат-боты и CRM. Работаем с 2015 года.">
+    <meta name="keywords" content="разработка сайтов, создание сайтов, веб-студия, лендинг, интернет-магазин, SEO, продвижение сайтов, Tilda, WordPress, Краснодар">
+    <meta name="author" content="Студия Воронова">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph для соцсетей -->
+    <meta property="og:title" content="Студия веб-разработки Воронова">
+    <meta property="og:description" content="Создание продающих сайтов под ключ. Разработка, дизайн, маркетинг.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://voronov-art.ru">
+    <meta property="og:image" content="https://voronov-art.ru/img/logo_2.png">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Студия веб-разработки Воронова">
+    <meta name="twitter:description" content="Создание продающих сайтов под ключ">
+    <meta name="twitter:image" content="https://voronov-art.ru/img/logo_2.png">
+    
+    <!-- Каноническая ссылка (избегаем дублей) -->
+    <link rel="canonical" href="https://voronov-art.ru">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="voronov-std" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />    
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    
+    <!-- Гео-метки (если важны) -->
+    <meta name="geo.region" content="RU-KDA">
+    <meta name="geo.placename" content="Краснодар">
+    <meta name="geo.position" content="45.035470;38.975313">
+    <meta name="ICBM" content="45.035470, 38.975313">
+    
+    <!-- Верификация для Яндекса и Google -->
+    <meta name="yandex-verification" content="ваш-код-верификации">
+    <meta name="google-site-verification" content="ваш-код-верификации">
+    
+    <link rel="stylesheet" href="/style/main.css">
+    
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -20,294 +57,369 @@
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106882746', 'ym');
 
-        ym(106882746, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+        ym(106882746, 'init', {
+            ssr:true,
+            webvisor:true,
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            ecommerce:"dataLayer"
+        });
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/106882746" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
+   
+    
+    <!-- Микроразметка Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Студия веб-разработки Воронова",
+        "image": "https://voronov-art.ru/img/logo_2.png",
+        "description": "Разработка сайтов под ключ, интернет-маркетинг, SEO-продвижение",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Краснодар",
+            "addressCountry": "RU"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "45.035470",
+            "longitude": "38.975313"
+        },
+        "url": "https://voronov-art.ru",
+        "telephone": "+79604987864",
+        "priceRange": "от 30000₽",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            }
+        ],
+        "sameAs": [
+            "https://t.me/voronov_tg"
+        ]
+    }
+    </script>
 </head>
 <body>
+    <!-- Хлебные крошки (для навигации) -->
+    <div itemscope itemtype="https://schema.org/BreadcrumbList" style="display:none;">
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="https://voronov-art.ru" itemprop="item"><span itemprop="name">Главная</span></a>
+            <meta itemprop="position" content="1">
+        </span>
+    </div>
+
     <header>
         <div class="shap_1">
-            <img src="/img/logo_2.png" alt="VORONOV.art">
+            <img src="/img/logo_2.png" alt="Логотип студии веб-разработки Воронова">
         </div>
         <div class="kontakt">
-            <div><a href="tel:+79604987864">+7(960)-498-78-64</a></div>
-            <div><a href="https://t.me/voronov_tg" target="_blank">tg:@voronov_tg</a></div>
+            <div><a href="tel:+79604987864" aria-label="Позвонить нам">+7(960)-498-78-64</a></div>
+            <div><a href="https://t.me/voronov_tg" target="_blank" aria-label="Написать в Telegram">tg:@voronov_tg</a></div>
         </div>
     </header>
-    <div class="menu_st">
+    
+    <nav class="menu_st" aria-label="Основное меню">
         <div onclick="scrollToBlock('about')">О Компании</div>
         <div onclick="scrollToBlock('services')">Услуги</div>                
         <div onclick="scrollToBlock('works')">Наши работы</div>
         <div onclick="scrollToBlock('contacts')">Контакты</div>
-    </div>
-    <hr>
-    <div class="blok_1" id = "about">
-        <div class="blok_1_zg"><H1>РАЗРАБОТКА САЙТОВ ПРОЕКТОВ НА ЗАКАЗ</H1></div>
-        <div class="blok_1_sp">
-            <div class="blok_1_sp_1">
-                <div>ДИЗАЙН И ВЕРСТКА  САЙТА</div>
-                <div>РАЗРАБОТКА САЙТА</div>
-                <div>ИНТЕРНЕТ МАРКЕНТИГ</div>
-                <div>ИНСТРУМЕНТЫ ОНЛАЙН ТОРГОВЛИ</div>
-            </div>
-            <div class="blok_1_sp_2"><img src = "/img/scale_1201.png"></div>
-        </div>
-        
-    </div>
-    <div class="blok_3" id = "services">
-        <div class="blok_3_nm">Услуги</div>
-        <div class="blok_3_zg">Добейтесь максимальных результатов с нашей помощью</div>
-        <div class="blok_3_tg">Решения для повышения конверсии, оптимизации рекламы и успешного развития вашего бизнеса.</div>
-        <div class="blok_3_ln">
-            <div class="ln_1">
-                <div class = "ln_b_1">Разработка дизайн и верстка сайта</div>
-                <div class = "ln_b_2">Эффективные лендинги и классные многостаночники с маркетинговой составляющей</div>
-                <div class = "ln_b_3">
-                    <div>Tilda</div>
-                    <div>WordPress</div>
-                    <div>Персональный</div>
-                </div>
-            </div>
-            <div class="ln_2">
-                <div class = "ln_b_1">Интернет - маркентинг</div>
-                <div class = "ln_b_2">Помогаем вам повысить узнаваемость и донести целевой аудитории с помощью старагетии  </div>
-                <div class = "ln_b_3">
-                    <div>Яндекс Директ</div>
-                    <div>Яндекс Бизнес</div>
-                </div>
-            </div>
-            <div class="ln_3">
-                <div class = "ln_b_1">Инструменты онлайн торговли</div>
-                <div class = "ln_b_2">Помимо разработки сайта и интернет-маркентига, мы занимаемся другими инструментами торговли, чтобы сделать вашу работу легче</div>
-                <div class = "ln_b_3">
-                    <div>Чат-боты</div>
-                    <div>Telegram</div>
-                    <div>MAX</div>
-                    <div>CRM</div>
-                </div>
-            </div>
-        </div>
-        <button>Подробнее</button>
-    </div>
-    <div class="blok_2">
-        <div class="blok_2_nm">Этапы работы</div>
-        <div class="blok_2_zg">Каждый шаг продуман для достижения лучших результатов</div>
-        <div>
-            <div class="blok_2_1">
-                <div class="nm">
-                    <div> </div>
-                    <p>1-2 дня</p>
-                </div>
-                <div class="nm_txt">На этом этапе мы знакомимся с вашим бизнесом, выясняем ваши цели, задачи и ожидания. 
-                    Проводим анализ целевой аудитории, конкурентов и текущего состояния вашего проекта.</div>
-            </div>
-            <div class="blok_2_2">
-                <div class="nm">
-                    <div>Разработка стратегии</div>
-                    <p>4-6 дней</p>
-                </div>
-                <div class="nm_txt">На основе собранных данных мы разрабатываем детализированный план действий. 
-                    Определяем ключевые направления работы, выбираем инструменты и каналы продвижения.</div>
-            </div>
-            <div class="blok_2_3">
-                <div class="nm">
-                    <div>Разработка стратегии</div>
-                    <p>2-3 недели</p>
-                </div>
-                <div class="nm_txt">Приступаем к выполнению поставленных задач. Это может включать создание сайта, настройку рекламных кампаний, разработку контента и SEO-оптимизацию.
-                     Все работы выполняются в соответствии с утвержденным планом.</div>
-            </div>
-            <div class="blok_2_4">
-                <div class="nm">
-                    <div>Мониторинг и оптимизация</div>
-                    <div></div>
-                </div>
-                <div class="nm_txt"><p>После запуска мы внимательно отслеживаем результаты, собираем данные и проводим анализ эффективности. 
-                    При необходимости вносим корректировки, чтобы повысить результативность.</div>
-            </div>
-        </div>
-    </div>
+    </nav>
     
-    <div class="blok_4">
-        <div class="blok_2_nm">Тарифы для любых целей</div>
-        <div class="blok_2_zg">Работая с нами, вы получаете не просто набор услуг, а комплексное решение, нацеленное на результат.</div>
-        <div class="blok_3_ln">
-            <div class="blok_4_1">
-                <div class = "ln_b_1">Одностраничник</div>
-                <div class = "ln_b_2">Подходит для презентации услуги или продукта, сайта-визитки, портфолио и промо-сайта</div>
-                <button class="blok_4_batton">Обсудить проект</button>
+    <hr>
+    
+    <main>
+        <!-- О КОМПАНИИ С H1 -->
+        <section class="blok_1" id="about" aria-labelledby="about-heading">
+            <div class="blok_1_zg">
+                <h1 id="about-heading">РАЗРАБОТКА САЙТОВ ПРОЕКТОВ НА ЗАКАЗ</h1>
             </div>
-            <div class="blok_4_2">
-                <div class = "ln_b_1">Многостраничник</div>
-                <div class = "ln_b_2">Подходит для крупной или быстро развивающейся компании, портфолио, презентации услуги и много всего другого...</div>
-                <button class="blok_4_batton">Обсудить проект</button>
+            <div class="blok_1_sp">
+                <div class="blok_1_sp_1">
+                    <div>ДИЗАЙН И ВЕРСТКА САЙТА</div>
+                    <div>РАЗРАБОТКА САЙТА</div>
+                    <div>ИНТЕРНЕТ МАРКЕТИНГ</div>
+                    <div>ИНСТРУМЕНТЫ ОНЛАЙН ТОРГОВЛИ</div>
+                </div>
+                <div class="blok_1_sp_2">
+                    <img src="/img/scale_1201.png" alt="Веб-разработка - создание сайтов">
+                </div>
             </div>
-            <div class="blok_4_3">
-                <div class = "ln_b_1">Сайт-каталог</div>
-                <div class = "ln_b_2">Может быть как одностраничником, так и многостраничником. Подходит для продажи различных товаров или услуг</div>
-                <button class="blok_4_batton">Обсудить проект</button>
-            </div>
-        </div>
-    </div>
-    <div class="blok_5">
-        <div class="blok_2_nm">От чего зависит-стоимость и сроки</div>
-        <div class="blok_3_ln blok_5_ln">
-            <div class="blok_5_1">
-                <div class = "ln_b_1">Сложности структуры</div>
-                <div class = "ln_b_2">Дизайн и анимация</div>
-                <div class = "ln_b_2">Дополнительные элементы</div>
-                <div class = "ln_b_2">Интеграции и функционал</div>
-            </div>
-            <div class="blok_5_2">
-                <div class = "ln_b_1">Сроки</div>
-                <div class = "ln_b_2">Срок разработки сайта на Тильде составляет от 3х дней. Мы работаем быстро, но не в ущерб качеству.</div>
-            </div>
-        </div>
-        <button class="blok_4_batton">Обсудить проект</button>
-    </div>
-    <div class="blok_6" id = "works">
-        <div class="blok_6_nm">Наши работы</div>
-        <div class="blok_6_txt">На протяжении всей истории компании наши специалисты создали, продвинули и прорекламировали интернет-проекты. Многие из них успешно функционируют на российском  рынке. 
-            Мы гордимся достигнутыми результатами и продолжаем развиваться. 
-            Вскоре в этом разделе появятся новые истории успеха. Следите за обновлениями! </div>
-        <div>
+        </section>
+
+        <!-- УСЛУГИ -->
+        <section class="blok_3" id="services" aria-labelledby="services-heading">
+            <h2 id="services-heading" class="blok_3_nm">Услуги</h2>
+            <div class="blok_3_zg">Добейтесь максимальных результатов с нашей помощью</div>
+            <div class="blok_3_tg">Решения для повышения конверсии, оптимизации рекламы и успешного развития вашего бизнеса.</div>
             
-        </div>
-        <div class="prod">
-            <div class="prod_info">
-                <img src = "/img/Tg-bot.png"> 
-            </div>
-            <div class="prod_info">
-                <img src = "/img/odn_sat.png"> 
-            </div>
-            <div class="prod_info">
-                <img src = "/img/web-diz.png"> 
-            </div>
-        </div>
-        
-        <!-- НОВЫЙ БЛОК: Наши проекты (с кликабельными карточками) -->
-        <div class="projects_showcase">
-            <div class="projects_header">
-                <h2 class="projects_title">Последние проекты</h2>
-                <p class="projects_subtitle">Кейсы, которыми мы гордимся</p>
-            </div>
-
-            <div class="projects_grid">
-                <!-- Карточка 2: Krop Rem Avto -->
-                <a href="/work/krop_rem_avto/index.html" class="project_card_link" target="_blank">
-                    <div class="project_card">
-                        <div class="project_preview">
-                            <img src="/img/prewiu/krop_rem_auto.png" alt="Превью проекта Кроп Рем Авто" class="project_image" onerror="this.src='/img/placeholder.jpg'">
-                        </div>
-                        <div class="project_details">
-                            <h3 class="project_name">Кроп Рем Авто</h3>
-                            <span class="project_category">Сайт визитка</span>
-                            <p class="project_desc">Сайт автосервиса с записью на обслуживание, ценами и описанием услуг.</p>
-                        </div>
+            <div class="blok_3_ln">
+                <article class="ln_1">
+                    <h3 class="ln_b_1">Разработка дизайн и верстка сайта</h3>
+                    <p class="ln_b_2">Эффективные лендинги и классные многостраничники с маркетинговой составляющей</p>
+                    <div class="ln_b_3">
+                        <span>Tilda</span>
+                        <span>WordPress</span>
+                        <span>Персональный</span>
                     </div>
-                </a>
-
-                <!-- Карточка 3: Sitekrd -->
-                <a href="/work/sitekrd/index.html" class="project_card_link" target="_blank">
-                    <div class="project_card">
-                        <div class="project_preview">
-                            <img src="/img/prewiu/sitekrd.jpg" alt="Превью проекта Sitekrd" class="project_image" onerror="this.src='/img/placeholder.jpg'">
-                        </div>
-                        <div class="project_details">
-                            <h3 class="project_name">Site_krd</h3>
-                            <span class="project_category">Лендинг</span>
-                            <p class="project_desc">Продающий одностраничник для демонстрации услуг и привлечения клиентов.</p>
-                        </div>
-                    </div>
-                </a>
+                </article>
                 
-                <!-- Карточка 4: КрасДоставка -->
-                <a href="/work/kras-dostavka/index.html" class="project_card_link" target="_blank">
-                    <div class="project_card">
-                        <div class="project_preview">
-                            <img src="/img/prewiu/dostav.png" alt="КрасДоставка" class="project_image" onerror="this.src='/img/placeholder.jpg'">
-                            <div class="project_badge">Первый проект</div>
-                        </div>
-                        <div class="project_details">
-                            <h3 class="project_name">КрасДоставка</h3>
-                            <span class="project_category">Сайт грузоперевозок</span>
-                            <p class="project_desc">Сайт для компании по грузоперевозкам в Краснодаре.</p>
-                        </div>
+                <article class="ln_2">
+                    <h3 class="ln_b_1">Интернет-маркетинг</h3>
+                    <p class="ln_b_2">Помогаем вам повысить узнаваемость и донести до целевой аудитории с помощью стратегии</p>
+                    <div class="ln_b_3">
+                        <span>Яндекс Директ</span>
+                        <span>Яндекс Бизнес</span>
                     </div>
-                </a>
+                </article>
+                
+                <article class="ln_3">
+                    <h3 class="ln_b_1">Инструменты онлайн торговли</h3>
+                    <p class="ln_b_2">Помимо разработки сайта и интернет-маркетинга, мы занимаемся другими инструментами торговли, чтобы сделать вашу работу легче</p>
+                    <div class="ln_b_3">
+                        <span>Чат-боты</span>
+                        <span>Telegram</span>
+                        <span>MAX</span>
+                        <span>CRM</span>
+                    </div>
+                </article>
             </div>
-        </div>
-    </div>
+            <button aria-label="Узнать подробнее об услугах">Подробнее</button>
+        </section>
 
-    <!-- ОБНОВЛЕННЫЙ БЛОК КОНТАКТОВ С ФОРМОЙ -->
-    <div id="contacts" class="blok_contacts">
-        <div class="blok_2_nm">Свяжитесь с нами</div>
-        <div class="contacts_content">
-            <!-- Левая часть - контактная информация -->
-            <div class="contact_info_left">
-                <div class="contact_info">
-                    <div class="contact_item">
-                        <div class="contact_icon">📞</div>
-                        <span class="contact_label">Телефон:</span>
-                        <a href="tel:+79604987864">+7(960)-498-78-64</a>
+        <!-- ЭТАПЫ РАБОТЫ -->
+        <section class="blok_2" aria-labelledby="steps-heading">
+            <h2 id="steps-heading" class="blok_2_nm">Этапы работы</h2>
+            <div class="blok_2_zg">Каждый шаг продуман для достижения лучших результатов</div>
+            <div>
+                <article class="blok_2_1" itemscope itemtype="https://schema.org/HowToStep">
+                    <meta itemprop="position" content="1">
+                    <div class="nm">
+                        <h3 itemprop="name">Консультация и анализ</h3>
+                        <p>1-2 дня</p>
                     </div>
-                    
-                    <div class="contact_item">
-                        <div class="contact_icon">✉️</div>
-                        <span class="contact_label">Email:</span>
-                        <a href="mailto:info@voronov.ru">info@voronov.ru</a>
+                    <div class="nm_txt" itemprop="description">На этом этапе мы знакомимся с вашим бизнесом, выясняем ваши цели, задачи и ожидания. Проводим анализ целевой аудитории, конкурентов и текущего состояния вашего проекта.</div>
+                </article>
+                
+                <article class="blok_2_2" itemscope itemtype="https://schema.org/HowToStep">
+                    <meta itemprop="position" content="2">
+                    <div class="nm">
+                        <h3 itemprop="name">Разработка стратегии</h3>
+                        <p>4-6 дней</p>
                     </div>
+                    <div class="nm_txt" itemprop="description">На основе собранных данных мы разрабатываем детализированный план действий. Определяем ключевые направления работы, выбираем инструменты и каналы продвижения.</div>
+                </article>
+                
+                <article class="blok_2_3" itemscope itemtype="https://schema.org/HowToStep">
+                    <meta itemprop="position" content="3">
+                    <div class="nm">
+                        <h3 itemprop="name">Реализация</h3>
+                        <p>2-3 недели</p>
+                    </div>
+                    <div class="nm_txt" itemprop="description">Приступаем к выполнению поставленных задач. Это может включать создание сайта, настройку рекламных кампаний, разработку контента и SEO-оптимизацию. Все работы выполняются в соответствии с утвержденным планом.</div>
+                </article>
+                
+                <article class="blok_2_4" itemscope itemtype="https://schema.org/HowToStep">
+                    <meta itemprop="position" content="4">
+                    <div class="nm">
+                        <h3 itemprop="name">Мониторинг и оптимизация</h3>
+                    </div>
+                    <div class="nm_txt" itemprop="description">После запуска мы внимательно отслеживаем результаты, собираем данные и проводим анализ эффективности. При необходимости вносим корректировки, чтобы повысить результативность.</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ТАРИФЫ -->
+        <section class="blok_4" aria-labelledby="tariffs-heading">
+            <h2 id="tariffs-heading" class="blok_2_nm">Тарифы для любых целей</h2>
+            <div class="blok_2_zg">Работая с нами, вы получаете не просто набор услуг, а комплексное решение, нацеленное на результат.</div>
+            <div class="blok_3_ln">
+                <article class="blok_4_1" itemscope itemtype="https://schema.org/Product">
+                    <meta itemprop="name" content="Одностраничник">
+                    <h3 class="ln_b_1">Одностраничник</h3>
+                    <p class="ln_b_2" itemprop="description">Подходит для презентации услуги или продукта, сайта-визитки, портфолио и промо-сайта</p>
+                    <meta itemprop="price" content="по запросу">
+                    <button class="blok_4_batton">Обсудить проект</button>
+                </article>
+                
+                <article class="blok_4_2" itemscope itemtype="https://schema.org/Product">
+                    <meta itemprop="name" content="Многостраничник">
+                    <h3 class="ln_b_1">Многостраничник</h3>
+                    <p class="ln_b_2" itemprop="description">Подходит для крупной или быстро развивающейся компании, портфолио, презентации услуги и много всего другого...</p>
+                    <meta itemprop="price" content="по запросу">
+                    <button class="blok_4_batton">Обсудить проект</button>
+                </article>
+                
+                <article class="blok_4_3" itemscope itemtype="https://schema.org/Product">
+                    <meta itemprop="name" content="Сайт-каталог">
+                    <h3 class="ln_b_1">Сайт-каталог</h3>
+                    <p class="ln_b_2" itemprop="description">Может быть как одностраничником, так и многостраничником. Подходит для продажи различных товаров или услуг</p>
+                    <meta itemprop="price" content="по запросу">
+                    <button class="blok_4_batton">Обсудить проект</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- СТОИМОСТЬ И СРОКИ -->
+        <section class="blok_5" aria-labelledby="price-heading">
+            <h2 id="price-heading" class="blok_2_nm">От чего зависит стоимость и сроки</h2>
+            <div class="blok_3_ln blok_5_ln">
+                <div class="blok_5_1">
+                    <h3 class="ln_b_1">Сложности структуры</h3>
+                    <p class="ln_b_2">Дизайн и анимация</p>
+                    <p class="ln_b_2">Дополнительные элементы</p>
+                    <p class="ln_b_2">Интеграции и функционал</p>
+                </div>
+                <div class="blok_5_2">
+                    <h3 class="ln_b_1">Сроки</h3>
+                    <p class="ln_b_2">Срок разработки сайта на Тильде составляет от 3х дней. Мы работаем быстро, но не в ущерб качеству.</p>
+                </div>
+            </div>
+            <button class="blok_4_batton">Обсудить проект</button>
+        </section>
+
+        <!-- НАШИ РАБОТЫ (ПОРТФОЛИО) -->
+        <section class="blok_6" id="works" aria-labelledby="works-heading">
+            <h2 id="works-heading" class="blok_6_nm">Наши работы</h2>
+            <div class="blok_6_txt">На протяжении всей истории компании наши специалисты создали, продвинули и прорекламировали интернет-проекты. Многие из них успешно функционируют на российском рынке. Мы гордимся достигнутыми результатами и продолжаем развиваться.</div>
+            
+            <div class="prod">
+                <figure class="prod_info">
+                    <img src="/img/Tg-bot.png" alt="Пример работы - Telegram бот">
+                </figure>
+                <figure class="prod_info">
+                    <img src="/img/odn_sat.png" alt="Пример работы - Одностраничный сайт">
+                </figure>
+                <figure class="prod_info">
+                    <img src="/img/web-diz.png" alt="Пример работы - Веб-дизайн">
+                </figure>
+            </div>
+            
+            <!-- ПОРТФОЛИО С ПРОЕКТАМИ -->
+            <div class="projects_showcase">
+                <div class="projects_header">
+                    <h3 class="projects_title">Последние проекты</h3>
+                    <p class="projects_subtitle">Кейсы, которыми мы гордимся</p>
+                </div>
+
+                <div class="projects_grid">
+                    <a href="/work/krop_rem_avto/index.html" class="project_card_link" target="_blank">
+                        <article class="project_card" itemscope itemtype="https://schema.org/CreativeWork">
+                            <div class="project_preview">
+                                <img src="/img/prewiu/krop_rem_auto.png" alt="Сайт автосервиса Кроп Рем Авто" class="project_image" itemprop="image">
+                            </div>
+                            <div class="project_details">
+                                <h4 class="project_name" itemprop="name">Кроп Рем Авто</h4>
+                                <span class="project_category">Сайт визитка</span>
+                                <p class="project_desc" itemprop="description">Сайт автосервиса с записью на обслуживание, ценами и описанием услуг.</p>
+                            </div>
+                            <meta itemprop="url" content="/work/krop_rem_avto/index.html">
+                        </article>
+                    </a>
+
+                    <a href="/work/sitekrd/index.html" class="project_card_link" target="_blank">
+                        <article class="project_card" itemscope itemtype="https://schema.org/CreativeWork">
+                            <div class="project_preview">
+                                <img src="/img/prewiu/sitekrd.jpg" alt="Лендинг Site_krd" class="project_image" itemprop="image">
+                            </div>
+                            <div class="project_details">
+                                <h4 class="project_name" itemprop="name">Site_krd</h4>
+                                <span class="project_category">Лендинг</span>
+                                <p class="project_desc" itemprop="description">Продающий одностраничник для демонстрации услуг и привлечения клиентов.</p>
+                            </div>
+                            <meta itemprop="url" content="/work/sitekrd/index.html">
+                        </article>
+                    </a>
                     
-                    <div class="contact_item">
-                        <div class="contact_icon">📱</div>
-                        <span class="contact_label">Telegram:</span>
-                        <a href="https://t.me/voronov_tg" target="_blank">@voronov_tg</a>
+                    <a href="/work/kras-dostavka/index.html" class="project_card_link" target="_blank">
+                        <article class="project_card" itemscope itemtype="https://schema.org/CreativeWork">
+                            <div class="project_preview">
+                                <img src="/img/prewiu/dostav.png" alt="Сайт грузоперевозок КрасДоставка" class="project_image" itemprop="image">
+                                <div class="project_badge">Первый проект</div>
+                            </div>
+                            <div class="project_details">
+                                <h4 class="project_name" itemprop="name">КрасДоставка</h4>
+                                <span class="project_category">Сайт грузоперевозок</span>
+                                <p class="project_desc" itemprop="description">Сайт для компании по грузоперевозкам в Краснодаре. Современный дизайн, адаптивная верстка, интеграция с Fotorama.</p>
+                            </div>
+                            <meta itemprop="url" content="/work/kras-dostavka/index.html">
+                        </article>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section id="contacts" class="blok_contacts" aria-labelledby="contacts-heading">
+            <h2 id="contacts-heading" class="blok_2_nm">Свяжитесь с нами</h2>
+            <div class="contacts_content">
+                <div class="contact_info_left">
+                    <div class="contact_info">
+                        <div class="contact_item">
+                            <div class="contact_icon" aria-hidden="true">📞</div>
+                            <span class="contact_label">Телефон:</span>
+                            <a href="tel:+79604987864" aria-label="Позвонить по номеру +7 960 498 78 64">+7(960)-498-78-64</a>
+                        </div>
+                        
+                        <div class="contact_item">
+                            <div class="contact_icon" aria-hidden="true">✉️</div>
+                            <span class="contact_label">Email:</span>
+                            <a href="mailto:info@voronov.ru" aria-label="Отправить email на info@voronov.ru">info@voronov.ru</a>
+                        </div>
+                        
+                        <div class="contact_item">
+                            <div class="contact_icon" aria-hidden="true">📱</div>
+                            <span class="contact_label">Telegram:</span>
+                            <a href="https://t.me/voronov_tg" target="_blank" aria-label="Написать в Telegram">@voronov_tg</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact_form_right">
+                    <div class="contact_form_card">
+                        <h3 class="form_title">Оставьте заявку</h3>
+                        <p class="form_subtitle">Мы свяжемся с вами в ближайшее время</p>
+                        
+                        <form id="contactFormMain" class="contact_form">
+                            <div class="form_group">
+                                <input type="text" id="name_main" name="name" placeholder="Ваше имя *" required>
+                            </div>
+                            
+                            <div class="form_group">
+                                <input type="tel" id="phone_main" name="phone" placeholder="+7 (___) ___-__-__ *" required>
+                            </div>
+                            
+                            <div class="form_group">
+                                <input type="email" id="email_main" name="email" placeholder="Email (необязательно)">
+                            </div>
+                            
+                            <div class="form_group">
+                                <textarea id="message_main" name="message" rows="3" placeholder="Опишите вашу задачу"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="form_submit_btn">Отправить заявку</button>
+                        </form>
+                        
+                        <div id="successMessageMain" class="success_message" style="display: none;">
+                            <div class="success_icon">✓</div>
+                            <h4>Спасибо за заявку!</h4>
+                            <p>Мы свяжемся с вами в ближайшее время</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Правая часть - форма обратной связи -->
-            <div class="contact_form_right">
-                <div class="contact_form_card">
-                    <h3 class="form_title">Оставьте заявку</h3>
-                    <p class="form_subtitle">Мы свяжемся с вами в ближайшее время</p>
-                    
-                    <form id="contactFormMain" class="contact_form">
-                        <div class="form_group">
-                            <input type="text" id="name_main" name="name" placeholder="Ваше имя *" required>
-                        </div>
-                        
-                        <div class="form_group">
-                            <input type="tel" id="phone_main" name="phone" placeholder="+7 (___) ___-__-__ *" required>
-                        </div>
-                        
-                        <div class="form_group">
-                            <input type="email" id="email_main" name="email" placeholder="Email (необязательно)">
-                        </div>
-                        
-                        <div class="form_group">
-                            <textarea id="message_main" name="message" rows="3" placeholder="Опишите вашу задачу"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="form_submit_btn">Отправить заявку</button>
-                    </form>
-                    
-                    <div id="successMessageMain" class="success_message" style="display: none;">
-                        <div class="success_icon">✓</div>
-                        <h4>Спасибо за заявку!</h4>
-                        <p>Мы свяжемся с вами в ближайшее время</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <!-- МОДАЛЬНОЕ ОКНО -->
-    <div id="modal" class="modal">
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Оставьте заявку</h2>
+            <span class="close-modal" aria-label="Закрыть">&times;</span>
+            <h2 id="modal-title" class="modal-title">Оставьте заявку</h2>
             <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
             
             <form id="contactForm" class="modal-form">

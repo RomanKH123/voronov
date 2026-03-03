@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* Подключение всех шрифтов */
@@ -20,6 +21,7 @@
 body {
     background: linear-gradient(to right, white, #cce1fa);
     color: #000000;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Ссылки */
@@ -222,6 +224,22 @@ header {
     color: white;
 }
 
+/* Основной контейнер */
+main {
+    display: block;
+    width: 100%;
+}
+
+/* Стили для section */
+section {
+    display: block;
+}
+
+/* Стили для article */
+article {
+    display: block;
+}
+
 /* Блок 1 */
 .blok_1 {
     margin-top: 5vw;
@@ -234,6 +252,12 @@ header {
     margin-left: 7vw;
     font-family: 'Abhaya Libre', sans-serif;
     font-size: clamp(12px, 2vw, 22px);
+}
+
+.blok_1_zg h1 {
+    font-family: 'Abhaya Libre', sans-serif;
+    font-size: clamp(12px, 2vw, 22px);
+    font-weight: normal;
 }
 
 .blok_1_sp {
@@ -353,8 +377,13 @@ header {
     align-items: center;
     margin-bottom: 2vh;
     width: 100%;
+}
+
+.nm h3 {
     font-family: 'Judson', sans-serif;
     font-size: clamp(20px, 2vw, 30px);
+    font-weight: normal;
+    margin: 0;
 }
 
 .nm p {
@@ -390,6 +419,14 @@ header {
     font-weight: 600;
     font-size: clamp(30px, 5vw, 45px);
     letter-spacing: 2px;
+}
+
+.blok_3_nm h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 45px);
+    letter-spacing: 2px;
+    margin: 0;
 }
 
 .blok_3_zg {
@@ -459,6 +496,13 @@ header {
     border-bottom: 2px solid rgba(0,0,0,0.1);
 }
 
+.ln_b_1 h3 {
+    font-family: 'Abyssinica SIL', sans-serif;
+    font-size: clamp(22px, 2vw, 30px);
+    font-weight: normal;
+    margin: 0;
+}
+
 .ln_b_2 {
     margin-bottom: 1vw;
     font-family: 'Abyssinica SIL', sans-serif;
@@ -468,6 +512,13 @@ header {
     padding-bottom: 2vh;
 }
 
+.ln_b_2 p {
+    font-family: 'Abyssinica SIL', sans-serif;
+    font-size: clamp(18px, 2vw, 25px);
+    margin: 0;
+}
+
+.ln_b_3 span,
 .ln_b_3 div {
     margin-top: 1vw;
     font-family: 'Abyssinica SIL', sans-serif;
@@ -580,6 +631,13 @@ header {
     margin-bottom: 20px;
 }
 
+.blok_6_nm h2 {
+    font-family: 'Abhaya Libre', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0;
+}
+
 .blok_6_txt {
     display: flex;
     margin-left: auto;
@@ -655,6 +713,17 @@ header {
     display: inline-block;
 }
 
+.projects_title h3 {
+    font-family: 'Abhaya Libre', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 42px);
+    background: linear-gradient(135deg, #000, #4a6fa5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
 .projects_subtitle {
     font-family: 'Abyssinica SIL', sans-serif;
     font-size: clamp(16px, 1.5vw, 22px);
@@ -720,6 +789,14 @@ header {
     font-size: clamp(20px, 1.8vw, 26px);
     font-weight: 700;
     margin: 0 0 8px 0;
+    color: #000;
+}
+
+.project_name h4 {
+    font-family: 'Philosopher', sans-serif;
+    font-size: clamp(20px, 1.8vw, 26px);
+    font-weight: 700;
+    margin: 0;
     color: #000;
 }
 
@@ -849,6 +926,7 @@ header {
     background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.8));
     backdrop-filter: blur(5px);
     border: 1px solid rgba(74, 111, 165, 0.1);
+    cursor: pointer;
 }
 
 .contact_item:hover {
@@ -870,6 +948,7 @@ header {
     font-size: 24px;
     box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
     transition: all 0.3s ease;
+    cursor: inherit;
 }
 
 .contact_item:hover .contact_icon {
@@ -884,6 +963,7 @@ header {
     color: #4a6fa5;
     font-size: 16px;
     letter-spacing: 0.5px;
+    cursor: inherit;
 }
 
 .contact_item a {
@@ -895,6 +975,7 @@ header {
     font-weight: 500;
     position: relative;
     padding-bottom: 2px;
+    cursor: pointer;
 }
 
 .contact_item a::after {
@@ -916,6 +997,12 @@ header {
     width: 100%;
 }
 
+.contact_item a[href^="tel"],
+.contact_item a[href^="mailto"],
+.contact_item a[href^="https"] {
+    cursor: pointer;
+}
+
 .contact_form_right {
     height: 100%;
 }
@@ -930,6 +1017,7 @@ header {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(74, 111, 165, 0.1);
+    cursor: default;
 }
 
 .contact_form_card::before {
@@ -966,6 +1054,15 @@ header {
     text-align: center;
     position: relative;
     z-index: 1;
+    cursor: default;
+}
+
+.form_title h3 {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 28px;
+    margin: 0;
+    color: #000;
+    cursor: default;
 }
 
 .form_subtitle {
@@ -976,6 +1073,7 @@ header {
     margin-bottom: 30px;
     position: relative;
     z-index: 1;
+    cursor: default;
 }
 
 .contact_form {
@@ -1003,11 +1101,13 @@ header {
     outline: none;
     width: 100%;
     box-sizing: border-box;
+    cursor: text;
 }
 
 .form_group textarea {
     resize: vertical;
     min-height: 100px;
+    cursor: text;
 }
 
 .form_group input:focus,
@@ -1065,6 +1165,7 @@ header {
 .form_submit_btn.loading {
     position: relative;
     color: transparent;
+    cursor: wait;
 }
 
 .form_submit_btn.loading::after {
@@ -1087,6 +1188,7 @@ header {
     padding: 20px 0;
     position: relative;
     z-index: 1;
+    cursor: default;
 }
 
 .success_icon {
@@ -1099,6 +1201,7 @@ header {
     border-radius: 50%;
     margin: 0 auto 15px;
     animation: scaleIn 0.5s ease;
+    cursor: default;
 }
 
 .success_message h4 {
@@ -1106,6 +1209,7 @@ header {
     font-size: 20px;
     margin-bottom: 8px;
     color: #000;
+    cursor: default;
 }
 
 .success_message p {
@@ -1113,6 +1217,7 @@ header {
     font-size: 14px;
     color: #666;
     margin: 0;
+    cursor: default;
 }
 
 @keyframes scaleIn {
@@ -1136,6 +1241,17 @@ header {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.blok_contacts .blok_2_nm h2 {
+    font-family: 'Abhaya Libre', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 42px);
+    background: linear-gradient(135deg, #000, #4a6fa5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
 }
 
 .blok_contacts .blok_2_nm::after {
@@ -1241,6 +1357,13 @@ header {
     margin-bottom: 10px;
     color: #000;
     text-align: center;
+}
+
+.modal-title h2 {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 28px;
+    margin: 0;
+    color: #000;
 }
 
 .modal-subtitle {
@@ -1369,6 +1492,359 @@ header {
     border-radius: 50%;
     border-top-color: #fff;
     animation: spin 1s ease-in-out infinite;
+}
+
+/* Скрытые элементы */
+[style*="display:none"],
+.hidden,
+[hidden] {
+    display: none !important;
+}
+
+/* ===== УЛУЧШЕННАЯ МОБИЛЬНАЯ ОПТИМИЗАЦИЯ ДЛЯ КОНТАКТОВ ===== */
+
+/* Для очень маленьких устройств (до 480px) */
+@media (max-width: 480px) {
+    .blok_contacts {
+        margin-top: 15vw;
+        margin-bottom: 15vw;
+        padding: 0 4vw;
+    }
+    
+    .contacts_content {
+        grid-template-columns: 1fr;
+        gap: 8vw;
+    }
+    
+    /* Левая часть - контакты */
+    .contact_info {
+        padding: 25px 15px;
+    }
+    
+    .contact_item {
+        margin: 15px 0;
+        padding: 12px 12px;
+        gap: 12px;
+    }
+    
+    .contact_icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+    
+    .contact_label {
+        min-width: 70px;
+        font-size: 14px;
+    }
+    
+    .contact_item a {
+        font-size: 15px;
+        word-break: break-word;
+    }
+    
+    /* Правая часть - форма */
+    .contact_form_card {
+        padding: 25px 15px;
+    }
+    
+    .form_title {
+        font-size: 22px;
+    }
+    
+    .form_title h3 {
+        font-size: 22px;
+    }
+    
+    .form_subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    
+    .form_group input,
+    .form_group textarea {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+    
+    .form_submit_btn {
+        padding: 15px 20px;
+        font-size: 14px;
+    }
+    
+    /* Успешное сообщение */
+    .success_message {
+        padding: 15px 0;
+    }
+    
+    .success_icon {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        line-height: 50px;
+        margin: 0 auto 10px;
+    }
+    
+    .success_message h4 {
+        font-size: 18px;
+    }
+    
+    .success_message p {
+        font-size: 13px;
+    }
+}
+
+/* Для средних мобильных устройств (481px - 600px) */
+@media (min-width: 481px) and (max-width: 600px) {
+    .blok_contacts {
+        padding: 0 3vw;
+    }
+    
+    .contacts_content {
+        gap: 6vw;
+    }
+    
+    .contact_info {
+        padding: 30px 20px;
+    }
+    
+    .contact_item {
+        padding: 12px 15px;
+    }
+    
+    .contact_icon {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+    
+    .contact_item a {
+        font-size: 16px;
+    }
+    
+    .contact_form_card {
+        padding: 30px 20px;
+    }
+    
+    .form_title {
+        font-size: 24px;
+    }
+    
+    .form_group input,
+    .form_group textarea {
+        padding: 13px 16px;
+    }
+}
+
+/* Для планшетов (601px - 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .contacts_content {
+        gap: 5vw;
+    }
+    
+    .contact_info {
+        padding: 35px 25px;
+    }
+    
+    .contact_item {
+        padding: 12px 15px;
+    }
+    
+    .contact_form_card {
+        padding: 35px 25px;
+    }
+}
+
+/* Для маленьких планшетов и больших телефонов в ландшафтной ориентации */
+@media (max-width: 900px) and (orientation: landscape) {
+    .contacts_content {
+        grid-template-columns: 1fr;
+        gap: 5vw;
+    }
+    
+    .contact_info_left,
+    .contact_form_right {
+        max-width: 100%;
+    }
+}
+
+/* Улучшение для touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .contact_item {
+        cursor: default;
+        -webkit-tap-highlight-color: rgba(74, 111, 165, 0.1);
+    }
+    
+    .contact_item:active {
+        transform: scale(0.98);
+        background: rgba(74, 111, 165, 0.05);
+    }
+    
+    .form_submit_btn,
+    .modal-submit-btn {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .form_submit_btn:active,
+    .modal-submit-btn:active {
+        transform: scale(0.97);
+    }
+}
+
+/* Для устройств с очень маленькой высотой экрана */
+@media (max-height: 600px) {
+    .blok_contacts {
+        margin-top: 5vw;
+        margin-bottom: 5vw;
+    }
+    
+    .contact_item {
+        margin: 10px 0;
+    }
+    
+    .form_group {
+        margin-bottom: 10px;
+    }
+    
+    .contact_form_card {
+        padding: 20px 15px;
+    }
+}
+
+/* Улучшение читаемости на мобильных */
+@media (max-width: 768px) {
+    /* Убираем hover эффекты на мобильных */
+    .contact_item:hover {
+        transform: none;
+        background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.8));
+    }
+    
+    .contact_item:active {
+        transform: translateX(5px);
+        background: white;
+    }
+    
+    /* Улучшаем отступы */
+    .contact_label {
+        min-width: 80px;
+    }
+    
+    /* Добавляем разделители */
+    .contact_form_card {
+        border-top: 3px solid #4a6fa5;
+    }
+    
+    /* Увеличиваем область нажатия для ссылок */
+    .contact_item a {
+        padding: 5px 0;
+        display: inline-block;
+    }
+}
+
+/* Для устройств с Retina дисплеем */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .contact_info::before,
+    .contact_info::after,
+    .contact_form_card::before,
+    .contact_form_card::after {
+        opacity: 0.15;
+    }
+}
+
+/* Исправление для очень узких экранов */
+@media (max-width: 350px) {
+    .contact_item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .contact_icon {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .contact_label {
+        min-width: 100%;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    
+    .contact_item a {
+        width: 100%;
+        text-align: left;
+        padding-left: 0;
+    }
+    
+    .form_title {
+        font-size: 20px;
+    }
+    
+    .form_group input,
+    .form_group textarea {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Плавные переходы для всех элементов */
+.contact_item,
+.contact_icon,
+.contact_item a,
+.form_submit_btn,
+.modal-submit-btn {
+    transition: all 0.3s ease;
+}
+
+/* Улучшение для скролла на мобильных */
+@media (max-width: 768px) {
+    html {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Фикс для iOS чтобы не зумило поля ввода */
+@supports (-webkit-touch-callout: none) {
+    .form_group input,
+    .form_group textarea,
+    .form-group input {
+        font-size: 16px;
+    }
+}
+
+/* Дополнительные улучшения для читаемости */
+@media (max-width: 768px) {
+    .contact_item a[href^="tel"] {
+        font-weight: 600;
+        color: #4a6fa5;
+    }
+    
+    .contact_item a[href^="mailto"] {
+        font-weight: 500;
+    }
+    
+    .form_submit_btn {
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+}
+
+/* Затемнение фона для модалки на мобильных */
+@media (max-width: 768px) {
+    .modal.show {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 30px 20px;
+        margin: 10px;
+    }
 }
 
 /* Адаптивность */
