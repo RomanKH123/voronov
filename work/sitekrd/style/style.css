@@ -2,19 +2,33 @@
     margin: 0;
     padding: 0;
     border: 0;
-    font-family: 'inter'
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
-a{
+
+a {
     text-decoration: none;
     color: white;
 }
-ul{
+
+ul {
     list-style-type: none;
 }
+
 hr {
-    border: 1px solid;
-    margin-top: 3vh;
-    margin-bottom: 5vh;
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #333, transparent);
+    margin: 3vh 0 5vh 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    overflow-x: hidden;
 }
 
 /* Стили для липкого меню */
@@ -23,13 +37,15 @@ hr {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 15px 0;
     transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    transition: transform 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sticky-menu.active {
@@ -44,440 +60,802 @@ hr {
 
 .sticky-menu a {
     position: relative;
-    font-size: clamp(16px,2vw,20px);
+    font-size: clamp(16px, 2vw, 18px);
+    font-weight: 500;
     color: white;
     padding: 5px 0;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.sticky-menu a:hover {
+    opacity: 1;
 }
 
 .sticky-menu a:after {
-    left: 0;
-    width: 100%;
-    bottom: -5px;
-    opacity: 0;
-    position: absolute;
     content: '';
-    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    bottom: -5px;
     height: 2px;
     background: #ffffff;
-    transition: .3s;
+    transition: width 0.3s ease;
 }
 
 .sticky-menu a:hover:after {
-    opacity: 1;
-    bottom: 0;
+    width: 70%;
 }
 
-/**Щапка сайта**/
-.logo{   
+/* Шапка сайта */
+.logo {
     width: 100%;
     height: 100vh;
-    background-color: rgb(0, 0, 0);
-    display: table-cell;
-    justify-items: center;
-    margin-top: auto;
-    margin-bottom: auto; 
-}
-.logo_2{
-    height: 99vh;
-    display: table-cell;
-    vertical-align: middle;
-    
-}
-.logo_part{
-   
-    width: 100%;
-    margin-bottom: 10%;
-    margin-right: auto;
-    display: inline-flex;
+    background: #070707;
+    display: flex;
     align-items: center;
-    vertical-align: middle;
-}
-.logo_part_2{
-    display:inline-flex;
-    align-items: center;
-    padding: 5%;
-    border-radius: 50px;
-    transition: border 0.2s;
-    margin-left: 10%;
-    margin-right: auto;
-    width: 100%;
-    margin-right: 20%;
-}
-.logo_part_2 img{
-    width: 100%;
-    display: inline-flex;
-    align-items: center;
-}
-.logo_part_txt{
-    width: 100%;
-    border: 3px solid black;
-    color: #ffffff;
-    text-align: center;
-    font-size: clamp(14px,2vw,60px);
-        
-}
-/**Быстрые переходы**/
-.slog{
-    margin-top: 5vh;
-    color:#ffffff;
-    width: 100%;
-    
-}
-.slog ul{
-    align-items: center;
-    text-align: center;
-}
-.slog li{
-    display:inline-block;
-    margin-right: 5%;
-}
-.slog li:last-child{
-    margin-right: 0;
-  }
-.slog a{
+    justify-content: center;
     position: relative;
-    font-size: clamp(16px,2vw,20px);
-
+    overflow: hidden;
 }
+
+.logo::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveDots 60s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes moveDots {
+    0% { transform: translate(-10%, -10%); }
+    100% { transform: translate(10%, 10%); }
+}
+
+.logo_2 {
+    width: 90%;
+    max-width: 1400px;
+    position: relative;
+    z-index: 2;
+}
+
+.logo_part {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    margin-bottom: 5%;
+}
+
+.logo_part_2 {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.logo_part_2 img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+.logo_part_txt {
+    flex: 1;
+    color: #ffffff;
+    font-size: clamp(18px, 3vw, 36px);
+    font-weight: 400;
+    line-height: 1.4;
+    padding: 20px;
+    border-left: 3px solid rgba(255,255,255,0.2);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Быстрые переходы */
+.slog {
+    margin-top: 5vh;
+    color: #ffffff;
+}
+
+.slog ul {
+    display: flex;
+    justify-content: center;
+    gap: 8%;
+    flex-wrap: wrap;
+}
+
+.slog li {
+    display: inline-block;
+}
+
+.slog a {
+    position: relative;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 500;
+    padding: 10px 0;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.slog a:hover {
+    opacity: 1;
+}
+
 .slog a:after {
-  left: 0;
-  width: 100%;
-  bottom: -5px;
-  opacity: 0;
-  position: absolute;
-  content: '';
-  
-  display: block;
-  height: 2px;
-  background: #ffffff;
-  transition: .3s;
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    bottom: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease;
 }
 
 .slog a:hover:after {
-  opacity: 1;
-  bottom: 0
+    width: 80%;
 }
 
-/**Наши услуги**/
-.uslug{
-    width: 100%;   
+/* Наши услуги и команда */
+.uslug {
+    width: 100%;
     text-align: center;
+    padding: 40px 0;
 }
-.name_1{
+
+.name_1 {
     margin-top: 5vh;
-    margin-bottom: 20px;
-    font-size: clamp(12px,4vw,36px);
-}
-/**Наша команда**/
-.cart_1{
-    width: 100%;
-        
+    margin-bottom: 10px;
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
 }
 
-.cart_1_plus{    
-    width: 14%;
-    display:inline-block;
-    outline: none;
-    border: 3px solid black;
-    margin-left: 3%;
-    margin-right: 3%;
-    padding: 5px;
-    font-size: clamp(9px,2vw,28px);
-    margin-bottom: 10vh;
-    cursor: pointer;
-}
-.cart_1_plus:after{
-    content: "";
-    display: block;
-    width: 100%;
-    height: 0;
+.name_1::after {
+    content: '';
     position: absolute;
-    top: 0;
-   
-    left: 0;
-    
-    background: #000;
-    transition: 0.3s;
-    
-}
-.cart_1_plus{
-    position: relative;
-    width: 13%;
-    display:inline-block;
-    outline: none;
-    border: 3px solid black;
-    padding: 5px;
-    font-size: clamp(9px,2vw,28px);
-    margin-bottom: 10vh;
-    cursor: pointer;
-    z-index: 9;
-  }
-  
-  .cart_1_plus:focus:after,
-  .cart_1_plus:hover:after {
-    content: "";
-    background: rgb(0, 0, 0);
-    /*фон будет томатный*/
-    top: -5px;
-    /*сдвигаем блок по нажатию и по наведению в верх*/
-    height: calc(100% + 5px);
-    /*математическая функция прибаления высоты + 5px*/
-  }
-  
-  .cart_1_plus:focus,
-  .cart_1_plus:hover {
-    color: #fbfbfb;
-    /*меняем цвет текста при фокусе и при наведении*/
-  }
-.cart_1_plus img{
-    max-width: 90%;
-    z-index: 10;
-    position: relative;
-}
-.cart_1_plus_txt{
-    width: 100%;
-    z-index: 10;
-    position: relative;
-    
-}
-.cart_1_plus:first-child{
-    margin-left: 0%;
-}
-.cart_1_plus:last-child{
-    margin-right: 0%;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #0077ff;
+    border-radius: 2px;
 }
 
-.cart_1_plus_1{    
-    width: 14%;
-    display:inline-block;
-    outline: none;
-    border: 3px solid black;
-    margin-left: 5%;
-    margin-right: 5;
-    padding: 5px;
-    font-size: clamp(9px,2vw,28px);
-    margin-bottom: 10vh;
-    cursor: pointer;
-}
-.cart_1_plus_1 img{
-    max-width: 90%;
-}
-.cart_1_plus_txt_1{
+.cart_1 {
     width: 100%;
-    z-index: 10;
-    position: relative;
-    
-}
-.cart_1_plus_1:first-child{
-    margin-left: 0%;
-}
-.cart_1_plus_1:last-child{
-    margin-right: 0%;
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+    flex-wrap: wrap;
+    padding: 20px 5%;
 }
 
-/**Этапы работы**/
-.vopros{
-    width: 100%;
+.cart_1_plus {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 30px 20px;
+    font-size: clamp(16px, 2vw, 20px);
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.1s ease, border-color 0.1s ease;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    -webkit-tap-highlight-color: rgba(0,119,255,0.2);
+    will-change: transform;
+}
+
+.cart_1_plus img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+}
+
+.cart_1_plus_txt {
+    font-weight: 600;
+    color: #333;
+}
+
+.cart_1_plus_1 {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 30px 20px;
+    font-size: clamp(16px, 2vw, 20px);
+    margin-bottom: 30px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.1s ease, background-color 0.1s ease;
+    -webkit-tap-highlight-color: rgba(0,119,255,0.2);
+    will-change: transform;
+}
+
+.cart_1_plus_1 img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.cart_1_plus_txt_1 {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Этапы работы */
+.vopros {
+    width: 100%;
     text-align: center;
-    
-}
-.vopros_plus{
-    width: 80%;
-    display: grid;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 15vh;
-}
-.vopros_plus_1{
-    text-align: left;
-    width: 100%;
-    padding-bottom: 4vh;
-    
-}
-.vopros_plus_1:last-child{
-    padding-bottom: 0;
-}
-.vopros_plus_2{
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: right;
-    display:ruby-text;
-    padding-bottom: 4vh;
-}
-.vopros_nmb{
-    font-weight: bold;
-    display: inline-flex;
-    font-size: clamp(12px,3vh,26px);
-    padding: 5px;
-}
-.vopros_txt{
-    display: inline-flex;
-    font-size: (10px,4vh,22px);
-}
-/**Частые вопросы**/
-.vopros_2{
-   text-align: left;
-   width: 50%;
-   align-items: center;
-   margin-left: auto;
-   margin-right: auto;  
-   margin-bottom: 10vh;
-}
-.vopros_2_txt_1{
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 3vh;
-    content: none;
-    font-size: (10px,4vh,32px);
-}
-.vopros_2_txt_1:last-child{
-    margin-bottom: 0vh;
-}
-.vopros_2_txt_2{
-    content: none;
-}
-.vopros_2_txt_2:last-child{
-    margin-bottom: 0vh;
-}
-.details {
-    position: relative;
-    display: block;    
-    transition: 0.3s;
-    overflow: hidden;
-  }
-  
-  .details::after {
-    position: absolute;    
-    content: "";
-    display: block;    
-    transform: rotate(-45deg);
-    transform-origin: center;
-    transition: .3s;
-  }
-  
-  .details[open]::after {
-    transform: rotate(45deg);
-  }
-  
-  .details[open] {
-    padding-bottom: 3vh;
-  }
-  
-  .details[open] .details__title {
-    margin-bottom: 3vh;
-  }
-  
-  .details__title {    
-    cursor: pointer;
-    list-style: none;
-    font-weight: 700;
-    transition: .3s;
-  }
-  
-  .details__title::-webkit-details-marker {
-    display: none;
-  }
-
-/**Контакты **/
-.contact{
-    background-color: #2A2A2A;
-    width: 100%;
-    color: #ffffff;
-    align-items: center;
-    display:grid;
-    padding-top: 3vh;
-    padding-bottom: 3vh;
-}
-.contact_name{
-    text-align: center;
-    font-size: clamp(12px,4vw,32px);
+    padding: 40px 0;
+    background: #f8f9fa;
 }
 
-.contact_1{
+.vopros_plus {
     width: 80%;
-    display: inline-flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 3vh ;
-    
-}
-.contact_vk{
-    width: 50%;
-    text-align: center;    
-    margin-left: auto;
-    margin-right: auto;
-}
-.contact_vk_name{
-    padding-bottom: 1vh;
-    font-size: clamp(9px,3vw,24px);
-}
-.contact_sc{
+    max-width: 1000px;
+    margin: 0 auto 50px;
     display: grid;
-    width: 50%;
-    font-size: clamp(9px,3vw,24px);
+    gap: 20px;
 }
-.contact_1 img{
-    width: 40%;
-    cursor: pointer;
-}
-.contact_1_blok{
-    align-items: center;
-    padding-bottom: 1vh;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.contact_button{
+
+.vopros_plus_1, .vopros_plus_2 {
     display: flex;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #0077ff;
-    padding: 1vh;
-    border-radius: 3px ;
-    font-size: clamp(9px,3vw,22px);
-    cursor: pointer;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: transform 0.1s ease, background-color 0.1s ease;
+    -webkit-tap-highlight-color: rgba(0,119,255,0.2);
+    will-change: transform;
 }
 
-.splitt{
-    width: 100%;
-    background-color: #000000;
-    color: #ffffff;
-    margin-top: 25vh;
-    display: grid;
-    padding-top: 5vh;
-    padding-bottom: 5vh;    
+.vopros_plus_1 {
+    justify-content: flex-start;
 }
-.splitt_1{
+
+.vopros_plus_2 {
+    justify-content: flex-end;
+}
+
+.vopros_nmb {
+    font-weight: 800;
+    font-size: clamp(24px, 4vh, 36px);
+    color: #0077ff;
+    opacity: 0.5;
+    padding: 0 20px;
+}
+
+.vopros_txt {
+    font-size: clamp(16px, 3vh, 22px);
+    font-weight: 500;
+    padding: 0 20px;
+}
+
+/* Частые вопросы */
+.vopros_2 {
+    text-align: left;
     width: 90%;
-    display: inline-flex;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.vopros_2_pl {
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.details {
+    display: block;
+    padding: 0 20px;
+    background: white;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.details summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 15px 0;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.details summary::-webkit-details-marker {
+    display: none;
+}
+
+.details summary:active {
+    background-color: rgba(0,119,255,0.1);
+    transition: background-color 0.1s ease;
+}
+
+.details[open] {
+    padding-bottom: 5px;
+}
+
+.details[open] summary {
+    margin-bottom: 0;
+}
+
+.vopros_2_txt_1 {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: clamp(16px, 3vh, 18px);
+    color: #333;
+    display: block;
+    padding-right: 30px;
+    position: relative;
+}
+
+.vopros_2_txt_1::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #0077ff;
+    transition: transform 0.2s ease;
+}
+
+.details[open] .vopros_2_txt_1::after {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.vopros_2_txt_2 {
+    padding: 0 0 15px 0;
+    color: #666;
+    line-height: 1.6;
+    font-size: clamp(14px, 2.5vh, 16px);
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Контакты */
+.contact {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(0,119,255,0.1) 0%, transparent 50%);
+}
+
+.contact_name {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 600;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.contact_1 {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
 }
-.splitt_log{
-    margin-left: auto;
-    margin-right: auto;
-    font-size: clamp(12px,10vw,32px);
+
+.contact_vk {
+    flex: 1;
+    min-width: 250px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
-.splitt_sel{
+
+.contact_vk_name {
+    font-size: clamp(18px, 3vw, 24px);
+    margin-bottom: 20px;
+    color: #0077ff;
+    font-weight: 600;
+}
+
+.contact_vk img {
+    max-width: 150px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.contact_vk img:hover {
+    transform: scale(1.05);
+}
+
+.contact_sc {
+    flex: 1;
+    min-width: 250px;
+    display: grid;
+    gap: 20px;
+}
+
+.contact_1_blok {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.1s ease, background-color 0.1s ease;
+    -webkit-tap-highlight-color: rgba(0,119,255,0.2);
+}
+
+.contact_1_blok div:first-child {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.contact_1_blok div:last-child {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 600;
+    color: #0077ff;
+}
+
+.contact_button {
     display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: clamp(10px,4vw,20px);
+    background: #0077ff;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: clamp(16px, 2.5vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease;
+    border: 2px solid transparent;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 10px 20px rgba(0,119,255,0.3);
+    -webkit-tap-highlight-color: transparent;
+    min-width: 200px;
+    text-align: center;
+    will-change: transform;
 }
-.splitt_img{
-    display: inline-flex;
+
+/* Подвал */
+.splitt {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
-.splitt_img img{
-    width: 10%;
+
+.splitt_1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    gap: 30px;
 }
-.splitt_img{
-    display: inline-flex;
+
+.splitt_log {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff, #999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
-.splitt_tg{
-    padding-bottom: 1vh;;
+
+.splitt_sel {
+    text-align: right;
+}
+
+.splitt_tg {
+    font-size: clamp(14px, 3vw, 16px);
+    margin-bottom: 5px;
+    color: #999;
+}
+
+.splitt_img div {
+    font-size: clamp(14px, 3vw, 16px);
+    color: #0077ff;
+}
+
+/* Стили для hover (только для устройств с мышью) */
+@media (hover: hover) and (pointer: fine) {
+    .cart_1_plus:hover {
+        transform: translateY(-10px);
+        border-color: #0077ff;
+        box-shadow: 0 20px 40px rgba(0,119,255,0.1);
+    }
+    
+    .cart_1_plus:hover img {
+        transform: scale(1.1);
+    }
+    
+    .cart_1_plus_1:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .vopros_plus_1:hover, .vopros_plus_2:hover {
+        transform: translateX(10px);
+        box-shadow: 0 10px 30px rgba(0,119,255,0.1);
+    }
+    
+    .vopros_2_pl:hover {
+        border-color: #0077ff;
+    }
+    
+    .contact_1_blok:hover {
+        transform: translateY(-5px);
+        background: rgba(0,119,255,0.1);
+    }
+    
+    .contact_button:hover {
+        background: transparent;
+        border-color: #0077ff;
+        color: #0077ff;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0,119,255,0.2);
+    }
+    
+    .slog a:hover {
+        opacity: 1;
+    }
+    
+    .slog a:hover:after {
+        width: 80%;
+    }
+    
+    .sticky-menu a:hover {
+        opacity: 1;
+    }
+    
+    .sticky-menu a:hover:after {
+        width: 70%;
+    }
+}
+
+/* Стили для touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .cart_1_plus:hover,
+    .cart_1_plus_1:hover,
+    .vopros_plus_1:hover,
+    .vopros_plus_2:hover,
+    .contact_1_blok:hover,
+    .contact_button:hover,
+    .slog a:hover,
+    .sticky-menu a:hover {
+        transform: none !important;
+        background-color: transparent !important;
+        border-color: #e0e0e0 !important;
+        box-shadow: none !important;
+    }
+    
+    .slog a:hover:after,
+    .sticky-menu a:hover:after {
+        width: 0 !important;
+    }
+    
+    .cart_1_plus:active,
+    .cart_1_plus_1:active {
+        transform: scale(0.97) !important;
+        background-color: rgba(0,119,255,0.05) !important;
+        transition: transform 0.1s ease, background-color 0.1s ease !important;
+    }
+    
+    .vopros_plus_1:active,
+    .vopros_plus_2:active {
+        transform: scale(0.99) translateX(5px) !important;
+        background-color: rgba(0,119,255,0.05) !important;
+    }
+    
+    .contact_1_blok:active {
+        transform: scale(0.98) !important;
+        background: rgba(0,119,255,0.15) !important;
+    }
+    
+    .contact_button:active {
+        transform: scale(0.95) !important;
+        background: #0055cc !important;
+        border-color: transparent !important;
+        color: white !important;
+    }
+    
+    .slog a:active {
+        opacity: 1;
+    }
+    
+    .slog a:active:after {
+        width: 80%;
+    }
+    
+    .sticky-menu a:active {
+        opacity: 1;
+    }
+    
+    .sticky-menu a:active:after {
+        width: 70%;
+    }
+    
+    .slog li {
+        padding: 10px 0;
+    }
+    
+    .slog a {
+        padding: 15px 10px;
+        display: inline-block;
+    }
+    
+    .sticky-menu li {
+        padding: 5px 0;
+    }
+    
+    .sticky-menu a {
+        padding: 10px 5px;
+    }
+}
+
+/* Общие улучшения для touch */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a, button, .cart_1_plus, .cart_1_plus_1, .contact_button, .vopros_2_txt_1, summary {
+    touch-action: manipulation;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .logo_part {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo_part_2 {
+        justify-content: center;
+    }
+    
+    .logo_part_txt {
+        border-left: none;
+        border-top: 3px solid rgba(255,255,255,0.2);
+    }
+    
+    .slog ul {
+        gap: 15px;
+    }
+    
+    .cart_1 {
+        gap: 15px;
+    }
+    
+    .cart_1_plus, .cart_1_plus_1 {
+        width: 90%;
+        max-width: 300px;
+        margin: 10px auto;
+    }
+    
+    .vopros_plus {
+        width: 95%;
+    }
+    
+    .vopros_2 {
+        width: 95%;
+    }
+    
+    .vopros_plus_1, .vopros_plus_2 {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .vopros_nmb {
+        font-size: 20px;
+        padding: 0 10px;
+    }
+    
+    .vopros_txt {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    
+    .splitt_1 {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .splitt_sel {
+        text-align: center;
+    }
+    
+    .vopros_2_pl {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sticky-menu ul {
+        gap: 15px;
+    }
+    
+    .sticky-menu a {
+        font-size: 14px;
+    }
+    
+    .slog ul {
+        gap: 10px;
+    }
+    
+    .slog a {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+    
+    .name_1 {
+        font-size: 28px;
+    }
+    
+    .contact_1 {
+        gap: 20px;
+    }
+    
+    .contact_vk, .contact_sc {
+        min-width: 100%;
+    }
+}
+
+/* Улучшаем скролл на мобильных */
+@media (max-width: 768px) {
+    .vopros_2_txt_1 {
+        padding: 12px 0;
+    }
+    
+    details[open] .vopros_2_txt_2 {
+        padding: 10px 0 15px;
+    }
 }
