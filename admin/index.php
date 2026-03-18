@@ -1,55 +1,323 @@
 <?php
 // index.php - просмотр и управление заявками
+session_start();
+
 $db_host = 'localhost';
 $db_name = 'vh384894_voronov';
 $db_user = 'vh384894_voronov';
 $db_pass = 'voronov20032003';
 
-// Простая защита паролем
-$admin_password = '227227Vst';
+// Фиксированные учетные данные (без хеширования для простоты)
+define('ADMIN_LOGIN', 'admin');
+define('ADMIN_PASSWORD', '093093093Rk');
 
-if (!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_PW'] != $admin_password) {
-    header('WWW-Authenticate: Basic realm="Admin Panel"');
-    header('HTTP/1.0 401 Unauthorized');
-    echo 'Требуется авторизация';
+// Функция для логирования действий
+function logAction($action, $details = '') {
+    $log_file = 'admin_logs.txt';
+    $timestamp = date('Y-m-d H:i:s');
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $user = $_SESSION['admin_user'] ?? 'unknown';
+    $log_entry = "[$timestamp] IP: $ip | User: $user | Action: $action | Details: $details" . PHP_EOL;
+    @file_put_contents($log_file, $log_entry, FILE_APPEND | LOCK_EX);
+}
+
+// Обработка выхода
+if (isset($_GET['logout'])) {
+    logAction('LOGOUT', 'User logged out');
+    $_SESSION = array();
+    session_destroy();
+    header('Location: index.php');
     exit;
+}
+
+// Простая проверка аутентификации
+if (!isset($_SESSION['admin_authenticated'])) {
+    
+    // Проверка Basic Auth (для обратной совместимости)
+    if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])) {
+        if ($_SERVER['PHP_AUTH_USER'] === ADMIN_LOGIN && $_SERVER['PHP_AUTH_PW'] === ADMIN_PASSWORD) {
+            $_SESSION['admin_authenticated'] = true;
+            $_SESSION['admin_user'] = ADMIN_LOGIN;
+            $_SESSION['login_time'] = time();
+            $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
+            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+            logAction('LOGIN', 'Successful login via Basic Auth');
+        } else {
+            header('WWW-Authenticate: Basic realm="Admin Panel"');
+            header('HTTP/1.0 401 Unauthorized');
+            echo 'Неверные учетные данные';
+            exit;
+        }
+    }
+    // Проверка формы входа
+    elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_form'])) {
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
+        
+        if ($username === ADMIN_LOGIN && $password === ADMIN_PASSWORD) {
+            $_SESSION['admin_authenticated'] = true;
+            $_SESSION['admin_user'] = $username;
+            $_SESSION['login_time'] = time();
+            $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
+            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+            logAction('LOGIN', 'Successful login via form');
+            header('Location: index.php');
+            exit;
+        } else {
+            logAction('FAILED_LOGIN', "Failed login attempt for user: $username");
+            header('Location: index.php?error=1');
+            exit;
+        }
+    }
+    // Показываем форму входа
+    else {
+        ?>
+        <!DOCTYPE html>
+        <html lang="ru">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Вход в админ-панель</title>
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+                
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    min-height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                }
+                
+                .login-container {
+                    background: white;
+                    padding: 40px;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+                    width: 100%;
+                    max-width: 400px;
+                }
+                
+                h1 {
+                    font-size: 28px;
+                    color: #333;
+                    margin-bottom: 10px;
+                    text-align: center;
+                }
+                
+                .subtitle {
+                    color: #666;
+                    text-align: center;
+                    margin-bottom: 30px;
+                    font-size: 14px;
+                }
+                
+                .form-group {
+                    margin-bottom: 20px;
+                }
+                
+                label {
+                    display: block;
+                    margin-bottom: 8px;
+                    color: #555;
+                    font-weight: 500;
+                    font-size: 14px;
+                }
+                
+                input {
+                    width: 100%;
+                    padding: 12px 15px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    transition: all 0.3s;
+                }
+                
+                input:focus {
+                    outline: none;
+                    border-color: #4a6fa5;
+                    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+                }
+                
+                button {
+                    width: 100%;
+                    padding: 14px;
+                    background: #4a6fa5;
+                    color: white;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    margin-top: 10px;
+                }
+                
+                button:hover {
+                    background: #3a5a8c;
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
+                }
+                
+                .error {
+                    background: #fee;
+                    color: #c33;
+                    padding: 12px;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                    text-align: center;
+                    border: 1px solid #fcc;
+                }
+                
+                .info {
+                    margin-top: 20px;
+                    padding: 15px;
+                    background: #f8f9fa;
+                    border-radius: 10px;
+                    font-size: 13px;
+                    color: #666;
+                }
+                
+                .info-item {
+                    display: flex;
+                    margin-bottom: 8px;
+                }
+                
+                .info-label {
+                    width: 80px;
+                    color: #999;
+                }
+                
+                .info-value {
+                    color: #333;
+                    font-weight: 500;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="login-container">
+                <h1>🔐 Админ-панель</h1>
+                <div class="subtitle">Вход в систему управления заявками</div>
+                
+                <?php if (isset($_GET['error'])): ?>
+                    <div class="error">
+                        ❌ Неверный логин или пароль
+                    </div>
+                <?php endif; ?>
+                
+                <form method="POST">
+                    <input type="hidden" name="login_form" value="1">
+                    
+                    <div class="form-group">
+                        <label for="username">Логин</label>
+                        <input type="text" id="username" name="username" value="admin" placeholder="Введите логин" required autofocus>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+                    </div>
+                    
+                    <button type="submit">Войти в систему</button>
+                </form>
+            </div>
+        </body>
+        </html>
+        <?php
+        exit;
+    }
+}
+
+// Дополнительные проверки сессии (упрощенные)
+if (isset($_SESSION['admin_authenticated'])) {
+    // Автоматический выход через 8 часов
+    $timeout = 28800; // 8 часов
+    if (time() - $_SESSION['login_time'] > $timeout) {
+        logAction('TIMEOUT', 'Session expired');
+        session_destroy();
+        header('Location: index.php');
+        exit;
+    }
+}
+
+// CSRF защита (упрощенная)
+function generateCSRFToken() {
+    if (!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function verifyCSRFToken($token) {
+    return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
 }
 
 // Обработка действий
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    
+    // Проверка CSRF токена
+    if (!isset($_POST['csrf_token']) || !verifyCSRFToken($_POST['csrf_token'])) {
+        logAction('CSRF_ATTEMPT', 'Invalid CSRF token');
+        die('Ошибка безопасности');
+    }
+    
     try {
         $pdo = new PDO(
             "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
             $db_user,
-            $db_pass
+            $db_pass,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]
         );
         
-        if ($_POST['action'] === 'delete' && isset($_POST['id'])) {
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        
+        if ($_POST['action'] === 'delete' && $id) {
             $stmt = $pdo->prepare("DELETE FROM applications WHERE id = ?");
-            $stmt->execute([$_POST['id']]);
+            $stmt->execute([$id]);
+            logAction('DELETE', "Deleted application ID: $id");
             header('Location: index.php?deleted=1');
             exit;
         }
         
-        if ($_POST['action'] === 'update_status' && isset($_POST['id']) && isset($_POST['status'])) {
-            $stmt = $pdo->prepare("UPDATE applications SET status = ? WHERE id = ?");
-            $stmt->execute([$_POST['status'], $_POST['id']]);
-            header('Location: index.php?updated=1');
-            exit;
+        if ($_POST['action'] === 'update_status' && $id && isset($_POST['status'])) {
+            $allowed_statuses = ['new', 'processed', 'completed'];
+            $status = $_POST['status'];
+            
+            if (in_array($status, $allowed_statuses)) {
+                $stmt = $pdo->prepare("UPDATE applications SET status = ? WHERE id = ?");
+                $stmt->execute([$status, $id]);
+                logAction('UPDATE_STATUS', "Updated application ID: $id to status: $status");
+                header('Location: index.php?updated=1');
+                exit;
+            }
         }
     } catch (PDOException $e) {
-        $error = 'Ошибка БД: ' . $e->getMessage();
+        logAction('DB_ERROR', $e->getMessage());
+        $error = 'Ошибка базы данных';
     }
 }
 
+// Получение данных
 try {
     $pdo = new PDO(
         "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
         $db_user,
-        $db_pass
+        $db_pass,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]
     );
     
-    // Получаем заявки
     $stmt = $pdo->query("SELECT * FROM applications ORDER BY 
         CASE status 
             WHEN 'new' THEN 1 
@@ -60,16 +328,18 @@ try {
     
     // Статистика
     $total = count($applications);
-    $new = array_filter($applications, fn($a) => $a['status'] == 'new');
-    $processed = array_filter($applications, fn($a) => $a['status'] == 'processed');
-    $completed = array_filter($applications, fn($a) => $a['status'] == 'completed');
-    
-    // За сегодня
-    $today = array_filter($applications, fn($a) => date('Y-m-d', strtotime($a['created_at'])) == date('Y-m-d'));
+    $new = count(array_filter($applications, fn($a) => $a['status'] == 'new'));
+    $processed = count(array_filter($applications, fn($a) => $a['status'] == 'processed'));
+    $completed = count(array_filter($applications, fn($a) => $a['status'] == 'completed'));
+    $today = count(array_filter($applications, fn($a) => date('Y-m-d', strtotime($a['created_at'])) == date('Y-m-d')));
     
 } catch (PDOException $e) {
-    die('Ошибка БД: ' . $e->getMessage());
+    logAction('DB_CONNECTION_ERROR', $e->getMessage());
+    die('Ошибка подключения к базе данных');
 }
+
+// Генерируем CSRF токен
+$csrf_token = generateCSRFToken();
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -102,7 +372,6 @@ try {
             margin: 0 auto;
         }
         
-        /* Шапка */
         .header {
             background: white;
             border-radius: 20px;
@@ -111,10 +380,16 @@ try {
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
         h1 {
             font-size: 32px;
             color: #000;
-            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -129,12 +404,42 @@ try {
             font-weight: normal;
         }
         
-        /* Статистика */
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .username {
+            background: #4a6fa5;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 20px;
-            margin-bottom: 20px;
         }
         
         .stat-card {
@@ -158,7 +463,6 @@ try {
             font-size: 14px;
         }
         
-        /* Уведомления */
         .notification {
             background: #4CAF50;
             color: white;
@@ -183,7 +487,6 @@ try {
             }
         }
         
-        /* Фильтры */
         .filters {
             background: white;
             border-radius: 15px;
@@ -236,7 +539,6 @@ try {
             color: #999;
         }
         
-        /* Таблица */
         .table-container {
             background: white;
             border-radius: 20px;
@@ -259,7 +561,6 @@ try {
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            white-space: nowrap;
         }
         
         td {
@@ -273,32 +574,18 @@ try {
             background: #f5f5f5;
         }
         
-        /* Строки с разными статусами */
         tr.status-new {
             background-color: #fff9e6;
-        }
-        
-        tr.status-new:hover {
-            background-color: #fff3d4;
         }
         
         tr.status-processed {
             background-color: #e6f3ff;
         }
         
-        tr.status-processed:hover {
-            background-color: #d4e8ff;
-        }
-        
         tr.status-completed {
             background-color: #e6ffe6;
         }
         
-        tr.status-completed:hover {
-            background-color: #d4ffd4;
-        }
-        
-        /* Ячейки с контентом */
         .id-cell {
             font-weight: bold;
             color: #4a6fa5;
@@ -310,38 +597,15 @@ try {
             color: #666;
         }
         
-        .name-cell {
-            font-weight: 500;
-            max-width: 150px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
         .phone-cell a {
             color: #4a6fa5;
             text-decoration: none;
             font-weight: 500;
         }
         
-        .phone-cell a:hover {
-            text-decoration: underline;
-        }
-        
-        .email-cell {
-            max-width: 180px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
         .email-cell a {
             color: #4a6fa5;
             text-decoration: none;
-        }
-        
-        .email-cell a:hover {
-            text-decoration: underline;
         }
         
         .message-cell {
@@ -354,10 +618,6 @@ try {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-        }
-        
-        .message-preview:hover {
-            color: #4a6fa5;
         }
         
         .form-type {
@@ -385,7 +645,6 @@ try {
             color: #666;
         }
         
-        /* Статусы */
         .status-badge {
             padding: 5px 12px;
             border-radius: 30px;
@@ -393,7 +652,6 @@ try {
             font-weight: 600;
             display: inline-block;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             border: none;
             cursor: pointer;
         }
@@ -413,11 +671,9 @@ try {
             color: white;
         }
         
-        /* Кнопки действий */
         .action-buttons {
             display: flex;
             gap: 5px;
-            white-space: nowrap;
         }
         
         .btn {
@@ -427,10 +683,6 @@ try {
             cursor: pointer;
             font-size: 12px;
             transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
         }
         
         .btn-view {
@@ -453,17 +705,6 @@ try {
             transform: translateY(-2px);
         }
         
-        .btn-edit {
-            background: #ffc107;
-            color: #000;
-        }
-        
-        .btn-edit:hover {
-            background: #e0a800;
-            transform: translateY(-2px);
-        }
-        
-        /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -504,10 +745,6 @@ try {
             margin-top: 15px;
         }
         
-        .modal-label:first-of-type {
-            margin-top: 0;
-        }
-        
         .modal-value {
             background: #f8f9fa;
             padding: 10px 15px;
@@ -541,36 +778,6 @@ try {
             color: white;
         }
         
-        .modal-btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        /* Пагинация */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .page-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .page-btn:hover,
-        .page-btn.active {
-            background: #4a6fa5;
-            color: white;
-            border-color: #4a6fa5;
-        }
-        
-        /* Адаптивность */
         @media (max-width: 1200px) {
             .stats-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -600,8 +807,10 @@ try {
                 flex: 1;
             }
             
-            .table-container {
-                overflow-x: auto;
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
         }
     </style>
@@ -617,14 +826,21 @@ try {
         <?php endif; ?>
         
         <?php if (isset($error)): ?>
-            <div class="notification error">❌ <?php echo $error; ?></div>
+            <div class="notification error">❌ <?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
         
         <div class="header">
-            <h1>
-                📋 Админ-панель заявок
-                <span>v2.0</span>
-            </h1>
+            <div class="header-top">
+                <h1>
+                    📋 Админ-панель заявок
+                   
+                </h1>
+                
+                <div class="user-menu">
+                    <span class="username">👤 <?php echo htmlspecialchars($_SESSION['admin_user']); ?></span>
+                    <a href="?logout=1" class="logout-btn">🚪 Выйти</a>
+                </div>
+            </div>
             
             <div class="stats-grid">
                 <div class="stat-card">
@@ -632,19 +848,19 @@ try {
                     <div class="stat-label">Всего заявок</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value"><?php echo count($new); ?></div>
+                    <div class="stat-value"><?php echo $new; ?></div>
                     <div class="stat-label">Новые</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value"><?php echo count($processed); ?></div>
+                    <div class="stat-value"><?php echo $processed; ?></div>
                     <div class="stat-label">В обработке</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value"><?php echo count($completed); ?></div>
+                    <div class="stat-value"><?php echo $completed; ?></div>
                     <div class="stat-label">Завершенные</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value"><?php echo count($today); ?></div>
+                    <div class="stat-value"><?php echo $today; ?></div>
                     <div class="stat-label">За сегодня</div>
                 </div>
             </div>
@@ -681,12 +897,10 @@ try {
                 </thead>
                 <tbody>
                     <?php foreach ($applications as $app): ?>
-                    <tr data-status="<?php echo $app['status']; ?>" class="status-<?php echo $app['status']; ?>">
-                        <td class="id-cell">#<?php echo $app['id']; ?></td>
+                    <tr data-status="<?php echo htmlspecialchars($app['status']); ?>" class="status-<?php echo htmlspecialchars($app['status']); ?>">
+                        <td class="id-cell">#<?php echo (int)$app['id']; ?></td>
                         <td class="date-cell"><?php echo date('d.m.Y H:i', strtotime($app['created_at'])); ?></td>
-                        <td class="name-cell" title="<?php echo htmlspecialchars($app['name']); ?>">
-                            <?php echo htmlspecialchars(mb_substr($app['name'], 0, 30)) . (mb_strlen($app['name']) > 30 ? '...' : ''); ?>
-                        </td>
+                        <td class="name-cell"><?php echo htmlspecialchars(mb_substr($app['name'], 0, 30)); ?></td>
                         <td class="phone-cell">
                             <a href="tel:<?php echo htmlspecialchars($app['phone']); ?>">
                                 <?php echo htmlspecialchars($app['phone']); ?>
@@ -694,8 +908,8 @@ try {
                         </td>
                         <td class="email-cell">
                             <?php if (!empty($app['email'])): ?>
-                                <a href="mailto:<?php echo htmlspecialchars($app['email']); ?>" title="<?php echo htmlspecialchars($app['email']); ?>">
-                                    <?php echo htmlspecialchars(mb_substr($app['email'], 0, 25)) . (mb_strlen($app['email']) > 25 ? '...' : ''); ?>
+                                <a href="mailto:<?php echo htmlspecialchars($app['email']); ?>">
+                                    <?php echo htmlspecialchars(mb_substr($app['email'], 0, 25)); ?>
                                 </a>
                             <?php else: ?>
                                 <span style="color: #999;">—</span>
@@ -703,26 +917,27 @@ try {
                         </td>
                         <td class="message-cell" onclick="showMessage(<?php echo htmlspecialchars(json_encode($app['message'])); ?>)">
                             <?php if (!empty($app['message'])): ?>
-                                <div class="message-preview" title="Кликните для просмотра">
-                                    <?php echo htmlspecialchars(mb_substr($app['message'], 0, 30)) . (mb_strlen($app['message']) > 30 ? '...' : ''); ?>
+                                <div class="message-preview">
+                                    <?php echo htmlspecialchars(mb_substr($app['message'], 0, 30)); ?>
                                 </div>
                             <?php else: ?>
                                 <span style="color: #999;">—</span>
                             <?php endif; ?>
                         </td>
                         <td>
-                            <span class="form-type <?php echo $app['form_type']; ?>">
+                            <span class="form-type <?php echo htmlspecialchars($app['form_type']); ?>">
                                 <?php echo $app['form_type'] == 'modal' ? '📱 Мод' : '📝 Осн'; ?>
                             </span>
                         </td>
-                        <td class="ip-cell" title="<?php echo htmlspecialchars($app['user_agent'] ?? ''); ?>">
+                        <td class="ip-cell">
                             <?php echo htmlspecialchars($app['ip_address'] ?? '—'); ?>
                         </td>
                         <td>
                             <form method="POST" style="display: inline;">
+                                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                                 <input type="hidden" name="action" value="update_status">
-                                <input type="hidden" name="id" value="<?php echo $app['id']; ?>">
-                                <select name="status" onchange="this.form.submit()" class="status-badge <?php echo $app['status']; ?>">
+                                <input type="hidden" name="id" value="<?php echo (int)$app['id']; ?>">
+                                <select name="status" onchange="this.form.submit()" class="status-badge <?php echo htmlspecialchars($app['status']); ?>">
                                     <option value="new" <?php echo $app['status'] == 'new' ? 'selected' : ''; ?>>Новая</option>
                                     <option value="processed" <?php echo $app['status'] == 'processed' ? 'selected' : ''; ?>>В обработке</option>
                                     <option value="completed" <?php echo $app['status'] == 'completed' ? 'selected' : ''; ?>>Завершена</option>
@@ -731,8 +946,8 @@ try {
                         </td>
                         <td>
                             <div class="action-buttons">
-                                <button onclick="viewDetails(<?php echo $app['id']; ?>)" class="btn btn-view" title="Просмотр">👁️</button>
-                                <button onclick="deleteApplication(<?php echo $app['id']; ?>)" class="btn btn-delete" title="Удалить">🗑️</button>
+                                <button onclick="viewDetails(<?php echo (int)$app['id']; ?>)" class="btn btn-view" title="Просмотр">👁️</button>
+                                <button onclick="deleteApplication(<?php echo (int)$app['id']; ?>)" class="btn btn-delete" title="Удалить">🗑️</button>
                             </div>
                         </td>
                     </tr>
@@ -740,11 +955,9 @@ try {
                 </tbody>
             </table>
         </div>
-        
-        <div class="pagination" id="pagination"></div>
     </div>
     
-    <!-- Модальное окно для просмотра сообщения -->
+    <!-- Модальные окна -->
     <div id="messageModal" class="modal">
         <div class="modal-content">
             <h3 class="modal-title">📝 Сообщение</h3>
@@ -755,7 +968,6 @@ try {
         </div>
     </div>
     
-    <!-- Модальное окно для просмотра деталей -->
     <div id="detailsModal" class="modal">
         <div class="modal-content">
             <h3 class="modal-title">🔍 Детали заявки</h3>
@@ -766,12 +978,12 @@ try {
         </div>
     </div>
     
-    <!-- Модальное окно для удаления -->
     <div id="deleteModal" class="modal">
         <div class="modal-content">
             <h3 class="modal-title">Подтверждение удаления</h3>
-            <p>Вы уверены, что хотите удалить эту заявку? Это действие нельзя отменить.</p>
+            <p>Вы уверены, что хотите удалить эту заявку?</p>
             <form id="deleteForm" method="POST">
+                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="id" id="deleteId">
                 <div class="modal-buttons">
@@ -783,10 +995,9 @@ try {
     </div>
     
     <script>
-        // Данные заявок для JS
-        const applications = <?php echo json_encode($applications); ?>;
+        const applications = <?php echo json_encode($applications, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
         
-        // Фильтрация по статусу
+        // Фильтрация
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -796,27 +1007,18 @@ try {
                 const rows = document.querySelectorAll('#applicationsTable tbody tr');
                 
                 rows.forEach(row => {
-                    if (filter === 'all' || row.dataset.status === filter) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
+                    row.style.display = (filter === 'all' || row.dataset.status === filter) ? '' : 'none';
                 });
             });
         });
         
-        // Поиск по таблице
+        // Поиск
         document.getElementById('search').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             const rows = document.querySelectorAll('#applicationsTable tbody tr');
             
             rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                if (text.includes(searchTerm) || searchTerm === '') {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                row.style.display = row.textContent.toLowerCase().includes(searchTerm) ? '' : 'none';
             });
         });
         
@@ -842,34 +1044,34 @@ try {
             const details = `
                 <div class="modal-label">ID:</div>
                 <div class="modal-value">#${app.id}</div>
-                
                 <div class="modal-label">Имя:</div>
-                <div class="modal-value">${app.name || '-'}</div>
-                
+                <div class="modal-value">${escapeHtml(app.name) || '-'}</div>
                 <div class="modal-label">Телефон:</div>
-                <div class="modal-value">${app.phone || '-'}</div>
-                
+                <div class="modal-value">${escapeHtml(app.phone) || '-'}</div>
                 <div class="modal-label">Email:</div>
-                <div class="modal-value">${app.email || '-'}</div>
-                
+                <div class="modal-value">${escapeHtml(app.email) || '-'}</div>
                 <div class="modal-label">Сообщение:</div>
-                <div class="modal-value">${app.message ? app.message.replace(/\n/g, '<br>') : '-'}</div>
-                
+                <div class="modal-value">${app.message ? escapeHtml(app.message).replace(/\n/g, '<br>') : '-'}</div>
                 <div class="modal-label">Форма:</div>
                 <div class="modal-value">${app.form_type === 'modal' ? 'Модальная' : 'Основная'}</div>
-                
                 <div class="modal-label">Дата:</div>
                 <div class="modal-value">${new Date(app.created_at).toLocaleString('ru')}</div>
-                
                 <div class="modal-label">IP адрес:</div>
-                <div class="modal-value">${app.ip_address || '-'}</div>
-                
-                <div class="modal-label">User Agent:</div>
-                <div class="modal-value" style="font-size: 12px;">${app.user_agent || '-'}</div>
+                <div class="modal-value">${escapeHtml(app.ip_address) || '-'}</div>
             `;
             
             document.getElementById('detailsContent').innerHTML = details;
             document.getElementById('detailsModal').classList.add('show');
+        }
+        
+        function escapeHtml(unsafe) {
+            if (!unsafe) return unsafe;
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
         
         function closeDetailsModal() {
@@ -886,7 +1088,7 @@ try {
             document.getElementById('deleteModal').classList.remove('show');
         }
         
-        // Закрытие по клику вне модального окна
+        // Закрытие модальных окон
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
@@ -895,7 +1097,6 @@ try {
             });
         });
         
-        // Закрытие по Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.show').forEach(modal => {
@@ -903,43 +1104,6 @@ try {
                 });
             }
         });
-        
-        // Простая пагинация
-        function setupPagination() {
-            const rows = document.querySelectorAll('#applicationsTable tbody tr');
-            if (rows.length <= 20) return;
-            
-            const rowsPerPage = 20;
-            const pageCount = Math.ceil(rows.length / rowsPerPage);
-            const pagination = document.getElementById('pagination');
-            
-            function showPage(page) {
-                const start = (page - 1) * rowsPerPage;
-                const end = start + rowsPerPage;
-                
-                rows.forEach((row, index) => {
-                    row.style.display = index >= start && index < end ? '' : 'none';
-                });
-            }
-            
-            pagination.innerHTML = '';
-            for (let i = 1; i <= pageCount; i++) {
-                const btn = document.createElement('button');
-                btn.className = 'page-btn' + (i === 1 ? ' active' : '');
-                btn.textContent = i;
-                btn.onclick = () => {
-                    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    showPage(i);
-                };
-                pagination.appendChild(btn);
-            }
-            
-            showPage(1);
-        }
-        
-        // Раскомментируйте если нужно
-        // setupPagination();
     </script>
 </body>
 </html>
