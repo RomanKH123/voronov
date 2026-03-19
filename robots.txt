@@ -1,4 +1,31 @@
+# robots.txt для сайта Студия Воронова
 User-agent: *
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /*.php$
+Disallow: /work/*/temp/
+Disallow: /work/*/tmp/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /composer.json
+Disallow: /package.json
+Disallow: /README.md
 Allow: /
 
 Sitemap: https://voronov-art.ru/sitemap.xml
+Host: https://voronov-art.ru
+
+User-agent: Yandex
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /.git/
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
+
+User-agent: Googlebot
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /.git/

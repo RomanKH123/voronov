@@ -6,33 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.getElementById('successMessage');
     const phoneInput = document.getElementById('phone');
     
-    // Элементы для новой формы в контактах
+    // Элементы для формы в контактах (ТВОЯ ОСНОВНАЯ ФОРМА)
     const contactMainForm = document.getElementById('contactFormMain');
     const successMessageMain = document.getElementById('successMessageMain');
     const phoneMainInput = document.getElementById('phone_main');
     
-    // ===== МОДАЛЬНОЕ ОКНО =====
+    // Элементы для липкого меню и стрелки
+    const stickyMenu = document.querySelector('.sticky-menu');
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     
-    function openModal() {
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-        contactForm.style.display = 'flex';
-        successMessage.style.display = 'none';
-        contactForm.reset();
-        document.querySelectorAll('.form-group input').forEach(input => {
-            input.classList.remove('error');
-        });
-    }
-    
-    function closeModal() {
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-    }
+    // ===== ФУНКЦИИ ДЛЯ ЛИПКОГО МЕНЮ =====
     
     window.scrollToBlock = function(blockId) {
         const element = document.getElementById(blockId);
         if (element) {
-            const menuHeight = document.querySelector('.menu_st').offsetHeight;
+            const menuHeight = stickyMenu ? stickyMenu.offsetHeight : document.querySelector('.menu_st')?.offsetHeight || 0;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - menuHeight - 20;
             
@@ -46,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function highlightActiveMenuItem(activeId) {
-        document.querySelectorAll('.menu_st div').forEach(item => {
+        document.querySelectorAll('.sticky-menu .nav-menu a, .menu_st div').forEach(item => {
             item.classList.remove('active');
         });
         
@@ -59,9 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const menuIndex = menuMap[activeId];
         if (menuIndex !== undefined) {
-            const menuItems = document.querySelectorAll('.menu_st div');
-            if (menuItems[menuIndex]) {
-                menuItems[menuIndex].classList.add('active');
+            const newMenuItems = document.querySelectorAll('.sticky-menu .nav-menu a');
+            if (newMenuItems[menuIndex]) {
+                newMenuItems[menuIndex].classList.add('active');
+            }
+            const oldMenuItems = document.querySelectorAll('.menu_st div');
+            if (oldMenuItems[menuIndex]) {
+                oldMenuItems[menuIndex].classList.add('active');
             }
         }
     }
@@ -74,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             { id: 'contacts', menuIndex: 3 }
         ];
         
-        const menuHeight = document.querySelector('.menu_st').offsetHeight;
+        const menuHeight = stickyMenu ? stickyMenu.offsetHeight : document.querySelector('.menu_st')?.offsetHeight || 0;
         const scrollPosition = window.pageYOffset + menuHeight + 50;
         
         let currentSection = null;
@@ -93,22 +85,80 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (currentSection) {
-            document.querySelectorAll('.menu_st div').forEach(item => {
+            document.querySelectorAll('.sticky-menu .nav-menu a, .menu_st div').forEach(item => {
                 item.classList.remove('active');
             });
             
-            const menuItems = document.querySelectorAll('.menu_st div');
-            if (menuItems[currentSection.menuIndex]) {
-                menuItems[currentSection.menuIndex].classList.add('active');
+            const newMenuItems = document.querySelectorAll('.sticky-menu .nav-menu a');
+            if (newMenuItems[currentSection.menuIndex]) {
+                newMenuItems[currentSection.menuIndex].classList.add('active');
+            }
+            
+            const oldMenuItems = document.querySelectorAll('.menu_st div');
+            if (oldMenuItems[currentSection.menuIndex]) {
+                oldMenuItems[currentSection.menuIndex].classList.add('active');
             }
         }
     }
     
-    // Кнопки для открытия модального окна
+    // ===== ФУНКЦИИ ДЛЯ СТРЕЛКИ ПОДЪЁМА =====
+    
+    window.scrollToTop = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+    
+    function handleScroll() {
+        if (scrollToTopBtn) {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        }
+        updateActiveMenuOnScroll();
+    }
+    
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollToTop();
+        });
+        scrollToTopBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            window.scrollToTop();
+        });
+    }
+    
+    // ===== МОДАЛЬНОЕ ОКНО =====
+    
+    function openModal() {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        if (contactForm) {
+            contactForm.style.display = 'flex';
+            contactForm.reset();
+        }
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.classList.remove('error');
+        });
+    }
+    
+    function closeModal() {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    
+    // Кнопки для открытия модального окна - УБРАЛ 'отправить заявку'
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
         const buttonText = button.textContent.trim().toLowerCase();
-        if (buttonText === 'подробнее' || buttonText === 'обсудить проект') {
+        if (buttonText === 'подробнее' || buttonText === 'обсудить проект' || buttonText === 'заказать сайт под ключ') {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 openModal();
@@ -182,6 +232,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const name = document.getElementById('name');
         const phone = document.getElementById('phone');
         
+        if (!name || !phone) return false;
+        
         if (!name.value.trim() || name.value.trim().length < 2) {
             name.classList.add('error');
             isValid = false;
@@ -225,11 +277,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return isValid;
     }
     
-    function showFieldErrors(errors) {
+    function showFieldErrors(errors, formType = 'modal') {
         document.querySelectorAll('.error-message').forEach(el => el.remove());
         
         Object.keys(errors).forEach(field => {
-            const input = document.getElementById(field) || document.getElementById(field + '_main');
+            let input;
+            if (formType === 'modal') {
+                input = document.getElementById(field);
+            } else if (formType === 'main') {
+                input = document.getElementById(field + '_main');
+            }
+            
             if (input) {
                 input.classList.add('error');
                 
@@ -242,6 +300,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorDiv.style.marginLeft = '5px';
                 
                 input.parentNode.appendChild(errorDiv);
+            }
+        });
+    }
+    
+    // ===== ОБЩАЯ ФУНКЦИЯ ОТПРАВКИ =====
+    
+    function sendForm(formData, formType, submitBtn, originalText, successCallback) {
+        fetch('/api/main.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error('Ошибка сервера: ' + text);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                successCallback();
+            } else {
+                if (data.errors) {
+                    showFieldErrors(data.errors, formType);
+                } else {
+                    alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
+                }
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже или позвоните нам.');
+            if (submitBtn) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
         });
     }
@@ -262,69 +363,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     name: document.getElementById('name').value.trim(),
                     phone: document.getElementById('phone').value,
                     email: document.getElementById('email')?.value || '',
+                    message: document.getElementById('message')?.value || '',
                     page: window.location.href,
                     form: 'modal'
                 };
                 
-                // ИСПРАВЛЕНО: правильный путь к API
-                fetch('/api/main.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.text().then(text => {
-                            throw new Error('Ошибка сервера: ' + text.substring(0, 100));
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        contactForm.style.display = 'none';
-                        successMessage.style.display = 'block';
-                        
-                        setTimeout(() => {
-                            closeModal();
-                            contactForm.reset();
-                            contactForm.style.display = 'flex';
-                            successMessage.style.display = 'none';
-                        }, 3000);
-                    } else {
-                        if (data.errors) {
-                            showFieldErrors(data.errors);
-                        } else {
-                            alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Произошла ошибка при отправке: ' + error.message);
-                })
-                .finally(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
+                sendForm(formData, 'modal', submitBtn, originalText, function() {
+                    contactForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        closeModal();
+                        contactForm.reset();
+                        contactForm.style.display = 'flex';
+                        successMessage.style.display = 'none';
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 3000);
                 });
             }
         });
     }
     
-    // ===== ОТПРАВКА ОСНОВНОЙ ФОРМЫ В КОНТАКТАХ =====
+    // ===== ОТПРАВКА ТВОЕЙ ФОРМЫ (contactFormMain) =====
     
     if (contactMainForm) {
         contactMainForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             if (validateMainForm()) {
-                const submitBtn = this.querySelector('.form_submit_btn');
+                const submitBtn = document.querySelector('.form_submit_btn');
                 const originalText = submitBtn.textContent;
                 
                 submitBtn.disabled = true;
-                submitBtn.classList.add('loading');
+                submitBtn.innerHTML = '<span class="loading-spinner"></span>';
                 
                 const formData = {
                     name: document.getElementById('name_main').value.trim(),
@@ -335,57 +407,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     form: 'main'
                 };
                 
-                // ИСПРАВЛЕНО: правильный путь к API
-                fetch('/api/main.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.text().then(text => {
-                            throw new Error('Ошибка сервера: ' + text.substring(0, 100));
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        submitBtn.classList.remove('loading');
-                        submitBtn.style.display = 'none';
-                        contactMainForm.style.display = 'none';
-                        
-                        if (successMessageMain) {
-                            successMessageMain.style.display = 'block';
-                        }
-                        
-                        setTimeout(() => {
-                            submitBtn.style.display = 'block';
-                            contactMainForm.style.display = 'block';
-                            if (successMessageMain) {
-                                successMessageMain.style.display = 'none';
-                            }
-                            contactMainForm.reset();
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = originalText;
-                        }, 5000);
-                    } else {
-                        if (data.errors) {
-                            showFieldErrors(data.errors);
-                        } else {
-                            alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
-                        }
-                        submitBtn.classList.remove('loading');
+                sendForm(formData, 'main', submitBtn, originalText, function() {
+                    submitBtn.style.display = 'none';
+                    contactMainForm.style.display = 'none';
+                    successMessageMain.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        submitBtn.style.display = 'block';
+                        contactMainForm.style.display = 'block';
+                        successMessageMain.style.display = 'none';
+                        contactMainForm.reset();
                         submitBtn.disabled = false;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Произошла ошибка при отправке: ' + error.message);
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    }, 3000);
                 });
             }
         });
@@ -403,9 +437,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    window.addEventListener('scroll', updateActiveMenuOnScroll);
+    window.addEventListener('scroll', handleScroll);
     
     setTimeout(() => {
         updateActiveMenuOnScroll();
+        handleScroll();
     }, 100);
+    
+    window.addEventListener('resize', function() {
+        updateActiveMenuOnScroll();
+    });
+    
+    if ('ontouchstart' in window) {
+        document.body.style.webkitTapHighlightColor = 'transparent';
+    }
 });
