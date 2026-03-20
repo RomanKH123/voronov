@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO -->
+    <title>Политика обработки персональных данных | Студия веб-разработки Воронова</title>
+    <meta name="description" content="Политика обработки персональных данных студии веб-разработки Воронова. Сбор, хранение и защита ваших персональных данных.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://voronov-art.ru/privacy-policy.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9eef5 100%);
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        
+        /* Шапка */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 30px 0;
+            border-bottom: 3px solid #4a6fa5;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .logo-text span {
+            color: #4a6fa5;
+        }
+        
+        .back-link {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .back-link:hover {
+            background: #4a6fa5;
+            transform: translateY(-2px);
+        }
+        
+        /* Контейнер */
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        /* Документ */
+        .policy-document {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .policy-header {
+            background: linear-gradient(135deg, #4a6fa5 0%, #3a5a8c 100%);
+            color: white;
+            padding: 40px 40px 30px;
+            text-align: center;
+        }
+        
+        .policy-header h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .policy-header .date {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .policy-content {
+            padding: 40px;
+        }
+        
+        .policy-content h2 {
+            color: #4a6fa5;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .policy-content h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        .policy-content h3 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .policy-content p {
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .policy-content ul, 
+        .policy-content ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        .policy-content li {
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        .policy-content .highlight {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #4a6fa5;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .policy-content .highlight p {
+            margin-bottom: 0;
+        }
+        
+        .policy-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .policy-content th,
+        .policy-content td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .policy-content th {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .policy-footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        
+        .policy-footer .contact-info {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .policy-footer a {
+            color: #4a6fa5;
+            text-decoration: none;
+        }
+        
+        .policy-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Подвал */
+        .footer {
+            background: #1a1a2e;
+            color: #888;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+        
+        .footer a {
+            color: #4a6fa5;
+            text-decoration: none;
+        }
+        
+        /* Адаптив */
+        @media (max-width: 768px) {
+            .policy-header {
+                padding: 30px 20px;
+            }
+            
+            .policy-header h1 {
+                font-size: 24px;
+            }
+            
+            .policy-content {
+                padding: 25px;
+            }
+            
+            .policy-content h2 {
+                font-size: 20px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* Печатная версия */
+        @media print {
+            body {
+                background: white;
+            }
+            .header, 
+            .footer,
+            .back-link {
+                display: none;
+            }
+            .policy-document {
+                box-shadow: none;
+            }
+            .policy-content {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="/img/logo_2.png" alt="Студия веб-разработки Воронова">
+                <div class="logo-text">
+                    Студия <span>Воронова</span>
+                </div>
+            </div>
+            <a href="/" class="back-link">← Вернуться на сайт</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="policy-document">
+            <div class="policy-header">
+                <h1>Политика обработки персональных данных</h1>
+                <div class="date">Дата последнего обновления: 20 марта 2025 г.</div>
+            </div>
+            
+            <div class="policy-content">
+                <p>Настоящая Политика обработки персональных данных (далее — Политика) разработана в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые Студией веб-разработки Воронова (далее — Оператор).</p>
+                
+                <div class="highlight">
+                    <p><strong>📌 Важно:</strong> Продолжая использовать наш сайт, вы даете согласие на обработку ваших персональных данных в соответствии с настоящей Политикой. Вы можете отозвать свое согласие в любой момент, направив нам соответствующее уведомление.</p>
+                </div>
+                
+                <h2>1. Общие положения</h2>
+                <p><strong>1.1.</strong> Настоящая Политика определяет позицию Оператора в отношении обработки персональных данных, а также права и обязанности субъектов персональных данных.</p>
+                <p><strong>1.2.</strong> Целью Политики является обеспечение защиты прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.</p>
+                <p><strong>1.3.</strong> Политика действует в отношении всех персональных данных, которые Оператор может получить о посетителях сайта <a href="https://voronov-art.ru">https://voronov-art.ru</a>.</p>
+                
+                <h2>2. Основные понятия</h2>
+                <p><strong>2.1.</strong> <strong>Персональные данные</strong> — любая информация, относящаяся прямо или косвенно к определенному или определяемому физическому лицу (субъекту персональных данных).</p>
+                <p><strong>2.2.</strong> <strong>Оператор</strong> — Студия веб-разработки Воронова, самостоятельно или совместно с другими лицами организующая обработку персональных данных.</p>
+                <p><strong>2.3.</strong> <strong>Обработка персональных данных</strong> — любое действие (операция) или совокупность действий, совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными.</p>
+                <p><strong>2.4.</strong> <strong>Файлы cookie</strong> — небольшие текстовые файлы, сохраняемые на устройстве пользователя при посещении сайта, которые позволяют идентифицировать устройство пользователя и собирать информацию о его действиях на сайте.</p>
+                
+                <h2>3. Какие персональные данные мы собираем</h2>
+                <p><strong>3.1.</strong> Оператор может собирать следующие персональные данные:</p>
+                <ul>
+                    <li><strong>Контактная информация:</strong> имя, фамилия, номер телефона, адрес электронной почты.</li>
+                    <li><strong>Информация о проекте:</strong> описание задачи, требования к сайту, бюджет, сроки.</li>
+                    <li><strong>Техническая информация:</strong> IP-адрес, тип браузера, операционная система, данные о посещениях (время, дата, просмотренные страницы).</li>
+                    <li><strong>Файлы cookie:</strong> информация, сохраняемая на вашем устройстве для улучшения работы сайта.</li>
+                    <li><strong>Данные из метрик:</strong> Яндекс.Метрика и Google Analytics собирают анонимную статистику о посещениях.</li>
+                </ul>
+                
+                <p><strong>3.2.</strong> Оператор не собирает специальные категории персональных данных (касающихся расовой, национальной принадлежности, политических взглядов, религиозных или философских убеждений, состояния здоровья, интимной жизни).</p>
+                
+                <h2>4. Цели обработки персональных данных</h2>
+                <p><strong>4.1.</strong> Оператор обрабатывает персональные данные в следующих целях:</p>
+                <ul>
+                    <li><strong>Для связи с вами:</strong> ответ на заявки, консультации, уточнение деталей проекта.</li>
+                    <li><strong>Для заключения и исполнения договоров:</strong> подготовка коммерческих предложений, договоров, актов.</li>
+                    <li><strong>Для улучшения работы сайта:</strong> анализ посещаемости, оптимизация контента, персонализация.</li>
+                    <li><strong>Для маркетинговых целей:</strong> информирование о новых услугах, акциях, рассылка полезных материалов (только с вашего согласия).</li>
+                    <li><strong>Для соблюдения требований законодательства:</strong> выполнение обязательств перед государственными органами.</li>
+                </ul>
+                
+                <h2>5. Правовые основания обработки персональных данных</h2>
+                <p><strong>5.1.</strong> Оператор обрабатывает персональные данные только при наличии следующих оснований:</p>
+                <ul>
+                    <li>Ваше согласие на обработку персональных данных (выражается путем заполнения формы на сайте или нажатия кнопки «Принять» в уведомлении о cookie).</li>
+                    <li>Необходимость для заключения или исполнения договора, стороной которого вы являетесь.</li>
+                    <li>Исполнение обязанностей, возложенных на Оператора законодательством РФ.</li>
+                    <li>Обработка персональных данных, разрешенная субъектом для неограниченного круга лиц.</li>
+                </ul>
+                
+                <h2>6. Файлы cookie и аналогичные технологии</h2>
+                <p><strong>6.1.</strong> Наш сайт использует файлы cookie для обеспечения корректной работы, анализа трафика и персонализации.</p>
+                
+                <p><strong>6.2. Типы используемых cookie:</strong></p>
+                <ul>
+                    <li><strong>Необходимые cookie:</strong> обеспечивают базовую функциональность сайта (навигация, доступ к защищенным разделам).</li>
+                    <li><strong>Аналитические cookie:</strong> помогают понять, как посетители используют сайт (Яндекс.Метрика, Google Analytics).</li>
+                    <li><strong>Функциональные cookie:</strong> запоминают ваши предпочтения (язык, регион).</li>
+                    <li><strong>Маркетинговые cookie:</strong> используются для показа релевантной рекламы (не используются на данном сайте).</li>
+                </ul>
+                
+                <p><strong>6.3.</strong> Вы можете управлять файлами cookie в настройках вашего браузера. Отключение cookie может повлиять на функциональность сайта.</p>
+                
+                <div class="highlight">
+                    <p><strong>🍪 Управление cookie:</strong> Вы можете в любой момент изменить настройки cookie в вашем браузере. В Chrome: Настройки → Конфиденциальность и безопасность → Файлы cookie и другие данные сайтов. В других браузерах аналогичные настройки находятся в разделах конфиденциальности.</p>
+                </div>
+                
+                <h2>7. Порядок и условия обработки персональных данных</h2>
+                <p><strong>7.1.</strong> Обработка персональных данных осуществляется с использованием средств автоматизации (сбор через формы на сайте) и без использования средств автоматизации (бумажные носители).</p>
+                <p><strong>7.2.</strong> Персональные данные хранятся в электронном виде на серверах, расположенных на территории РФ. Срок хранения — не более 5 лет с момента последнего взаимодействия, если иное не предусмотрено договором или законодательством.</p>
+                <p><strong>7.3.</strong> Оператор принимает необходимые организационные и технические меры для защиты персональных данных от неправомерного доступа, уничтожения, изменения, блокирования, копирования, распространения.</p>
+                
+                <h2>8. Передача персональных данных третьим лицам</h2>
+                <p><strong>8.1.</strong> Оператор не передает персональные данные третьим лицам, за исключением следующих случаев:</p>
+                <ul>
+                    <li>Вы дали явное согласие на такую передачу.</li>
+                    <li>Передача предусмотрена договором (например, передача данных хостинг-провайдеру).</li>
+                    <li>Передача требуется для выполнения требований законодательства РФ.</li>
+                </ul>
+                
+                <p><strong>8.2.</strong> Оператор может привлекать сторонних поставщиков услуг (хостинг, email-рассылки, аналитика) для обработки данных. Такие поставщики обязуются соблюдать конфиденциальность и использовать данные только в целях оказания услуг.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Сервис</th>
+                            <th>Цель</th>
+                            <th>Страна</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Яндекс.Метрика</td>
+                            <td>Аналитика посещаемости</td>
+                            <td>Россия</td>
+                        </tr>
+                        <tr>
+                            <td>Google Analytics</td>
+                            <td>Аналитика посещаемости</td>
+                            <td>США (соблюдение GDPR)</td>
+                        </tr>
+                        <tr>
+                            <td>Хостинг-провайдер</td>
+                            <td>Размещение сайта</td>
+                            <td>Россия</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h2>9. Ваши права как субъекта персональных данных</h2>
+                <p><strong>9.1.</strong> Вы имеете право:</p>
+                <ul>
+                    <li>Получить информацию об обработке ваших персональных данных.</li>
+                    <li>Требовать уточнения, блокирования или уничтожения ваших персональных данных, если они являются неполными, устаревшими, недостоверными.</li>
+                    <li>Отозвать согласие на обработку персональных данных в любой момент.</li>
+                    <li>Обжаловать действия или бездействие Оператора в уполномоченном органе по защите прав субъектов персональных данных (Роскомнадзор).</li>
+                </ul>
+                
+                <p><strong>9.2.</strong> Для реализации своих прав вы можете направить запрос на электронную почту <a href="mailto:info@voronov.ru">info@voronov.ru</a>. Запрос должен содержать:</p>
+                <ul>
+                    <li>ФИО субъекта персональных данных.</li>
+                    <li>Номер основного документа, удостоверяющего личность.</li>
+                    <li>Сведения, подтверждающие ваше отношение к Оператору.</li>
+                    <li>Подпись или электронная подпись.</li>
+                </ul>
+                
+                <h2>10. Отзыв согласия на обработку персональных данных</h2>
+                <p><strong>10.1.</strong> Вы можете отозвать согласие на обработку персональных данных в любое время:</p>
+                <ul>
+                    <li>Нажав на кнопку «Отклонить» в уведомлении о cookie (для файлов cookie).</li>
+                    <li>Очистив cookie в настройках браузера.</li>
+                    <li>Направив письменное уведомление на <a href="mailto:info@voronov.ru">info@voronov.ru</a>.</li>
+                </ul>
+                <p><strong>10.2.</strong> В случае отзыва согласия Оператор прекращает обработку персональных данных и уничтожает их в срок не более 30 дней, если иное не предусмотрено законодательством.</p>
+                
+                <h2>11. Изменение Политики</h2>
+                <p><strong>11.1.</strong> Оператор оставляет за собой право вносить изменения в настоящую Политику. Новая редакция вступает в силу с момента ее размещения на сайте, если иное не предусмотрено новой редакцией.</p>
+                <p><strong>11.2.</strong> Актуальная версия Политики всегда доступна по адресу: <a href="https://voronov-art.ru/privacy-policy.html">https://voronov-art.ru/privacy-policy.html</a></p>
+                
+                <h2>12. Контактная информация</h2>
+                <p><strong>12.1.</strong> По всем вопросам, связанным с обработкой персональных данных, вы можете обратиться:</p>
+                <ul>
+                    <li>По электронной почте: <a href="mailto:info@voronov.ru">info@voronov.ru</a></li>
+                    <li>По телефону: <a href="tel:+79604987864">+7 (960) 498-78-64</a></li>
+                    <li>В Telegram: <a href="https://t.me/voronov_tg" target="_blank">@voronov_tg</a></li>
+                </ul>
+                <p><strong>12.2.</strong> Юридический адрес: г. Краснодар, Россия.</p>
+            </div>
+            
+            <div class="policy-footer">
+                <p>© 2025 Студия веб-разработки Воронова. Все права защищены.</p>
+                <div class="contact-info">
+                    Вопросы по политике обработки данных: <a href="mailto:info@voronov.ru">info@voronov.ru</a> | <a href="tel:+79604987864">+7 (960) 498-78-64</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2025 Студия веб-разработки Воронова. Создание сайтов под ключ в Краснодаре.</p>
+        <p><a href="/privacy-policy.html">Политика обработки персональных данных</a></p>
+    </footer>
+</body>
+</html>

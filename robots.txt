@@ -1,9 +1,14 @@
-# robots.txt для сайта Студия Воронова
+# robots.txt для сайта Студия веб-разработки Воронова
+# Сайт: https://voronov-art.ru
+# Последнее обновление: 20.03.2026
+
 User-agent: *
 Disallow: /cgi-bin/
 Disallow: /admin/
 Disallow: /tmp/
 Disallow: /temp/
+Disallow: /logs/
+Disallow: /data/
 Disallow: /*.php$
 Disallow: /work/*/temp/
 Disallow: /work/*/tmp/
@@ -12,20 +17,72 @@ Disallow: /.env
 Disallow: /composer.json
 Disallow: /package.json
 Disallow: /README.md
-Allow: /
+Disallow: /package-lock.json
+Disallow: /yarn.lock
+Disallow: /node_modules/
+Disallow: /favicon/
+Disallow: /img/
+Disallow: /style/
+Disallow: /api/silent-lead.php
 
+# Разрешаем основные страницы
+Allow: /
+Allow: /privacy-policy.html
+Allow: /work/
+
+# Карта сайта
 Sitemap: https://voronov-art.ru/sitemap.xml
+
+# Основной домен
 Host: https://voronov-art.ru
 
+# ========== НАСТРОЙКИ ДЛЯ YANDEX ==========
 User-agent: Yandex
 Disallow: /cgi-bin/
 Disallow: /admin/
 Disallow: /tmp/
+Disallow: /logs/
+Disallow: /data/
 Disallow: /.git/
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
+Disallow: /api/silent-lead.php
+Allow: /
+Allow: /privacy-policy.html
+Allow: /work/
 
+# Очистка параметров в URL
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_source&from&yclid&_openstat
+
+# ========== НАСТРОЙКИ ДЛЯ GOOGLE ==========
 User-agent: Googlebot
 Disallow: /cgi-bin/
 Disallow: /admin/
 Disallow: /tmp/
+Disallow: /logs/
+Disallow: /data/
 Disallow: /.git/
+Disallow: /api/silent-lead.php
+Allow: /
+Allow: /privacy-policy.html
+Allow: /work/
+
+# ========== НАСТРОЙКИ ДЛЯ MAIL.RU ==========
+User-agent: Mail.Ru
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /.git/
+Allow: /
+Allow: /privacy-policy.html
+Allow: /work/
+
+# ========== НАСТРОЙКИ ДЛЯ BING ==========
+User-agent: bingbot
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /tmp/
+Allow: /
+Allow: /privacy-policy.html
+Allow: /work/
+
+# Задержка между запросами для снижения нагрузки
+Crawl-delay: 1
