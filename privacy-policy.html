@@ -445,8 +445,16 @@
     </div>
     
     <footer class="footer">
-        <p>© 2025 Студия веб-разработки Воронова. Создание сайтов под ключ в Краснодаре.</p>
+        <p>© <span id="current-year">2025</span> Студия веб-разработки Воронова. Создание сайтов под ключ в Краснодаре.</p>
         <p><a href="/privacy-policy.html">Политика обработки персональных данных</a></p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});
+    </script>
 </body>
 </html>

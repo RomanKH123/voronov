@@ -73,15 +73,15 @@ if ($userPhone === $STUDIO_PHONE_DIGITS) {
 // ========== ОСТАЛЬНЫЕ ДАННЫЕ ==========
 $userName = !empty($data['name']) ? trim($data['name']) : 'Аноним (cookie)';
 $userEmail = !empty($data['email']) ? trim($data['email']) : '';
+$yandexClientId = !empty($data['yandex_client_id']) ? $data['yandex_client_id'] : '';
+$googleClientId = !empty($data['google_client_id']) ? $data['google_client_id'] : '';
 
-// Форматируем телефон для вывода
+// Форматируем телефон
 $formattedPhone = '+7' . substr($userPhone, -10);
 if (strlen($userPhone) === 10) {
     $formattedPhone = '+7' . $userPhone;
 } elseif (strlen($userPhone) === 11 && substr($userPhone, 0, 1) === '8') {
     $formattedPhone = '+7' . substr($userPhone, 1);
-} elseif (strlen($userPhone) === 11 && substr($userPhone, 0, 2) === '79') {
-    $formattedPhone = '+' . $userPhone;
 }
 
 $description = "📊 ЗАЯВКА ОТ COOKIE СОГЛАСИЯ\n";
@@ -93,7 +93,8 @@ $description .= "\n🕐 Время: " . date('d.m.Y H:i:s') . "\n";
 $description .= "🔗 Страница: " . ($data['page'] ?? 'Неизвестно') . "\n";
 $description .= "🔙 Referrer: " . ($data['referrer'] ?? 'Прямой заход') . "\n";
 $description .= "🌐 IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Неизвестно') . "\n";
-$description .= "📱 Браузер: " . ($data['user_agent'] ?? 'Неизвестно');
+if ($yandexClientId) $description .= "🟡 Яндекс.Метрика ClientID: $yandexClientId\n";
+if ($googleClientId) $description .= "🔵 Google Analytics ClientID: $googleClientId\n";
 
 // ========== СОХРАНЕНИЕ ==========
 try {

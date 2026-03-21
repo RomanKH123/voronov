@@ -15,6 +15,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const stickyMenu = document.querySelector('.sticky-menu');
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     
+    // ===== ФУНКЦИИ ДЛЯ АНИМАЦИИ ПРИ СКРОЛЛЕ =====
+    
+    function checkVisibility() {
+        // Анимация для основных блоков
+        const blocks = document.querySelectorAll('.blok_1, .blok_about, .blok_3, .blok_2, .blok_4, .blok_6, .blok_5:not(.blok_5_ln), .blok_contacts');
+        
+        blocks.forEach(block => {
+            const rect = block.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            if (rect.top < windowHeight - 100 && rect.bottom > 100) {
+                block.classList.add('visible');
+            }
+        });
+        
+        // Анимация для карточек услуг
+        const serviceCards = document.querySelectorAll('.ln_1, .ln_2, .ln_3');
+        serviceCards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            if (rect.top < windowHeight - 80) {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 100);
+            }
+        });
+        
+        // Анимация для карточек проектов
+        const projectCards = document.querySelectorAll('.project_card');
+        projectCards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            if (rect.top < windowHeight - 80) {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 100);
+            }
+        });
+    }
+    
     // ===== ФУНКЦИИ ДЛЯ ЛИПКОГО МЕНЮ =====
     
     window.scrollToBlock = function(blockId) {
@@ -119,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         updateActiveMenuOnScroll();
+        checkVisibility(); // Проверяем видимость для анимации
     }
     
     if (scrollToTopBtn) {
@@ -185,257 +228,211 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-   // ===== МАСКА ДЛЯ ТЕЛЕФОНА (ИСПРАВЛЕННАЯ ВЕРСИЯ) =====
+    // ===== МАСКА ДЛЯ ТЕЛЕФОНА =====
 
-function phoneMask(input) {
-    if (!input) return;
-    
-    // Функция форматирования номера
-    function formatPhoneNumber(digits) {
-        if (!digits || digits.length === 0) return '';
+    function phoneMask(input) {
+        if (!input) return;
         
-        // Убираем всё, кроме цифр
-        let cleanDigits = digits.replace(/\D/g, '');
-        
-        // Если нет цифр, возвращаем пустую строку
-        if (cleanDigits.length === 0) return '';
-        
-        // Нормализуем код страны
-        if (cleanDigits.startsWith('8')) {
-            cleanDigits = '7' + cleanDigits.substring(1);
-        } else if (!cleanDigits.startsWith('7') && cleanDigits.length > 0) {
-            cleanDigits = '7' + cleanDigits;
-        }
-        
-        // Ограничиваем 11 цифрами
-        cleanDigits = cleanDigits.substring(0, 11);
-        
-        // Форматируем
-        let formatted = '';
-        
-        if (cleanDigits.length === 0) {
-            return '';
-        }
-        
-        // Добавляем +7
-        formatted = '+7';
-        
-        // Добавляем код оператора в скобках
-        if (cleanDigits.length > 1) {
-            const operatorCode = cleanDigits.substring(1, Math.min(4, cleanDigits.length));
-            formatted += ' (' + operatorCode;
+        function formatPhoneNumber(digits) {
+            if (!digits || digits.length === 0) return '';
             
-            // Закрываем скобку, если есть хотя бы 3 цифры кода
-            if (cleanDigits.length >= 4) {
-                formatted += ')';
-            }
-        }
-        
-        // Добавляем первую часть номера
-        if (cleanDigits.length >= 4) {
-            const firstPart = cleanDigits.substring(4, Math.min(7, cleanDigits.length));
-            if (firstPart) {
-                formatted += ' ' + firstPart;
-            }
-        }
-        
-        // Добавляем вторую часть номера
-        if (cleanDigits.length >= 7) {
-            const secondPart = cleanDigits.substring(7, Math.min(9, cleanDigits.length));
-            if (secondPart) {
-                formatted += '-' + secondPart;
-            }
-        }
-        
-        // Добавляем третью часть номера
-        if (cleanDigits.length >= 9) {
-            const thirdPart = cleanDigits.substring(9, 11);
-            if (thirdPart) {
-                formatted += '-' + thirdPart;
-            }
-        }
-        
-        return formatted;
-    }
-    
-    // Получаем только цифры из строки
-    function getDigits(str) {
-        return str.replace(/\D/g, '');
-    }
-    
-    let previousValue = '';
-    let previousCursorPos = 0;
-    
-    input.addEventListener('input', function(e) {
-        const oldValue = this.value;
-        const cursorPos = this.selectionStart;
-        
-        // Получаем все цифры из текущего значения
-        let digits = getDigits(this.value);
-        
-        // Если пользователь удалил все цифры
-        if (digits.length === 0) {
-            this.value = '';
-            previousValue = '';
-            return;
-        }
-        
-        // Форматируем номер
-        const newValue = formatPhoneNumber(digits);
-        
-        if (newValue !== oldValue) {
-            // Сохраняем старую длину для расчета новой позиции курсора
-            const oldLength = oldValue.length;
-            const newLength = newValue.length;
+            let cleanDigits = digits.replace(/\D/g, '');
             
-            this.value = newValue;
+            if (cleanDigits.length === 0) return '';
             
-            // Вычисляем новую позицию курсора
-            let newCursorPos = cursorPos;
-            
-            // Определяем, что делал пользователь
-            if (e.inputType === 'deleteContentBackward') {
-                // Backspace - удаление символа
-                newCursorPos = Math.max(0, cursorPos - 1);
-            } else if (e.inputType === 'deleteContentForward') {
-                // Delete
-                newCursorPos = cursorPos;
-            } else if (e.inputType === 'insertText') {
-                // Вставка текста
-                const addedChars = newLength - oldLength;
-                newCursorPos = cursorPos + addedChars;
-            } else {
-                // Другие действия
-                newCursorPos = Math.min(newLength, cursorPos);
+            if (cleanDigits.startsWith('8')) {
+                cleanDigits = '7' + cleanDigits.substring(1);
+            } else if (!cleanDigits.startsWith('7') && cleanDigits.length > 0) {
+                cleanDigits = '7' + cleanDigits;
             }
             
-            // Корректируем позицию, чтобы не попадать на служебные символы
-            if (newCursorPos > 0 && newCursorPos < newValue.length) {
-                // Если курсор стоит на служебном символе, двигаем вперед
-                const charAtPos = newValue[newCursorPos];
-                if (charAtPos === '+' || charAtPos === '(' || charAtPos === ')' || charAtPos === '-' || charAtPos === ' ') {
-                    newCursorPos++;
+            cleanDigits = cleanDigits.substring(0, 11);
+            
+            let formatted = '';
+            
+            if (cleanDigits.length === 0) {
+                return '';
+            }
+            
+            formatted = '+7';
+            
+            if (cleanDigits.length > 1) {
+                const operatorCode = cleanDigits.substring(1, Math.min(4, cleanDigits.length));
+                formatted += ' (' + operatorCode;
+                
+                if (cleanDigits.length >= 4) {
+                    formatted += ')';
                 }
             }
             
-            // Убеждаемся, что курсор в допустимых пределах
-            newCursorPos = Math.min(newValue.length, Math.max(0, newCursorPos));
+            if (cleanDigits.length >= 4) {
+                const firstPart = cleanDigits.substring(4, Math.min(7, cleanDigits.length));
+                if (firstPart) {
+                    formatted += ' ' + firstPart;
+                }
+            }
             
-            // Устанавливаем курсор
-            this.setSelectionRange(newCursorPos, newCursorPos);
+            if (cleanDigits.length >= 7) {
+                const secondPart = cleanDigits.substring(7, Math.min(9, cleanDigits.length));
+                if (secondPart) {
+                    formatted += '-' + secondPart;
+                }
+            }
+            
+            if (cleanDigits.length >= 9) {
+                const thirdPart = cleanDigits.substring(9, 11);
+                if (thirdPart) {
+                    formatted += '-' + thirdPart;
+                }
+            }
+            
+            return formatted;
         }
         
-        previousValue = this.value;
-    });
-    
-    // Обработка нажатия клавиш
-    input.addEventListener('keydown', function(e) {
-        // Разрешаем навигационные клавиши
-        const navigationKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'Tab'];
-        if (navigationKeys.includes(e.key)) {
-            return;
+        function getDigits(str) {
+            return str.replace(/\D/g, '');
         }
         
-        // Обработка Backspace и Delete
-        if (e.key === 'Backspace' || e.key === 'Delete') {
+        let previousValue = '';
+        
+        input.addEventListener('input', function(e) {
+            const oldValue = this.value;
             const cursorPos = this.selectionStart;
-            const value = this.value;
             
-            // Если курсор после служебного символа, удаляем предыдущую цифру
-            if (cursorPos > 0 && cursorPos <= value.length) {
-                const prevChar = value[cursorPos - 1];
-                // Проверяем, является ли предыдущий символ служебным
-                if (prevChar === '+' || prevChar === '(' || prevChar === ')' || prevChar === '-' || prevChar === ' ') {
-                    e.preventDefault();
-                    
-                    // Ищем предыдущую цифру
-                    let newPos = cursorPos - 1;
-                    let foundDigit = false;
-                    
-                    while (newPos > 0 && !foundDigit) {
-                        newPos--;
-                        const char = value[newPos];
-                        if (char >= '0' && char <= '9') {
-                            foundDigit = true;
-                            break;
+            let digits = getDigits(this.value);
+            
+            if (digits.length === 0) {
+                this.value = '';
+                previousValue = '';
+                return;
+            }
+            
+            const newValue = formatPhoneNumber(digits);
+            
+            if (newValue !== oldValue) {
+                const oldLength = oldValue.length;
+                const newLength = newValue.length;
+                
+                this.value = newValue;
+                
+                let newCursorPos = cursorPos;
+                
+                if (e.inputType === 'deleteContentBackward') {
+                    newCursorPos = Math.max(0, cursorPos - 1);
+                } else if (e.inputType === 'deleteContentForward') {
+                    newCursorPos = cursorPos;
+                } else if (e.inputType === 'insertText') {
+                    const addedChars = newLength - oldLength;
+                    newCursorPos = cursorPos + addedChars;
+                } else {
+                    newCursorPos = Math.min(newLength, cursorPos);
+                }
+                
+                if (newCursorPos > 0 && newCursorPos < newValue.length) {
+                    const charAtPos = newValue[newCursorPos];
+                    if (charAtPos === '+' || charAtPos === '(' || charAtPos === ')' || charAtPos === '-' || charAtPos === ' ') {
+                        newCursorPos++;
+                    }
+                }
+                
+                newCursorPos = Math.min(newValue.length, Math.max(0, newCursorPos));
+                this.setSelectionRange(newCursorPos, newCursorPos);
+            }
+            
+            previousValue = this.value;
+        });
+        
+        input.addEventListener('keydown', function(e) {
+            const navigationKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'Tab'];
+            if (navigationKeys.includes(e.key)) {
+                return;
+            }
+            
+            if (e.key === 'Backspace' || e.key === 'Delete') {
+                const cursorPos = this.selectionStart;
+                const value = this.value;
+                
+                if (cursorPos > 0 && cursorPos <= value.length) {
+                    const prevChar = value[cursorPos - 1];
+                    if (prevChar === '+' || prevChar === '(' || prevChar === ')' || prevChar === '-' || prevChar === ' ') {
+                        e.preventDefault();
+                        
+                        let newPos = cursorPos - 1;
+                        let foundDigit = false;
+                        
+                        while (newPos > 0 && !foundDigit) {
+                            newPos--;
+                            const char = value[newPos];
+                            if (char >= '0' && char <= '9') {
+                                foundDigit = true;
+                                break;
+                            }
+                        }
+                        
+                        if (foundDigit) {
+                            const newValue = value.slice(0, newPos) + value.slice(newPos + 1);
+                            this.value = newValue;
+                            this.setSelectionRange(newPos, newPos);
+                            this.dispatchEvent(new Event('input', { bubbles: true }));
+                        } else {
+                            this.value = '';
                         }
                     }
-                    
-                    if (foundDigit) {
-                        // Удаляем цифру
-                        const newValue = value.slice(0, newPos) + value.slice(newPos + 1);
-                        this.value = newValue;
-                        this.setSelectionRange(newPos, newPos);
-                        // Триггерим input для переформатирования
-                        this.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            }
+        });
+        
+        input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            
+            const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+            const digits = pastedText.replace(/\D/g, '');
+            
+            if (digits.length > 0) {
+                let processedDigits = digits;
+                
+                if (processedDigits.length === 10) {
+                    processedDigits = '7' + processedDigits;
+                } else if (processedDigits.length === 11) {
+                    if (processedDigits.startsWith('8')) {
+                        processedDigits = '7' + processedDigits.substring(1);
+                    } else if (processedDigits.startsWith('7')) {
+                        processedDigits = processedDigits;
                     } else {
-                        // Если цифр нет, очищаем поле
-                        this.value = '';
+                        processedDigits = '7' + processedDigits;
                     }
                 }
+                
+                const formatted = formatPhoneNumber(processedDigits);
+                this.value = formatted;
+                
+                setTimeout(() => {
+                    this.setSelectionRange(this.value.length, this.value.length);
+                }, 0);
+                
+                this.dispatchEvent(new Event('input', { bubbles: true }));
             }
-        }
-    });
-    
-    // Обработка вставки из буфера
-    input.addEventListener('paste', function(e) {
-        e.preventDefault();
+        });
         
-        const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-        const digits = pastedText.replace(/\D/g, '');
-        
-        if (digits.length > 0) {
-            let processedDigits = digits;
-            
-            // Обрабатываем разные форматы вставки
-            if (processedDigits.length === 10) {
-                processedDigits = '7' + processedDigits;
-            } else if (processedDigits.length === 11) {
-                if (processedDigits.startsWith('8')) {
-                    processedDigits = '7' + processedDigits.substring(1);
-                } else if (processedDigits.startsWith('7')) {
-                    processedDigits = processedDigits;
-                } else {
-                    processedDigits = '7' + processedDigits;
-                }
+        input.addEventListener('focus', function() {
+            if (this.value === '') {
+                this.value = '+7 ';
+                setTimeout(() => {
+                    this.setSelectionRange(3, 3);
+                }, 0);
             }
-            
-            // Форматируем и устанавливаем значение
-            const formatted = formatPhoneNumber(processedDigits);
-            this.value = formatted;
-            
-            // Устанавливаем курсор в конец
-            setTimeout(() => {
-                this.setSelectionRange(this.value.length, this.value.length);
-            }, 0);
-            
-            // Триггерим событие input
-            this.dispatchEvent(new Event('input', { bubbles: true }));
-        }
-    });
+        });
+        
+        input.addEventListener('blur', function() {
+            const digits = getDigits(this.value);
+            if (digits.length < 2 || digits === '7') {
+                this.value = '';
+            }
+        });
+    }
     
-    // При фокусе, если поле пустое, показываем маску
-    input.addEventListener('focus', function() {
-        if (this.value === '') {
-            this.value = '+7 ';
-            setTimeout(() => {
-                this.setSelectionRange(3, 3);
-            }, 0);
-        }
-    });
-    
-    // При потере фокуса, если введено только +7 или мало цифр, очищаем
-    input.addEventListener('blur', function() {
-        const digits = getDigits(this.value);
-        if (digits.length < 2 || digits === '7') {
-            this.value = '';
-        }
-    });
-}
-
-// Применяем маску к обоим полям
-if (phoneInput) phoneMask(phoneInput);
-if (phoneMainInput) phoneMask(phoneMainInput);
+    if (phoneInput) phoneMask(phoneInput);
+    if (phoneMainInput) phoneMask(phoneMainInput);
     
     // ===== ВАЛИДАЦИЯ ФОРМ =====
     
@@ -516,8 +513,6 @@ if (phoneMainInput) phoneMask(phoneMainInput);
         });
     }
     
-    // ===== ОБЩАЯ ФУНКЦИЯ ОТПРАВКИ =====
-    
     function sendForm(formData, formType, submitBtn, originalText, successCallback) {
         fetch('/api/main.php', {
             method: 'POST',
@@ -559,8 +554,6 @@ if (phoneMainInput) phoneMask(phoneMainInput);
         });
     }
     
-    // ===== ОТПРАВКА МОДАЛЬНОЙ ФОРМЫ =====
-    
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -596,8 +589,6 @@ if (phoneMainInput) phoneMask(phoneMainInput);
             }
         });
     }
-    
-    // ===== ОТПРАВКА ОСНОВНОЙ ФОРМЫ =====
     
     if (contactMainForm) {
         contactMainForm.addEventListener('submit', function(e) {
@@ -637,8 +628,6 @@ if (phoneMainInput) phoneMask(phoneMainInput);
         });
     }
     
-    // ===== УДАЛЕНИЕ СООБЩЕНИЙ ОБ ОШИБКАХ ПРИ ВВОДЕ =====
-    
     document.querySelectorAll('input, textarea').forEach(input => {
         input.addEventListener('input', function() {
             this.classList.remove('error');
@@ -652,21 +641,21 @@ if (phoneMainInput) phoneMask(phoneMainInput);
     // ===== ИНИЦИАЛИЗАЦИЯ =====
     
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', function() {
+        updateActiveMenuOnScroll();
+        checkVisibility();
+    });
     
     setTimeout(() => {
         updateActiveMenuOnScroll();
         handleScroll();
+        checkVisibility(); // Проверяем видимость при загрузке
     }, 100);
-    
-    window.addEventListener('resize', function() {
-        updateActiveMenuOnScroll();
-    });
     
     if ('ontouchstart' in window) {
         document.body.style.webkitTapHighlightColor = 'transparent';
     }
     
-    // Стили для спиннера загрузки (добавляем динамически)
     const style = document.createElement('style');
     style.textContent = `
         .loading-spinner {
@@ -718,6 +707,11 @@ if (phoneMainInput) phoneMask(phoneMainInput);
         button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
+        }
+        
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
     `;
     document.head.appendChild(style);

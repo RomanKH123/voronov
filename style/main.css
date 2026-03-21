@@ -49,12 +49,18 @@ button {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
     background-color: #333333;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+button:active {
+    transform: translateY(1px);
 }
 
 /* СТАРАЯ ШАПКА (скрываем) */
@@ -301,6 +307,14 @@ article {
     border: #000000;
     border-radius: 25% 10%;
     font-family: 'Abyssinica SIL', sans-serif;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(74,111,165,0.2);
+    transition: all 0.3s ease;
+}
+
+.blok_1_sp_1:hover {
+    backdrop-filter: blur(12px);
+    border-color: #4a6fa5;
 }
 
 .blok_1_sp_1 * {
@@ -394,8 +408,8 @@ article {
 /* Заголовки этапов */
 .nm {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 15px;
     margin-bottom: 2vh;
     width: 100%;
 }
@@ -405,6 +419,7 @@ article {
     font-size: clamp(20px, 2vw, 30px);
     font-weight: normal;
     margin: 0;
+    flex: 1;
 }
 
 .nm p {
@@ -414,16 +429,33 @@ article {
     color: #666;
 }
 
-/* Текст этапов */
-.nm_txt {
-    font-family: 'Jura', sans-serif;
-    font-size: clamp(18px, 2vw, 24px);
-    line-height: 1.6;
+/* Стикер номера этапа */
+.step-number {
+    background: linear-gradient(135deg, #4a6fa5, #6b8fc9);
+    color: white;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
 }
 
 /* Для черного блока сделаем текст светлее */
 .blok_2_2 .nm_txt {
     color: #e0e0e0;
+}
+
+/* Текст этапов */
+.nm_txt {
+    font-family: 'Jura', sans-serif;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.6;
 }
 
 /* Блок 3 - Услуги */
@@ -483,15 +515,33 @@ article {
     border-radius: 15px;
     padding: 2vw;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     display: flex;
     flex-direction: column;
     min-height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ln_1::before, .ln_2::before, .ln_3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.ln_1:hover::before, .ln_2:hover::before, .ln_3:hover::before {
+    left: 100%;
 }
 
 .ln_1:hover, .ln_2:hover, .ln_3:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 35px rgba(74,111,165,0.2);
 }
 
 .ln_1 {
@@ -506,6 +556,16 @@ article {
 .ln_3 {
     background-color: #C3DEFF;
     margin-right: 3vw;
+}
+
+/* Стикеры для услуг */
+.service-sticker {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+    width: 100%;
 }
 
 .ln_b_1 {
@@ -593,6 +653,15 @@ article {
     margin-right: 3vw;
 }
 
+.tariff-sticker {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+    width: 100%;
+}
+
 .blok_4_batton {
     margin-top: 3vw;
     display: flex;
@@ -634,6 +703,15 @@ article {
     background-color: #ffffff;
     margin-right: 3vw;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.sticker-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+    width: 100%;
 }
 
 /* Блок 6 - Наши работы */
@@ -766,7 +844,7 @@ article {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(74, 111, 165, 0.1);
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     border: 1px solid rgba(74, 111, 165, 0.1);
     display: flex;
     flex-direction: column;
@@ -775,7 +853,7 @@ article {
 
 .project_card:hover {
     transform: translateY(-12px);
-    box-shadow: 0 20px 40px rgba(74, 111, 165, 0.25);
+    box-shadow: 0 25px 40px rgba(74,111,165,0.25);
     border-color: #4a6fa5;
 }
 
@@ -1522,6 +1600,84 @@ article {
     display: none !important;
 }
 
+/* ===== АНИМАЦИИ И СТИКЕРЫ ===== */
+
+/* Анимация парящих стикеров */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(74,111,165,0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(74,111,165,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,111,165,0); }
+}
+
+/* Анимация появления при скролле */
+.blok_1,
+.blok_about,
+.blok_3,
+.blok_2,
+.blok_4,
+.blok_6,
+.blok_5:not(.blok_5_ln),
+.blok_contacts {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.blok_1.visible,
+.blok_about.visible,
+.blok_3.visible,
+.blok_2.visible,
+.blok_4.visible,
+.blok_6.visible,
+.blok_5.visible:not(.blok_5_ln),
+.blok_contacts.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Задержка для внутренних элементов */
+.blok_3_ln .ln_1,
+.blok_3_ln .ln_2,
+.blok_3_ln .ln_3,
+.projects_grid .project_card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.blok_3_ln .ln_1.visible,
+.blok_3_ln .ln_2.visible,
+.blok_3_ln .ln_3.visible,
+.projects_grid .project_card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Декоративные элементы для фона */
+.blok_about {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(196,220,250,0.3) 100%);
+    border-radius: 30px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.blok_about::before {
+    content: '✨';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
 /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
 
 /* Планшеты и маленькие ноутбуки */
@@ -1649,6 +1805,30 @@ article {
         font-size: 18px;
     }
     
+    /* Стикеры */
+    .sticker-icon,
+    .service-sticker,
+    .tariff-sticker {
+        font-size: 2rem;
+    }
+    
+    .step-number {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .nm {
+        gap: 10px;
+    }
+    
+    .blok_about::before {
+        font-size: 2rem;
+        top: 10px;
+        right: 15px;
+    }
+    
     /* Портфолио */
     .prod {
         flex-direction: column;
@@ -1693,6 +1873,10 @@ article {
     .ln_1:hover, .ln_2:hover, .ln_3:hover,
     .blok_2_1:hover, .blok_2_2:hover, .blok_2_3:hover, .blok_2_4:hover {
         transform: none;
+    }
+    
+    .ln_1:hover::before, .ln_2:hover::before, .ln_3:hover::before {
+        left: -100%;
     }
     
     .project_card:hover .project_image {
@@ -1854,6 +2038,7 @@ article {
         font-size: 16px;
     }
 }
+/* Cookie Consent Banner */
 .cookie-consent {
     position: fixed;
     bottom: 0;
@@ -1867,6 +2052,7 @@ article {
     transform: translateY(100%);
     transition: transform 0.4s ease;
     border-top: 3px solid #4a6fa5;
+    display: none; /* По умолчанию скрыт, JS покажет при необходимости */
 }
 
 .cookie-consent.show {
