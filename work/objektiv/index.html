@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Objektiv | Фотограф Артём Волков</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS (карусель) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #eaeef2;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        /* контейнер */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* типографика */
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffffff, #b0b3c0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-subhead {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #aaa;
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+
+        /* шапка */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(130deg, #fff, #c0c4d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* герой */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0 100px;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-bottom: 24px;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, #f0f0f0, #9aa1b5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #b5bbc8;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: white;
+            color: #0a0a0a;
+            padding: 12px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: #e0e0e0;
+            transform: scale(0.98);
+        }
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 12px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            color: white;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: white;
+        }
+
+        /* секция общая */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* О photographer */
+        .about-grid {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1.2;
+        }
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: #cbd0db;
+            font-size: 1.05rem;
+        }
+        .signature {
+            margin-top: 24px;
+            font-style: italic;
+            color: #aaa;
+            border-left: 3px solid #fff;
+            padding-left: 20px;
+        }
+        .about-stats {
+            flex: 0.8;
+            display: flex;
+            gap: 32px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            padding: 24px 20px;
+            border-radius: 32px;
+            min-width: 120px;
+            backdrop-filter: blur(2px);
+        }
+        .stat-number {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: white;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #9da3b2;
+        }
+
+        /* карусель - стильный блок */
+        .carousel-section {
+            background: #050505;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .swiper {
+            width: 100%;
+            padding: 20px 0 50px;
+            overflow: hidden;
+        }
+        .swiper-slide {
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.5);
+            cursor: pointer;
+            aspect-ratio: 4 / 3;
+            background: #1c1c1e;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background: rgba(0,0,0,0.6);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 22px;
+        }
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.5;
+        }
+        .swiper-pagination-bullet-active {
+            background: white;
+            opacity: 1;
+        }
+        /* кастомная подпись для слайда */
+        .slide-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            pointer-events: none;
+            z-index: 2;
+            color: #f0f0f0;
+        }
+
+        /* услуги */
+        .services-grid {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .service-card {
+            background: rgba(255,255,255,0.02);
+            padding: 40px 28px;
+            border-radius: 36px;
+            text-align: center;
+            flex: 1 1 240px;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .service-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #cdd4e6;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            color: #a7aebf;
+            font-size: 0.9rem;
+        }
+
+        /* контакты */
+        .contact-flex {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+        .contact-item i {
+            font-size: 1.8rem;
+            width: 48px;
+            color: #eef2ff;
+        }
+        .social-links {
+            display: flex;
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .social-links a {
+            color: #ccc;
+            font-size: 1.7rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+        .contact-form {
+            flex: 1;
+            background: rgba(255,255,255,0.02);
+            padding: 36px;
+            border-radius: 40px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            background: #111;
+            border: 1px solid #2a2a2a;
+            padding: 14px 20px;
+            border-radius: 30px;
+            font-family: inherit;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        input:focus, textarea:focus {
+            border-color: #6c7b9e;
+        }
+        .btn-submit {
+            background: white;
+            color: black;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #6a6f7e;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 780px) {
+            .container {
+                padding: 0 24px;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .nav-links {
+                gap: 1.8rem;
+            }
+            section {
+                padding: 70px 0;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+            .about-stats {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container">
+    <div class="navbar">
+        <div class="logo">OBJEKTIV</div>
+        <div class="nav-links">
+            <a href="#home">Главная</a>
+            <a href="#about">Обо мне</a>
+            <a href="#portfolio">Портфолио</a>
+            <a href="#contact">Контакты</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero секция -->
+    <section id="home" style="padding-top: 20px;">
+        <div class="container hero">
+            <div class="hero-badge"><i class="fas fa-camera"></i> 视觉 storyteller</div>
+            <h1>Запечатлеваю <span>эмоции</span> <br> и настоящие моменты</h1>
+            <p>Репортажная, художественная и свадебная съёмка. Ваша история — в кадре.</p>
+            <div class="btn-group">
+                <a href="#portfolio" class="btn-primary">Смотреть работы</a>
+                <a href="#contact" class="btn-outline">Обсудить проект</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- О фотографе -->
+    <section id="about">
+        <div class="container">
+            <div class="section-subhead">О художнике</div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Артём Волков</h2>
+                    <p>Фотография для меня — это не просто снимки, а эмоциональная архитектура. Более 7 лет я работаю в жанрах lifestyle, портрет и репортаж. Моя цель — чтобы каждый кадр дышал, рассказывал историю и оставался с вами навсегда.</p>
+                    <p>Я сотрудничаю с брендами, журналами и влюблёнными парами. Мои работы отличает чувство света, естественность и искренность. Я живу в Москве, но открыт для съёмок по всему миру.</p>
+                    <div class="signature">
+                        <i class="fas fa-quote-left"></i> Фотография — это поиск правды в каждом взгляде.
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">120+</div>
+                        <div class="stat-label">СЪЁМОК</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">7 лет</div>
+                        <div class="stat-label">ОПЫТА</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">ГОРОДОВ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карусель примеров работ (ГОТОВА ДЛЯ ДОБАВЛЕНИЯ ФОТО) -->
+    <section id="portfolio" class="carousel-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subhead">Портфолио</div>
+                <h2>избранные кадры</h2>
+                <p style="max-width: 600px; margin: 16px auto 0; color:#acb2c0;">Наведите на фото для эффекта приближения. Карусель с лёгкой навигацией — добавляйте свои изображения ниже в блоке "swiper-wrapper".</p>
+            </div>
+        </div>
+
+        <!-- Swiper карусель -->
+        <div class="swiper portfolioSwiper">
+            <div class="swiper-wrapper">
+                <!-- ⚡⚡⚡ ЗДЕСЬ ВЫ МОЖЕТЕ ДОБАВЛЯТЬ / ЗАМЕНЯТЬ ФОТОГРАФИИ ⚡⚡⚡ -->
+                <!-- Для добавления новой фотографии: скопируйте блок .swiper-slide и вставьте новую картинку -->
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/id/20/800/600" alt="Городской портрет">
+                    <div class="slide-caption">Уличная сессия · Москва</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/id/38/800/600" alt="Свадебная съёмка">
+                    <div class="slide-caption">Свадебный репортаж · Тоскана</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/id/104/800/600" alt="Портрет">
+                    <div class="slide-caption">Портретная съёмка · студия</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/id/169/800/600" alt="Природа">
+                    <div class="slide-caption">Пейзаж · Норвегия</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/id/155/800/600" alt="Черно-белая фотография">
+                    <div class="slide-caption">Ч/б · эмоции</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://picsum.photos/id/30/800/600" alt="Архитектура">
+                    <div class="slide-caption">Архитектурная съёмка</div>
+                </div>
+                <!-- 👇👇👇 Добавьте новые слайды по этому шаблону 👇👇👇 -->
+                <!-- 
+                <div class="swiper-slide">
+                    <img src="ВАША_ССЫЛКА_ИЛИ_ПУТЬ_К_ФОТО.JPG" alt="описание">
+                    <div class="slide-caption">Название съёмки</div>
+                </div>
+                -->
+            </div>
+            <!-- Пагинация и стрелки -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div class="container" style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 0.8rem; background: #131313; display: inline-block; padding: 6px 18px; border-radius: 60px;"><i class="fas fa-edit"></i> Чтобы добавить фото: отредактируйте блок .swiper-slide внутри .swiper-wrapper. Замените src и подпись.</p>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subhead">Что я предлагаю</div>
+                <h2>мои направления</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Love story</h3>
+                    <p>Романтичные и живые фотосессии для пар. Искренность и лёгкость.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-ring"></i>
+                    <h3>Wedding</h3>
+                    <p>Полное сопровождение свадебного дня: от подготовки до первого танца.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-camera-retro"></i>
+                    <h3>Портрет</h3>
+                    <p>Индивидуальные, семейные, деловые портреты с характером.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Репортаж</h3>
+                    <p>Ивенты, концерты, корпоративы — документирую атмосферу.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subhead">Связь</div>
+                <h2>Давайте работать вместе</h2>
+                <p style="color:#b1b7c4;">Заполните форму или напишите в соцсетях — я отвечу в течение 24 часов</p>
+            </div>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>+7 (999) 123-45-67</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>artem@objektiv.ru</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>Москва / Доступен для travel-съемок</div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="vkontakte"><i class="fab fa-vk"></i></a>
+                        <a href="#" aria-label="behance"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="demoForm" action="#" method="post">
+                        <div class="input-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="Email или телефон" required>
+                        </div>
+                        <div class="input-group">
+                            <textarea rows="3" placeholder="Опишите идею съёмки..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Отправить заявку <i class="fas fa-arrow-right"></i></button>
+                        <p style="font-size: 0.7rem; margin-top: 15px; text-align: center;">Нажимая, вы соглашаетесь с политикой конфиденциальности</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 OBJEKTIV PHOTOGRAPHY — все права защищены. Сделано с вниманием к деталям.</p>
+    </div>
+</footer>
+
+<!-- Swiper JS + инициализация -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Инициализация стильной карусели
+    const swiper = new Swiper('.portfolioSwiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 24,
+        centeredSlides: false,
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
+        speed: 800,
+        grabCursor: true,
+        effect: 'slide',
+    });
+
+    // легкая заглушка для формы (просто алерт, без перезагрузки страницы)
+    const contactForm = document.querySelector('#demoForm');
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо! Артём свяжется с вами в ближайшее время 📸');
+            contactForm.reset();
+        });
+    }
+
+    // плавная навигация для ссылок
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId && targetId !== '#') {
+                const targetElem = document.querySelector(targetId);
+                if(targetElem) {
+                    e.preventDefault();
+                    targetElem.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+    // кнопки "Смотреть работы" и "Обсудить проект" тоже ведут к секциям
+    const watchBtn = document.querySelector('.btn-primary');
+    if(watchBtn && watchBtn.getAttribute('href') === '#portfolio') {
+        watchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    const contactBtn = document.querySelector('.btn-outline');
+    if(contactBtn && contactBtn.getAttribute('href') === '#contact') {
+        contactBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+</script>
+</body>
+</html>

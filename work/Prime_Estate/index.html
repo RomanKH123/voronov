@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Prime Estate | Элитная недвижимость</title>
+    <!-- Google Fonts: Playfair Display + Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F8F7F4;
+            color: #2C2C2C;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        /* контейнер с золотым акцентом */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* типографика — элегантная, строгая */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1A2A3A;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background: #C5A572;
+        }
+        
+        .section-subhead {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #C5A572;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* шапка — строгая, с логотипом изящным */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1A2A3A;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: #C5A572;
+            font-weight: 800;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            color: #3A4A5A;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: #C5A572;
+        }
+
+        /* герой — роскошный, с золотыми акцентами */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0 100px;
+            background: linear-gradient(135deg, #F8F7F4 0%, #EFEDE8 100%);
+        }
+        .hero-badge {
+            background: rgba(197, 165, 114, 0.12);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9B7B4C;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-bottom: 20px;
+            color: #1A2A3A;
+        }
+        .hero h1 span {
+            color: #C5A572;
+            font-style: italic;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #5A6A7A;
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #C5A572;
+            color: #1A2A3A;
+            padding: 14px 38px;
+            border-radius: 0px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        .btn-primary:hover {
+            background: #B58B4A;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 1.5px solid #C5A572;
+            padding: 14px 38px;
+            border-radius: 0px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2C3E50;
+            transition: 0.2s;
+            background: transparent;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .btn-outline:hover {
+            background: rgba(197, 165, 114, 0.1);
+            border-color: #B58B4A;
+        }
+
+        /* секция общая */
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* О риелторе — элегантный профиль */
+        .about-grid {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1.2;
+        }
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: #4A5A6A;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .signature {
+            margin-top: 24px;
+            font-style: italic;
+            color: #9B7B4C;
+            border-left: 3px solid #C5A572;
+            padding-left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+        .about-stats {
+            flex: 0.8;
+            display: flex;
+            gap: 32px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        .stat {
+            text-align: center;
+            background: #FFFFFF;
+            padding: 28px 24px;
+            border-radius: 4px;
+            min-width: 130px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #C5A572;
+            font-family: 'Playfair Display', serif;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #6C7A8A;
+            font-weight: 500;
+        }
+
+        /* карусель объектов — минималистичная, с акцентом на недвижимость */
+        .carousel-section {
+            background: #FFFFFF;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-header h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+        }
+        .swiper {
+            width: 100%;
+            padding: 20px 0 60px;
+            overflow: hidden;
+        }
+        .swiper-slide {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            background: #FFFFFF;
+            position: relative;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .swiper-slide:hover img {
+            transform: scale(1.03);
+        }
+        .property-info {
+            padding: 20px 18px 24px;
+            background: white;
+        }
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #C5A572;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 6px;
+        }
+        .property-address {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #1A2A3A;
+        }
+        .property-details {
+            display: flex;
+            gap: 18px;
+            font-size: 0.8rem;
+            color: #6C7A8A;
+            margin-top: 12px;
+        }
+        .property-details i {
+            margin-right: 5px;
+            color: #C5A572;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #C5A572;
+            background: rgba(255,255,255,0.9);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 20px;
+        }
+        .swiper-pagination-bullet {
+            background: #C5A572;
+            opacity: 0.4;
+        }
+        .swiper-pagination-bullet-active {
+            background: #C5A572;
+            opacity: 1;
+        }
+
+        /* услуги / преимущества */
+        .services-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .service-card {
+            background: white;
+            padding: 40px 28px;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1 1 220px;
+            transition: 0.25s;
+            border: 1px solid #EAE7E2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .service-card i {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #C5A572;
+        }
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        .service-card p {
+            color: #6C7A8A;
+            font-size: 0.85rem;
+        }
+
+        /* контакты — деловой стиль */
+        .contact-flex {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: stretch;
+        }
+        .contact-info {
+            flex: 1;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+        .contact-item i {
+            font-size: 1.5rem;
+            width: 40px;
+            color: #C5A572;
+        }
+        .social-links {
+            display: flex;
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .social-links a {
+            color: #8A9AAC;
+            font-size: 1.5rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: #C5A572;
+        }
+        .contact-form {
+            flex: 1;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            background: #F9F9F7;
+            border: 1px solid #E2DDD6;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            color: #2C2C2C;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        input:focus, textarea:focus {
+            border-color: #C5A572;
+        }
+        .btn-submit {
+            background: #C5A572;
+            color: #1A2A3A;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #8A9AAC;
+            font-size: 0.8rem;
+            background: #EFEDE8;
+        }
+        @media (max-width: 780px) {
+            .container {
+                padding: 0 24px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+            .about-stats {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container">
+    <div class="navbar">
+        <div class="logo">PRIME<span>ESTATE</span></div>
+        <div class="nav-links">
+            <a href="#home">Главная</a>
+            <a href="#about">Агент</a>
+            <a href="#properties">Объекты</a>
+            <a href="#contact">Контакты</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero секция -->
+    <section id="home" style="padding-top: 20px;">
+        <div class="hero">
+            <div class="hero-badge"><i class="fas fa-key"></i>  элитная недвижимость</div>
+            <h1>Ваше пространство <br><span>с особым статусом</span></h1>
+            <p>Премиальные апартаменты, загородные дома и инвестиционные объекты. Полное сопровождение сделки.</p>
+            <div class="btn-group">
+                <a href="#properties" class="btn-primary">Выбрать объект</a>
+                <a href="#contact" class="btn-outline">Консультация</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- О риелторе / эксперте -->
+    <section id="about">
+        <div class="container">
+            <div class="section-subhead">Надёжный партнёр</div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Екатерина Власова</h2>
+                    <p>Более 12 лет на рынке элитной недвижимости Москвы и Подмосковья. Член Ассоциации риелторов России, эксперт по инвестиционным сделкам и объектам с высокой ликвидностью.</p>
+                    <p>Каждая сделка для меня — это история доверия и точного подбора. Я сопровождаю клиентов на всех этапах: от подбора до юридического оформления и получения ключей. Работаю с банками, нотариусами и девелоперами премиум-сегмента.</p>
+                    <div class="signature">
+                        «Недвижимость — это не просто метры, это образ жизни и капитал»
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">280+</div>
+                        <div class="stat-label">СДЕЛОК</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">12 лет</div>
+                        <div class="stat-label">ЭКСПЕРТИЗЫ</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">ДОВОЛЬНЫХ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карусель объектов (премиальная недвижимость) -->
+    <section id="properties" class="carousel-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subhead">Каталог премиум-объектов</div>
+                <h2>эксклюзивные предложения</h2>
+                <p style="max-width: 600px; margin: 20px auto 0; color:#5F6F7F;">Ликвидные лоты, пентхаусы, особняки. Карусель с возможностью легко добавить новые объекты.</p>
+            </div>
+        </div>
+
+        <!-- Swiper карусель с карточками недвижимости -->
+        <div class="swiper propertySwiper">
+            <div class="swiper-wrapper">
+                <!-- ⚡ ДЛЯ ДОБАВЛЕНИЯ ОБЪЕКТА: скопируйте .swiper-slide полностью, замените фото, цену, адрес и детали -->
+                <div class="swiper-slide">
+                    <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Пентхаус в центре">
+                    <div class="property-info">
+                        <div class="property-price">₽ 78 500 000</div>
+                        <div class="property-address">Пресненская наб., Москва-Сити</div>
+                        <div class="property-details">
+                            <span><i class="fas fa-expand-alt"></i> 186 м²</span>
+                            <span><i class="fas fa-bed"></i> 3 спальни</span>
+                            <span><i class="fas fa-bath"></i> 2 с/у</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Загородный дом">
+                    <div class="property-info">
+                        <div class="property-price">₽ 145 200 000</div>
+                        <div class="property-address">Рублёво-Успенское ш., 22 км</div>
+                        <div class="property-details">
+                            <span><i class="fas fa-expand-alt"></i> 520 м²</span>
+                            <span><i class="fas fa-bed"></i> 5 спален</span>
+                            <span><i class="fas fa-tree"></i> участок 22 сот.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Апартаменты с террасой">
+                    <div class="property-info">
+                        <div class="property-price">₽ 42 300 000</div>
+                        <div class="property-address">Патриаршие пруды, Москва</div>
+                        <div class="property-details">
+                            <span><i class="fas fa-expand-alt"></i> 112 м²</span>
+                            <span><i class="fas fa-bed"></i> 2 спальни</span>
+                            <span><i class="fas fa-sun"></i> терраса 25м²</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Особняк в стиле модерн">
+                    <div class="property-info">
+                        <div class="property-price">₽ 229 000 000</div>
+                        <div class="property-address">Николина Гора, коттеджный посёлок</div>
+                        <div class="property-details">
+                            <span><i class="fas fa-expand-alt"></i> 890 м²</span>
+                            <span><i class="fas fa-bed"></i> 6 спален</span>
+                            <span><i class="fas fa-swimming-pool"></i> бассейн</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Дополнительный слайд для примера — легко дублировать -->
+                <div class="swiper-slide">
+                    <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Пентхаус с видом">
+                    <div class="property-info">
+                        <div class="property-price">₽ 97 800 000</div>
+                        <div class="property-address">Крылатская ул., ЖК «Грин Парк»</div>
+                        <div class="property-details">
+                            <span><i class="fas fa-expand-alt"></i> 204 м²</span>
+                            <span><i class="fas fa-bed"></i> 4 спальни</span>
+                            <span><i class="fas fa-eye"></i> панорамный вид</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Для добавления новых объектов просто вставьте такой же блок выше или ниже -->
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div class="container" style="text-align: center; margin-top: 20px;">
+            
+        </div>
+    </section>
+
+    <!-- Преимущества / Услуги риелтора -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subhead">Почему выбирают нас</div>
+                <h2>профессиональный подход</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-gavel"></i>
+                    <h3>Юридическая чистота</h3>
+                    <p>Полная проверка документов, сопровождение сделки до регистрации в Росреестре.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Инвестиционный анализ</h3>
+                    <p>Оценка ликвидности, потенциала роста и доходности объекта.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Личный консьерж</h3>
+                    <p>Подбор ипотеки, дизайн-проекты, помощь с переездом — всё включено.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Международный опыт</h3>
+                    <p>Сделки с недвижимостью в Европе, ОАЭ, Турции — партнёры за рубежом.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subhead">Свяжитесь со мной</div>
+                <h2>Выбор премиум-класса</h2>
+                <p style="color:#5F6F7F;">Оставьте заявку — я подберу идеальный вариант под ваши задачи</p>
+            </div>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>+7 (495) 555-33-22</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>e.vlasova@primeestate.ru</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>Москва, ул. Остоженка, 7 (офисный клуб)</div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="realtorForm" action="#" method="post">
+                        <div class="input-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" placeholder="Телефон" required>
+                        </div>
+                        <div class="input-group">
+                            <textarea rows="3" placeholder="Пожелания по недвижимости: бюджет, локация, метраж..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Отправить запрос <i class="fas fa-arrow-right"></i></button>
+                        <p style="font-size: 0.7rem; margin-top: 14px; text-align: center;">Конфиденциальность гарантирована</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 PRIME ESTATE — элитная недвижимость с безупречной репутацией. Все права защищены.</p>
+    </div>
+</footer>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Инициализация карусели недвижимости — минималистичный, плавный свайп
+    const propertySwiper = new Swiper('.propertySwiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 25,
+        centeredSlides: false,
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 25,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+        },
+        speed: 700,
+        grabCursor: true,
+    });
+
+    // форма риелтора (демо отправка)
+    const realtorForm = document.querySelector('#realtorForm');
+    if(realtorForm) {
+        realtorForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо! Екатерина свяжется с вами в ближайшее время для подбора идеального объекта 🏛️');
+            realtorForm.reset();
+        });
+    }
+
+    // плавная навигация для меню
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId && targetId !== '#') {
+                const targetElem = document.querySelector(targetId);
+                if(targetElem) {
+                    e.preventDefault();
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+    // кнопки из героя
+    const propsBtn = document.querySelector('.btn-primary[href="#properties"]');
+    if(propsBtn) propsBtn.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('#properties').scrollIntoView({ behavior: 'smooth' }); });
+    const consultBtn = document.querySelector('.btn-outline[href="#contact"]');
+    if(consultBtn) consultBtn.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' }); });
+</script>
+</body>
+</html>
