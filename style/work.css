@@ -1,0 +1,358 @@
+/* ===== LAYOUT — ФУТЕР К НИЗУ ===== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ===== СТРАНИЦА СПИСКА РАБОТ ===== */
+
+.work-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+}
+
+.work-container h1 {
+    font-family: 'Philosopher', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.work-subtitle {
+    font-family: 'Jura', sans-serif;
+    font-size: clamp(14px, 1.2vw, 17px);
+    line-height: 1.6;
+    color: #777;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+}
+
+.work-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(74, 111, 165, 0.1);
+    border: 1px solid rgba(74, 111, 165, 0.1);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    text-decoration: none;
+    color: inherit;
+    animation: workCardIn 0.5s ease both;
+}
+
+.work-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 40px rgba(74, 111, 165, 0.25);
+    border-color: #4a6fa5;
+}
+
+@keyframes workCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.work-card__image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+}
+
+.work-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.work-card:hover .work-card__image img {
+    transform: scale(1.05);
+}
+
+.work-card__body {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.work-card__category {
+    display: inline-block;
+    width: fit-content;
+    font-family: 'Jura', sans-serif;
+    font-size: clamp(11px, 1vw, 13px);
+    font-weight: 600;
+    color: #4a6fa5;
+    background: rgba(74, 111, 165, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.work-card__title {
+    font-family: 'Philosopher', sans-serif;
+    font-size: clamp(20px, 1.8vw, 26px);
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+}
+
+.work-card__desc {
+    font-family: 'Jura', sans-serif;
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+/* ===== СТРАНИЦА ДЕТАЛЬНОЙ ИНФОРМАЦИИ ===== */
+
+.work-info {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+}
+
+.back-link {
+    display: inline-block;
+    font-family: 'Jura', sans-serif;
+    font-size: 16px;
+    color: #4a6fa5;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #000;
+}
+
+.work-detail__image {
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(74, 111, 165, 0.15);
+}
+
+.work-detail__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.work-detail__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.work-detail__category {
+    display: inline-block;
+    width: fit-content;
+    font-family: 'Jura', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a6fa5;
+    background: rgba(74, 111, 165, 0.1);
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.work-detail__title {
+    font-family: 'Philosopher', sans-serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+}
+
+.work-detail__text {
+    font-family: 'Jura', sans-serif;
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.8;
+    color: #444;
+}
+
+.work-detail__link {
+    display: inline-block;
+    width: fit-content;
+    padding: 14px 32px;
+    background: #000;
+    color: #fff;
+    border-radius: 15px;
+    text-decoration: none;
+    font-family: 'Aboreto', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.work-detail__link:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== СОСТОЯНИЯ ЗАГРУЗКИ И ОШИБОК ===== */
+
+.work-loading {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: 'Jura', sans-serif;
+    font-size: 16px;
+    color: #888;
+    grid-column: 1 / -1;
+}
+
+.work-loading .loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e0e0e0;
+    border-top-color: #4a6fa5;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.work-placeholder {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 30px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border: 2px dashed rgba(74, 111, 165, 0.2);
+    animation: workCardIn 0.5s ease both;
+}
+
+.work-placeholder__icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.work-placeholder__title {
+    font-family: 'Philosopher', sans-serif;
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 12px;
+}
+
+.work-placeholder__text {
+    font-family: 'Jura', sans-serif;
+    font-size: clamp(14px, 1.2vw, 17px);
+    line-height: 1.7;
+    color: #777;
+    max-width: 420px;
+    margin: 0 0 28px;
+}
+
+.work-placeholder__btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Aboreto', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.work-placeholder__btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.work-placeholder--error {
+    border-color: rgba(255, 77, 77, 0.25);
+    background: rgba(255, 245, 245, 0.7);
+}
+
+.work-placeholder--error .work-placeholder__title {
+    color: #d32f2f;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+@media (max-width: 768px) {
+    .work-container {
+        padding: 30px 15px 60px;
+    }
+
+    .work-container h1 {
+        margin-bottom: 30px;
+    }
+
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .work-card:hover {
+        transform: none;
+        box-shadow: 0 10px 30px rgba(74, 111, 165, 0.1);
+    }
+
+    .work-card:hover .work-card__image img {
+        transform: none;
+    }
+
+    .work-info {
+        padding: 20px 15px 60px;
+    }
+
+    .work-detail__link {
+        width: 100%;
+        text-align: center;
+    }
+}

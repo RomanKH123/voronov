@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Описание проекта — Студия Воронова, Краснодар</title>
+    <meta name="description" content="Подробное описание проекта, разработанного студией Воронова. Создание сайтов под ключ в Краснодаре.">
+    <meta name="author" content="Студия Воронова">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Проект — Студия Воронова">
+    <meta property="og:description" content="Подробное описание проекта студии Воронова">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://voronov-art.ru/work_info.html">
+    <meta property="og:image" content="https://voronov-art.ru/img/logo_2.png">
+    <meta property="og:locale" content="ru_RU">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Проект — Студия Воронова">
+    <meta name="twitter:description" content="Подробное описание проекта студии Воронова">
+    <meta name="twitter:image" content="https://voronov-art.ru/img/logo_2.png">
+
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="shortcut icon" href="/favicon/favicon.ico">
@@ -16,17 +33,49 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
 
-    <link rel="stylesheet" href="/style/main.css">
+    <meta name="geo.region" content="RU-KDA">
+    <meta name="geo.placename" content="Краснодар">
 
-    <title>Описание проекта</title>
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/work.css">
 </head>
 <body>
-    <div itemscope itemtype="https://schema.org/BreadcrumbList" style="display:none;">
-        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="https://voronov-art.ru" itemprop="item"><span itemprop="name">Главная</span></a>
-            <meta itemprop="position" content="1">
-        </span>
-    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Проект — Студия Воронова",
+        "description": "Подробное описание проекта, разработанного студией Воронова",
+        "url": "https://voronov-art.ru/work_info.html",
+        "author": {
+            "@type": "Organization",
+            "name": "Студия Воронова",
+            "url": "https://voronov-art.ru"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Главная",
+                    "item": "https://voronov-art.ru/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Портфолио",
+                    "item": "https://voronov-art.ru/work.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Проект"
+                }
+            ]
+        }
+    }
+    </script>
 
     <header class="header-new">
         <div class="logo-area">
@@ -42,13 +91,8 @@
         </div>
     </header>
     <main>
-        <div class="container">
-            <div>
-                <h1>Описание проекта</h1>
-                <p>Здесь будет описание проекта</p>
-                <a href="/work.html" class="back-link">← Вернуться к списку работ</a>
-                
-            </div>
+        <div class="work-info">
+            <!-- Содержимое загружается через JavaScript -->
         </div>
         <section id="contacts" class="blok_contacts" aria-labelledby="contacts-heading">
             <h2 id="contacts-heading" class="blok_2_nm">📞 Свяжитесь с нами</h2>
@@ -117,19 +161,9 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="/img/logo_2.png" alt="Студия Воронова">
-                <div class="studio-name">
-                    <span>Воронов</span> | Веб-студия
-                </div>
-            </div>
-            <div class="footer-contacts">
-                <a href="tel:+79604987864" class="phone-number">+7 (960) 498 78-64</a>
-                <a href="mailto:voronov-art@yandex.ru" class="email">voronov-art@yandex.ru</a>
-            </div>
-        </div>
+    <footer style="text-align: center; padding: 20px; background: #1a1a2e; color: #888; margin-top: 50px;">
+        <p>&copy; <span id="current-year">2025</span> Студия веб-разработки Воронова. Создание сайтов под ключ в Краснодаре.</p>
+        <p><a href="\privacy-policy.html" style="color: #4a6fa5;">Политика обработки персональных данных</a></p>
     </footer>
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -165,5 +199,12 @@
     </div>
 
     <script src="/style/js/main.js"></script>
+    <script src="/style/js/work.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var yearElement = document.getElementById('current-year');
+            if (yearElement) yearElement.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

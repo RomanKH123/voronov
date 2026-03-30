@@ -70,11 +70,14 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Студия веб-разработки Воронова",
+        "alternateName": "Воронов Веб-студия",
         "image": "https://voronov-art.ru/img/logo_2.png",
-        "description": "Создание сайтов под ключ в Краснодаре. Заказать сайт под ключ, разработка на Tilda и WordPress",
+        "logo": "https://voronov-art.ru/img/logo_2.png",
+        "description": "Создание сайтов под ключ в Краснодаре. Разработка лендингов, корпоративных сайтов и интернет-магазинов на Tilda и WordPress. SEO-продвижение, чат-боты, CRM.",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Краснодар",
+            "addressRegion": "Краснодарский край",
             "addressCountry": "RU"
         },
         "geo": {
@@ -84,7 +87,11 @@
         },
         "url": "https://voronov-art.ru",
         "telephone": "+79604987864",
+        "email": "voronov-art@yandex.ru",
         "priceRange": "₽₽",
+        "currenciesAccepted": "RUB",
+        "paymentAccepted": "Безналичный расчёт, Наличные",
+        "foundingDate": "2020",
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
@@ -93,12 +100,85 @@
                 "closes": "18:00"
             }
         ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+79604987864",
+            "contactType": "customer service",
+            "availableLanguage": "Russian"
+        },
         "sameAs": [
-            "https://t.me/voronov_tg"
+            "https://t.me/voronov_tg",
+            "https://max.ru/u/f9LHodD0cOI0qhzsscrWqC_PtkCNF2djBcLcMsjcftt2tyt-GsrMhg4onLM"
         ],
-        "areaServed": {
-            "@type": "City",
-            "name": "Краснодар"
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Краснодар"
+            },
+            {
+                "@type": "State",
+                "name": "Краснодарский край"
+            }
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Услуги веб-разработки",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Создание лендинга под ключ",
+                        "description": "Разработка продающего лендинга с адаптивным дизайном"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Разработка корпоративного сайта",
+                        "description": "Создание многостраничного корпоративного сайта"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Разработка интернет-магазина",
+                        "description": "Создание интернет-магазина с каталогом и корзиной"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "SEO-продвижение сайта",
+                        "description": "Поисковая оптимизация и продвижение в Яндекс и Google"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Студия Воронова",
+        "url": "https://voronov-art.ru",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Студия веб-разработки Воронова",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://voronov-art.ru/img/logo_2.png"
+            }
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://voronov-art.ru/work.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
         }
     }
     </script>

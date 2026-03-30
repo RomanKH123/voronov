@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
                             http://www.google.com/schemas/sitemap-image/1.1
                             http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
@@ -10,7 +10,7 @@
     <!-- ========== ГЛАВНАЯ СТРАНИЦА ========== -->
     <url>
         <loc>https://voronov-art.ru/</loc>
-        <lastmod>2026-03-20</lastmod>
+        <lastmod>2026-03-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -19,12 +19,32 @@
         </image:image>
     </url>
 
+    <!-- ========== ПОРТФОЛИО — СПИСОК РАБОТ ========== -->
+    <url>
+        <loc>https://voronov-art.ru/work.html</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://voronov-art.ru/img/logo_2.png</image:loc>
+            <image:title>Портфолио студии Воронова — примеры сайтов под ключ</image:title>
+        </image:image>
+    </url>
+
+    <!-- ========== ПОРТФОЛИО — КАРТОЧКА ПРОЕКТА ========== -->
+    <url>
+        <loc>https://voronov-art.ru/work_info.html</loc>
+        <lastmod>2026-03-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
     <!-- ========== СТРАНИЦА ПОЛИТИКИ ========== -->
     <url>
         <loc>https://voronov-art.ru/privacy-policy.html</loc>
         <lastmod>2026-03-20</lastmod>
         <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
+        <priority>0.3</priority>
     </url>
 
     <!-- ========== ПРОЕКТ: КРОП РЕМ АВТО ========== -->
@@ -35,14 +55,8 @@
         <priority>0.7</priority>
         <image:image>
             <image:loc>https://voronov-art.ru/img/prewiu/krop_rem_auto.png</image:loc>
-            <image:title>Сайт автосервиса Кроп Рем Авто</image:title>
+            <image:title>Сайт автосервиса Кроп Рем Авто — разработка студии Воронова</image:title>
         </image:image>
-    </url>
-    <url>
-        <loc>https://voronov-art.ru/work/krop_rem_avto/index.html</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
     </url>
 
     <!-- ========== ПРОЕКТ: SITEKRD ========== -->
@@ -53,14 +67,8 @@
         <priority>0.7</priority>
         <image:image>
             <image:loc>https://voronov-art.ru/img/prewiu/sitekrd.jpg</image:loc>
-            <image:title>Лендинг Site_krd</image:title>
+            <image:title>Лендинг SiteKRD — разработка студии Воронова</image:title>
         </image:image>
-    </url>
-    <url>
-        <loc>https://voronov-art.ru/work/sitekrd/index.html</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
     </url>
 
     <!-- ========== ПРОЕКТ: КРАСДОСТАВКА ========== -->
@@ -71,11 +79,29 @@
         <priority>0.7</priority>
         <image:image>
             <image:loc>https://voronov-art.ru/img/prewiu/dostav.png</image:loc>
-            <image:title>Сайт грузоперевозок КрасДоставка</image:title>
+            <image:title>Сайт грузоперевозок КрасДоставка — разработка студии Воронова</image:title>
         </image:image>
     </url>
+
+    <!-- ========== ПРОЕКТ: PRIME ESTATE ========== -->
     <url>
-        <loc>https://voronov-art.ru/work/kras-dostavka/index.html</loc>
+        <loc>https://voronov-art.ru/work/Prime_Estate/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- ========== ПРОЕКТ: ОБЪЕКТИВ ========== -->
+    <url>
+        <loc>https://voronov-art.ru/work/objektiv/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- ========== ПРОЕКТ: КИНОСЕТ ========== -->
+    <url>
+        <loc>https://voronov-art.ru/work/kinoset/</loc>
         <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>

@@ -1,6 +1,6 @@
 # robots.txt для сайта Студия веб-разработки Воронова
 # Сайт: https://voronov-art.ru
-# Последнее обновление: 20.03.2026
+# Последнее обновление: 30.03.2026
 
 User-agent: *
 Disallow: /cgi-bin/
@@ -9,7 +9,7 @@ Disallow: /tmp/
 Disallow: /temp/
 Disallow: /logs/
 Disallow: /data/
-Disallow: /*.php$
+Disallow: /api/
 Disallow: /work/*/temp/
 Disallow: /work/*/tmp/
 Disallow: /.git/
@@ -20,15 +20,20 @@ Disallow: /README.md
 Disallow: /package-lock.json
 Disallow: /yarn.lock
 Disallow: /node_modules/
-Disallow: /favicon/
-Disallow: /img/
-Disallow: /style/
-Disallow: /api/silent-lead.php
+Disallow: /script/
 
 # Разрешаем основные страницы
 Allow: /
+Allow: /work.html
+Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+
+# Разрешаем ресурсы для рендеринга страниц
+Allow: /style/*.css
+Allow: /style/js/*.js
+Allow: /img/
+Allow: /favicon/
 
 # Карта сайта
 Sitemap: https://voronov-art.ru/sitemap.xml
@@ -43,14 +48,20 @@ Disallow: /admin/
 Disallow: /tmp/
 Disallow: /logs/
 Disallow: /data/
+Disallow: /api/
 Disallow: /.git/
-Disallow: /api/silent-lead.php
 Allow: /
+Allow: /work.html
+Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /style/*.css
+Allow: /style/js/*.js
+Allow: /img/
+Allow: /favicon/
 
 # Очистка параметров в URL
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_source&from&yclid&_openstat
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&from&yclid&_openstat
 
 # ========== НАСТРОЙКИ ДЛЯ GOOGLE ==========
 User-agent: Googlebot
@@ -59,30 +70,48 @@ Disallow: /admin/
 Disallow: /tmp/
 Disallow: /logs/
 Disallow: /data/
+Disallow: /api/
 Disallow: /.git/
-Disallow: /api/silent-lead.php
 Allow: /
+Allow: /work.html
+Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /style/*.css
+Allow: /style/js/*.js
+Allow: /img/
+Allow: /favicon/
 
 # ========== НАСТРОЙКИ ДЛЯ MAIL.RU ==========
 User-agent: Mail.Ru
 Disallow: /cgi-bin/
 Disallow: /admin/
 Disallow: /tmp/
+Disallow: /api/
 Disallow: /.git/
 Allow: /
+Allow: /work.html
+Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /style/*.css
+Allow: /style/js/*.js
+Allow: /img/
 
 # ========== НАСТРОЙКИ ДЛЯ BING ==========
 User-agent: bingbot
 Disallow: /cgi-bin/
 Disallow: /admin/
 Disallow: /tmp/
+Disallow: /api/
 Allow: /
+Allow: /work.html
+Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /style/*.css
+Allow: /style/js/*.js
+Allow: /img/
 
 # Задержка между запросами для снижения нагрузки
 Crawl-delay: 1
