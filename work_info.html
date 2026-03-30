@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <meta name="apple-mobile-web-app-title" content="Студия Воронова">
+    <meta name="msapplication-TileColor" content="#4a6fa5">
+    <meta name="theme-color" content="#4a6fa5">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+    <link rel="stylesheet" href="/style/main.css">
+
+    <title>Описание проекта</title>
+</head>
+<body>
+    <div itemscope itemtype="https://schema.org/BreadcrumbList" style="display:none;">
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="https://voronov-art.ru" itemprop="item"><span itemprop="name">Главная</span></a>
+            <meta itemprop="position" content="1">
+        </span>
+    </div>
+
+    <header class="header-new">
+        <div class="logo-area">
+            <img src="/img/logo_2.png" alt="Студия Воронова">
+            <div class="studio-name">
+                <span>Воронов</span> | Веб-студия
+            </div>
+        </div>
+        
+        <div class="contact-area">
+            <a href="tel:+79604987864" class="phone-number">+7 (960) 498 78-64</a>
+            <button class="project-btn" onclick="scrollToBlock('contacts')">Обсудить проект</button>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div>
+                <h1>Описание проекта</h1>
+                <p>Здесь будет описание проекта</p>
+                <a href="/work.html" class="back-link">← Вернуться к списку работ</a>
+                
+            </div>
+        </div>
+        <section id="contacts" class="blok_contacts" aria-labelledby="contacts-heading">
+            <h2 id="contacts-heading" class="blok_2_nm">📞 Свяжитесь с нами</h2>
+            <div class="contacts_content">
+                <div class="contact_info_left">
+                    <div class="contact_info">
+                        <div class="contact_item">
+                            <div class="contact_icon">📞</div>
+                            <span class="contact_label">Телефон:</span>
+                            <a href="tel:+79604987864">+7(960)-498-78-64</a>
+                        </div>
+                        
+                        <div class="contact_item">
+                            <div class="contact_icon">✉️</div>
+                            <span class="contact_label">Email:</span>
+                            <a href="mailto:info@voronov.ru">info@voronov.ru</a>
+                        </div>
+                        
+                        <div class="contact_item">
+                            <div class="contact_icon">📱</div>
+                            <span class="contact_label">Telegram:</span>
+                            <a href="https://t.me/voronov_tg" target="_blank">@voronov_tg</a>
+                        </div>
+                        <div class="contact_item">
+                            <div class="contact_icon">📱</div>
+                            <span class="contact_label">MAX:</span>
+                            <a href="https://max.ru/u/f9LHodD0cOI0qhzsscrWqC_PtkCNF2djBcLcMsjcftt2tyt-GsrMhg4onLM" target="_blank">Мы в MAX</a>
+                        </div>
+                        <div class="contact_item">
+                            <div class="contact_icon">📍</div>
+                            <span class="contact_label">Офис:</span>
+                            <span>Краснодар</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact_form_right">
+                    <div class="contact_form_card">
+                        <h3 class="form_title">Оставьте заявку</h3>
+                        <p class="form_subtitle">Обсудим ваш проект</p>
+                        
+                        <form id="contactFormMain" class="contact_form">
+                            <div class="form_group">
+                                <input type="text" id="name_main" name="name" placeholder="Ваше имя *" required>
+                            </div>
+                            <div class="form_group">
+                                <input type="tel" id="phone_main" name="phone" placeholder="+7 (___) ___-__-__ *" required>
+                            </div>
+                            <div class="form_group">
+                                <input type="email" id="email_main" name="email" placeholder="Email">
+                            </div>
+                            <div class="form_group">
+                                <textarea id="message_main" name="message" rows="3" placeholder="Что нужно разработать?"></textarea>
+                            </div>
+                            <button type="submit" class="form_submit_btn">Отправить заявку</button>
+                        </form>
+                        
+                        <div id="successMessageMain" class="success_message" style="display: none;">
+                            <div class="success_icon">✓</div>
+                            <h4>Спасибо за заявку!</h4>
+                            <p>Мы свяжемся с вами в ближайшее время</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/img/logo_2.png" alt="Студия Воронова">
+                <div class="studio-name">
+                    <span>Воронов</span> | Веб-студия
+                </div>
+            </div>
+            <div class="footer-contacts">
+                <a href="tel:+79604987864" class="phone-number">+7 (960) 498 78-64</a>
+                <a href="mailto:voronov-art@yandex.ru" class="email">voronov-art@yandex.ru</a>
+            </div>
+        </div>
+    </footer>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Оставьте заявку</h2>
+            <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
+            
+            <form id="contactForm" class="modal-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя *</label>
+                    <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Номер телефона *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Введите ваш email">
+                </div>
+                
+                <button type="submit" class="modal-submit-btn">Отправить заявку</button>
+            </form>
+            
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3>Спасибо за заявку!</h3>
+                <p>Мы свяжемся с вами в ближайшее время</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/style/js/main.js"></script>
+</body>
+</html>
