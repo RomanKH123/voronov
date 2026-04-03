@@ -5,17 +5,7 @@
     box-sizing: border-box;
 }
 
-/* Подключение всех шрифтов */
-@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Angkor&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+/* Шрифты подключаются через <link> в HTML для оптимизации загрузки */
 
 /* Основные стили */
 body {
@@ -96,7 +86,7 @@ header:not(.header-new) {
     font-size: 22px;
     font-weight: 600;
     color: #333;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .studio-name span {
@@ -876,6 +866,25 @@ article {
     transform: scale(1.05);
 }
 
+/* Плейсхолдер при отсутствии или ошибке загрузки изображения */
+.project_preview--broken,
+.project_preview--no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e8f0fe, #d4e3f7);
+    aspect-ratio: 16 / 9;
+}
+
+.project_preview__placeholder {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #4a6fa5;
+    opacity: 0.4;
+    text-transform: uppercase;
+}
+
 .project_details {
     padding: 1.8vw;
     flex-grow: 1;
@@ -884,7 +893,7 @@ article {
 }
 
 .project_name {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(20px, 1.8vw, 26px);
     font-weight: 700;
     margin: 0 0 8px 0;
@@ -892,7 +901,7 @@ article {
 }
 
 .project_name h4 {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(20px, 1.8vw, 26px);
     font-weight: 700;
     margin: 0;
@@ -1056,7 +1065,7 @@ article {
 }
 
 .contact_label {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     min-width: 100px;
     color: #4a6fa5;
@@ -1065,41 +1074,31 @@ article {
     cursor: inherit;
 }
 
-.contact_item a {
-    font-family: 'Inter', sans-serif;
-    color: #000;
+/* Ссылка-обёртка для всего блока контакта */
+.contact_item_link {
     text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 18px;
-    font-weight: 500;
-    position: relative;
-    padding-bottom: 2px;
-    cursor: pointer;
+    color: inherit;
+    display: block;
 }
 
-.contact_item a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #4a6fa5, #6b8fc9);
-    transition: width 0.3s ease;
+.contact_item_link .contact_item {
+    margin: 0;
 }
 
-.contact_item a:hover {
+.contact_item_link + .contact_item_link,
+.contact_item_link + .contact_item {
+    margin-top: 16px;
+}
+
+.contact_item_link:hover .contact_value {
     color: #4a6fa5;
 }
 
-.contact_item a:hover::after {
-    width: 100%;
-}
-
-.contact_item a[href^="tel"],
-.contact_item a[href^="mailto"],
-.contact_item a[href^="https"] {
-    cursor: pointer;
+.contact_value {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .contact_form_right {
@@ -1146,7 +1145,7 @@ article {
 }
 
 .form_title {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 28px;
     margin-bottom: 10px;
     color: #000;
@@ -1157,7 +1156,7 @@ article {
 }
 
 .form_title h3 {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 28px;
     margin: 0;
     color: #000;
@@ -1304,7 +1303,7 @@ article {
 }
 
 .success_message h4 {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 20px;
     margin-bottom: 8px;
     color: #000;
@@ -1451,7 +1450,7 @@ article {
 }
 
 .modal-title {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 28px;
     margin-bottom: 10px;
     color: #000;
@@ -1459,7 +1458,7 @@ article {
 }
 
 .modal-title h2 {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 28px;
     margin: 0;
     color: #000;
@@ -1570,7 +1569,7 @@ article {
 }
 
 .success-message h3 {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 24px;
     margin-bottom: 10px;
     color: #000;
@@ -2159,5 +2158,149 @@ article {
     .cookie-btn {
         padding: 10px 20px;
         font-size: 13px;
+    }
+}
+
+/* ===== СТИЛИ ДЛЯ КАТЕГОРИЙ НА ГЛАВНОЙ ===== */
+
+.category-section {
+    margin-top: 6vw;
+}
+
+.category-section:first-child {
+    margin-top: 3vw;
+}
+
+.category-more-wrap {
+    text-align: center;
+    margin-top: 3vw;
+}
+
+.category-more-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: transparent;
+    color: #4a6fa5;
+    border: 2px solid #4a6fa5;
+    border-radius: 50px;
+    font-family: 'Aboreto', sans-serif;
+    font-size: clamp(13px, 1.1vw, 15px);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.category-more-btn:hover {
+    background: #4a6fa5;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(74, 111, 165, 0.3);
+}
+
+/* Лоадер проектов на главной */
+.projects-loading {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: 'Jura', sans-serif;
+    font-size: 16px;
+    color: #888;
+}
+
+.projects-loading__spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e0e0e0;
+    border-top-color: #4a6fa5;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+@keyframes spin-home {
+    to { transform: rotate(360deg); }
+}
+
+/* Пустое состояние / ошибка загрузки */
+.projects-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 30px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border: 2px dashed rgba(74, 111, 165, 0.2);
+    max-width: 600px;
+    margin: 0 auto;
+    animation: projectsEmptyIn 0.6s ease both;
+}
+
+@keyframes projectsEmptyIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.projects-empty__icon {
+    margin-bottom: 24px;
+    opacity: 0.7;
+    animation: projectsIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes projectsIconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.projects-empty__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 12px;
+}
+
+.projects-empty__text {
+    font-family: 'Jura', sans-serif;
+    font-size: clamp(14px, 1.2vw, 17px);
+    line-height: 1.7;
+    color: #777;
+    max-width: 400px;
+    margin: 0 0 28px;
+}
+
+.projects-empty--error {
+    border-color: rgba(231, 76, 60, 0.2);
+    background: rgba(255, 248, 248, 0.7);
+}
+
+.projects-empty--error .projects-empty__title {
+    color: #c0392b;
+}
+
+.projects-empty--error .projects-empty__icon svg {
+    stroke: #e74c3c;
+}
+
+@media (max-width: 768px) {
+    .category-section {
+        margin-top: 40px;
+    }
+
+    .category-more-wrap {
+        margin-top: 25px;
+    }
+
+    .category-more-btn {
+        padding: 12px 30px;
+        font-size: 13px;
+    }
+
+    .projects-empty {
+        padding: 50px 20px;
     }
 }

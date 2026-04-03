@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Страница списка работ
     if (workGrid) {
-        loadWorks();
+        var params = new URLSearchParams(window.location.search);
+        var kategoryFilter = params.get('kategory');
+        loadWorks(kategoryFilter);
     }
 
     // Страница детальной информации
@@ -27,10 +29,61 @@ document.addEventListener('DOMContentLoaded', function() {
         '</div>';
     }
 
-    function loadWorks() {
+    function loadWorks(kategory) {
         workGrid.innerHTML = '<div class="work-loading"><span class="loading-spinner"></span> Загрузка работ...</div>';
 
-        fetch('/api/works.php')
+        var apiUrl = '/api/works.php';
+        if (kategory) {
+            apiUrl += '?kategory=' + encodeURIComponent(kategory);
+
+            // Обновляем заголовок страницы
+            var titleEl = document.querySelector('.work-container h1');
+            if (titleEl) titleEl.textContent = kategory;
+            var subtitleEl = document.querySelector('.work-subtitle');
+            if (subtitleEl) subtitleEl.textContent = 'Все проекты в категории "' + kategory + '"';
+
+            // Обновляем SEO-мета для категории
+            document.title = kategory + ' — портфолио | Студия Воронова, Краснодар';
+            updateMeta('description', 'Примеры работ в категории "' + kategory + '". Портфолио студии Воронова — создание сайтов под ключ в Краснодаре.');
+            updateMeta('og:title', kategory + ' — портфолио | Студия Воронова', true);
+            updateMeta('og:description', 'Проекты студии Воронова в категории "' + kategory + '". Реальные примеры сайтов под ключ.', true);
+            updateMeta('og:url', 'https://voronov-art.ru/work.html?kategory=' + encodeURIComponent(kategory), true);
+            updateMeta('twitter:title', kategory + ' — портфолио | Студия Воронова', true);
+            updateMeta('twitter:description', 'Проекты в категории "' + kategory + '"', true);
+
+            // Обновляем canonical
+            var canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) canonical.href = 'https://voronov-art.ru/work.html?kategory=' + encodeURIComponent(kategory);
+
+            // Обновляем JSON-LD хлебные крошки
+            var oldLd = document.querySelector('script[type="application/ld+json"]');
+            if (oldLd) oldLd.remove();
+            var ldScript = document.createElement('script');
+            ldScript.type = 'application/ld+json';
+            ldScript.textContent = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": kategory + " — портфолио студии Воронова",
+                "description": "Примеры работ в категории " + kategory,
+                "url": "https://voronov-art.ru/work.html?kategory=" + encodeURIComponent(kategory),
+                "isPartOf": {
+                    "@type": "WebSite",
+                    "name": "Студия Воронова",
+                    "url": "https://voronov-art.ru"
+                },
+                "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://voronov-art.ru/"},
+                        {"@type": "ListItem", "position": 2, "name": "Портфолио", "item": "https://voronov-art.ru/work.html"},
+                        {"@type": "ListItem", "position": 3, "name": kategory}
+                    ]
+                }
+            });
+            document.head.appendChild(ldScript);
+        }
+
+        fetch(apiUrl)
             .then(function(response) { return response.json(); })
             .then(function(data) {
                 if (data.success && data.data.length > 0) {
@@ -62,12 +115,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         works.forEach(function(work, index) {
             var card = document.createElement('a');
+            // Все карточки ведут на work_info.html
             card.href = '/work_info.html?id=' + work.id;
             card.className = 'work-card';
             card.style.animationDelay = (index * 0.1) + 's';
 
             var altText = escapeHtml(work.title) + (work.category ? ' — ' + escapeHtml(work.category) + ', разработка сайта под ключ Краснодар' : '');
-            var img = work.image ? '<div class="work-card__image"><img src="' + escapeHtml(work.image) + '" alt="' + altText + '" loading="lazy"></div>' : '';
+            var img = work.image
+                ? '<div class="work-card__image"><img src="' + escapeHtml(work.image) + '" alt="' + altText + '" loading="lazy" onerror="this.parentElement.classList.add(\'work-card__image--broken\');this.remove();"></div>'
+                : '<div class="work-card__image work-card__image--no-image"><span class="work-card__placeholder">' + escapeHtml(work.title.charAt(0)) + '</span></div>';
             var category = work.category ? '<span class="work-card__category">' + escapeHtml(work.category) + '</span>' : '';
 
             card.innerHTML = img +
@@ -130,18 +186,27 @@ document.addEventListener('DOMContentLoaded', function() {
         var category = work.category ? '<span class="work-detail__category">' + escapeHtml(work.category) + '</span>' : '';
         var link = work.url ? '<a href="' + escapeHtml(work.url) + '" class="work-detail__link" target="_blank">Смотреть проект</a>' : '';
 
-        document.title = work.title + ' — Студия Воронова';
+        // SEO: title и мета-теги
+        document.title = work.title + ' — ' + (work.category || 'проект') + ' | Студия Воронова, Краснодар';
 
-        updateMeta('description', work.full_description || work.description);
+        var seoDesc = (work.full_description || work.description || '').substring(0, 160);
+        updateMeta('description', seoDesc);
         updateMeta('og:title', work.title + ' — Студия Воронова', true);
         updateMeta('og:description', work.description, true);
+        updateMeta('og:url', 'https://voronov-art.ru/work_info.html?id=' + work.id, true);
         if (work.image) updateMeta('og:image', 'https://voronov-art.ru' + work.image, true);
         updateMeta('twitter:title', work.title + ' — Студия Воронова', true);
         updateMeta('twitter:description', work.description, true);
         if (work.image) updateMeta('twitter:image', 'https://voronov-art.ru' + work.image, true);
 
+        // Кнопка "Назад" — возвращает в work.html с категорией
+        var backUrl = '/work.html';
+        if (work.Kategory) {
+            backUrl = '/work.html?kategory=' + encodeURIComponent(work.Kategory);
+        }
+
         workInfo.innerHTML =
-            '<a href="/work.html" class="back-link">&larr; Вернуться к списку работ</a>' +
+            '<a href="' + backUrl + '" class="back-link">&larr; Вернуться к списку работ</a>' +
             image +
             '<div class="work-detail__content">' +
                 category +
@@ -150,7 +215,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 link +
             '</div>';
 
-        // JSON-LD CreativeWork для поисковиков
+        // Удаляем старый JSON-LD
+        var oldLd = document.querySelector('script[type="application/ld+json"]');
+        if (oldLd) oldLd.remove();
+
+        // JSON-LD CreativeWork + BreadcrumbList
+        var breadcrumbItems = [
+            {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://voronov-art.ru/"},
+            {"@type": "ListItem", "position": 2, "name": "Портфолио", "item": "https://voronov-art.ru/work.html"}
+        ];
+        if (work.Kategory) {
+            breadcrumbItems.push({
+                "@type": "ListItem",
+                "position": 3,
+                "name": work.Kategory,
+                "item": "https://voronov-art.ru/work.html?kategory=" + encodeURIComponent(work.Kategory)
+            });
+            breadcrumbItems.push({
+                "@type": "ListItem",
+                "position": 4,
+                "name": work.title
+            });
+        } else {
+            breadcrumbItems.push({
+                "@type": "ListItem",
+                "position": 3,
+                "name": work.title
+            });
+        }
+
         var ldData = {
             "@context": "https://schema.org",
             "@type": "CreativeWork",
@@ -162,9 +255,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 "name": "Студия Воронова",
                 "url": "https://voronov-art.ru"
             },
-            "genre": work.category || "Веб-разработка"
+            "genre": work.Kategory || work.category || "Веб-разработка",
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": breadcrumbItems
+            }
         };
         if (work.image) ldData.image = "https://voronov-art.ru" + work.image;
+        if (work.category) ldData.keywords = work.category;
 
         var ldScript = document.createElement('script');
         ldScript.type = 'application/ld+json';

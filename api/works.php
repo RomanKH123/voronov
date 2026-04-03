@@ -40,6 +40,31 @@ try {
         }
 
         echo json_encode(['success' => true, 'data' => $work]);
+    } elseif (isset($_GET['kategory'])) {
+        // Фильтрация по основной категории (Kategory enum)
+        $kategory = trim($_GET['kategory']);
+        $stmt = $pdo->prepare("SELECT * FROM works WHERE Kategory = :kategory ORDER BY sort_order ASC, created_at DESC");
+        $stmt->execute([':kategory' => $kategory]);
+        $works = $stmt->fetchAll();
+
+        echo json_encode(['success' => true, 'data' => $works]);
+    } elseif (isset($_GET['grouped'])) {
+        // Группировка по Kategory (enum) для главной страницы
+        $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC");
+        $works = $stmt->fetchAll();
+
+        $grouped = [];
+        foreach ($works as $work) {
+            // Используем Kategory, если пустая — fallback на category
+            $cat = !empty($work['Kategory']) ? $work['Kategory'] : (!empty($work['category']) ? $work['category'] : '');
+            if (empty($cat)) continue;
+            if (!isset($grouped[$cat])) {
+                $grouped[$cat] = [];
+            }
+            $grouped[$cat][] = $work;
+        }
+
+        echo json_encode(['success' => true, 'data' => $grouped]);
     } else {
         // Возвращаем все работы
         $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC");

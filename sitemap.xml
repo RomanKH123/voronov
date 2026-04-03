@@ -10,7 +10,7 @@
     <!-- ========== ГЛАВНАЯ СТРАНИЦА ========== -->
     <url>
         <loc>https://voronov-art.ru/</loc>
-        <lastmod>2026-03-30</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -22,7 +22,7 @@
     <!-- ========== ПОРТФОЛИО — СПИСОК РАБОТ ========== -->
     <url>
         <loc>https://voronov-art.ru/work.html</loc>
-        <lastmod>2026-03-30</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -31,12 +31,130 @@
         </image:image>
     </url>
 
-    <!-- ========== ПОРТФОЛИО — КАРТОЧКА ПРОЕКТА ========== -->
+    <!-- ========== ПОРТФОЛИО ПО КАТЕГОРИЯМ ========== -->
     <url>
-        <loc>https://voronov-art.ru/work_info.html</loc>
-        <lastmod>2026-03-30</lastmod>
+        <loc>https://voronov-art.ru/work.html?kategory=%D0%A1%D0%B0%D0%B9%D1%82%D1%8B</loc>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work.html?kategory=%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work.html?kategory=%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work.html?kategory=%D0%94%D0%BE%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ========== ДЕТАЛЬНЫЕ СТРАНИЦЫ РАБОТ ========== -->
+    <url>
+        <loc>https://voronov-art.ru/work_info.html?id=1</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://voronov-art.ru/work/Prime_Estate/img/preview.png</image:loc>
+            <image:title>Prime Estate — сайт агентства недвижимости, разработка студии Воронова</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work_info.html?id=2</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://voronov-art.ru/work/objektiv/img/preview.png</image:loc>
+            <image:title>Объектив — сайт фотостудии, разработка студии Воронова</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work_info.html?id=3</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://voronov-art.ru/work/kinoset/img/preview.png</image:loc>
+            <image:title>КиноСет — сайт кинотеатра, разработка студии Воронова</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work_info.html?id=4</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://voronov-art.ru/work/kras-dostavka/img/preview.png</image:loc>
+            <image:title>Крас Доставка — сервис доставки, разработка студии Воронова</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work_info.html?id=5</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://voronov-art.ru/work/krop_rem_avto/img/preview.png</image:loc>
+            <image:title>КропРемАвто — сайт автосервиса, разработка студии Воронова</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work_info.html?id=6</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://voronov-art.ru/work/sitekrd/img/preview.png</image:loc>
+            <image:title>SiteKRD — лендинг веб-студии, разработка студии Воронова</image:title>
+        </image:image>
+    </url>
+
+    <!-- ========== ПРОЕКТЫ (ПРЯМЫЕ ССЫЛКИ) ========== -->
+    <url>
+        <loc>https://voronov-art.ru/work/Prime_Estate/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work/objektiv/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work/kinoset/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work/kras-dostavka/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work/krop_rem_avto/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/work/sitekrd/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
 
     <!-- ========== СТРАНИЦА ПОЛИТИКИ ========== -->
@@ -45,66 +163,6 @@
         <lastmod>2026-03-20</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
-    </url>
-
-    <!-- ========== ПРОЕКТ: КРОП РЕМ АВТО ========== -->
-    <url>
-        <loc>https://voronov-art.ru/work/krop_rem_avto/</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <image:image>
-            <image:loc>https://voronov-art.ru/img/prewiu/krop_rem_auto.png</image:loc>
-            <image:title>Сайт автосервиса Кроп Рем Авто — разработка студии Воронова</image:title>
-        </image:image>
-    </url>
-
-    <!-- ========== ПРОЕКТ: SITEKRD ========== -->
-    <url>
-        <loc>https://voronov-art.ru/work/sitekrd/</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <image:image>
-            <image:loc>https://voronov-art.ru/img/prewiu/sitekrd.jpg</image:loc>
-            <image:title>Лендинг SiteKRD — разработка студии Воронова</image:title>
-        </image:image>
-    </url>
-
-    <!-- ========== ПРОЕКТ: КРАСДОСТАВКА ========== -->
-    <url>
-        <loc>https://voronov-art.ru/work/kras-dostavka/</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <image:image>
-            <image:loc>https://voronov-art.ru/img/prewiu/dostav.png</image:loc>
-            <image:title>Сайт грузоперевозок КрасДоставка — разработка студии Воронова</image:title>
-        </image:image>
-    </url>
-
-    <!-- ========== ПРОЕКТ: PRIME ESTATE ========== -->
-    <url>
-        <loc>https://voronov-art.ru/work/Prime_Estate/</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- ========== ПРОЕКТ: ОБЪЕКТИВ ========== -->
-    <url>
-        <loc>https://voronov-art.ru/work/objektiv/</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- ========== ПРОЕКТ: КИНОСЕТ ========== -->
-    <url>
-        <loc>https://voronov-art.ru/work/kinoset/</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
     </url>
 
 </urlset>

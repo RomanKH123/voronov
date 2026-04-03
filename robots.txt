@@ -1,10 +1,11 @@
 # robots.txt для сайта Студия веб-разработки Воронова
 # Сайт: https://voronov-art.ru
-# Последнее обновление: 30.03.2026
+# Последнее обновление: 03.04.2026
 
 User-agent: *
 Disallow: /cgi-bin/
 Disallow: /admin/
+Disallow: /CMM/
 Disallow: /tmp/
 Disallow: /temp/
 Disallow: /logs/
@@ -45,6 +46,7 @@ Host: https://voronov-art.ru
 User-agent: Yandex
 Disallow: /cgi-bin/
 Disallow: /admin/
+Disallow: /CMM/
 Disallow: /tmp/
 Disallow: /logs/
 Disallow: /data/
@@ -67,6 +69,7 @@ Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&from&yclid&
 User-agent: Googlebot
 Disallow: /cgi-bin/
 Disallow: /admin/
+Disallow: /CMM/
 Disallow: /tmp/
 Disallow: /logs/
 Disallow: /data/
@@ -86,6 +89,7 @@ Allow: /favicon/
 User-agent: Mail.Ru
 Disallow: /cgi-bin/
 Disallow: /admin/
+Disallow: /CMM/
 Disallow: /tmp/
 Disallow: /api/
 Disallow: /.git/
@@ -102,6 +106,7 @@ Allow: /img/
 User-agent: bingbot
 Disallow: /cgi-bin/
 Disallow: /admin/
+Disallow: /CMM/
 Disallow: /tmp/
 Disallow: /api/
 Allow: /
