@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '<div class="work-detail__content">' +
                 category +
                 '<h1 class="work-detail__title">' + escapeHtml(work.title) + '</h1>' +
-                '<div class="work-detail__text">' + escapeHtml(work.full_description) + '</div>' +
+                '<pre class="work-detail__text">' + escapeHtml(work.full_description) + '</pre>' +
                 link +
             '</div>';
 

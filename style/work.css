@@ -160,7 +160,7 @@ main {
 .back-link {
     display: inline-block;
     font-family: 'Jura', sans-serif;
-    font-size: 16px;
+    font-size: clamp(20px, 1.8vw, 26px);
     color: #4a6fa5;
     text-decoration: none;
     margin-bottom: 30px;

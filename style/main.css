@@ -933,6 +933,7 @@ article {
 
 .project_card_link {
     text-decoration: none;
+    max-width: 700px;
     color: inherit;
     display: block;
     transition: transform 0.3s ease;
