@@ -42,6 +42,27 @@ function requireAdmin() {
     }
 }
 
+// Безопасное удаление файла превью с сервера (включая WebP-версию)
+function deletePreviewFile($path) {
+    if (empty($path)) return;
+    // Удаляем только файлы из /img/prewiu/ — защита от path traversal
+    if (strpos($path, '/img/prewiu/') !== 0) return;
+    if (strpos($path, '..') !== false) return;
+
+    $fullPath = $_SERVER['DOCUMENT_ROOT'] . $path;
+    $realPath = realpath($fullPath);
+    $allowedDir = realpath($_SERVER['DOCUMENT_ROOT'] . '/img/prewiu/');
+
+    if ($realPath && $allowedDir && strpos($realPath, $allowedDir) === 0 && is_file($realPath)) {
+        @unlink($realPath);
+        // Удаляем парную WebP-версию
+        $webpPath = preg_replace('/\.(png|jpe?g|gif)$/i', '.webp', $realPath);
+        if ($webpPath !== $realPath && is_file($webpPath)) {
+            @unlink($webpPath);
+        }
+    }
+}
+
 switch ($method) {
     case 'GET':
         if ($action === 'list') {
@@ -140,7 +161,6 @@ switch ($method) {
         $full_description = trim($input['full_description'] ?? '');
         $image = trim($input['image'] ?? '');
         $url = trim($input['url'] ?? '');
-        $sort_order = (int)($input['sort_order'] ?? 0);
 
         if ($title === '') {
             http_response_code(400);
@@ -151,6 +171,10 @@ switch ($method) {
         if ($slug === '') {
             $slug = transliterate($title);
         }
+
+        // Автонумерация: max + 1
+        $maxStmt = $pdo->query("SELECT COALESCE(MAX(sort_order), 0) + 1 AS next_order FROM works");
+        $sort_order = (int)$maxStmt->fetchColumn();
 
         $stmt = $pdo->prepare("INSERT INTO works (title, slug, category, Kategory, description, full_description, image, url, sort_order) VALUES (:title, :slug, :category, :kategory, :description, :full_description, :image, :url, :sort_order)");
         $stmt->execute([
@@ -218,7 +242,6 @@ switch ($method) {
         $full_description = trim($input['full_description'] ?? '');
         $image = trim($input['image'] ?? '');
         $url = trim($input['url'] ?? '');
-        $sort_order = (int)($input['sort_order'] ?? 0);
 
         if ($title === '') {
             http_response_code(400);
@@ -226,7 +249,15 @@ switch ($method) {
             break;
         }
 
-        $stmt = $pdo->prepare("UPDATE works SET title = :title, slug = :slug, category = :category, Kategory = :kategory, description = :description, full_description = :full_description, image = :image, url = :url, sort_order = :sort_order WHERE id = :id");
+        // Получаем старое изображение и удаляем если изменилось
+        $oldStmt = $pdo->prepare("SELECT image FROM works WHERE id = :id");
+        $oldStmt->execute([':id' => $id]);
+        $oldImage = $oldStmt->fetchColumn();
+        if ($oldImage && $oldImage !== $image) {
+            deletePreviewFile($oldImage);
+        }
+
+        $stmt = $pdo->prepare("UPDATE works SET title = :title, slug = :slug, category = :category, Kategory = :kategory, description = :description, full_description = :full_description, image = :image, url = :url WHERE id = :id");
         $stmt->execute([
             ':title' => $title,
             ':slug' => $slug,
@@ -236,7 +267,6 @@ switch ($method) {
             ':full_description' => $full_description,
             ':image' => $image,
             ':url' => $url,
-            ':sort_order' => $sort_order,
             ':id' => $id
         ]);
 
@@ -270,6 +300,15 @@ switch ($method) {
         }
 
         $id = (int)$_GET['id'];
+
+        // Удаляем файл превью
+        $oldStmt = $pdo->prepare("SELECT image FROM works WHERE id = :id");
+        $oldStmt->execute([':id' => $id]);
+        $oldImage = $oldStmt->fetchColumn();
+        if ($oldImage) {
+            deletePreviewFile($oldImage);
+        }
+
         $stmt = $pdo->prepare("DELETE FROM works WHERE id = :id");
         $stmt->execute([':id' => $id]);
 

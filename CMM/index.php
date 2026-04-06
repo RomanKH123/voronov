@@ -383,7 +383,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
 
         .table-row {
             display: grid;
-            grid-template-columns: 80px 1fr 160px 120px 100px 140px;
+            grid-template-columns: 80px 1fr 160px 140px 140px;
             align-items: center;
             padding: 16px 24px;
             border-bottom: 1px solid var(--border);
@@ -600,56 +600,311 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
             to { opacity: 0; }
         }
 
+        /* ===== MOBILE MENU TOGGLE ===== */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 150;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 99;
+        }
+
+        .sidebar-backdrop.open {
+            display: block;
+        }
+
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .sidebar {
-                width: 220px;
+                width: 230px;
             }
             .main-content {
-                margin-left: 220px;
-                padding: 24px 20px;
+                margin-left: 230px;
+                padding: 28px 28px;
             }
             .table-row {
-                grid-template-columns: 60px 1fr 120px 100px 80px 120px;
-                padding: 12px 16px;
-                font-size: 13px;
+                grid-template-columns: 70px 1fr 140px 130px 130px;
+                padding: 14px 20px;
+                font-size: 14px;
             }
         }
 
-        @media (max-width: 768px) {
-            .sidebar {
+        @media (max-width: 1024px) {
+            .table-row {
+                grid-template-columns: 60px 1fr 120px 130px;
+                font-size: 13px;
+                gap: 10px;
+            }
+            .col-url {
                 display: none;
+            }
+            .modal {
+                max-width: 560px;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+                box-shadow: 4px 0 30px rgba(0, 0, 0, 0.4);
+            }
+            .sidebar.open {
+                transform: translateX(0);
             }
             .main-content {
                 margin-left: 0;
-                padding: 20px 15px;
+                padding: 70px 20px 24px;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .page-header h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .main-content {
+                padding: 70px 14px 20px;
             }
             .table-row {
-                grid-template-columns: 1fr auto;
-                gap: 8px;
+                grid-template-columns: 56px 1fr 110px;
+                padding: 12px 14px;
+                gap: 10px;
             }
-            .table-head .col-img,
-            .table-head .col-cat,
-            .table-head .col-order,
-            .table-head .col-url,
-            .table-row .col-img,
-            .table-row .col-cat,
-            .table-row .col-order,
-            .table-row .col-url {
+            .col-cat {
                 display: none;
+            }
+            .table-img, .table-img-placeholder {
+                width: 50px;
+                height: 36px;
+            }
+            .table-title {
+                font-size: 14px;
+            }
+            .table-desc {
+                font-size: 11px;
+                max-width: 180px;
             }
             .form-row {
                 grid-template-columns: 1fr;
+                gap: 0;
             }
             .modal {
-                margin: 15px;
-                padding: 24px;
+                margin: 0;
+                padding: 24px 20px;
+                max-height: 100vh;
+                border-radius: 0;
+            }
+            .modal-overlay {
+                padding: 0;
+            }
+            .modal-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            .modal-actions {
+                flex-direction: column-reverse;
+            }
+            .modal-actions .btn {
+                width: 100%;
             }
             .page-header {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
+                align-items: stretch;
+                gap: 14px;
             }
+            .page-header .btn {
+                width: 100%;
+            }
+            .page-header h1 {
+                font-size: 22px;
+            }
+            .form-input {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+            .users-table .table-row {
+                grid-template-columns: 1fr 100px;
+            }
+            .users-table .col-id,
+            .users-table .col-role,
+            .users-table .col-date {
+                display: none;
+            }
+            .users-table .table-row > div:nth-child(3) {
+                display: none;
+            }
+            .dropzone {
+                min-height: 150px;
+            }
+            .dropzone__content {
+                padding: 18px;
+            }
+            .dropzone__content svg {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 8px;
+            }
+            .dropzone__text {
+                font-size: 14px;
+            }
+            .toast {
+                left: 14px;
+                right: 14px;
+                bottom: 14px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .table-row {
+                grid-template-columns: 1fr auto;
+            }
+            .col-img {
+                display: none;
+            }
+            .table-actions button {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* ===== DROPZONE ===== */
+        .dropzone {
+            position: relative;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--surface-2);
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .dropzone:hover {
+            border-color: var(--primary);
+            background: rgba(108, 99, 255, 0.05);
+        }
+
+        .dropzone--dragover {
+            border-color: var(--primary);
+            background: rgba(108, 99, 255, 0.1);
+            transform: scale(1.01);
+        }
+
+        .dropzone__content {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 24px;
+            pointer-events: none;
+        }
+
+        .dropzone__content svg {
+            color: var(--primary);
+            opacity: 0.6;
+            margin-bottom: 12px;
+        }
+
+        .dropzone__text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .dropzone__text span {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .dropzone__hint {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .dropzone__preview {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 180px;
+        }
+
+        .dropzone__preview img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+
+        .dropzone__remove {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border: none;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: background 0.2s;
+        }
+
+        .dropzone__remove:hover {
+            background: var(--danger);
+        }
+
+        .dropzone__loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* ===== USERS TABLE ===== */
@@ -735,13 +990,11 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
             opacity: 0.6;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .users-table .table-row {
-                grid-template-columns: 1fr auto;
+                grid-template-columns: 50px 1fr 140px 140px;
             }
-            .users-table .col-role,
-            .users-table .col-date,
-            .users-table .col-id {
+            .users-table .col-date {
                 display: none;
             }
         }
@@ -778,8 +1031,13 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
     </div>
 <?php else: ?>
     <!-- MAIN APP -->
+    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
     <div class="app">
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-logo">
                 <h2>CMM</h2>
                 <span>Content Manager</span>
@@ -865,7 +1123,6 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                     <div>Название</div>
                     <div class="col-cat">Категория</div>
                     <div class="col-url">Ссылка</div>
-                    <div class="col-order">Порядок</div>
                     <div>Действия</div>
                 </div>
                 <div id="works-list"></div>
@@ -919,20 +1176,34 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                     <textarea id="f-full-description" class="form-input" rows="4" placeholder="Подробное описание проекта"></textarea>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Путь к изображению</label>
-                        <input type="text" id="f-image" class="form-input" placeholder="/img/prewiu/example.png">
-                    </div>
-                    <div class="form-group">
-                        <label>Ссылка на проект</label>
-                        <input type="text" id="f-url" class="form-input" placeholder="/work/project/ или https://...">
+                <div class="form-group">
+                    <label>Превью изображение</label>
+                    <div class="dropzone" id="dropzone">
+                        <input type="file" id="f-image-file" accept="image/*" hidden>
+                        <input type="hidden" id="f-image">
+                        <div class="dropzone__content" id="dropzone-content">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                            <p class="dropzone__text">Перетащите фото сюда или <span>выберите файл</span></p>
+                            <p class="dropzone__hint">JPG, PNG, WebP, GIF · до 10 МБ</p>
+                        </div>
+                        <div class="dropzone__preview" id="dropzone-preview" style="display:none;">
+                            <img id="dropzone-img" src="" alt="">
+                            <button type="button" class="dropzone__remove" onclick="removeImage(event)" title="Удалить">×</button>
+                        </div>
+                        <div class="dropzone__loading" id="dropzone-loading" style="display:none;">
+                            <div class="spinner"></div>
+                            <span>Загрузка...</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group" style="max-width: 200px;">
-                    <label>Порядок сортировки</label>
-                    <input type="number" id="f-sort" class="form-input" value="0" min="0">
+                <div class="form-group">
+                    <label>Ссылка на проект</label>
+                    <input type="text" id="f-url" class="form-input" placeholder="/work/project/ или https://...">
                 </div>
 
                 <div class="modal-actions">
@@ -986,6 +1257,12 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
     <script>
     var API = '/CMM/api.php';
 
+    // Мобильное меню
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('open');
+        document.getElementById('sidebar-backdrop').classList.toggle('open');
+    }
+
     // Загрузка работ
     function loadWorks() {
         fetch(API + '?action=list')
@@ -1024,7 +1301,6 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                             '</div>' +
                             '<div class="col-cat">' + (w.category ? '<span class="table-badge">' + esc(w.category) + '</span>' : '&mdash;') + '</div>' +
                             '<div class="col-url" title="' + esc(w.url) + '">' + urlShort + '</div>' +
-                            '<div class="col-order">' + w.sort_order + '</div>' +
                             '<div class="table-actions">' +
                                 '<button onclick="editWork(' + w.id + ')" title="Редактировать">' +
                                     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
@@ -1061,15 +1337,23 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
         document.getElementById('modal-title').textContent = 'Добавить работу';
         document.getElementById('work-id').value = '';
         document.getElementById('work-form').reset();
-        document.getElementById('f-sort').value = '0';
         document.getElementById('f-kategory').value = '';
+        document.getElementById('f-image').value = '';
+        originalImage = '';
+        pendingUpload = '';
+        resetDropzone();
         document.getElementById('modal-overlay').classList.add('open');
         document.getElementById('f-title').focus();
         loadCategories();
     }
 
-    // Закрыть модалку
+    // Закрыть модалку — если был загружен временный файл, но не сохранён в БД, удаляем
     function closeModal() {
+        if (pendingUpload && pendingUpload !== originalImage) {
+            deleteUploadedFile(pendingUpload);
+        }
+        pendingUpload = '';
+        originalImage = '';
         document.getElementById('modal-overlay').classList.remove('open');
     }
 
@@ -1089,8 +1373,14 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                 document.getElementById('f-full-description').value = w.full_description || '';
                 document.getElementById('f-image').value = w.image || '';
                 document.getElementById('f-url').value = w.url || '';
-                document.getElementById('f-sort').value = w.sort_order || 0;
                 document.getElementById('f-kategory').value = w.Kategory || '';
+                originalImage = w.image || '';
+                pendingUpload = '';
+                if (w.image) {
+                    showDropzonePreview(w.image);
+                } else {
+                    resetDropzone();
+                }
                 document.getElementById('modal-overlay').classList.add('open');
                 loadCategories();
             });
@@ -1108,8 +1398,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
             description: document.getElementById('f-description').value,
             full_description: document.getElementById('f-full-description').value,
             image: document.getElementById('f-image').value,
-            url: document.getElementById('f-url').value,
-            sort_order: parseInt(document.getElementById('f-sort').value) || 0
+            url: document.getElementById('f-url').value
         };
 
         var method = 'POST';
@@ -1126,6 +1415,9 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
         .then(function(r) { return r.json(); })
         .then(function(data) {
             if (data.success) {
+                // Сохранили — сбрасываем pending чтобы closeModal не удалил файл
+                pendingUpload = '';
+                originalImage = '';
                 toast(id ? 'Работа обновлена' : 'Работа добавлена', 'success');
                 closeModal();
                 loadWorks();
@@ -1351,12 +1643,142 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
         }
     });
 
+    // ===== DROPZONE =====
+    function initDropzone() {
+        var dropzone = document.getElementById('dropzone');
+        var fileInput = document.getElementById('f-image-file');
+        if (!dropzone || !fileInput) return;
+
+        // Клик по зоне = открыть выбор файла
+        dropzone.addEventListener('click', function(e) {
+            if (e.target.closest('.dropzone__remove')) return;
+            fileInput.click();
+        });
+
+        // Drag & drop
+        ['dragenter', 'dragover'].forEach(function(ev) {
+            dropzone.addEventListener(ev, function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.add('dropzone--dragover');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(function(ev) {
+            dropzone.addEventListener(ev, function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.remove('dropzone--dragover');
+            });
+        });
+
+        dropzone.addEventListener('drop', function(e) {
+            var files = e.dataTransfer.files;
+            if (files && files.length > 0) {
+                uploadImage(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files && fileInput.files[0]) {
+                uploadImage(fileInput.files[0]);
+            }
+        });
+
+        // Защита: отключаем drop по всему окну (чтобы файл не открывался в браузере)
+        window.addEventListener('dragover', function(e) { e.preventDefault(); });
+        window.addEventListener('drop', function(e) { e.preventDefault(); });
+    }
+
+    // Хранит исходное изображение работы (для отслеживания изменений)
+    var originalImage = '';
+    // Временно загруженный файл, который ещё не сохранён в БД
+    var pendingUpload = '';
+
+    function uploadImage(file) {
+        if (!file.type.startsWith('image/')) {
+            toast('Можно загружать только изображения', 'error');
+            return;
+        }
+
+        document.getElementById('dropzone-content').style.display = 'none';
+        document.getElementById('dropzone-preview').style.display = 'none';
+        document.getElementById('dropzone-loading').style.display = 'flex';
+
+        var formData = new FormData();
+        formData.append('image', file);
+
+        fetch('/CMM/upload.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            document.getElementById('dropzone-loading').style.display = 'none';
+            if (data.success) {
+                // Если уже был загружен временный файл — удаляем его
+                if (pendingUpload && pendingUpload !== data.path) {
+                    deleteUploadedFile(pendingUpload);
+                }
+                pendingUpload = data.path;
+                document.getElementById('f-image').value = data.path;
+                showDropzonePreview(data.path);
+                toast('Фото загружено', 'success');
+            } else {
+                resetDropzone();
+                toast(data.message || 'Ошибка загрузки', 'error');
+            }
+        })
+        .catch(function() {
+            document.getElementById('dropzone-loading').style.display = 'none';
+            resetDropzone();
+            toast('Ошибка сети', 'error');
+        });
+    }
+
+    // Удаление файла с сервера (временно загруженного)
+    function deleteUploadedFile(path) {
+        if (!path) return;
+        fetch('/CMM/upload.php?action=delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ path: path })
+        }).catch(function() {});
+    }
+
+    function showDropzonePreview(path) {
+        document.getElementById('dropzone-content').style.display = 'none';
+        document.getElementById('dropzone-loading').style.display = 'none';
+        document.getElementById('dropzone-preview').style.display = 'block';
+        document.getElementById('dropzone-img').src = path;
+    }
+
+    function resetDropzone() {
+        document.getElementById('f-image').value = '';
+        document.getElementById('f-image-file').value = '';
+        document.getElementById('dropzone-preview').style.display = 'none';
+        document.getElementById('dropzone-loading').style.display = 'none';
+        document.getElementById('dropzone-content').style.display = 'block';
+        document.getElementById('dropzone-img').src = '';
+    }
+
+    function removeImage(e) {
+        e.stopPropagation();
+        // Удаляем с сервера временно загруженный файл (если был)
+        if (pendingUpload) {
+            deleteUploadedFile(pendingUpload);
+            pendingUpload = '';
+        }
+        resetDropzone();
+    }
+
     // Старт
     var currentPage = '<?= $current_page ?>';
     if (currentPage === 'users') {
         loadUsers();
     } else {
         loadWorks();
+        initDropzone();
     }
     </script>
 <?php endif; ?>

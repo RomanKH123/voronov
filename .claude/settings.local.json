@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp z:/voronov/img/*.png z:/voronov/img/_originals/)",
+      "Bash(cp z:/voronov/img/prewiu/*.* z:/voronov/img/_originals/)"
+    ]
+  }
+}

@@ -1,3 +1,28 @@
+# ========== AUTO WEBP — отдавать WebP браузерам, которые поддерживают ==========
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Если браузер поддерживает WebP
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    # И WebP-версия файла существует
+    RewriteCond %{REQUEST_FILENAME} (.+)\.(png|jpe?g)$
+    RewriteCond %1.webp -f
+    # Отдаём WebP вместо оригинала
+    RewriteRule (.+)\.(png|jpe?g)$ $1.webp [T=image/webp,E=accept:1,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Сообщаем кэшу, что ответ зависит от Accept-заголовка
+    <FilesMatch "\.(png|jpe?g)$">
+        Header append Vary Accept
+    </FilesMatch>
+
+    # Правильный MIME для WebP
+    <FilesMatch "\.webp$">
+        Header set Content-Type "image/webp"
+    </FilesMatch>
+</IfModule>
+
 # ========== GZIP COMPRESSION ==========
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html
