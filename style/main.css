@@ -185,6 +185,11 @@ header:not(.header-new) {
     width: 100%;
 }
 
+.sticky-menu .nav-menu a span {
+    color: inherit;
+    font: inherit;
+}
+
 .sticky-menu .nav-menu a.active {
     color: #4a6fa5;
     font-weight: 600;
@@ -2159,6 +2164,119 @@ article {
     .cookie-btn {
         padding: 10px 20px;
         font-size: 13px;
+    }
+}
+
+/* ===== SITE FOOTER ===== */
+.site-footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a3b5f 100%);
+    color: #ccd4e4;
+    padding: 50px 24px 30px;
+    margin-top: 80px;
+    position: relative;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4a6fa5, transparent);
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccd4e4;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    text-decoration: none;
+}
+
+.footer-social:hover {
+    background: #4a6fa5;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(74, 111, 165, 0.4);
+    border-color: #4a6fa5;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Jura', sans-serif;
+    font-size: 14px;
+}
+
+.footer-nav a {
+    color: #ccd4e4;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: #6b8fc9;
+}
+
+.footer-copy {
+    color: #8892b0;
+    font-size: 13px;
+    font-family: 'Jura', sans-serif;
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    margin: 0;
+}
+
+/* Лого в шапке теперь ссылка */
+a.logo-area {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+}
+
+a.logo-area:hover {
+    opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+    .site-footer {
+        padding: 40px 16px 24px;
+        margin-top: 50px;
+    }
+    .footer-nav {
+        gap: 14px 18px;
+        font-size: 13px;
+    }
+    .footer-social {
+        width: 42px;
+        height: 42px;
     }
 }
 

@@ -42,6 +42,26 @@ document.addEventListener('DOMContentLoaded', function() {
             var subtitleEl = document.querySelector('.work-subtitle');
             if (subtitleEl) subtitleEl.textContent = 'Все проекты в категории "' + kategory + '"';
 
+            // Обновляем хлебные крошки — добавляем категорию (с микроразметкой)
+            var breadcrumbs = document.querySelector('.breadcrumbs');
+            if (breadcrumbs) {
+                breadcrumbs.innerHTML =
+                    '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">' +
+                        '<a href="/" itemprop="item"><span itemprop="name">Главная</span></a>' +
+                        '<meta itemprop="position" content="1">' +
+                    '</span>' +
+                    '<span class="breadcrumbs__sep">›</span>' +
+                    '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">' +
+                        '<a href="/work.html" itemprop="item"><span itemprop="name">Портфолио</span></a>' +
+                        '<meta itemprop="position" content="2">' +
+                    '</span>' +
+                    '<span class="breadcrumbs__sep">›</span>' +
+                    '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">' +
+                        '<span class="breadcrumbs__current" itemprop="name">' + escapeHtml(kategory) + '</span>' +
+                        '<meta itemprop="position" content="3">' +
+                    '</span>';
+            }
+
             // Обновляем SEO-мета для категории
             document.title = kategory + ' — портфолио | Студия Воронова, Краснодар';
             updateMeta('description', 'Примеры работ в категории "' + kategory + '". Портфолио студии Воронова — создание сайтов под ключ в Краснодаре.');
@@ -189,6 +209,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // SEO: title и мета-теги
         document.title = work.title + ' — ' + (work.category || 'проект') + ' | Студия Воронова, Краснодар';
 
+        // Обновляем canonical на точный URL с id
+        var canonicalEl = document.querySelector('link[rel="canonical"]');
+        if (canonicalEl) canonicalEl.href = 'https://voronov-art.ru/work_info.html?id=' + work.id;
+
         var seoDesc = (work.full_description || work.description || '').substring(0, 160);
         updateMeta('description', seoDesc);
         updateMeta('og:title', work.title + ' — Студия Воронова', true);
@@ -199,14 +223,41 @@ document.addEventListener('DOMContentLoaded', function() {
         updateMeta('twitter:description', work.description, true);
         if (work.image) updateMeta('twitter:image', 'https://voronov-art.ru' + work.image, true);
 
-        // Кнопка "Назад" — возвращает в work.html с категорией
-        var backUrl = '/work.html';
-        if (work.Kategory) {
-            backUrl = '/work.html?kategory=' + encodeURIComponent(work.Kategory);
+        // Обновляем хлебные крошки: добавляем категорию и название работы (с микроразметкой)
+        var breadcrumbs = document.getElementById('work-info-breadcrumbs');
+        if (breadcrumbs) {
+            var pos = 1;
+            var crumbsHtml =
+                '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">' +
+                    '<a href="/" itemprop="item"><span itemprop="name">Главная</span></a>' +
+                    '<meta itemprop="position" content="' + pos + '">' +
+                '</span>' +
+                '<span class="breadcrumbs__sep">›</span>' +
+                '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">' +
+                    '<a href="/work.html" itemprop="item"><span itemprop="name">Портфолио</span></a>' +
+                    '<meta itemprop="position" content="' + (++pos) + '">' +
+                '</span>';
+
+            if (work.Kategory) {
+                crumbsHtml +=
+                    '<span class="breadcrumbs__sep">›</span>' +
+                    '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">' +
+                        '<a href="/work.html?kategory=' + encodeURIComponent(work.Kategory) + '" itemprop="item"><span itemprop="name">' + escapeHtml(work.Kategory) + '</span></a>' +
+                        '<meta itemprop="position" content="' + (++pos) + '">' +
+                    '</span>';
+            }
+
+            crumbsHtml +=
+                '<span class="breadcrumbs__sep">›</span>' +
+                '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">' +
+                    '<span class="breadcrumbs__current" itemprop="name">' + escapeHtml(work.title) + '</span>' +
+                    '<meta itemprop="position" content="' + (++pos) + '">' +
+                '</span>';
+
+            breadcrumbs.innerHTML = crumbsHtml;
         }
 
         workInfo.innerHTML =
-            '<a href="' + backUrl + '" class="back-link">&larr; Вернуться к списку работ</a>' +
             image +
             '<div class="work-detail__content">' +
                 category +

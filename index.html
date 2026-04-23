@@ -112,6 +112,7 @@
             "availableLanguage": "Russian"
         },
         "sameAs": [
+            "https://vk.com/voronov_web",
             "https://t.me/voronov_tg",
             "https://max.ru/u/f9LHodD0cOI0qhzsscrWqC_PtkCNF2djBcLcMsjcftt2tyt-GsrMhg4onLM"
         ],
@@ -199,7 +200,57 @@
         }
     }
     </script>
-    
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SiteNavigationElement",
+                "position": 1,
+                "name": "Главная",
+                "description": "Создание сайтов под ключ в Краснодаре",
+                "url": "https://voronov-art.ru/"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "position": 2,
+                "name": "О компании",
+                "description": "О студии Воронова",
+                "url": "https://voronov-art.ru/#about"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "position": 3,
+                "name": "Услуги",
+                "description": "Услуги веб-разработки",
+                "url": "https://voronov-art.ru/#services"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "position": 4,
+                "name": "Портфолио",
+                "description": "Примеры работ — сайты под ключ",
+                "url": "https://voronov-art.ru/work.html"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "position": 5,
+                "name": "Контакты",
+                "description": "Связаться со студией Воронова",
+                "url": "https://voronov-art.ru/#contacts"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "position": 6,
+                "name": "Политика конфиденциальности",
+                "description": "Политика обработки персональных данных",
+                "url": "https://voronov-art.ru/privacy-policy.html"
+            }
+        ]
+    }
+    </script>
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -297,11 +348,11 @@
     </header>
 
     <div class="sticky-menu">
-        <nav class="nav-menu">
-            <a onclick="scrollToBlock('about')">О компании</a>
-            <a onclick="scrollToBlock('services')">Услуги</a>              
-            <a onclick="scrollToBlock('works')">Наши работы</a>
-            <a onclick="scrollToBlock('contacts')">Контакты</a>
+        <nav class="nav-menu" aria-label="Главная навигация" itemscope itemtype="https://schema.org/SiteNavigationElement">
+            <a href="#about" itemprop="url" onclick="scrollToBlock('about');return false;"><span itemprop="name">О компании</span></a>
+            <a href="#services" itemprop="url" onclick="scrollToBlock('services');return false;"><span itemprop="name">Услуги</span></a>
+            <a href="#works" itemprop="url" onclick="scrollToBlock('works');return false;"><span itemprop="name">Наши работы</span></a>
+            <a href="#contacts" itemprop="url" onclick="scrollToBlock('contacts');return false;"><span itemprop="name">Контакты</span></a>
         </nav>
     </div>
     
@@ -574,6 +625,13 @@
                             </div>
                         </a>
 
+                        <a href="https://vk.com/voronov_web" target="_blank" rel="noopener noreferrer" class="contact_item_link">
+                            <div class="contact_item">
+                                <div class="contact_icon">💬</div>
+                                <span class="contact_label">ВКонтакте:</span>
+                                <span class="contact_value">vk.com/voronov_web</span>
+                            </div>
+                        </a>
                         <a href="https://t.me/voronov_tg" target="_blank" rel="noopener noreferrer" class="contact_item_link">
                             <div class="contact_item">
                                 <div class="contact_icon">📱</div>
@@ -673,9 +731,32 @@
         </div>
     </div>
 </div>
-    <footer style="text-align: center; padding: 20px; background: #1a1a2e; color: #888; margin-top: 50px;">
-         <p>© <span id="current-year">2025</span> Студия веб-разработки Воронова. Создание сайтов под ключ в Краснодаре.</p>
-        <p><a href="/privacy-policy.html" style="color: #4a6fa5;">Политика обработки персональных данных</a></p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-socials">
+                <a href="https://vk.com/voronov_web" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" class="footer-social">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.131-.427.131-.427s-.019-1.302.583-1.494c.593-.19 1.355 1.259 2.163 1.816.61.42 1.073.328 1.073.328l2.162-.031s1.131-.072.594-.972c-.044-.074-.314-.66-1.612-1.865-1.359-1.261-1.176-1.057.459-3.24.996-1.33 1.395-2.14 1.271-2.485-.119-.33-.849-.241-.849-.241l-2.434.015s-.181-.025-.314.056c-.131.079-.215.264-.215.264s-.386 1.029-.901 1.904c-1.085 1.849-1.52 1.945-1.697 1.829-.412-.267-.31-1.073-.31-1.644 0-1.782.271-2.525-.526-2.717-.264-.066-.459-.108-1.135-.115-.866-.009-1.6.003-2.013.205-.276.135-.487.435-.359.453.159.022.517.098.706.359.245.336.237 1.091.237 1.091s.141 2.072-.329 2.331c-.323.178-.764-.184-1.731-1.852-.495-.855-.869-1.8-.869-1.8s-.073-.177-.202-.271c-.158-.115-.377-.152-.377-.152l-2.314.015s-.348.01-.475.161c-.114.134-.009.412-.009.412s1.813 4.243 3.866 6.381c1.882 1.96 4.018 1.832 4.018 1.832h.962z"/></svg>
+                </a>
+                <a href="https://t.me/voronov_tg" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="footer-social">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                </a>
+                <a href="tel:+79604987864" aria-label="Телефон" class="footer-social">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
+                <a href="mailto:info@voronov.ru" aria-label="Email" class="footer-social">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+            </div>
+            <nav class="footer-nav" aria-label="Навигация в футере">
+                <a href="/">Главная</a>
+                <a href="/#about">О нас</a>
+                <a href="/#services">Услуги</a>
+                <a href="/work.html">Портфолио</a>
+                <a href="/#contacts">Контакты</a>
+                <a href="/privacy-policy.html">Политика</a>
+            </nav>
+            <p class="footer-copy">© <span id="current-year">2025</span> Студия веб-разработки Воронова. Создание сайтов под ключ в Краснодаре.</p>
+        </div>
     </footer>
     <script src="/style/js/main.js"></script>
     <script src="/style/js/cookie-manager.js"></script>
