@@ -29,6 +29,11 @@ Allow: /work.html
 Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /portfolio/
+Allow: /blog/
+Allow: /lending-krasnodar.html
+Allow: /korporativnyj-sajt-krasnodar.html
+Allow: /internet-magazin-krasnodar.html
 
 # Разрешаем ресурсы для рендеринга страниц
 Allow: /style/*.css
@@ -57,6 +62,11 @@ Allow: /work.html
 Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /portfolio/
+Allow: /blog/
+Allow: /lending-krasnodar.html
+Allow: /korporativnyj-sajt-krasnodar.html
+Allow: /internet-magazin-krasnodar.html
 Allow: /style/*.css
 Allow: /style/js/*.js
 Allow: /img/
@@ -80,6 +90,11 @@ Allow: /work.html
 Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /portfolio/
+Allow: /blog/
+Allow: /lending-krasnodar.html
+Allow: /korporativnyj-sajt-krasnodar.html
+Allow: /internet-magazin-krasnodar.html
 Allow: /style/*.css
 Allow: /style/js/*.js
 Allow: /img/
@@ -98,6 +113,11 @@ Allow: /work.html
 Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /portfolio/
+Allow: /blog/
+Allow: /lending-krasnodar.html
+Allow: /korporativnyj-sajt-krasnodar.html
+Allow: /internet-magazin-krasnodar.html
 Allow: /style/*.css
 Allow: /style/js/*.js
 Allow: /img/
@@ -114,6 +134,11 @@ Allow: /work.html
 Allow: /work_info.html
 Allow: /privacy-policy.html
 Allow: /work/
+Allow: /portfolio/
+Allow: /blog/
+Allow: /lending-krasnodar.html
+Allow: /korporativnyj-sajt-krasnodar.html
+Allow: /internet-magazin-krasnodar.html
 Allow: /style/*.css
 Allow: /style/js/*.js
 Allow: /img/

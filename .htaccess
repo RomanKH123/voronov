@@ -9,6 +9,24 @@
     RewriteCond %1.webp -f
     # Отдаём WebP вместо оригинала
     RewriteRule (.+)\.(png|jpe?g)$ $1.webp [T=image/webp,E=accept:1,L]
+
+    # ========== ЧПУ ДЛЯ ПОРТФОЛИО ==========
+    # Список портфолио (общий)
+    RewriteRule ^portfolio/?$ /work.html [L]
+
+    # Категории — ЧПУ на латинице, внутри переписываем на параметр с кириллицей
+    RewriteRule ^portfolio/sayty/?$ /work.html?kategory=%D0%A1%D0%B0%D0%B9%D1%82%D1%8B [L,NE]
+    RewriteRule ^portfolio/testirovanie/?$ /work.html?kategory=%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5 [L,NE]
+    RewriteRule ^portfolio/dizajn/?$ /work.html?kategory=%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD [L,NE]
+    RewriteRule ^portfolio/dorabotka/?$ /work.html?kategory=%D0%94%D0%BE%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0 [L,NE]
+
+    # Детальные страницы работ — slug → id
+    RewriteRule ^portfolio/prime-estate/?$ /work_info.html?id=1 [L]
+    RewriteRule ^portfolio/objektiv/?$ /work_info.html?id=2 [L]
+    RewriteRule ^portfolio/kinoset/?$ /work_info.html?id=3 [L]
+    RewriteRule ^portfolio/kras-dostavka/?$ /work_info.html?id=4 [L]
+    RewriteRule ^portfolio/krop-rem-avto/?$ /work_info.html?id=5 [L]
+    RewriteRule ^portfolio/sitekrd/?$ /work_info.html?id=6 [L]
 </IfModule>
 
 <IfModule mod_headers.c>

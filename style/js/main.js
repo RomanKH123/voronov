@@ -107,35 +107,33 @@ document.addEventListener('DOMContentLoaded', function() {
             { id: 'works', menuIndex: 2 },
             { id: 'contacts', menuIndex: 3 }
         ];
-        
+
         const menuHeight = stickyMenu ? stickyMenu.offsetHeight : document.querySelector('.menu_st')?.offsetHeight || 0;
         const scrollPosition = window.pageYOffset + menuHeight + 50;
-        
+
+        // Берём последний раздел, чей верх выше текущей позиции, — так
+        // подчёркивание не застревает в промежуточных нетрекаемых секциях.
         let currentSection = null;
-        
         for (let section of sections) {
             const element = document.getElementById(section.id);
-            if (element) {
-                const elementTop = element.offsetTop;
-                const elementBottom = elementTop + element.offsetHeight;
-                
-                if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
-                    currentSection = section;
-                    break;
-                }
+            if (!element) continue;
+            if (scrollPosition >= element.offsetTop) {
+                currentSection = section;
+            } else {
+                break;
             }
         }
-        
+
+        document.querySelectorAll('.sticky-menu .nav-menu a, .menu_st div').forEach(item => {
+            item.classList.remove('active');
+        });
+
         if (currentSection) {
-            document.querySelectorAll('.sticky-menu .nav-menu a, .menu_st div').forEach(item => {
-                item.classList.remove('active');
-            });
-            
             const newMenuItems = document.querySelectorAll('.sticky-menu .nav-menu a');
             if (newMenuItems[currentSection.menuIndex]) {
                 newMenuItems[currentSection.menuIndex].classList.add('active');
             }
-            
+
             const oldMenuItems = document.querySelectorAll('.menu_st div');
             if (oldMenuItems[currentSection.menuIndex]) {
                 oldMenuItems[currentSection.menuIndex].classList.add('active');
