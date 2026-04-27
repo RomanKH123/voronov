@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:yandex="http://news.yandex.ru">
+    <channel>
+        <title>Блог студии Воронова</title>
+        <link>https://voronov-art.ru/blog/</link>
+        <description>Статьи о разработке сайтов, выборе платформ и работе с подрядчиками. Практика студии веб-разработки Воронова из Краснодара.</description>
+        <language>ru</language>
+        <atom:link href="https://voronov-art.ru/blog/rss.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Thu, 23 Apr 2026 12:00:00 +0300</lastBuildDate>
+        <pubDate>Thu, 23 Apr 2026 12:00:00 +0300</pubDate>
+        <ttl>60</ttl>
+        <image>
+            <url>https://voronov-art.ru/img/logo_2.png</url>
+            <title>Блог студии Воронова</title>
+            <link>https://voronov-art.ru/blog/</link>
+        </image>
+
+        <item>
+            <title>Как выбрать веб-студию и не ошибиться</title>
+            <link>https://voronov-art.ru/blog/kak-vybrat-web-studiyu.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/kak-vybrat-web-studiyu.html</guid>
+            <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
+            <description>Чеклист для заказчика: на что смотреть в портфолио, какие вопросы задавать подрядчику, что проверить в договоре и как не попасть на долгострой.</description>
+            <category>Разработка сайтов</category>
+        </item>
+
+        <item>
+            <title>Tilda или WordPress: что выбрать</title>
+            <link>https://voronov-art.ru/blog/tilda-ili-wordpress.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/tilda-ili-wordpress.html</guid>
+            <pubDate>Tue, 21 Apr 2026 10:00:00 +0300</pubDate>
+            <description>Сравнение двух популярных платформ — когда выигрывает Tilda, а когда WordPress. Плюсы, минусы и подводные камни.</description>
+            <category>Разработка сайтов</category>
+        </item>
+
+        <item>
+            <title>Сколько стоит сайт под ключ в Краснодаре: из чего складывается цена</title>
+            <link>https://voronov-art.ru/blog/skolko-stoit-sayt-pod-kluch.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/skolko-stoit-sayt-pod-kluch.html</guid>
+            <pubDate>Mon, 20 Apr 2026 10:00:00 +0300</pubDate>
+            <description>Разбираем, из чего складывается цена лендинга, корпоративного сайта и интернет-магазина. Скрытые расходы и как планировать бюджет.</description>
+            <category>Разработка сайтов</category>
+        </item>
+    </channel>
+</rss>

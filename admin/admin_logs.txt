@@ -81,3 +81,14 @@
 [2026-04-22 11:01:36] IP: 85.249.171.184 | User: admin | Action: LOGIN | Details: Successful login via form
 [2026-04-22 17:28:14] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
 [2026-04-23 06:49:16] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-24 13:13:43] IP: 95.139.44.69 | User: admin | Action: LOGOUT | Details: User logged out
+[2026-04-24 13:13:44] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-24 13:13:45] IP: 95.139.44.69 | User: admin | Action: LOGOUT | Details: User logged out
+[2026-04-24 13:13:46] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-24 14:49:15] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-24 16:06:49] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-24 21:11:20] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-24 22:54:44] IP: 95.139.44.69 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-25 14:44:22] IP: 80.115.223.96 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-27 10:23:15] IP: 85.172.30.82 | User: admin | Action: LOGIN | Details: Successful login via form
+[2026-04-27 14:16:29] IP: 95.140.158.254 | User: admin | Action: LOGIN | Details: Successful login via form

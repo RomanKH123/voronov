@@ -6,7 +6,9 @@
 (function() {
     'use strict';
     
-    const COOKIE_NAME = 'cookie_consent';
+    // Версия согласия. При существенном обновлении политики ПДн
+    // увеличиваем число — все посетители увидят баннер повторно.
+    const COOKIE_NAME = 'cookie_consent_v2';
     const COOKIE_EXPIRE_DAYS = 365;
     
     function setCookie(name, value, days) {

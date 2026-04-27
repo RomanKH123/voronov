@@ -138,7 +138,7 @@
                 <a href="tel:+79604987864" aria-label="Телефон" class="footer-social">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </a>
-                <a href="mailto:info@voronov.ru" aria-label="Email" class="footer-social">
+                <a href="mailto:info@voronov-art.ru" aria-label="Email" class="footer-social">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </a>
             </div>
@@ -150,7 +150,7 @@
                 <a href="/#contacts">Контакты</a>
                 <a href="/privacy-policy.html">Политика</a>
             </nav>
-            <p class="footer-copy">© <span id="current-year">2025</span> Студия веб-разработки Воронова. Создание сайтов под ключ в Краснодаре.</p>
+            <p class="footer-copy">© <span id="current-year">2025</span> Студия Воронова — создание сайтов под ключ в Краснодаре. <a href="/privacy-policy.html#requisites" style="color:inherit;text-decoration:underline;">Реквизиты исполнителя</a>.</p>
         </div>
     </footer>
     <div id="modal" class="modal">
@@ -164,17 +164,24 @@
                     <label for="name">Ваше имя *</label>
                     <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="phone">Номер телефона *</label>
                     <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Введите ваш email">
                 </div>
-                
+
+                <div class="form_consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;color:#555;margin:12px 0 16px;">
+                    <input type="checkbox" id="consent_modal_w" name="consent" required style="margin-top:3px;flex-shrink:0;">
+                    <label for="consent_modal_w" style="cursor:pointer;">
+                        Я даю согласие на обработку персональных данных в соответствии с <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#4a6fa5;">Политикой обработки ПДн</a>
+                    </label>
+                </div>
+
                 <button type="submit" class="modal-submit-btn">Отправить заявку</button>
             </form>
             
