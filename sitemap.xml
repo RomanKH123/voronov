@@ -72,6 +72,12 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/rukopisnyj-sajt-vs-konstruktory.html</loc>
+        <lastmod>2026-04-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 
     <url>
         <loc>https://voronov-art.ru/privacy-policy.html</loc>

@@ -30,6 +30,82 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jura:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="/style/main.css">
 
+    <style>
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            align-items: stretch;
+        }
+        .blog-grid article {
+            margin: 0 !important;
+            min-height: auto;
+            padding: 28px 26px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s ease;
+        }
+        .blog-grid article:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 32px rgba(74,111,165,0.18);
+        }
+        .blog-grid article:focus-within {
+            outline: 2px solid #4a6fa5;
+            outline-offset: 2px;
+        }
+        .blog-grid .ln_b_1 {
+            font-size: 22px;
+            margin: 0 0 12px;
+            line-height: 1.3;
+        }
+        .blog-grid .ln_b_1 a {
+            position: static;
+        }
+        .blog-grid .ln_b_1 a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        .blog-grid .ln_b_2 {
+            flex-grow: 1;
+            margin-bottom: 16px;
+            line-height: 1.55;
+            position: relative;
+            z-index: 0;
+        }
+        .blog-grid .ln_b_3 {
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+        }
+        .blog-grid .ln_b_3 a:hover {
+            text-decoration: underline;
+        }
+        .blog-grid article:focus-within .ln_b_1 a {
+            outline: none;
+        }
+        @media (max-width: 640px) {
+            .blog-grid {
+                gap: 18px;
+                padding: 0 16px;
+            }
+            .blog-grid article {
+                padding: 22px 20px;
+            }
+            .blog-grid .ln_b_1 {
+                font-size: 19px;
+            }
+        }
+    </style>
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -88,19 +164,24 @@
             <h2 class="blok_6_nm">Все статьи</h2>
             <div class="blok_6_txt">Отвечаем на вопросы, которые задают заказчики до старта проекта</div>
 
-            <div class="blok_3_ln" style="max-width:1200px;margin:0 auto;padding:0 20px;">
+            <div class="blog-grid">
                 <article class="ln_1">
-                    <h2 class="ln_b_1" style="font-size:22px;"><a href="/blog/skolko-stoit-sayt-pod-kluch.html" style="color:inherit;text-decoration:none;">Сколько стоит сайт под ключ в Краснодаре</a></h2>
+                    <h2 class="ln_b_1"><a href="/blog/rukopisnyj-sajt-vs-konstruktory.html" style="color:inherit;text-decoration:none;">Рукописный сайт против Tilda и WordPress</a></h2>
+                    <p class="ln_b_2">Когда конструктор начинает мешать бизнесу: скорость, SEO, гибкость, независимость. Разбираем, когда и зачем переходить на рукописную разработку.</p>
+                    <div class="ln_b_3"><a href="/blog/rukopisnyj-sajt-vs-konstruktory.html" style="color:#4a6fa5;font-weight:600;">Читать →</a></div>
+                </article>
+                <article class="ln_2">
+                    <h2 class="ln_b_1"><a href="/blog/skolko-stoit-sayt-pod-kluch.html" style="color:inherit;text-decoration:none;">Сколько стоит сайт под ключ в Краснодаре</a></h2>
                     <p class="ln_b_2">Разбираем, из чего складывается цена лендинга, корпоративного сайта и интернет-магазина. На примерах — почему вилки такие широкие.</p>
                     <div class="ln_b_3"><a href="/blog/skolko-stoit-sayt-pod-kluch.html" style="color:#4a6fa5;font-weight:600;">Читать →</a></div>
                 </article>
-                <article class="ln_2">
-                    <h2 class="ln_b_1" style="font-size:22px;"><a href="/blog/tilda-ili-wordpress.html" style="color:inherit;text-decoration:none;">Tilda или WordPress: что выбрать</a></h2>
+                <article class="ln_3">
+                    <h2 class="ln_b_1"><a href="/blog/tilda-ili-wordpress.html" style="color:inherit;text-decoration:none;">Tilda или WordPress: что выбрать</a></h2>
                     <p class="ln_b_2">Сравниваем две самые популярные платформы в России: когда выигрывает Tilda, а когда — WordPress. Плюсы, минусы и подводные камни.</p>
                     <div class="ln_b_3"><a href="/blog/tilda-ili-wordpress.html" style="color:#4a6fa5;font-weight:600;">Читать →</a></div>
                 </article>
-                <article class="ln_3">
-                    <h2 class="ln_b_1" style="font-size:22px;"><a href="/blog/kak-vybrat-web-studiyu.html" style="color:inherit;text-decoration:none;">Как выбрать веб-студию и не ошибиться</a></h2>
+                <article class="ln_1">
+                    <h2 class="ln_b_1"><a href="/blog/kak-vybrat-web-studiyu.html" style="color:inherit;text-decoration:none;">Как выбрать веб-студию и не ошибиться</a></h2>
                     <p class="ln_b_2">Чеклист для заказчика: на что смотреть в портфолио, какие вопросы задавать, что проверить в договоре и как не попасть на долгострой.</p>
                     <div class="ln_b_3"><a href="/blog/kak-vybrat-web-studiyu.html" style="color:#4a6fa5;font-weight:600;">Читать →</a></div>
                 </article>
