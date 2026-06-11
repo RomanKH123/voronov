@@ -269,6 +269,17 @@ article {
 /* Блок 1 */
 .blok_1 {
     margin-top: 5vw;
+    position: relative;
+}
+
+/* Слой с парящими 3D-фигурами — за контентом hero */
+.hero-3d-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .blok_1_zg {
@@ -278,6 +289,8 @@ article {
     margin-left: 7vw;
     font-family: 'Abhaya Libre', sans-serif;
     font-size: clamp(12px, 2vw, 22px);
+    position: relative;
+    z-index: 2;
 }
 
 .blok_1_zg h1 {
@@ -834,6 +847,12 @@ article {
     gap: 2.5vw;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+/* Если в категории только одна работа — центрируем карточку, а не прижимаем влево */
+.projects_grid:has(.project_card_link:only-child) {
+    grid-template-columns: minmax(320px, 700px);
+    justify-content: center;
 }
 
 .project_card {
@@ -1665,6 +1684,158 @@ article {
 .projects_grid .project_card.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ===== Карточки «Почему выбирают» ===== */
+.why-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+}
+
+.why-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 111, 165, 0.14);
+    border-radius: 20px;
+    padding: 30px 26px;
+    box-shadow: 0 10px 30px rgba(74, 111, 165, 0.08);
+    position: relative;
+    overflow: hidden;
+    /* стартовое (скрытое) состояние для появления при скролле */
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1),
+                box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.why-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4a6fa5, #8bb4e0);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.why-card__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, #e8f0fb, #c4dcfa);
+    box-shadow: 0 6px 16px rgba(74, 111, 165, 0.15);
+    transition: transform 0.35s ease;
+}
+
+.why-card__title {
+    font-family: 'Abhaya Libre', sans-serif;
+    font-size: clamp(17px, 2vw, 20px);
+    font-weight: 700;
+    color: #2c3e5a;
+    margin: 0 0 10px;
+}
+
+.why-card__text {
+    font-family: 'Abyssinica SIL', sans-serif;
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.55;
+    color: #555;
+    margin: 0;
+}
+
+/* Появление карточек каскадом вместе с секцией */
+.blok_5.visible .why-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blok_5.visible .why-card:nth-child(1) { transition-delay: 0.05s; }
+.blok_5.visible .why-card:nth-child(2) { transition-delay: 0.15s; }
+.blok_5.visible .why-card:nth-child(3) { transition-delay: 0.25s; }
+.blok_5.visible .why-card:nth-child(4) { transition-delay: 0.35s; }
+
+/* Ховер — специфичность выше правила появления, чтобы подъём работал */
+.blok_5.visible .why-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 40px rgba(74, 111, 165, 0.18);
+    border-color: #4a6fa5;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                box-shadow 0.35s ease, border-color 0.35s ease;
+    transition-delay: 0s;
+}
+
+.blok_5.visible .why-card:hover::before {
+    transform: scaleX(1);
+}
+
+.blok_5.visible .why-card:hover .why-card__icon {
+    transform: scale(1.1) rotate(-6deg);
+}
+
+/* ===== Каскадное появление карточек шагов и тарифов ===== */
+.blok_2 article,
+.blok_4 article {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.blok_2.visible article,
+.blok_4.visible article {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Лёгкая задержка для эффекта «волны» */
+.blok_2.visible article:nth-child(1),
+.blok_4.visible article:nth-child(1) { transition-delay: 0.05s; }
+.blok_2.visible article:nth-child(2),
+.blok_4.visible article:nth-child(2) { transition-delay: 0.15s; }
+.blok_2.visible article:nth-child(3),
+.blok_4.visible article:nth-child(3) { transition-delay: 0.25s; }
+.blok_2.visible article:nth-child(4) { transition-delay: 0.35s; }
+
+/* Снап-обратно на ховере, чтобы каскад не замедлял наведение */
+.blok_2 article:hover,
+.blok_4 article:hover {
+    transition: transform 0.3s ease;
+}
+
+/* Появление номера шага с лёгким «всплытием» */
+.blok_2 .step-number {
+    transform: scale(0.6);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.2, 1.4, 0.5, 1), opacity 0.5s ease;
+    transition-delay: 0.25s;
+}
+
+.blok_2.visible .step-number {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Уважение к настройке «уменьшить движение» */
+@media (prefers-reduced-motion: reduce) {
+    .blok_1, .blok_about, .blok_3, .blok_2, .blok_4, .blok_6,
+    .blok_5:not(.blok_5_ln), .blok_contacts,
+    .blok_3_ln .ln_1, .blok_3_ln .ln_2, .blok_3_ln .ln_3,
+    .projects_grid .project_card,
+    .blok_2 article, .blok_4 article, .blok_2 .step-number,
+    .why-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 /* Декоративные элементы для фона */

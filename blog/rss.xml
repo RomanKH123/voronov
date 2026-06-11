@@ -6,14 +6,23 @@
         <description>Статьи о разработке сайтов, выборе платформ и работе с подрядчиками. Практика студии веб-разработки Воронова из Краснодара.</description>
         <language>ru</language>
         <atom:link href="https://voronov-art.ru/blog/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Thu, 23 Apr 2026 12:00:00 +0300</lastBuildDate>
-        <pubDate>Thu, 23 Apr 2026 12:00:00 +0300</pubDate>
+        <lastBuildDate>Thu, 30 Apr 2026 12:00:00 +0300</lastBuildDate>
+        <pubDate>Thu, 30 Apr 2026 12:00:00 +0300</pubDate>
         <ttl>60</ttl>
         <image>
             <url>https://voronov-art.ru/img/logo_2.png</url>
             <title>Блог студии Воронова</title>
             <link>https://voronov-art.ru/blog/</link>
         </image>
+
+        <item>
+            <title>Рукописный сайт против Tilda и WordPress: когда пора уходить с конструктора</title>
+            <link>https://voronov-art.ru/blog/rukopisnyj-sajt-vs-konstruktory.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/rukopisnyj-sajt-vs-konstruktory.html</guid>
+            <pubDate>Thu, 30 Apr 2026 10:00:00 +0300</pubDate>
+            <description>Скорость, SEO, гибкость, независимость — почему серьёзный бизнес уходит с конструкторов на рукописную разработку.</description>
+            <category>Разработка сайтов</category>
+        </item>
 
         <item>
             <title>Как выбрать веб-студию и не ошибиться</title>

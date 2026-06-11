@@ -359,6 +359,7 @@
     <main>
 
         <section class="blok_1" id="about" aria-labelledby="about-heading">
+            <canvas id="hero3d" class="hero-3d-canvas" aria-hidden="true"></canvas>
             <div class="blok_1_zg">
                 <h1 id="about-heading">Создание сайтов под ключ в Краснодаре</h1>
             </div>
@@ -380,9 +381,8 @@
             <div class="blok_2_zg">Создаем сайты под ключ с 2020 года</div>
             
             <div class="blok_3_tg" style="max-width: 900px; margin: 0 auto 40px; text-align: center;">
-                Студия Воронова специализируется на создании сайтов под ключ в Краснодаре. 
-                Мы разрабатываем лендинги, корпоративные сайты и интернет-магазины на Tilda и WordPress. 
-                Также занимаемся SEO-продвижением и созданием Telegram ботов для автоматизации бизнеса.
+                Создаём сайты под ключ в Краснодаре: лендинги, корпоративные сайты и интернет-магазины на Tilda и WordPress.
+                А ещё — SEO-продвижение и Telegram-боты для автоматизации бизнеса.
             </div>
             
        
@@ -418,9 +418,7 @@
             <h2 id="services-heading" class="blok_3_nm">Услуги</h2>
             <div class="blok_3_zg">Комплексный подход к созданию вашего бизнеса в интернете</div>
             <div class="blok_3_tg">
-                Мы предлагаем полный цикл работ по созданию сайтов под ключ: от разработки до SEO-продвижения 
-                и настройки рекламы в Яндекс.Директ. Все услуги можно заказать "под ключ" — вы получаете готовый 
-                работающий инструмент для продаж.
+                Полный цикл под ключ: от разработки до SEO и рекламы в Яндекс.Директ. На выходе — готовый инструмент продаж.
             </div>
             
             <div class="blok_3_ln">
@@ -575,25 +573,36 @@
         <section class="blok_5" style="margin-top: 40px; background-color: #f5f9ff;">
             <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
                 <h2 class="blok_2_nm" style="margin-bottom: 30px;">Почему выбирают нашу студию в Краснодаре</h2>
-                
-                <p class="blok_3_tg" style="margin-bottom: 20px;">
-                    <strong>Создание сайтов под ключ в Краснодаре</strong> — основное направление студии Воронова. 
-                    Мы разрабатываем сайты, которые решают бизнес-задачи: привлекают клиентов, увеличивают продажи, 
-                    формируют имидж компании.
+
+                <p class="blok_3_tg" style="margin-bottom: 24px;">
+                    <strong>Создание сайтов под ключ в Краснодаре</strong> — наше основное направление с 2020 года.
+                    Делаем лендинги, корпоративные сайты и интернет-магазины на Tilda и WordPress, которые привлекают
+                    клиентов и увеличивают продажи. Чтобы заказать сайт под ключ — позвоните или оставьте заявку в форме.
                 </p>
-                
-                <h3 class="ln_b_1" style="margin: 30px 0 15px;">Какие сайты мы создаем под ключ</h3>
-                <p class="blok_3_tg" style="margin-bottom: 20px;">
-                    Мы делаем лендинги для рекламных кампаний, корпоративные сайты для представления компаний, 
-                    интернет-магазины для продажи товаров. В работе используем Tilda и WordPress.
-                </p>
-                
-                <h3 class="ln_b_1" style="margin: 30px 0 15px;">Заказать сайт под ключ в Краснодаре</h3>
-                <p class="blok_3_tg" style="margin-bottom: 20px;">
-                    Чтобы заказать создание сайта под ключ, свяжитесь с нами по телефону или через форму обратной связи. 
-                    Работаем с 2020 года.
-                </p>
-                
+
+                <div class="why-cards">
+                    <article class="why-card">
+                        <div class="why-card__icon">📑</div>
+                        <h3 class="why-card__title">Работаем по договору</h3>
+                        <p class="why-card__text">Официально, с гарантией на все работы и прозрачными условиями. Знаете, за что платите.</p>
+                    </article>
+                    <article class="why-card">
+                        <div class="why-card__icon">💰</div>
+                        <h3 class="why-card__title">Фиксированная стоимость</h3>
+                        <p class="why-card__text">Цена закрепляется в смете до старта и не растёт в процессе. Без неожиданных доплат.</p>
+                    </article>
+                    <article class="why-card">
+                        <div class="why-card__icon">🔑</div>
+                        <h3 class="why-card__title">Сайт принадлежит вам</h3>
+                        <p class="why-card__text">Передаём все доступы, исходники и пароли. Никакой привязки к студии.</p>
+                    </article>
+                    <article class="why-card">
+                        <div class="why-card__icon">⚡</div>
+                        <h3 class="why-card__title">Сдаём в срок</h3>
+                        <p class="why-card__text">Чёткие дедлайны по каждому этапу и регулярные отчёты. Без «долгостроя».</p>
+                    </article>
+                </div>
+
             </div>
         </section>
 
@@ -639,19 +648,19 @@
 
             <div class="blok_3_ln" style="max-width:1200px;margin:0 auto;padding:0 20px;">
                 <article class="ln_1">
-                    <h3 class="ln_b_1"><a href="/blog/skolko-stoit-sayt-pod-kluch.html" style="color:inherit;text-decoration:none;">Сколько стоит сайт под ключ</a></h3>
-                    <p class="ln_b_2">Разбираем, из чего складывается цена: дизайн, вёрстка, контент, интеграции. С примерами по Краснодару.</p>
-                    <div class="ln_b_3"><a href="/blog/skolko-stoit-sayt-pod-kluch.html" style="color:#4a6fa5;font-weight:600;">Читать статью →</a></div>
+                    <h3 class="ln_b_1"><a href="/blog/rukopisnyj-sajt-vs-konstruktory.html" style="color:inherit;text-decoration:none;">Рукописный сайт против Tilda и WordPress</a></h3>
+                    <p class="ln_b_2">Скорость, SEO, гибкость, независимость — почему серьёзный бизнес уходит с конструкторов на рукописную разработку.</p>
+                    <div class="ln_b_3"><a href="/blog/rukopisnyj-sajt-vs-konstruktory.html" style="color:#4a6fa5;font-weight:600;">Читать статью →</a></div>
                 </article>
                 <article class="ln_2">
-                    <h3 class="ln_b_1"><a href="/blog/tilda-ili-wordpress.html" style="color:inherit;text-decoration:none;">Tilda или WordPress</a></h3>
-                    <p class="ln_b_2">Сравнение двух популярных платформ — когда выбирать каждую и какие у них ограничения.</p>
-                    <div class="ln_b_3"><a href="/blog/tilda-ili-wordpress.html" style="color:#4a6fa5;font-weight:600;">Читать статью →</a></div>
-                </article>
-                <article class="ln_3">
                     <h3 class="ln_b_1"><a href="/blog/kak-vybrat-web-studiyu.html" style="color:inherit;text-decoration:none;">Как выбрать веб-студию</a></h3>
                     <p class="ln_b_2">На что смотреть в портфолио, какие вопросы задать подрядчику, чего избегать в договоре.</p>
                     <div class="ln_b_3"><a href="/blog/kak-vybrat-web-studiyu.html" style="color:#4a6fa5;font-weight:600;">Читать статью →</a></div>
+                </article>
+                <article class="ln_3">
+                    <h3 class="ln_b_1"><a href="/blog/tilda-ili-wordpress.html" style="color:inherit;text-decoration:none;">Tilda или WordPress</a></h3>
+                    <p class="ln_b_2">Сравнение двух популярных платформ — когда выбирать каждую и какие у них ограничения.</p>
+                    <div class="ln_b_3"><a href="/blog/tilda-ili-wordpress.html" style="color:#4a6fa5;font-weight:600;">Читать статью →</a></div>
                 </article>
             </div>
             <div style="text-align:center;margin-top:30px;">
@@ -835,6 +844,7 @@
     <script src="/style/js/main.js"></script>
     <script src="/style/js/cookie-manager.js"></script>
     <script src="/style/js/home-works.js"></script>
+    <script src="/style/js/hero-3d.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     const yearElement = document.getElementById('current-year');
