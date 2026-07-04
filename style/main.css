@@ -2447,6 +2447,29 @@ article {
     color: #6b8fc9;
 }
 
+.footer-cities {
+    gap: 5px 14px;
+    font-size: 12.5px;
+    max-width: 1040px;
+    row-gap: 6px;
+}
+.footer-cities__title {
+    width: 100%;
+    text-align: center;
+    color: #8892b0;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+.footer-cities a {
+    color: #b3bcd0;
+    opacity: 0.85;
+    white-space: nowrap;
+}
+.footer-cities a:hover {
+    opacity: 1;
+    color: #6b8fc9;
+}
+
 .footer-copy {
     color: #8892b0;
     font-size: 13px;
