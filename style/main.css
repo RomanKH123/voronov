@@ -382,8 +382,7 @@ article {
 /* Блок 2 - Этапы работы */
 .blok_2 {
     width: 90%;
-    margin: 20vw auto 0;
-    min-height: 100vh;
+    margin: 5vw auto 0;
 }
 
 .blok_2_nm {
@@ -501,8 +500,7 @@ article {
 
 /* Блок 3 - Услуги */
 .blok_3 {
-    margin-top: 20vw;
-    min-height: 100vh;
+    margin-top: 15vh;
     padding: 0 2vw;
 }
 
@@ -526,7 +524,7 @@ article {
 .blok_3_zg {
     font-weight: 800;
     text-align: center;
-    margin-top: 5vw;
+    margin-top: 1vh;
     font-family: 'Abyssinica SIL', sans-serif;
     font-size: clamp(22px, 5vw, 40px);
     color: #1a1a1a;
@@ -664,7 +662,6 @@ article {
 /* Блок 4 - Тарифы */
 .blok_4 {
     margin-top: 10vw;
-    min-height: 100vh;
     padding: 0 2vw;
 }
 
@@ -715,7 +712,6 @@ article {
 /* Блок 5 - Стоимость и сроки */
 .blok_5 {
     margin-top: 10vw;
-    min-height: 100vh;
     padding: 0 2vw;
 }
 
@@ -758,7 +754,6 @@ article {
 /* Блок 6 - Наши работы */
 .blok_6 {
     margin-top: 10vw;
-    min-height: 100vh;
     padding: 0 2vw;
 }
 
@@ -1389,6 +1384,7 @@ article {
 .blok_contacts .blok_2_nm {
     position: relative;
     display: inline-block;
+    margin-top: 15vh;
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 40px;
@@ -1870,15 +1866,16 @@ article {
 
 /* Декоративные элементы для фона */
 .blok_about {
+    margin-top: 10vh;
     position: relative;
     background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(196,220,250,0.3) 100%);
     border-radius: 30px;
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 20px;
 }
 
 .blok_about::before {
-    content: '✨';
     position: absolute;
     top: 20px;
     right: 30px;
