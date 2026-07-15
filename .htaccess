@@ -1,47 +1,55 @@
-# ========== AUTO WEBP — отдавать WebP браузерам, которые поддерживают ==========
+# ========== ОСНОВНЫЕ НАСТРОЙКИ ==========
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Если браузер поддерживает WebP
-    RewriteCond %{HTTP_ACCEPT} image/webp
-    # И WebP-версия файла существует
-    RewriteCond %{REQUEST_FILENAME} (.+)\.(png|jpe?g)$
-    RewriteCond %1.webp -f
-    # Отдаём WebP вместо оригинала
-    RewriteRule (.+)\.(png|jpe?g)$ $1.webp [T=image/webp,E=accept:1,L]
+    # ========== РЕДИРЕКТЫ УДАЛЁННЫХ СТРАНИЦ (старые) ==========
+    # Все /sayt-pod-klyuch-*.html перенаправляем на главную
+    RewriteRule ^sayt-pod-klyuch-[^/]+\.html$ / [R=301,L]
 
-    # ========== ЧПУ ДЛЯ ПОРТФОЛИО — 301 на канонические URL ==========
-    # Список портфолио — на канонический /work.html
+    # ========== РЕДИРЕКТЫ УДАЛЁННЫХ СТРАНИЦ В ПАПКАХ ==========
+    # Только для удалённых городов (БЕЗ 5 ключевых!)
+    RewriteRule ^(kazan|nizhniy-novgorod|chelyabinsk|samara|ufa|rostov-na-donu|omsk|krasnoyarsk|voronezh|perm|volgograd|saratov|tolyatti|tyumen|izhevsk|barnaul|ulyanovsk|irkutsk|khabarovsk|vladivostok|yakutsk)/\1\.html$ / [R=301,L]
+
+    # Редирект для страницы портфолио без канонического адреса
+    RewriteRule ^work/krop_rem_avto/index\.html$ /work.html [R=301,L]
+
+    # ========== ЧПУ ДЛЯ ПОРТФОЛИО ==========
     RewriteRule ^portfolio/?$ /work.html [R=301,L]
-
-    # Категории — 301 на /work.html?kategory=...
     RewriteRule ^portfolio/sayty/?$ /work.html?kategory=%D0%A1%D0%B0%D0%B9%D1%82%D1%8B [R=301,L,NE]
     RewriteRule ^portfolio/testirovanie/?$ /work.html?kategory=%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5 [R=301,L,NE]
     RewriteRule ^portfolio/dizajn/?$ /work.html?kategory=%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD [R=301,L,NE]
     RewriteRule ^portfolio/dorabotka/?$ /work.html?kategory=%D0%94%D0%BE%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0 [R=301,L,NE]
 
-    # Детальные страницы работ — 301 на /work_info.html?id=N
     RewriteRule ^portfolio/prime-estate/?$ /work_info.html?id=1 [R=301,L]
     RewriteRule ^portfolio/objektiv/?$ /work_info.html?id=2 [R=301,L]
     RewriteRule ^portfolio/kinoset/?$ /work_info.html?id=3 [R=301,L]
     RewriteRule ^portfolio/kras-dostavka/?$ /work_info.html?id=4 [R=301,L]
     RewriteRule ^portfolio/krop-rem-avto/?$ /work_info.html?id=5 [R=301,L]
     RewriteRule ^portfolio/sitekrd/?$ /work_info.html?id=6 [R=301,L]
+
+    # ========== AUTO WEBP ==========
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{REQUEST_FILENAME} (.+)\.(png|jpe?g)$
+    RewriteCond %1.webp -f
+    RewriteRule (.+)\.(png|jpe?g)$ $1.webp [T=image/webp,E=accept:1,L]
+
 </IfModule>
 
+# ========== ЗАГОЛОВКИ ДЛЯ WEBP ==========
 <IfModule mod_headers.c>
-    # Сообщаем кэшу, что ответ зависит от Accept-заголовка
     <FilesMatch "\.(png|jpe?g)$">
         Header append Vary Accept
     </FilesMatch>
-
-    # Правильный MIME для WebP
     <FilesMatch "\.webp$">
         Header set Content-Type "image/webp"
     </FilesMatch>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# ========== GZIP COMPRESSION ==========
+# ========== GZIP СЖАТИЕ ==========
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/css
@@ -57,80 +65,51 @@
     AddOutputFilterByType DEFLATE font/woff2
 </IfModule>
 
-# ========== BROWSER CACHING ==========
+# ========== КЕШИРОВАНИЕ БРАУЗЕРА ==========
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
-
-    # Images
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/webp "access plus 1 year"
     ExpiresByType image/svg+xml "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
-
-    # Fonts
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType application/font-woff2 "access plus 1 year"
-
-    # CSS & JS
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType text/javascript "access plus 1 month"
-
-    # HTML
     ExpiresByType text/html "access plus 1 hour"
-
-    # JSON & XML
     ExpiresByType application/json "access plus 0 seconds"
     ExpiresByType application/xml "access plus 0 seconds"
 </IfModule>
 
-# ========== CACHE-CONTROL HEADERS ==========
+# ========== ЗАГОЛОВКИ КЕШИРОВАНИЯ ==========
 <IfModule mod_headers.c>
-    # Static assets — long cache
     <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|svg|woff|woff2|ttf|eot)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
-
-    # CSS & JS
     <FilesMatch "\.(css|js)$">
         Header set Cache-Control "public, max-age=2592000"
     </FilesMatch>
-
-    # HTML — short cache
     <FilesMatch "\.(html|htm|php)$">
         Header set Cache-Control "public, max-age=3600, must-revalidate"
     </FilesMatch>
-
-    # Security headers
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set X-XSS-Protection "1; mode=block"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-</IfModule>
-
-# ========== ETAG ==========
-<IfModule mod_headers.c>
     Header unset ETag
 </IfModule>
+
+# ========== ОТКЛЮЧАЕМ ETAG ==========
 FileETag None
 
-# ========== PROTECT SENSITIVE FILES ==========
+# ========== ЗАЩИТА ЧУВСТВИТЕЛЬНЫХ ФАЙЛОВ ==========
 <FilesMatch "\.(env|sql|log|bak|git|md)$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
 
-# После установки раскомментировать блокировку setup.php:
-# <Files "setup.php">
-#     Order Allow,Deny
-#     Deny from all
-# </Files>
-
-# ========== CUSTOM ERROR PAGES ==========
+# ========== КАСТОМНЫЕ СТРАНИЦЫ ОШИБОК ==========
 ErrorDocument 404 /404.html
 ErrorDocument 403 /404.html
 ErrorDocument 500 /404.html
