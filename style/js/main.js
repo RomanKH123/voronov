@@ -176,6 +176,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== МОДАЛЬНОЕ ОКНО =====
     
     function openModal() {
+        if (!modal) {
+            window.location.href = '/#contacts';
+            return;
+        }
+
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
         if (contactForm) {
@@ -195,11 +200,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
+    window.openContactModal = openModal;
+
+    document.querySelectorAll('[data-open-modal]').forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal();
+        });
+    });
+
     // Кнопки для открытия модального окна
-    const buttons = document.querySelectorAll('button');
+    const buttons = document.querySelectorAll('button:not([data-open-modal])');
     buttons.forEach(button => {
         const buttonText = button.textContent.trim().toLowerCase();
-        if (buttonText === 'подробнее' || buttonText === 'обсудить проект' || buttonText === 'заказать сайт под ключ') {
+        if (buttonText === 'подробнее' || buttonText === 'обсудить проект' || buttonText === 'заказать сайт под ключ' || buttonText === 'узнать подробнее') {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 openModal();

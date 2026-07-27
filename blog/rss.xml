@@ -6,14 +6,50 @@
         <description>Статьи о разработке сайтов, выборе платформ и работе с подрядчиками. Практика студии веб-разработки Воронова из Краснодара.</description>
         <language>ru</language>
         <atom:link href="https://voronov-art.ru/blog/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Thu, 30 Apr 2026 12:00:00 +0300</lastBuildDate>
-        <pubDate>Thu, 30 Apr 2026 12:00:00 +0300</pubDate>
+        <lastBuildDate>Mon, 27 Jul 2026 12:00:00 +0300</lastBuildDate>
+        <pubDate>Mon, 27 Jul 2026 12:00:00 +0300</pubDate>
         <ttl>60</ttl>
         <image>
             <url>https://voronov-art.ru/img/logo_2.png</url>
             <title>Блог студии Воронова</title>
             <link>https://voronov-art.ru/blog/</link>
         </image>
+
+        <item>
+            <title>Зачем нужно SEO для сайта и бизнеса</title>
+            <link>https://voronov-art.ru/blog/zachem-nuzhno-seo.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/zachem-nuzhno-seo.html</guid>
+            <pubDate>Mon, 27 Jul 2026 12:00:00 +0300</pubDate>
+            <description>Что даёт SEO бизнесу: стабильный трафик из поиска, более дешёвые лиды на длинной дистанции и меньшая зависимость от рекламы.</description>
+            <category>SEO</category>
+        </item>
+
+        <item>
+            <title>Telegram-бот для бизнеса: зачем нужен и что умеет</title>
+            <link>https://voronov-art.ru/blog/tg-bot-dlya-biznesa.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/tg-bot-dlya-biznesa.html</guid>
+            <pubDate>Mon, 27 Jul 2026 11:00:00 +0300</pubDate>
+            <description>Разбираем, когда бизнесу нужен TG-бот: заявки, запись, поддержка, каталог, напоминания и автоматизация повторяющихся сценариев.</description>
+            <category>Автоматизация</category>
+        </item>
+
+        <item>
+            <title>Сайт для бизнеса: зачем нужен и какой формат выбрать</title>
+            <link>https://voronov-art.ru/blog/sajt-dlya-biznesa.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/sajt-dlya-biznesa.html</guid>
+            <pubDate>Mon, 27 Jul 2026 10:00:00 +0300</pubDate>
+            <description>Какие задачи сайт решает для бизнеса, почему одних соцсетей недостаточно и какой формат выбрать под продажи, доверие и рост.</description>
+            <category>Разработка сайтов</category>
+        </item>
+
+        <item>
+            <title>Сайт как онлайн-магазин: когда бизнесу нужен интернет-магазин</title>
+            <link>https://voronov-art.ru/blog/sajt-kak-onlajn-magazin.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/sajt-kak-onlajn-magazin.html</guid>
+            <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+            <description>Когда бизнесу нужен сайт как онлайн-магазин: каталог, корзина, оформление заказа, оплата, доставка и масштабирование онлайн-продаж.</description>
+            <category>Интернет-магазины</category>
+        </item>
 
         <item>
             <title>Рукописный сайт против Tilda и WordPress: когда пора уходить с конструктора</title>

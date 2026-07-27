@@ -38,9 +38,57 @@
     </url>
     <url>
         <loc>https://voronov-art.ru/blog/</loc>
-        <lastmod>2026-07-15</lastmod>
+        <lastmod>2026-07-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/zachem-nuzhno-seo.html</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/tg-bot-dlya-biznesa.html</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/sajt-dlya-biznesa.html</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/sajt-kak-onlajn-magazin.html</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/rukopisnyj-sajt-vs-konstruktory.html</loc>
+        <lastmod>2026-04-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/kak-vybrat-web-studiyu.html</loc>
+        <lastmod>2026-04-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/tilda-ili-wordpress.html</loc>
+        <lastmod>2026-04-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://voronov-art.ru/blog/skolko-stoit-sayt-pod-kluch.html</loc>
+        <lastmod>2026-04-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://voronov-art.ru/moskva/moskva.html</loc>

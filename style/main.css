@@ -381,14 +381,14 @@ article {
 /* Блок 2 - Этапы работы */
 .blok_2 {
     width: 90%;
-    margin: 5vw auto 0;
+    margin: 30vh auto 0;
 }
 
 .blok_2_nm {
     text-align: center;
     font-family: 'Abhaya Libre', sans-serif;
-    font-weight: 800;
-    font-size: clamp(20px, 2vw, 30px);
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 36px);
     margin-bottom: 20px;
 }
 
@@ -499,7 +499,7 @@ article {
 
 /* Блок 3 - Услуги */
 .blok_3 {
-    margin-top: 15vh;
+    margin-top: 30vh;
     padding: 0 2vw;
 }
 
@@ -661,7 +661,7 @@ article {
 
 /* Блок 4 - Тарифы */
 .blok_4 {
-    margin-top: 10vw;
+    margin-top: 30vh;
     padding: 0 2vw;
 }
 
@@ -711,7 +711,7 @@ article {
 
 /* Блок 5 - Стоимость и сроки */
 .blok_5 {
-    margin-top: 10vw;
+    margin-top: 30vh;
     padding: 0 2vw;
 }
 
@@ -753,7 +753,7 @@ article {
 
 /* Блок 6 - Наши работы */
 .blok_6 {
-    margin-top: 10vw;
+    margin-top: 30vh;
     padding: 0 2vw;
 }
 
@@ -762,7 +762,7 @@ article {
     display: flex;
     justify-content: center;
     font-family: 'Abhaya Libre', sans-serif;
-    font-size: 32px;
+    font-size: clamp(30px, 5vw, 36px);
     margin-bottom: 20px;
 }
 
@@ -1866,7 +1866,7 @@ article {
 
 /* Декоративные элементы для фона */
 .blok_about {
-    margin-top: 10vh;
+    margin-top: 30vh;
     position: relative;
     background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(196,220,250,0.3) 100%);
     border-radius: 30px;
