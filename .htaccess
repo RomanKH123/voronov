@@ -1,6 +1,15 @@
+DirectoryIndex index.html index.php
+
 # ========== ОСНОВНЫЕ НАСТРОЙКИ ==========
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # ========== НОВАЯ СТРУКТУРА УСЛУГА + ГОРОД ==========
+    RewriteRule ^lending-krasnodar\.html$ /krasnodar/lending/ [R=301,L,NC]
+    RewriteRule ^korporativnyj-sajt-krasnodar\.html$ /krasnodar/korporativnyj-sajt/ [R=301,L,NC]
+    RewriteRule ^internet-magazin-krasnodar\.html$ /krasnodar/internet-magazin/ [R=301,L,NC]
+    RewriteRule ^(krasnodar|moskva|spb|novosibirsk|ekaterinburg)/(lending|korporativnyj-sajt|internet-magazin)/index\.html$ /$1/$2/ [R=301,L,NC]
+    RewriteRule ^(krasnodar|moskva|spb|novosibirsk|ekaterinburg)/?$ /$1/$1.html [R=301,L,NC]
 
     # ========== РЕДИРЕКТЫ УДАЛЁННЫХ СТРАНИЦ (старые) ==========
     # Все /sayt-pod-klyuch-*.html перенаправляем на главную

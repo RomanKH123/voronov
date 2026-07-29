@@ -1,6 +1,6 @@
 # robots.txt — Студия веб-разработки Воронова
 # https://voronov-art.ru/
-# Обновлено: 2026-04-30
+# Обновлено: 2026-07-29
 
 User-agent: *
 Disallow: /admin/
@@ -55,4 +55,4 @@ Clean-param: yclid&gclid&fbclid&_openstat&from&ref&source
 Clean-param: kategory /work.html
 Clean-param: id /work_info.html
 
-Host: https://voronov-art.ru/
+Host: voronov-art.ru

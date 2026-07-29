@@ -543,6 +543,7 @@ article {
 }
 
 .blok_3_ln {
+    margin-top: 5vh;
     display: flex;
     justify-content: center;
     gap: 3vw;
