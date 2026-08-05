@@ -285,6 +285,11 @@ main {
 }
 
 .work-detail__text {
+     white-space: pre-wrap;    /* Переносит длинные строки */
+    word-wrap: break-word;    /* Переносит длинные слова */
+    overflow-wrap: break-word; /* Современный аналог word-wrap */
+    max-width: 100%;          /* Не выходит за пределы контейнера */
+    box-sizing: border-box;   /* Учитывает padding в ширине */
     font-family: 'Jura', sans-serif;
     font-size: clamp(15px, 1.2vw, 18px);
     line-height: 1.8;
