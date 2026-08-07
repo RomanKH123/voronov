@@ -4,7 +4,8 @@
  * Запускать вручную: https://voronov-art.ru/CMM/convert-all.php
  * Только для админа.
  */
-session_start();
+require_once dirname(__DIR__) . '/api/bootstrap.php';
+startSecureSession('/CMM');
 
 if (!isset($_SESSION['cmm_auth']) || $_SESSION['cmm_auth'] !== true) {
     die('Войдите в CMM сначала: <a href="/CMM/">Войти</a>');

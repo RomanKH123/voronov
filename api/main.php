@@ -1,14 +1,16 @@
 <?php
+require_once __DIR__ . '/bootstrap.php';
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
 
 // Только POST запросы
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Метод не разрешен']);
-    exit;
+    jsonResponse(['success' => false, 'message' => 'Метод не разрешен'], 405);
+}
+enforceSameOrigin();
+enforceRateLimit('lead');
+
+if ((int)($_SERVER['CONTENT_LENGTH'] ?? 0) > 16384) {
+    jsonResponse(['success' => false, 'message' => 'Слишком большой запрос'], 413);
 }
 
 // Получаем данные из POST (как JSON)
@@ -21,12 +23,13 @@ if (!$input) {
 }
 
 // Извлекаем данные
-$name = isset($input['name']) ? trim($input['name']) : '';
-$phone = isset($input['phone']) ? trim($input['phone']) : '';
-$email = isset($input['email']) ? trim($input['email']) : '';
-$message = isset($input['message']) ? trim($input['message']) : '';
-$form = isset($input['form']) ? trim($input['form']) : 'main';
-$page = isset($input['page']) ? trim($input['page']) : '';
+$name = cleanText($input['name'] ?? '', 100);
+$phone = cleanText($input['phone'] ?? '', 30);
+$email = cleanText($input['email'] ?? '', 254);
+$message = cleanText($input['message'] ?? '', 3000);
+$form = cleanText($input['form'] ?? 'main', 50);
+$page = cleanText($input['page'] ?? '', 500);
+$consent = ($input['consent'] ?? false) === true;
 
 // Получаем IP и User-Agent
 $ip_address = $_SERVER['REMOTE_ADDR'] ?? '';
@@ -34,6 +37,10 @@ $user_agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
 // Валидация
 $errors = [];
+
+if (!$consent) {
+    $errors['consent'] = 'Необходимо согласие на обработку персональных данных';
+}
 
 if (empty($name)) {
     $errors['name'] = 'Имя обязательно';
@@ -61,23 +68,8 @@ if (!empty($errors)) {
     exit;
 }
 
-// ===== НАСТРОЙКИ БАЗЫ ДАННЫХ =====
-$db_host = 'localhost';
-$db_name = 'vh384894_voronov';
-$db_user = 'vh384894_voronov';
-$db_pass = 'voronov20032003';
-
 try {
-    // Подключение к базе данных
-    $pdo = new PDO(
-        "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
-        $db_user,
-        $db_pass,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-    );
+    $pdo = db();
     
     // Вставляем данные (без проверки структуры - она уже правильная)
     $sql = "INSERT INTO applications (name, phone, email, message, form_type, page_url, ip_address, user_agent, created_at, status) 

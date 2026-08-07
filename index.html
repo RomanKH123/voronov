@@ -44,34 +44,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Jura:wght@300;400;500;600;700&family=Aboreto&family=Abhaya+Libre:wght@800&family=Abyssinica+SIL&family=Judson:wght@400;700&display=swap">
     <link rel="stylesheet" href="/style/main.css">
 
-    <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFKDPNHH6E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-JFKDPNHH6E');
-    </script>
-
-    <!-- Yandex Metrika -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106882746', 'ym');
-
-        ym(106882746, 'init', {
-            ssr:true,
-            webvisor:true,
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            ecommerce:"dataLayer"
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/106882746" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- Analytics is loaded by cookie-manager.js only after explicit consent. -->
 
     <script type="application/ld+json">
     {
@@ -129,6 +102,8 @@
         <nav class="nav-menu" aria-label="Главная навигация">
             <a href="#about" onclick="scrollToBlock('about');return false;">О компании</a>
             <a href="#services" onclick="scrollToBlock('services');return false;">Услуги</a>
+            <a href="/sozdanie-sajtov/">Создание сайтов</a>
+            <a href="/prodvizhenie-sajtov/">SEO-продвижение</a>
             <a href="#works" onclick="scrollToBlock('works');return false;">Наши работы</a>
             <a href="#contacts" onclick="scrollToBlock('contacts');return false;">Контакты</a>
         </nav>
@@ -212,23 +187,25 @@
             
             <div class="blok_3_ln">
                 <article class="ln_1">
-                    <h3 class="ln_b_1">Создание сайтов под ключ</h3>
+                    <h3 class="ln_b_1"><a href="/sozdanie-sajtov/" style="color:inherit;text-decoration:none;">Создание сайтов под ключ</a></h3>
                     <p class="ln_b_2">Разрабатываем сайты-визитки, лендинги, многостраничные и корпоративные сайты, интернет-магазины. Работаем на Tilda и WordPress. Адаптивная верстка, уникальный дизайн и высокая скорость загрузки.</p>
                     <div class="ln_b_3">
                         <span>📄 Сайт-визитка</span>
                         <span>📑 Лендинг</span>
                         <span>🏢 Многостраничный сайт</span>
                         <span>🛍️ Интернет-магазин</span>
+                        <a href="/sozdanie-sajtov/" style="color:#355f9b;font-weight:700;">Подробнее об услуге →</a>
                     </div>
                 </article>
                 
                 <article class="ln_2">
-                    <h3 class="ln_b_1">Продвижение в интернете</h3>
+                    <h3 class="ln_b_1"><a href="/prodvizhenie-sajtov/" style="color:inherit;text-decoration:none;">Продвижение в интернете</a></h3>
                     <p class="ln_b_2">Выводим сайт в топ Яндекса и Google, настраиваем контекстную рекламу в Яндекс.Директ, таргет и SMM. Подключаем аналитику и CRM, чтобы трафик превращался в заявки.</p>
                     <div class="ln_b_3">
                         <span>🔍 SEO-продвижение</span>
                         <span>📢 Яндекс Директ</span>
                         <span>🎯 Таргет и SMM</span>
+                        <a href="/prodvizhenie-sajtov/" style="color:#355f9b;font-weight:700;">Подробнее о SEO →</a>
                     </div>
                 </article>
                 
@@ -242,7 +219,7 @@
                     </div>
                 </article>
             </div>
-            <button aria-label="Узнать подробнее об услугах">Подробнее</button>
+            <a href="/sozdanie-sajtov/" class="blok_4_batton" style="display:table;margin:28px auto 0;text-decoration:none;" aria-label="Узнать подробнее об услугах">Все услуги</a>
         </section>
 
         <section class="site-anim-section" aria-label="Интерактивный макет сайта">
@@ -304,7 +281,7 @@
                     <h3 class="ln_b_1">Лендинг под ключ</h3>
                     <p class="ln_b_2">Идеально для запуска нового продукта, услуги или рекламной кампании. Быстрый старт продаж.</p>
 
-                    <a href="/krasnodar/lending/" class="blok_4_batton" style="text-decoration:none;display:inline-block;">Подробнее</a>
+                    <a href="/sozdanie-sajtov/#formats" class="blok_4_batton" style="text-decoration:none;display:inline-block;">Подробнее</a>
                 </article>
 
                 <article class="blok_4_2">
@@ -312,7 +289,7 @@
                     <h3 class="ln_b_1">Корпоративный сайт / Каталог</h3>
                     <p class="ln_b_2">Для крупных компаний и брендов, которым нужно подробно рассказать о себе и своих услугах.</p>
 
-                    <a href="/krasnodar/korporativnyj-sajt/" class="blok_4_batton" style="text-decoration:none;display:inline-block;">Подробнее</a>
+                    <a href="/sozdanie-sajtov/" class="blok_4_batton" style="text-decoration:none;display:inline-block;">Подробнее</a>
                 </article>
 
                 <article class="blok_4_3">
@@ -320,7 +297,7 @@
                     <h3 class="ln_b_1">Интернет-магазин на WordPress</h3>
                     <p class="ln_b_2">Полноценная платформа для торговли: корзина, фильтры, интеграция с платежными системами.</p>
 
-                    <a href="/krasnodar/internet-magazin/" class="blok_4_batton" style="text-decoration:none;display:inline-block;">Подробнее</a>
+                    <a href="/sozdanie-sajtov/" class="blok_4_batton" style="text-decoration:none;display:inline-block;">Подробнее</a>
                 </article>
             </div>
         </section>
@@ -404,26 +381,26 @@
 
             <div class="blok_3_ln">
                 <article class="ln_1">
-                    <h3 class="ln_b_1"><a href="/krasnodar/lending/" style="color:inherit;text-decoration:none;">Лендинг под ключ</a></h3>
+                    <h3 class="ln_b_1"><a href="/sozdanie-sajtov/" style="color:inherit;text-decoration:none;">Лендинг под ключ</a></h3>
                     <p class="ln_b_2">Одностраничный сайт под рекламную кампанию, запуск продукта или услугу. Срок — 7–10 дней.</p>
                     <div class="ln_b_3">
-                        <a href="/krasnodar/lending/" style="color:#4a6fa5;font-weight:600;">Подробнее о лендингах →</a>
+                        <a href="/sozdanie-sajtov/" style="color:#4a6fa5;font-weight:600;">Подробнее о лендингах →</a>
                     </div>
                 </article>
 
                 <article class="ln_2">
-                    <h3 class="ln_b_1"><a href="/krasnodar/korporativnyj-sajt/" style="color:inherit;text-decoration:none;">Корпоративный сайт</a></h3>
+                    <h3 class="ln_b_1"><a href="/sozdanie-sajtov/" style="color:inherit;text-decoration:none;">Корпоративный сайт</a></h3>
                     <p class="ln_b_2">Многостраничный сайт компании с каталогом услуг, блогом и формами. Срок — 2–3 недели.</p>
                     <div class="ln_b_3">
-                        <a href="/krasnodar/korporativnyj-sajt/" style="color:#4a6fa5;font-weight:600;">Подробнее о корпоративных →</a>
+                        <a href="/sozdanie-sajtov/" style="color:#4a6fa5;font-weight:600;">Подробнее о корпоративных →</a>
                     </div>
                 </article>
 
                 <article class="ln_3">
-                    <h3 class="ln_b_1"><a href="/krasnodar/internet-magazin/" style="color:inherit;text-decoration:none;">Интернет-магазин</a></h3>
+                    <h3 class="ln_b_1"><a href="/sozdanie-sajtov/" style="color:inherit;text-decoration:none;">Интернет-магазин</a></h3>
                     <p class="ln_b_2">Магазин на WordPress или Tilda: каталог, корзина, оплата, интеграция с 1С. Срок — 3–4 недели.</p>
                     <div class="ln_b_3">
-                        <a href="/krasnodar/internet-magazin/" style="color:#4a6fa5;font-weight:600;">Подробнее о магазинах →</a>
+                        <a href="/sozdanie-sajtov/" style="color:#4a6fa5;font-weight:600;">Подробнее о магазинах →</a>
                     </div>
                 </article>
             </div>
@@ -639,16 +616,19 @@
             <nav class="footer-nav" aria-label="Навигация в футере">
                 <a href="/">Главная</a>
                 <a href="/#about">О нас</a>
-                <a href="/#services">Услуги</a>
+                <a href="/sozdanie-sajtov/">Создание сайтов</a>
+                <a href="/prodvizhenie-sajtov/">SEO-продвижение</a>
+                <a href="/seo-audit/">SEO-аудит</a>
+                <a href="/yandex-direct/">Яндекс Директ</a>
                 <a href="/work.html">Портфолио</a>
                 <a href="/blog/">Блог</a>
                 <a href="/#contacts">Контакты</a>
                 <a href="/privacy-policy.html">Политика</a>
             </nav>
             <nav class="footer-nav" aria-label="Направления разработки" style="margin-top:8px;">
-                <a href="/krasnodar/lending/">Лендинг под ключ</a>
-                <a href="/krasnodar/korporativnyj-sajt/">Корпоративный сайт</a>
-                <a href="/krasnodar/internet-magazin/">Интернет-магазин</a>
+                <a href="/moskva/moskva.html">Москва</a>
+                <a href="/spb/spb.html">Санкт-Петербург</a>
+                <a href="/krasnodar/krasnodar.html">Краснодар</a>
             </nav>
             <p class="footer-copy">© <span id="current-year">2025</span> Студия Воронова — создание и продвижение сайтов под ключ по всей России. <a href="/privacy-policy.html#requisites" style="color:inherit;text-decoration:underline;">Реквизиты исполнителя</a>.</p>
         </div>

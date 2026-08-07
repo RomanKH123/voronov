@@ -1,0 +1,4 @@
+/config.local.php
+/admin/admin_logs.txt
+/admin/logs/*.log
+

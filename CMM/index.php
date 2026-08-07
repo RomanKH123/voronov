@@ -1,23 +1,12 @@
 <?php
-session_start();
-
-$db_host = 'localhost';
-$db_name = 'vh384894_voronov';
-$db_user = 'vh384894_voronov';
-$db_pass = 'voronov20032003';
+require_once dirname(__DIR__) . '/api/bootstrap.php';
+startSecureSession('/CMM');
+$config = appConfig();
 
 $pdo = null;
 try {
-    $pdo = new PDO(
-        "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
-        $db_user,
-        $db_pass,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-    );
-} catch (PDOException $e) {
+    $pdo = db();
+} catch (Throwable $e) {
     die('Ошибка подключения к БД');
 }
 
@@ -28,45 +17,15 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
-// Автоматическое создание таблицы cmm_users если её нет
-try {
-    $pdo->query("SELECT 1 FROM cmm_users LIMIT 1");
-} catch (PDOException $e) {
-    $pdo->exec("
-        CREATE TABLE cmm_users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            login VARCHAR(100) NOT NULL UNIQUE,
-            password_hash VARCHAR(255) NOT NULL,
-            name VARCHAR(255) DEFAULT '',
-            role ENUM('admin', 'editor') DEFAULT 'editor',
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
-    ");
-}
-
-// Проверяем, что админ существует с валидным хешем
-$adminCheck = $pdo->prepare("SELECT id, password_hash FROM cmm_users WHERE login = 'admin' LIMIT 1");
-$adminCheck->execute();
-$admin = $adminCheck->fetch();
-$validHash = password_hash('093093093Rk', PASSWORD_BCRYPT);
-
-if (!$admin) {
-    // Админа нет — создаём
-    $pdo->prepare("INSERT INTO cmm_users (login, password_hash, name, role) VALUES ('admin', :h, 'Администратор', 'admin')")
-        ->execute([':h' => $validHash]);
-} elseif (strpos($admin['password_hash'], 'PLACEHOLDER') !== false || !password_verify('093093093Rk', $admin['password_hash'])) {
-    // Хеш невалидный — обновляем
-    $pdo->prepare("UPDATE cmm_users SET password_hash = :h WHERE id = :id")
-        ->execute([':h' => $validHash, ':id' => $admin['id']]);
-}
-
 // Обработка входа — проверка через БД с password_verify
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'], $_POST['password'])) {
+    enforceRateLimit('cmm-login', 5, 900);
     $stmt = $pdo->prepare("SELECT id, login, password_hash, name, role FROM cmm_users WHERE login = :login LIMIT 1");
     $stmt->execute([':login' => trim($_POST['login'])]);
     $user = $stmt->fetch();
 
     if ($user && password_verify($_POST['password'], $user['password_hash'])) {
+        session_regenerate_id(true);
         $_SESSION['cmm_auth'] = true;
         $_SESSION['cmm_user_id'] = $user['id'];
         $_SESSION['cmm_user_login'] = $user['login'];

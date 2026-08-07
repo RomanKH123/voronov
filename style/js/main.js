@@ -14,6 +14,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Элементы для липкого меню и стрелки
     const stickyMenu = document.querySelector('.sticky-menu');
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    // ===== МОБИЛЬНОЕ ВЫПАДАЮЩЕЕ МЕНЮ =====
+    if (stickyMenu) {
+        const navigation = stickyMenu.querySelector('.nav-menu');
+
+        if (navigation) {
+            if (!navigation.id) navigation.id = 'primary-navigation';
+
+            const menuToggle = document.createElement('button');
+            menuToggle.type = 'button';
+            menuToggle.className = 'mobile-menu-toggle';
+            menuToggle.setAttribute('aria-controls', navigation.id);
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.innerHTML = '<span class="mobile-menu-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span><span>Меню</span>';
+            stickyMenu.insertBefore(menuToggle, navigation);
+
+            const closeMobileMenu = () => {
+                navigation.classList.remove('is-open');
+                menuToggle.classList.remove('is-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            };
+
+            menuToggle.addEventListener('click', () => {
+                const willOpen = !navigation.classList.contains('is-open');
+                navigation.classList.toggle('is-open', willOpen);
+                menuToggle.classList.toggle('is-open', willOpen);
+                menuToggle.setAttribute('aria-expanded', String(willOpen));
+            });
+
+            navigation.addEventListener('click', event => {
+                if (event.target.closest('a')) closeMobileMenu();
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
+                    closeMobileMenu();
+                    menuToggle.focus();
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) closeMobileMenu();
+            });
+        }
+    }
     
     // ===== ФУНКЦИИ ДЛЯ АНИМАЦИИ ПРИ СКРОЛЛЕ =====
     
@@ -58,11 +103,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ===== ФУНКЦИИ ДЛЯ ЛИПКОГО МЕНЮ =====
+
+    function getStickyMenuOffset() {
+        if (!stickyMenu) return document.querySelector('.menu_st')?.offsetHeight || 0;
+        const mobileToggle = stickyMenu.querySelector('.mobile-menu-toggle');
+        if (mobileToggle && window.matchMedia('(max-width: 768px)').matches) {
+            return mobileToggle.offsetHeight + 16;
+        }
+        return stickyMenu.offsetHeight;
+    }
     
     window.scrollToBlock = function(blockId) {
         const element = document.getElementById(blockId);
         if (element) {
-            const menuHeight = stickyMenu ? stickyMenu.offsetHeight : document.querySelector('.menu_st')?.offsetHeight || 0;
+            const menuHeight = getStickyMenuOffset();
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - menuHeight - 20;
             
@@ -75,70 +129,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    let activeMenuSectionId = null;
+
     function highlightActiveMenuItem(activeId) {
-        document.querySelectorAll('.sticky-menu .nav-menu a, .menu_st div').forEach(item => {
+        if (activeMenuSectionId === activeId) return;
+        activeMenuSectionId = activeId;
+
+        const menuItems = document.querySelectorAll('.sticky-menu .nav-menu a');
+        menuItems.forEach(item => {
             item.classList.remove('active');
+            item.removeAttribute('aria-current');
         });
-        
-        const menuMap = {
-            'about': 0,
-            'services': 1,
-            'works': 2,
-            'contacts': 3
-        };
-        
-        const menuIndex = menuMap[activeId];
-        if (menuIndex !== undefined) {
-            const newMenuItems = document.querySelectorAll('.sticky-menu .nav-menu a');
-            if (newMenuItems[menuIndex]) {
-                newMenuItems[menuIndex].classList.add('active');
-            }
-            const oldMenuItems = document.querySelectorAll('.menu_st div');
-            if (oldMenuItems[menuIndex]) {
-                oldMenuItems[menuIndex].classList.add('active');
-            }
+
+        if (!activeId) return;
+
+        const activeItem = Array.from(menuItems).find(item => {
+            const href = item.getAttribute('href');
+            return href === `#${activeId}`;
+        });
+
+        if (activeItem) {
+            activeItem.classList.add('active');
+            activeItem.setAttribute('aria-current', 'location');
+
         }
     }
     
     function updateActiveMenuOnScroll() {
-        const sections = [
-            { id: 'about', menuIndex: 0 },
-            { id: 'services', menuIndex: 1 },
-            { id: 'works', menuIndex: 2 },
-            { id: 'contacts', menuIndex: 3 }
-        ];
+        if (!stickyMenu) return;
 
-        const menuHeight = stickyMenu ? stickyMenu.offsetHeight : document.querySelector('.menu_st')?.offsetHeight || 0;
-        const scrollPosition = window.pageYOffset + menuHeight + 50;
+        const trackedSections = Array.from(stickyMenu.querySelectorAll('.nav-menu a[href^="#"]'))
+            .map(item => document.getElementById(item.getAttribute('href').slice(1)))
+            .filter(Boolean)
+            .sort((a, b) => a.offsetTop - b.offsetTop);
 
-        // Берём последний раздел, чей верх выше текущей позиции, — так
-        // подчёркивание не застревает в промежуточных нетрекаемых секциях.
-        let currentSection = null;
-        for (let section of sections) {
-            const element = document.getElementById(section.id);
-            if (!element) continue;
-            if (scrollPosition >= element.offsetTop) {
-                currentSection = section;
-            } else {
-                break;
-            }
+        if (!trackedSections.length) return;
+
+        const activationLine = window.scrollY + getStickyMenuOffset() + Math.min(120, window.innerHeight * 0.2);
+        const atPageBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        let currentSection = trackedSections[0];
+
+        for (const section of trackedSections) {
+            if (activationLine >= section.offsetTop) currentSection = section;
+            else break;
         }
 
-        document.querySelectorAll('.sticky-menu .nav-menu a, .menu_st div').forEach(item => {
-            item.classList.remove('active');
-        });
-
-        if (currentSection) {
-            const newMenuItems = document.querySelectorAll('.sticky-menu .nav-menu a');
-            if (newMenuItems[currentSection.menuIndex]) {
-                newMenuItems[currentSection.menuIndex].classList.add('active');
-            }
-
-            const oldMenuItems = document.querySelectorAll('.menu_st div');
-            if (oldMenuItems[currentSection.menuIndex]) {
-                oldMenuItems[currentSection.menuIndex].classList.add('active');
-            }
-        }
+        if (atPageBottom) currentSection = trackedSections[trackedSections.length - 1];
+        highlightActiveMenuItem(currentSection.id);
     }
     
     // ===== ФУНКЦИИ ДЛЯ СТРЕЛКИ ПОДЪЁМА =====
@@ -582,7 +619,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: document.getElementById('email')?.value || '',
                     message: document.getElementById('message')?.value || '',
                     page: window.location.href,
-                    form: 'modal'
+                    form: 'modal',
+                    consent: document.getElementById('consent_modal')?.checked === true
                 };
                 
                 sendForm(formData, 'modal', submitBtn, originalText, function() {
@@ -619,18 +657,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: document.getElementById('email_main')?.value || '',
                     message: document.getElementById('message_main')?.value || '',
                     page: window.location.href,
-                    form: 'main'
+                    form: 'main',
+                    consent: document.getElementById('consent_main')?.checked === true
                 };
                 
                 sendForm(formData, 'main', submitBtn, originalText, function() {
                     submitBtn.style.display = 'none';
                     contactMainForm.style.display = 'none';
-                    successMessageMain.style.display = 'block';
+                    if (successMessageMain) {
+                        successMessageMain.style.display = 'block';
+                    }
                     
                     setTimeout(() => {
                         submitBtn.style.display = 'block';
                         contactMainForm.style.display = 'block';
-                        successMessageMain.style.display = 'none';
+                        if (successMessageMain) {
+                            successMessageMain.style.display = 'none';
+                        }
                         contactMainForm.reset();
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = originalText;

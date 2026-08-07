@@ -10,6 +10,34 @@
     // увеличиваем число — все посетители увидят баннер повторно.
     const COOKIE_NAME = 'cookie_consent_v2';
     const COOKIE_EXPIRE_DAYS = 365;
+
+    function loadAnalytics() {
+        if (window.__analyticsLoaded) return;
+        window.__analyticsLoaded = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-JFKDPNHH6E', { anonymize_ip: true });
+        const googleScript = document.createElement('script');
+        googleScript.async = true;
+        googleScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-JFKDPNHH6E';
+        document.head.appendChild(googleScript);
+
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            k=e.createElement(t); a=e.getElementsByTagName(t)[0];
+            k.async=1; k.src=r; a.parentNode.insertBefore(k,a);
+        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=106882746', 'ym');
+        window.ym(106882746, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
     
     function setCookie(name, value, days) {
         let expires = '';
@@ -18,7 +46,8 @@
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             expires = '; expires=' + date.toUTCString();
         }
-        document.cookie = name + '=' + (value || '') + expires + '; path=/; SameSite=Lax';
+        const secure = location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = name + '=' + encodeURIComponent(value || '') + expires + '; path=/; SameSite=Lax' + secure;
     }
     
     function getCookie(name) {
@@ -27,7 +56,7 @@
         for(let i = 0; i < ca.length; i++) {
             let c = ca[i];
             while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
         }
         return null;
     }
@@ -39,7 +68,12 @@
         if (!banner) return;
         
         // Если уже есть согласие или отказ — скрываем баннер
-        if (consent === 'accepted' || consent === 'declined') {
+        if (consent === 'accepted') {
+            loadAnalytics();
+            banner.style.display = 'none';
+            return;
+        }
+        if (consent === 'declined') {
             banner.style.display = 'none';
             return;
         }
@@ -57,15 +91,12 @@
         if (acceptBtn) {
             acceptBtn.addEventListener('click', function() {
                 setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRE_DAYS);
+                loadAnalytics();
                 banner.classList.remove('show');
                 setTimeout(() => {
                     banner.style.display = 'none';
                 }, 400);
                 
-                // Активируем Яндекс.Метрику (если была отключена)
-                if (typeof ym !== 'undefined') {
-                    ym(106882746, 'hit', window.location.href);
-                }
             });
         }
         

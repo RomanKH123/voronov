@@ -1,15 +1,20 @@
 <?php
 // index.php - просмотр и управление заявками
+require_once dirname(__DIR__) . '/api/bootstrap.php';
+ini_set('session.use_strict_mode', '1');
+ini_set('session.use_only_cookies', '1');
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/admin',
+    'secure' => !empty($_SERVER['HTTPS']),
+    'httponly' => true,
+    'samesite' => 'Strict',
+]);
 session_start();
-
-$db_host = 'localhost';
-$db_name = 'vh384894_voronov';
-$db_user = 'vh384894_voronov';
-$db_pass = 'voronov20032003';
-
-// Фиксированные учетные данные (без хеширования для простоты)
-define('ADMIN_LOGIN', 'admin');
-define('ADMIN_PASSWORD', '093093093Rk');
+$config = appConfig();
+define('ADMIN_LOGIN', $config['admin_login']);
+define('ADMIN_PASSWORD_HASH', $config['admin_password_hash']);
+define('ADMIN_PASSWORD', $config['admin_password']);
 
 // Функция для логирования действий
 function logAction($action, $details = '') {
@@ -33,28 +38,16 @@ if (isset($_GET['logout'])) {
 // Простая проверка аутентификации
 if (!isset($_SESSION['admin_authenticated'])) {
     
-    // Проверка Basic Auth (для обратной совместимости)
-    if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])) {
-        if ($_SERVER['PHP_AUTH_USER'] === ADMIN_LOGIN && $_SERVER['PHP_AUTH_PW'] === ADMIN_PASSWORD) {
-            $_SESSION['admin_authenticated'] = true;
-            $_SESSION['admin_user'] = ADMIN_LOGIN;
-            $_SESSION['login_time'] = time();
-            $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
-            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-            logAction('LOGIN', 'Successful login via Basic Auth');
-        } else {
-            header('WWW-Authenticate: Basic realm="Admin Panel"');
-            header('HTTP/1.0 401 Unauthorized');
-            echo 'Неверные учетные данные';
-            exit;
-        }
-    }
-    // Проверка формы входа
-    elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_form'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_form'])) {
+        enforceRateLimit('admin-login', 5, 900);
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
         
-        if ($username === ADMIN_LOGIN && $password === ADMIN_PASSWORD) {
+        $validPassword = (ADMIN_PASSWORD_HASH !== '' && ADMIN_PASSWORD_HASH !== 'CHANGE_ME')
+            ? password_verify((string)$password, ADMIN_PASSWORD_HASH)
+            : (ADMIN_PASSWORD !== '' && hash_equals(ADMIN_PASSWORD, (string)$password));
+        if (hash_equals(ADMIN_LOGIN, (string)$username) && $validPassword) {
+            session_regenerate_id(true);
             $_SESSION['admin_authenticated'] = true;
             $_SESSION['admin_user'] = $username;
             $_SESSION['login_time'] = time();
@@ -244,6 +237,12 @@ if (isset($_SESSION['admin_authenticated'])) {
         header('Location: index.php');
         exit;
     }
+    if (!hash_equals((string)($_SESSION['ip_address'] ?? ''), (string)($_SERVER['REMOTE_ADDR'] ?? '')) ||
+        !hash_equals((string)($_SESSION['user_agent'] ?? ''), (string)($_SERVER['HTTP_USER_AGENT'] ?? ''))) {
+        session_destroy();
+        header('Location: index.php');
+        exit;
+    }
 }
 
 // CSRF защита (упрощенная)
@@ -255,7 +254,7 @@ function generateCSRFToken() {
 }
 
 function verifyCSRFToken($token) {
-    return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
+    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], (string)$token);
 }
 
 // Обработка действий
@@ -268,15 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
     
     try {
-        $pdo = new PDO(
-            "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
-            $db_user,
-            $db_pass,
-            [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]
-        );
+        $pdo = db();
         
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         
@@ -292,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $allowed_statuses = ['new', 'processed', 'completed'];
             $status = $_POST['status'];
             
-            if (in_array($status, $allowed_statuses)) {
+            if (in_array($status, $allowed_statuses, true)) {
                 $stmt = $pdo->prepare("UPDATE applications SET status = ? WHERE id = ?");
                 $stmt->execute([$status, $id]);
                 logAction('UPDATE_STATUS', "Updated application ID: $id to status: $status");
@@ -308,15 +299,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
 // Получение данных
 try {
-    $pdo = new PDO(
-        "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
-        $db_user,
-        $db_pass,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-    );
+    $pdo = db();
     
     $stmt = $pdo->query("SELECT * FROM applications ORDER BY 
         CASE status 

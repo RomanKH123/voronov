@@ -1,8 +1,6 @@
 <?php
+require_once __DIR__ . '/bootstrap.php';
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
-header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);
@@ -10,21 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-$db_host = 'localhost';
-$db_name = 'vh384894_voronov';
-$db_user = 'vh384894_voronov';
-$db_pass = 'voronov20032003';
-
 try {
-    $pdo = new PDO(
-        "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
-        $db_user,
-        $db_pass,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-    );
+    $pdo = db();
 
     // Если передан id — возвращаем одну работу
     if (isset($_GET['id'])) {
@@ -42,7 +27,7 @@ try {
         echo json_encode(['success' => true, 'data' => $work]);
     } elseif (isset($_GET['kategory'])) {
         // Фильтрация по основной категории (Kategory enum)
-        $kategory = trim($_GET['kategory']);
+        $kategory = cleanText($_GET['kategory'], 100);
         $stmt = $pdo->prepare("SELECT * FROM works WHERE Kategory = :kategory ORDER BY created_at DESC, id DESC");
         $stmt->execute([':kategory' => $kategory]);
         $works = $stmt->fetchAll();

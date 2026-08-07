@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once dirname(__DIR__) . '/api/bootstrap.php';
+startSecureSession('/CMM');
 header('Content-Type: application/json; charset=utf-8');
 
 // Проверка авторизации
@@ -8,6 +9,8 @@ if (!isset($_SESSION['cmm_auth']) || $_SESSION['cmm_auth'] !== true) {
     echo json_encode(['success' => false, 'message' => 'Не авторизован']);
     exit;
 }
+enforceSameOrigin();
+enforceRateLimit('cmm-upload', 30, 600);
 
 /**
  * Конвертация изображения в WebP
@@ -132,14 +135,14 @@ $file = $_FILES['image'];
 // Проверка типа
 $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 $mime = mime_content_type($file['tmp_name']);
-if (!in_array($mime, $allowed)) {
+if (!in_array($mime, $allowed, true) || @getimagesize($file['tmp_name']) === false) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Недопустимый формат. Разрешены: JPG, PNG, WebP, GIF']);
     exit;
 }
 
 // Проверка размера (макс 10 МБ)
-if ($file['size'] > 10 * 1024 * 1024) {
+if ($file['size'] <= 0 || $file['size'] > 10 * 1024 * 1024) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Файл слишком большой (макс 10 МБ)']);
     exit;
@@ -153,9 +156,8 @@ if (!is_dir($uploadDir)) {
 
 // Расширение
 $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-if (!in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif'])) {
-    $ext = 'png';
-}
+$mimeExtensions = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'image/gif' => 'gif'];
+$ext = $mimeExtensions[$mime];
 
 // Уникальное имя на основе оригинального
 $baseName = preg_replace('/[^a-z0-9_-]/i', '_', pathinfo($file['name'], PATHINFO_FILENAME));

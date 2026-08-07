@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once dirname(__DIR__) . '/api/bootstrap.php';
+startSecureSession('/CMM');
 header('Content-Type: application/json; charset=utf-8');
 
 // Проверка авторизации
@@ -9,22 +10,9 @@ if (!isset($_SESSION['cmm_auth']) || $_SESSION['cmm_auth'] !== true) {
     exit;
 }
 
-$db_host = 'localhost';
-$db_name = 'vh384894_voronov';
-$db_user = 'vh384894_voronov';
-$db_pass = 'voronov20032003';
-
 try {
-    $pdo = new PDO(
-        "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4",
-        $db_user,
-        $db_pass,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-    );
-} catch (PDOException $e) {
+    $pdo = db();
+} catch (Throwable $e) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Ошибка подключения к БД']);
     exit;
@@ -32,6 +20,9 @@ try {
 
 $method = $_SERVER['REQUEST_METHOD'];
 $action = isset($_GET['action']) ? $_GET['action'] : '';
+if ($method !== 'GET') {
+    enforceSameOrigin();
+}
 
 // Проверка роли админа для операций с пользователями
 function requireAdmin() {
@@ -124,9 +115,9 @@ switch ($method) {
             $name = trim($input['name'] ?? '');
             $role = in_array($input['role'] ?? '', ['admin', 'editor']) ? $input['role'] : 'editor';
 
-            if ($login === '' || mb_strlen($password) < 6) {
+            if ($login === '' || mb_strlen($password) < 12) {
                 http_response_code(400);
-                echo json_encode(['success' => false, 'message' => 'Логин обязателен, пароль минимум 6 символов']);
+                echo json_encode(['success' => false, 'message' => 'Логин обязателен, пароль минимум 12 символов']);
                 break;
             }
 
@@ -215,9 +206,9 @@ switch ($method) {
             }
 
             if (!empty($input['password'])) {
-                if (mb_strlen($input['password']) < 6) {
+                if (mb_strlen($input['password']) < 12) {
                     http_response_code(400);
-                    echo json_encode(['success' => false, 'message' => 'Пароль минимум 6 символов']);
+                    echo json_encode(['success' => false, 'message' => 'Пароль минимум 12 символов']);
                     break;
                 }
                 $hash = password_hash($input['password'], PASSWORD_BCRYPT);
