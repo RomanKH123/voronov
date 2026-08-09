@@ -230,6 +230,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.form-group input').forEach(input => {
             input.classList.remove('error');
         });
+        // Удаляем все сообщения об ошибках
+        document.querySelectorAll('.error-message').forEach(el => el.remove());
     }
     
     function closeModal() {
@@ -485,26 +487,72 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== ВАЛИДАЦИЯ ФОРМ =====
     
+    // Функция для отображения ошибки под полем
+    function showFieldError(input, message) {
+        // Удаляем существующую ошибку для этого поля
+        const existingError = input.parentNode.querySelector('.error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        errorDiv.style.color = '#ff4d4d';
+        errorDiv.style.fontSize = '12px';
+        errorDiv.style.marginTop = '5px';
+        errorDiv.style.marginLeft = '5px';
+        input.parentNode.appendChild(errorDiv);
+    }
+    
     function validateModalForm() {
         let isValid = true;
         const name = document.getElementById('name');
         const phone = document.getElementById('phone');
+        const consent = document.getElementById('consent_modal');
         
-        if (!name || !phone) return false;
+        if (!name || !phone || !consent) return false;
         
+        // Очищаем предыдущие ошибки
+        document.querySelectorAll('.error-message').forEach(el => el.remove());
+        document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => {
+            el.classList.remove('error');
+        });
+        consent.classList.remove('error');
+        
+        // Проверка имени
         if (!name.value.trim() || name.value.trim().length < 2) {
             name.classList.add('error');
+            showFieldError(name, 'Имя обязательно (минимум 2 символа)');
             isValid = false;
         } else {
             name.classList.remove('error');
         }
         
+        // Проверка телефона
         const phoneDigits = phone.value.replace(/\D/g, '');
         if (phoneDigits.length < 11) {
             phone.classList.add('error');
+            showFieldError(phone, 'Введите корректный номер телефона');
             isValid = false;
         } else {
             phone.classList.remove('error');
+        }
+        
+        // Проверка согласия
+        if (!consent.checked) {
+            consent.classList.add('error');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = 'Необходимо согласие на обработку персональных данных';
+            errorDiv.style.color = '#ff4d4d';
+            errorDiv.style.fontSize = '12px';
+            errorDiv.style.marginTop = '5px';
+            errorDiv.style.marginLeft = '5px';
+            consent.parentNode.appendChild(errorDiv);
+            isValid = false;
+        } else {
+            consent.classList.remove('error');
         }
         
         return isValid;
@@ -514,52 +562,53 @@ document.addEventListener('DOMContentLoaded', function() {
         let isValid = true;
         const name = document.getElementById('name_main');
         const phone = document.getElementById('phone_main');
+        const consent = document.getElementById('consent_main');
         
-        if (!name || !phone) return false;
+        if (!name || !phone || !consent) return false;
         
+        // Очищаем предыдущие ошибки
+        document.querySelectorAll('.error-message').forEach(el => el.remove());
+        document.querySelectorAll('.form_group input, .form_group textarea').forEach(el => {
+            el.classList.remove('error');
+        });
+        consent.classList.remove('error');
+        
+        // Проверка имени
         if (!name.value.trim() || name.value.trim().length < 2) {
             name.classList.add('error');
+            showFieldError(name, 'Имя обязательно (минимум 2 символа)');
             isValid = false;
         } else {
             name.classList.remove('error');
         }
         
+        // Проверка телефона
         const phoneDigits = phone.value.replace(/\D/g, '');
         if (phoneDigits.length < 11) {
             phone.classList.add('error');
+            showFieldError(phone, 'Введите корректный номер телефона');
             isValid = false;
         } else {
             phone.classList.remove('error');
         }
         
-        return isValid;
-    }
-    
-    function showFieldErrors(errors, formType = 'modal') {
-        document.querySelectorAll('.error-message').forEach(el => el.remove());
+        // Проверка согласия
+        if (!consent.checked) {
+            consent.classList.add('error');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = 'Необходимо согласие на обработку персональных данных';
+            errorDiv.style.color = '#ff4d4d';
+            errorDiv.style.fontSize = '12px';
+            errorDiv.style.marginTop = '5px';
+            errorDiv.style.marginLeft = '5px';
+            consent.parentNode.appendChild(errorDiv);
+            isValid = false;
+        } else {
+            consent.classList.remove('error');
+        }
         
-        Object.keys(errors).forEach(field => {
-            let input;
-            if (formType === 'modal') {
-                input = document.getElementById(field);
-            } else if (formType === 'main') {
-                input = document.getElementById(field + '_main');
-            }
-            
-            if (input) {
-                input.classList.add('error');
-                
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'error-message';
-                errorDiv.textContent = errors[field];
-                errorDiv.style.color = '#ff4d4d';
-                errorDiv.style.fontSize = '12px';
-                errorDiv.style.marginTop = '5px';
-                errorDiv.style.marginLeft = '5px';
-                
-                input.parentNode.appendChild(errorDiv);
-            }
-        });
+        return isValid;
     }
     
     function sendForm(formData, formType, submitBtn, originalText, successCallback) {
@@ -583,7 +632,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 successCallback();
             } else {
                 if (data.errors) {
-                    showFieldErrors(data.errors, formType);
+                    // Показываем ошибки от сервера
+                    Object.keys(data.errors).forEach(field => {
+                        let input;
+                        if (formType === 'modal') {
+                            if (field === 'consent') {
+                                input = document.getElementById('consent_modal');
+                            } else {
+                                input = document.getElementById(field);
+                            }
+                        } else if (formType === 'main') {
+                            if (field === 'consent') {
+                                input = document.getElementById('consent_main');
+                            } else {
+                                input = document.getElementById(field + '_main');
+                            }
+                        }
+                        
+                        if (input) {
+                            input.classList.add('error');
+                            showFieldError(input, data.errors[field]);
+                        }
+                    });
                 } else {
                     alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
                 }
@@ -603,88 +673,112 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // ===== ОБРАБОТЧИК МОДАЛЬНОЙ ФОРМЫ =====
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            if (validateModalForm()) {
-                const submitBtn = document.querySelector('.modal-submit-btn');
-                const originalText = submitBtn.textContent;
-                submitBtn.innerHTML = '<span class="loading-spinner"></span> Отправка...';
-                submitBtn.disabled = true;
-                
-                const formData = {
-                    name: document.getElementById('name').value.trim(),
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email')?.value || '',
-                    message: document.getElementById('message')?.value || '',
-                    page: window.location.href,
-                    form: 'modal',
-                    consent: document.getElementById('consent_modal')?.checked === true
-                };
-                
-                sendForm(formData, 'modal', submitBtn, originalText, function() {
-                    contactForm.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        closeModal();
-                        contactForm.reset();
-                        contactForm.style.display = 'flex';
-                        successMessage.style.display = 'none';
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }, 3000);
-                });
+            // Валидация перед отправкой
+            if (!validateModalForm()) {
+                return;
             }
+            
+            const submitBtn = document.querySelector('.modal-submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Отправка...';
+            submitBtn.disabled = true;
+            
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email')?.value || '',
+                message: document.getElementById('message')?.value || '',
+                page: window.location.href,
+                form: 'modal',
+                consent: document.getElementById('consent_modal')?.checked === true
+            };
+            
+            console.log('Отправка модальной формы:', formData);
+            
+            sendForm(formData, 'modal', submitBtn, originalText, function() {
+                contactForm.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    closeModal();
+                    contactForm.reset();
+                    contactForm.style.display = 'flex';
+                    successMessage.style.display = 'none';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
         });
     }
     
+    // ===== ОБРАБОТЧИК ОСНОВНОЙ ФОРМЫ =====
     if (contactMainForm) {
         contactMainForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            if (validateMainForm()) {
-                const submitBtn = document.querySelector('.form_submit_btn');
-                const originalText = submitBtn.textContent;
-                
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="loading-spinner"></span> Отправка...';
-                
-                const formData = {
-                    name: document.getElementById('name_main').value.trim(),
-                    phone: document.getElementById('phone_main').value,
-                    email: document.getElementById('email_main')?.value || '',
-                    message: document.getElementById('message_main')?.value || '',
-                    page: window.location.href,
-                    form: 'main',
-                    consent: document.getElementById('consent_main')?.checked === true
-                };
-                
-                sendForm(formData, 'main', submitBtn, originalText, function() {
-                    submitBtn.style.display = 'none';
-                    contactMainForm.style.display = 'none';
-                    if (successMessageMain) {
-                        successMessageMain.style.display = 'block';
-                    }
-                    
-                    setTimeout(() => {
-                        submitBtn.style.display = 'block';
-                        contactMainForm.style.display = 'block';
-                        if (successMessageMain) {
-                            successMessageMain.style.display = 'none';
-                        }
-                        contactMainForm.reset();
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalText;
-                    }, 3000);
-                });
+            // Валидация перед отправкой
+            if (!validateMainForm()) {
+                return;
             }
+            
+            const submitBtn = document.querySelector('.form_submit_btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Отправка...';
+            
+            const formData = {
+                name: document.getElementById('name_main').value.trim(),
+                phone: document.getElementById('phone_main').value,
+                email: document.getElementById('email_main')?.value || '',
+                message: document.getElementById('message_main')?.value || '',
+                page: window.location.href,
+                form: 'main',
+                consent: document.getElementById('consent_main')?.checked === true
+            };
+            
+            console.log('Отправка основной формы:', formData);
+            
+            sendForm(formData, 'main', submitBtn, originalText, function() {
+                submitBtn.style.display = 'none';
+                contactMainForm.style.display = 'none';
+                if (successMessageMain) {
+                    successMessageMain.style.display = 'block';
+                }
+                
+                setTimeout(() => {
+                    submitBtn.style.display = 'block';
+                    contactMainForm.style.display = 'block';
+                    if (successMessageMain) {
+                        successMessageMain.style.display = 'none';
+                    }
+                    contactMainForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }, 3000);
+            });
         });
     }
     
+    // ===== ОЧИСТКА ОШИБОК ПРИ ВВОДЕ =====
     document.querySelectorAll('input, textarea').forEach(input => {
         input.addEventListener('input', function() {
+            this.classList.remove('error');
+            const errorMsg = this.parentNode.querySelector('.error-message');
+            if (errorMsg) {
+                errorMsg.remove();
+            }
+        });
+    });
+    
+    // Специально для чекбоксов
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
             this.classList.remove('error');
             const errorMsg = this.parentNode.querySelector('.error-message');
             if (errorMsg) {
@@ -729,9 +823,14 @@ document.addEventListener('DOMContentLoaded', function() {
             to { transform: rotate(360deg); }
         }
         
-        input.error {
+        input.error, textarea.error {
             border-color: #ff4d4d !important;
             background-color: #fff8f8 !important;
+        }
+        
+        input[type="checkbox"].error {
+            outline: 2px solid #ff4d4d !important;
+            outline-offset: 2px;
         }
         
         .error-message {
