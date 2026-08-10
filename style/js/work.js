@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const workGrid = document.querySelector('.work-grid');
     const workInfo = document.querySelector('.work-info');
 
+    const projectUrls = {
+        1: '/work/Prime_Estate/',
+        2: '/work/objektiv/',
+        3: '/work/kinoset/',
+        4: '/work/kras-dostavka/',
+        5: '/work/krop_rem_avto/',
+        6: '/work/sitekrd/'
+    };
+
+    function projectUrl(id) {
+        return projectUrls[Number(id)] || ('/work_info.html?id=' + encodeURIComponent(id));
+    }
+
     // Страница списка работ
     if (workGrid) {
         var params = new URLSearchParams(window.location.search);
@@ -135,8 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         works.forEach(function(work, index) {
             var card = document.createElement('a');
-            // Все карточки ведут на work_info.html
-            card.href = '/work_info.html?id=' + work.id;
+            card.href = projectUrl(work.id);
             card.className = 'work-card';
             card.style.animationDelay = (index * 0.1) + 's';
 
@@ -159,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "@type": "ListItem",
                 "position": index + 1,
                 "name": work.title,
-                "url": "https://voronov-art.ru/work_info.html?id=" + work.id
+                "url": "https://voronov-art.ru" + projectUrl(work.id)
             });
         });
 

@@ -44,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 worksToShow.forEach(function(work) {
                     var link = document.createElement('a');
                     // Карточка ведёт на описание конкретной работы
-                    link.href = '/work_info.html?id=' + work.id;
+                    var projectUrls = {1:'/work/Prime_Estate/',2:'/work/objektiv/',3:'/work/kinoset/',4:'/work/kras-dostavka/',5:'/work/krop_rem_avto/',6:'/work/sitekrd/'};
+                    link.href = projectUrls[Number(work.id)] || ('/work_info.html?id=' + encodeURIComponent(work.id));
                     link.className = 'project_card_link';
 
                     var altText = escapeHtml(work.title) + (work.category ? ' — ' + escapeHtml(work.category) : '');

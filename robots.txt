@@ -51,8 +51,7 @@ Allow: /style/
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_referrer
 Clean-param: yclid&gclid&fbclid&_openstat&from&ref&source
 
-# Параметры фильтров портфолио — склеиваем с каноническими URL
+# Параметры фильтров портфолио
 Clean-param: kategory /work.html
-Clean-param: id /work_info.html
 
 Host: voronov-art.ru

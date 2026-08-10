@@ -34,6 +34,10 @@ header {
 .shap_11 *{
     cursor: pointer;
 }
+.shap_11 h1{
+    margin: 0;
+    font: inherit;
+}
 .shap_11 img{
     max-width: clamp(20px,2vw,40px);
 }
