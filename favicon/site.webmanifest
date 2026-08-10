@@ -1,1 +1,1 @@
-{"name":"","short_name":"","icons":[{"src":"\/favicon-16x16.png","sizes":"16x16","type":"image\/png"},{"src":"\/favicon-32x32.png","sizes":"32x32","type":"image\/png"},{"src":"\/favicon.ico","sizes":"48x48","type":"image\/x-icon"}]}
+{"name":"Студия Воронова","short_name":"Воронов","icons":[{"src":"/favicon/favicon-16x16.png","sizes":"16x16","type":"image/png"},{"src":"/favicon/favicon-32x32.png","sizes":"32x32","type":"image/png"},{"src":"/favicon/favicon.ico","sizes":"48x48","type":"image/x-icon"}],"theme_color":"#4a6fa5","background_color":"#ffffff","display":"standalone"}
