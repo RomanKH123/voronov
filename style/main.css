@@ -285,6 +285,8 @@ article {
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    opacity: 0.42;
+    filter: saturate(0.72);
 }
 
 /* Интерактивный макет «расслаивающегося сайта» — отдельная секция под hero */
@@ -329,7 +331,8 @@ article {
 
 .blok_1_zg h1 {
     font-family: 'Abhaya Libre', sans-serif;
-    font-size: clamp(14px, 2vw, 24px);
+    font-size: clamp(18px, 2vw, 30px);
+    margin-bottom: 3vh;
 }
 
 .blok_1_sp {
@@ -2247,7 +2250,7 @@ article {
 /* Очень маленькие устройства */
 @media (max-width: 480px) {
     .blok_1_zg h1 {
-        font-size: 16px;
+        font-size: 18px;
     }
     
     .blok_1_sp_1 div {
