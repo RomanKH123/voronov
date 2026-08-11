@@ -387,6 +387,14 @@ article {
     display: block;
 }
 
+.blok_1_sp_2 .hero-service-image {
+    width: min(78vw, 1180px);
+    margin: 28px 3vw 18px auto;
+    border: 1px solid rgba(74, 111, 165, 0.16);
+    border-radius: clamp(20px, 3vw, 34px);
+    box-shadow: 0 24px 60px rgba(32, 56, 91, 0.16);
+}
+
 /* Блок 2 - Этапы работы */
 .blok_2 {
     width: 90%;
@@ -2080,6 +2088,13 @@ article {
         height: auto;
         object-fit: contain;
     }
+
+    .blok_1_sp_2 .hero-service-image {
+        width: calc(100% - 30px);
+        margin: 8px auto 0;
+        border-radius: 20px;
+        box-shadow: 0 16px 38px rgba(32, 56, 91, 0.14);
+    }
     
     .blok_1_zg {
         display: block;
@@ -2704,3 +2719,4 @@ a.logo-area:hover {
         padding: 50px 20px;
     }
 }
+.service-visual{max-width:1180px;margin:32px auto 0;padding:0 22px}.service-visual img{display:block;width:100%;height:auto;max-height:620px;object-fit:cover;border-radius:28px;box-shadow:0 20px 55px rgba(32,56,91,.14)}
