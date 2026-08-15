@@ -1,0 +1,100 @@
+/* Responsive safeguards for long-form blog articles. */
+.article-wrap {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+}
+
+.article-wrap img,
+.article-wrap video,
+.article-wrap iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-wrap p,
+.article-wrap li,
+.article-wrap td,
+.article-wrap th,
+.article-wrap a,
+.article-wrap code {
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.article-wrap .compare-table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    .article-wrap {
+        padding: 28px 16px;
+    }
+
+    .article-wrap > h1,
+    .article-wrap h1[style] {
+        font-size: clamp(27px, 8vw, 34px) !important;
+        line-height: 1.18 !important;
+    }
+
+    .article-wrap h2 {
+        margin-top: 32px;
+        font-size: clamp(23px, 6.5vw, 28px);
+        line-height: 1.25;
+    }
+
+    .article-wrap h3 {
+        font-size: 19px;
+        line-height: 1.35;
+    }
+
+    .article-wrap p,
+    .article-wrap ul,
+    .article-wrap ol {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .article-wrap ul,
+    .article-wrap ol {
+        margin-left: 0;
+        padding-left: 22px;
+    }
+
+    .article-wrap .callout,
+    .article-wrap .callout-warn {
+        padding: 14px 16px;
+    }
+
+    .article-wrap .compare-table {
+        margin-right: 0;
+        margin-left: 0;
+        font-size: 14px;
+    }
+
+    .article-wrap .compare-table th,
+    .article-wrap .compare-table td {
+        min-width: 140px;
+        padding: 10px;
+    }
+
+    .article-wrap .stats-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 380px) {
+    .article-wrap {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .article-wrap > h1,
+    .article-wrap h1[style] {
+        font-size: 26px !important;
+    }
+}

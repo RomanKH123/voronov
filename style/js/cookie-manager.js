@@ -1,123 +1,59 @@
-/**
- * cookie-manager.js
- * Управление согласием на cookie с плавной анимацией
- */
-
-(function() {
+/** Cookie usage notice. Analytics is initialized separately in page HTML. */
+(function () {
     'use strict';
-    
-    // Версия согласия. При существенном обновлении политики ПДн
-    // увеличиваем число — все посетители увидят баннер повторно.
-    const COOKIE_NAME = 'cookie_consent_v2';
+    const COOKIE_NAME = 'cookie_notice_accepted_v1';
     const COOKIE_EXPIRE_DAYS = 365;
 
-    function loadAnalytics() {
-        if (window.__analyticsLoaded) return;
-        window.__analyticsLoaded = true;
+    function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        const secure = location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax' + secure;
+    }
 
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
-        window.gtag('js', new Date());
-        window.gtag('config', 'G-JFKDPNHH6E', { anonymize_ip: true });
-        const googleScript = document.createElement('script');
-        googleScript.async = true;
-        googleScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-JFKDPNHH6E';
-        document.head.appendChild(googleScript);
+    function getCookie(name) {
+        const prefix = name + '=';
+        const item = document.cookie.split(';').map(function (value) { return value.trim(); })
+            .find(function (value) { return value.indexOf(prefix) === 0; });
+        return item ? decodeURIComponent(item.substring(prefix.length)) : null;
+    }
 
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            k=e.createElement(t); a=e.getElementsByTagName(t)[0];
-            k.async=1; k.src=r; a.parentNode.insertBefore(k,a);
-        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=106882746', 'ym');
-        window.ym(106882746, 'init', {
-            ssr: true,
-            webvisor: true,
-            clickmap: true,
-            accurateTrackBounce: true,
-            trackLinks: true
+    function renderBanner(banner) {
+        banner.id = 'cookie-consent';
+        banner.className = 'cookie-consent';
+        banner.setAttribute('role', 'dialog');
+        banner.setAttribute('aria-label', 'Уведомление об использовании cookie');
+        banner.innerHTML = '<div class="cookie-content">' +
+            '<div class="cookie-text"><strong>Мы используем cookie</strong>' +
+            '<p>Оставаясь на сайте, вы соглашаетесь на использование файлов cookie и обработку данных сервисами аналитики.</p></div>' +
+            '<div class="cookie-buttons"><button id="cookie-accept" class="cookie-btn accept" type="button">Принять</button>' +
+            '<a class="cookie-btn details" href="/privacy-policy.html">Подробнее</a></div></div>';
+        return banner;
+    }
+
+    function createBanner() {
+        const banner = renderBanner(document.createElement('div'));
+        document.body.appendChild(banner);
+        return banner;
+    }
+
+    function initCookieNotice() {
+        let banner = document.getElementById('cookie-consent');
+        if (banner) renderBanner(banner);
+        else banner = createBanner();
+        if (getCookie(COOKIE_NAME) === 'yes') {
+            banner.style.display = 'none';
+            return;
+        }
+        banner.style.display = 'block';
+        setTimeout(function () { banner.classList.add('show'); }, 10);
+        const acceptButton = document.getElementById('cookie-accept');
+        if (acceptButton) acceptButton.addEventListener('click', function () {
+            setCookie(COOKIE_NAME, 'yes', COOKIE_EXPIRE_DAYS);
+            banner.classList.remove('show');
+            setTimeout(function () { banner.style.display = 'none'; }, 400);
         });
     }
-    
-    function setCookie(name, value, days) {
-        let expires = '';
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = '; expires=' + date.toUTCString();
-        }
-        const secure = location.protocol === 'https:' ? '; Secure' : '';
-        document.cookie = name + '=' + encodeURIComponent(value || '') + expires + '; path=/; SameSite=Lax' + secure;
-    }
-    
-    function getCookie(name) {
-        const nameEQ = name + '=';
-        const ca = document.cookie.split(';');
-        for(let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-        }
-        return null;
-    }
-    
-    function initCookieConsent() {
-        const consent = getCookie(COOKIE_NAME);
-        const banner = document.getElementById('cookie-consent');
-        
-        if (!banner) return;
-        
-        // Если уже есть согласие или отказ — скрываем баннер
-        if (consent === 'accepted') {
-            loadAnalytics();
-            banner.style.display = 'none';
-            return;
-        }
-        if (consent === 'declined') {
-            banner.style.display = 'none';
-            return;
-        }
-        
-        // Показываем баннер (сначала делаем видимым, потом добавляем класс для анимации)
-        banner.style.display = 'block';
-        
-        // Небольшая задержка для корректной анимации
-        setTimeout(() => {
-            banner.classList.add('show');
-        }, 10);
-        
-        // Кнопка "Принять"
-        const acceptBtn = document.getElementById('cookie-accept');
-        if (acceptBtn) {
-            acceptBtn.addEventListener('click', function() {
-                setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRE_DAYS);
-                loadAnalytics();
-                banner.classList.remove('show');
-                setTimeout(() => {
-                    banner.style.display = 'none';
-                }, 400);
-                
-            });
-        }
-        
-        // Кнопка "Отклонить"
-        const declineBtn = document.getElementById('cookie-decline');
-        if (declineBtn) {
-            declineBtn.addEventListener('click', function() {
-                setCookie(COOKIE_NAME, 'declined', COOKIE_EXPIRE_DAYS);
-                banner.classList.remove('show');
-                setTimeout(() => {
-                    banner.style.display = 'none';
-                }, 400);
-            });
-        }
-    }
-    
-    // Запускаем при загрузке страницы
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCookieConsent);
-    } else {
-        initCookieConsent();
-    }
-    
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCookieNotice);
+    else initCookieNotice();
 })();
