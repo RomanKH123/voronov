@@ -6,14 +6,23 @@
         <description>Статьи о разработке сайтов, выборе платформ и работе с подрядчиками. Практика студии веб-разработки Воронова из Краснодара.</description>
         <language>ru</language>
         <atom:link href="https://voronov-art.ru/blog/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Mon, 27 Jul 2026 12:00:00 +0300</lastBuildDate>
-        <pubDate>Mon, 27 Jul 2026 12:00:00 +0300</pubDate>
+        <lastBuildDate>Sun, 16 Aug 2026 18:00:00 +0300</lastBuildDate>
+        <pubDate>Sun, 16 Aug 2026 18:00:00 +0300</pubDate>
         <ttl>60</ttl>
         <image>
             <url>https://voronov-art.ru/img/logo_2.png</url>
             <title>Блог студии Воронова</title>
             <link>https://voronov-art.ru/blog/</link>
         </image>
+
+        <item>
+            <title>Сообщество для предпринимателей: идеи и инструменты для бизнеса</title>
+            <link>https://voronov-art.ru/blog/pro-biznes-soobshchestvo-vk.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/pro-biznes-soobshchestvo-vk.html</guid>
+            <pubDate>Sun, 16 Aug 2026 18:00:00 +0300</pubDate>
+            <description>Обзор сообщества «Про Бизнес»: идеи для роста, стратегии развития, инструменты для бизнеса и практический фокус на результат.</description>
+            <category>Бизнес</category>
+        </item>
 
         <item>
             <title>Зачем нужно SEO для сайта и бизнеса</title>

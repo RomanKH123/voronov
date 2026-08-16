@@ -67,6 +67,15 @@
             padding: 0 20px;
             align-items: stretch;
         }
+        .blog-hero img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 22px;
+            box-shadow: 0 22px 55px rgba(74,111,165,0.16);
+        }
         .blog-grid article {
             margin: 0 !important;
             min-height: auto;
@@ -120,6 +129,9 @@
             outline: none;
         }
         @media (max-width: 640px) {
+            .blog-hero img {
+                border-radius: 14px;
+            }
             .blog-grid {
                 gap: 18px;
                 padding: 0 16px;
@@ -184,8 +196,11 @@
     <main>
         <section class="blok_1">
             <div class="blok_1_zg">
-                <h1>Блог о разработке сайтов</h1>
+                <h1>Блог о ведении бизнеса в интернете</h1>
             </div>
+            <figure class="blog-hero">
+                <img src="/img/blog-hero.png" width="1672" height="941" alt="Блог о разработке сайтов, SEO и развитии бизнеса" fetchpriority="high">
+            </figure>
         </section>
 
         <section class="blok_6">
@@ -193,6 +208,11 @@
             <div class="blok_6_txt">Отвечаем на вопросы, которые задают заказчики до старта проекта</div>
 
             <div class="blog-grid">
+                <article class="ln_3">
+                    <h2 class="ln_b_1"><a href="/blog/pro-biznes-soobshchestvo-vk.html" style="color:inherit;text-decoration:none;">Сообщество для предпринимателей: идеи и инструменты для бизнеса</a></h2>
+                    <p class="ln_b_2">Идеи для роста, стратегии развития и полезные инструменты для тех, кто строит своё дело и ориентирован на результат.</p>
+                    <div class="ln_b_3"><a href="/blog/pro-biznes-soobshchestvo-vk.html" style="color:#4a6fa5;font-weight:600;">Читать →</a></div>
+                </article>
                 <article class="ln_1">
                     <h2 class="ln_b_1"><a href="/blog/zachem-nuzhno-seo.html" style="color:inherit;text-decoration:none;">Зачем нужно SEO для сайта и бизнеса</a></h2>
                     <p class="ln_b_2">Что даёт SEO: стабильный трафик из поиска, заявки без постоянной оплаты рекламы, рост доверия и лучшая окупаемость сайта.</p>
