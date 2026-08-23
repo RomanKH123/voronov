@@ -3108,6 +3108,101 @@ a.logo-area:hover {
     }
 }
 
+/* Portfolio cards: compact editorial layout */
+.projects_grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(18px, 2vw, 28px);
+    max-width: 1280px;
+}
+
+.project_card {
+    position: relative;
+    background: #fff;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(24, 32, 45, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.project_card:hover {
+    transform: translateY(-4px);
+    border-color: #aeb9c7;
+    box-shadow: 0 14px 34px rgba(24, 32, 45, 0.14);
+}
+
+.project_preview {
+    aspect-ratio: 16 / 9;
+    background: #eef1f4;
+    border-bottom: 1px solid #e6e9ed;
+}
+
+.project_card:hover .project_image {
+    transform: scale(1.025);
+}
+
+.project_details {
+    min-height: 190px;
+    padding: clamp(18px, 1.8vw, 24px);
+}
+
+.project_name {
+    margin: 0 0 10px;
+    color: #171a1f;
+    line-height: 1.2;
+}
+
+.project_category {
+    margin-bottom: 14px;
+    padding: 5px 9px;
+    color: #365d8d;
+    background: #edf3f8;
+    border-radius: 4px;
+    letter-spacing: 0;
+}
+
+.project_desc {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 0 0 18px;
+    color: #535b66;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.project_details::after {
+    content: "Подробнее о работе  →";
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #e6e9ed;
+    color: #365d8d;
+    font-family: 'Jura', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.project_card_link {
+    outline-offset: 4px;
+}
+
+.project_card_link:hover {
+    transform: none;
+}
+
+.project_card_link:focus-visible {
+    outline: 2px solid #365d8d;
+}
+
+@media (max-width: 768px) {
+    .project_preview {
+        aspect-ratio: 16 / 10;
+    }
+
+    .project_details {
+        min-height: 180px;
+        padding: 18px;
+    }
+}
+
 @media (max-width: 380px) {
     .logo-area {
         flex-shrink: 0;
@@ -3515,4 +3610,16 @@ a.logo-area:hover {
     .blok_6 .blok_3_ln > .ln_3 > .ln_b_1 {
         min-height: calc(3.6em + 22px);
     }
+}
+
+/* Keep portfolio cards consistent after the global desktop overrides above. */
+.projects_grid .project_card {
+    border-radius: 8px;
+    border: 1px solid #dfe3e8;
+    box-shadow: 0 8px 24px rgba(24, 32, 45, 0.08);
+}
+
+.projects_grid .project_card:hover {
+    border-color: #aeb9c7;
+    box-shadow: 0 14px 34px rgba(24, 32, 45, 0.14);
 }

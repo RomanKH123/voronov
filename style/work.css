@@ -452,3 +452,87 @@ main {
         text-align: center;
     }
 }
+
+/* Final card overrides are kept last because this file contains legacy card rules. */
+.work-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(18px, 2vw, 28px);
+}
+
+.work-card {
+    background: #fff;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(24, 32, 45, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    outline-offset: 4px;
+}
+
+.work-card:hover {
+    transform: translateY(-4px);
+    border-color: #aeb9c7;
+    box-shadow: 0 14px 34px rgba(24, 32, 45, 0.14);
+}
+
+.work-card:focus-visible {
+    outline: 2px solid #365d8d;
+}
+
+.work-card__image {
+    background: #eef1f4;
+    border-bottom: 1px solid #e6e9ed;
+}
+
+.work-card:hover .work-card__image img {
+    transform: scale(1.025);
+}
+
+.work-card__body {
+    min-height: 190px;
+    padding: clamp(18px, 2vw, 24px);
+}
+
+.work-card__category {
+    padding: 5px 9px;
+    color: #365d8d;
+    background: #edf3f8;
+    border-radius: 4px;
+    letter-spacing: 0;
+}
+
+.work-card__title {
+    color: #171a1f;
+    line-height: 1.2;
+}
+
+.work-card__desc {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 0 0 8px;
+    color: #535b66;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.work-card__body::after {
+    content: "Подробнее о работе  →";
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #e6e9ed;
+    color: #365d8d;
+    font-family: 'Jura', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .work-card__body {
+        min-height: 180px;
+        padding: 18px;
+    }
+
+    .work-card:hover {
+        transform: none;
+        box-shadow: 0 8px 24px rgba(24, 32, 45, 0.08);
+    }
+}

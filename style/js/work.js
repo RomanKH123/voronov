@@ -2,17 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const workGrid = document.querySelector('.work-grid');
     const workInfo = document.querySelector('.work-info');
 
-    const projectUrls = {
-        1: '/work/Prime_Estate/',
-        2: '/work/objektiv/',
-        3: '/work/kinoset/',
-        4: '/work/kras-dostavka/',
-        5: '/work/krop_rem_avto/',
-        6: '/work/sitekrd/'
-    };
-
     function projectUrl(id) {
-        return projectUrls[Number(id)] || ('/work_info.html?id=' + encodeURIComponent(id));
+        return '/work_info.html?id=' + encodeURIComponent(id);
     }
 
     // Страница списка работ
