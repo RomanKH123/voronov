@@ -736,7 +736,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: document.getElementById('name_main').value.trim(),
                 phone: document.getElementById('phone_main').value,
                 email: document.getElementById('email_main')?.value || '',
-                message: document.getElementById('message_main')?.value || '',
+                message: [
+                    document.getElementById('business_stage_main')?.value
+                        ? `Ситуация: ${document.getElementById('business_stage_main').value}`
+                        : '',
+                    document.getElementById('message_main')?.value || ''
+                ].filter(Boolean).join('\n'),
                 page: window.location.href,
                 form: 'main',
                 consent: document.getElementById('consent_main')?.checked === true
