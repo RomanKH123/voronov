@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/telegram.php';
 header('Content-Type: application/json; charset=utf-8');
 
 // Только POST запросы
@@ -88,6 +89,7 @@ try {
     ]);
     
     $applicationId = $pdo->lastInsertId();
+    notifyTelegramLead();
     
     // Успешный ответ
     echo json_encode([

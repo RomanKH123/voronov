@@ -1,0 +1,11 @@
+{
+    "name": "broken-mountain-55ac",
+    "account_id": "8833f7e2cba49fa90842c10899adaa3c",
+    "main": "worker.js",
+    "compatibility_date": "2026-09-28",
+    "workers_dev": true,
+    "vars": {
+        "TELEGRAM_SITE_URL": "https://voronov-art.ru"
+    },
+    "observability": { "enabled": false }
+}

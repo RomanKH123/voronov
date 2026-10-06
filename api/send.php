@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/telegram.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -20,7 +21,8 @@ if (mb_strlen($name) < 2 || strlen($digits) < 10 || ($email !== '' && !filter_va
 }
 
 try {
-    $stmt = db()->prepare(
+    $pdo = db();
+    $stmt = $pdo->prepare(
         "INSERT INTO applications (name, phone, email, message, form_type, ip_address, user_agent, page_url)
          VALUES (?, ?, ?, ?, 'main', ?, ?, ?)"
     );
@@ -33,6 +35,7 @@ try {
         cleanText($_SERVER['HTTP_USER_AGENT'] ?? '', 500),
         cleanText($_SERVER['HTTP_REFERER'] ?? '', 500),
     ]);
+    notifyTelegramLead();
     header('Location: /?success=1', true, 303);
 } catch (Throwable $e) {
     error_log('Lead storage failed: ' . $e->getMessage());

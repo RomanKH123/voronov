@@ -1,4 +1,12 @@
 /config.local.php
 /admin/admin_logs.txt
 /admin/logs/*.log
+/.env
+/.env.*
+!/.env.example
+/.private/
+/.tmp-admin-check/
+/deploy/telegram-worker/.dev.vars
+/deploy/telegram-worker/.wrangler/
+/deploy/telegram-worker/node_modules/
 

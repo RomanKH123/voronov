@@ -3,6 +3,7 @@ DirectoryIndex index.html index.php
 # ========== ОСНОВНЫЕ НАСТРОЙКИ ==========
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteRule ^\.private(?:/|$) - [F,L]
 
     # ========== НОВАЯ СТРУКТУРА УСЛУГА + ГОРОД ==========
     RewriteRule ^lending-krasnodar\.html$ /krasnodar/lending/ [R=301,L,NC]

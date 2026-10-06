@@ -1,6 +1,26 @@
 <?php
 declare(strict_types=1);
 
+// Server environment takes precedence over the private .env file.
+function envValue(string $key, string $default = ''): string
+{
+    static $values;
+    if ($values === null) {
+        $values = [];
+        $file = dirname(__DIR__) . '/.env';
+        foreach (is_file($file) ? file($file, FILE_IGNORE_NEW_LINES) : [] as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#') || !str_contains($line, '=')) continue;
+            [$name, $value] = explode('=', $line, 2);
+            $value = trim($value);
+            if (strlen($value) >= 2 && (($value[0] === '"' && substr($value, -1) === '"') || ($value[0] === "'" && substr($value, -1) === "'"))) $value = substr($value, 1, -1);
+            $values[trim($name)] = $value;
+        }
+    }
+    $value = getenv($key);
+    return $value !== false ? $value : ($values[$key] ?? $default);
+}
+
 function appConfig(): array
 {
     static $config;
