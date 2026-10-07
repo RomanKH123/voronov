@@ -3710,3 +3710,233 @@ a.logo-area:hover {
         padding: 0 16px 38px;
     }
 }
+
+/* Mobile reading rhythm and progressive CSS-only reveals. */
+@media (max-width: 768px) {
+    .blok_1_zg {
+        padding: 24px 20px;
+        border: 1px solid rgba(74, 111, 165, .14);
+        border-radius: 28px;
+        background: linear-gradient(150deg, #fff, #eaf3ff);
+        box-shadow: 0 16px 40px rgba(32, 56, 91, .08);
+        text-align: left;
+    }
+
+    .blok_1_zg h1 {
+        margin-inline: 0;
+        font-size: clamp(29px, 8vw, 42px);
+        color: #203b61;
+        text-wrap: balance;
+    }
+
+    .hero-eyebrow {
+        font-size: 11px;
+        line-height: 1.5;
+        letter-spacing: .06em;
+    }
+
+    .blok_1_slogan {
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        color: #526172;
+    }
+
+    .hero-service-line {
+        padding-top: 16px;
+        border-top: 1px solid rgba(74, 111, 165, .18);
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .hero-actions {
+        display: grid;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .hero-action {
+        min-height: 48px;
+        padding: 12px 16px;
+        border-radius: 14px;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .hero-action--primary {
+        box-shadow: 0 8px 20px rgba(53, 95, 155, .22);
+    }
+
+    .blok_1_sp_1 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+
+    .blok_1_sp_1 div {
+        display: flex;
+        align-items: center;
+        min-height: 60px;
+        border: 1px solid rgba(74, 111, 165, .14);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, .9);
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .blok_1_sp_1 div:last-child {
+        border-bottom: 1px solid rgba(74, 111, 165, .14);
+    }
+
+    main > :is(.blok_about, .blok_2, .blok_3, .blok_4, .blok_5, .blok_6, .projects_showcase, .blok_contacts) {
+        margin-top: 72px;
+    }
+
+    .blok_about {
+        width: calc(100% - 2 * var(--mobile-gutter));
+        padding: 28px 16px;
+        background: rgba(255, 255, 255, .72);
+    }
+
+    .blok_about .blok_5 {
+        padding-inline: 0;
+    }
+
+    .blok_2_nm, .blok_3_nm, .blok_6_nm, .projects_title {
+        display: block;
+        text-align: left;
+        text-wrap: balance;
+    }
+
+    .blok_2_nm::before, .blok_3_nm::before,
+    .blok_6_nm::before, .projects_title::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 4px;
+        margin-bottom: 16px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #355f9b, #9bbfe9);
+    }
+
+    .blok_2_zg, .blok_3_zg, .blok_3_tg,
+    .blok_6_txt, .projects_subtitle {
+        text-align: left;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .blok_3_ln, .blok_5_ln {
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .ln_1, .ln_2, .ln_3,
+    .blok_4_1, .blok_4_2, .blok_4_3,
+    .blok_5_1, .blok_5_2 {
+        padding: 26px 20px;
+        box-shadow: 0 10px 28px rgba(32, 56, 91, .09);
+    }
+
+    .ln_b_1, .ln_b_1 h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.3;
+        text-align: left;
+    }
+
+    .ln_b_2, .ln_b_2 p, .nm_txt {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .ln_b_3 span, .ln_b_3 div {
+        min-width: 0;
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.5;
+        white-space: normal;
+    }
+
+    .ln_b_3 > a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .contact_item {
+        display: grid;
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 4px 12px;
+        padding: 14px 12px;
+    }
+
+    .contact_icon {
+        grid-row: span 2;
+    }
+
+    .contact_label {
+        min-width: 0;
+        font-size: 12px;
+    }
+
+    .contact_value {
+        grid-column: 2;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    .form_group select {
+        min-height: 50px;
+    }
+
+    .form_group input, .form_group textarea,
+    .form_group select, .form-group input {
+        font-size: 16px;
+    }
+
+    /* Keep content readable even when the existing JS reveal is unavailable. */
+    main > section,
+    .blok_about .blok_5,
+    .blok_3_ln > :is(.ln_1, .ln_2, .ln_3),
+    .projects_grid .project_card {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mobile-card-in {
+    from { opacity: .35; transform: translateY(24px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .blok_1_zg {
+        animation: mobile-card-in .65s cubic-bezier(.2, .7, .3, 1) both;
+    }
+
+    @supports (animation-timeline: view()) {
+        .blok_3_ln > :is(.ln_1, .ln_2, .ln_3),
+        .blok_5_ln > :is(.blok_5_1, .blok_5_2),
+        .blok_2 > div > :is(.blok_2_1, .blok_2_2, .blok_2_3, .blok_2_4),
+        .projects_grid .project_card,
+        .contact_info, .contact_form_card {
+            animation: mobile-card-in linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 80%;
+        }
+    }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    .blok_1_zg, .sticker-icon, .service-sticker,
+    .tariff-sticker, .step-number {
+        animation: none;
+    }
+}
