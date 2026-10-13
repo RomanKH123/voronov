@@ -36,7 +36,7 @@ button {
     background-color: #000000;
     padding: 2vw;
     border-radius: 15px;
-    font-family: 'Aboreto', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 400;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -323,14 +323,14 @@ article {
     margin-top: 7vw;
     margin-bottom: 10vw;
     margin-left: 7vw;
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(12px, 2vw, 22px);
     position: relative;
     z-index: 2;
 }
 
 .blok_1_zg h1 {
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(18px, 2vw, 30px);
     margin-bottom: 3vh;
 }
@@ -354,7 +354,7 @@ article {
     margin-right: auto;
     border: #000000;
     border-radius: 25% 10%;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     backdrop-filter: blur(8px);
     border: 1px solid rgba(74,111,165,0.2);
     transition: all 0.3s ease;
@@ -390,12 +390,82 @@ article {
     display: block;
 }
 
-.blok_1_sp_2 .hero-service-image {
+/* Коллаж из реальных работ студии в hero */
+.blok_1_sp_2 .hero-works {
+    position: relative;
     width: min(78vw, 1180px);
     margin: 28px 3vw 18px auto;
+    aspect-ratio: 2 / 1;
+}
+
+.blok_1_sp_2 .hero-works__shot {
+    position: absolute;
+    margin: 0;
+    overflow: hidden;
+    background: #fff;
     border: 1px solid rgba(74, 111, 165, 0.16);
-    border-radius: clamp(20px, 3vw, 34px);
+    border-radius: clamp(14px, 1.6vw, 22px);
     box-shadow: 0 24px 60px rgba(32, 56, 91, 0.16);
+}
+
+/* Верхняя панель «браузера» у каждого скриншота */
+.blok_1_sp_2 .hero-works__shot::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(180deg, #f2f6fc 0%, #e8eef8 100%);
+    border-bottom: 1px solid rgba(74, 111, 165, 0.12);
+    z-index: 1;
+}
+
+.blok_1_sp_2 .hero-works__shot::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 11px;
+    width: 30px;
+    height: 7px;
+    z-index: 2;
+    background:
+        radial-gradient(circle at 5px 3.5px, #e2504c 3px, transparent 3.5px),
+        radial-gradient(circle at 15px 3.5px, #e9b64d 3px, transparent 3.5px),
+        radial-gradient(circle at 25px 3.5px, #6fbf73 3px, transparent 3.5px);
+}
+
+.blok_1_sp_2 .hero-works__shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
+
+.blok_1_sp_2 .hero-works__shot--back-left {
+    width: 44%;
+    height: 46%;
+    top: 2%;
+    left: 1%;
+    transform: rotate(-4deg);
+}
+
+.blok_1_sp_2 .hero-works__shot--back-right {
+    width: 44%;
+    height: 46%;
+    top: 2%;
+    right: 1%;
+    transform: rotate(4deg);
+}
+
+.blok_1_sp_2 .hero-works__shot--front {
+    width: 56%;
+    height: 56%;
+    left: 22%;
+    bottom: 2%;
+    z-index: 2;
+    box-shadow: 0 30px 70px rgba(32, 56, 91, 0.22);
 }
 
 /* Блок 2 - Этапы работы */
@@ -406,7 +476,7 @@ article {
 
 .blok_2_nm {
     text-align: center;
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
     font-size: clamp(30px, 5vw, 36px);
     margin-bottom: 20px;
@@ -416,7 +486,7 @@ article {
     text-align: center;
     margin-top: 2vw;
     margin-bottom: 5vw;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(16px, 2vw, 30px);
     color: #555;
 }
@@ -474,7 +544,7 @@ article {
 }
 
 .nm h3 {
-    font-family: 'Judson', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(20px, 2vw, 30px);
     font-weight: normal;
     margin: 0;
@@ -512,7 +582,7 @@ article {
 
 /* Текст этапов */
 .nm_txt {
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(18px, 2vw, 24px);
     line-height: 1.6;
 }
@@ -545,7 +615,7 @@ article {
     text-align: center;
     margin-top: 4vh;
     margin-bottom: 2vh;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(22px, 5vw, 30px);
     color: #1a1a1a;
 }
@@ -554,7 +624,7 @@ article {
     text-align: center;
     margin-top: 2vw;
     margin-bottom: 4vw;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
     color: #666;
     max-width: 800px;
@@ -631,14 +701,14 @@ article {
 .ln_b_1 {
     text-align: center;
     margin-bottom: 2vw;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(22px, 2vw, 30px);
     padding-bottom: 2vh;
     border-bottom: 2px solid rgba(0,0,0,0.1);
 }
 
 .ln_b_1 h3 {
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(22px, 2vw, 30px);
     font-weight: normal;
     margin: 0;
@@ -646,7 +716,7 @@ article {
 
 .ln_b_2 {
     margin-bottom: 1vw;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(18px, 2vw, 25px);
     line-height: 1.6;
     flex-grow: 1;
@@ -654,7 +724,7 @@ article {
 }
 
 .ln_b_2 p {
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(18px, 2vw, 25px);
     margin: 0;
 }
@@ -662,7 +732,7 @@ article {
 .ln_b_3 span,
 .ln_b_3 div {
     margin-top: 1vw;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(18px, 2vw, 28px);
     padding: 8px 12px;
     background-color: rgba(255,255,255,0.5);
@@ -834,13 +904,13 @@ article {
     font-weight: 800;
     display: flex;
     justify-content: center;
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(30px, 5vw, 36px);
     margin-bottom: 20px;
 }
 
 .blok_6_nm h2 {
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 32px;
     font-weight: 800;
     margin: 0;
@@ -854,7 +924,7 @@ article {
     width: 80%;
     justify-content: center;
     text-align: center;
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(18px, 2vw, 30px);
     line-height: 1.2;
 }
@@ -910,7 +980,7 @@ article {
 }
 
 .projects_title {
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 800;
     font-size: clamp(28px, 4vw, 42px);
     margin-bottom: 0.5vw;
@@ -922,7 +992,7 @@ article {
 }
 
 .projects_title h3 {
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 800;
     font-size: clamp(28px, 4vw, 42px);
     background: linear-gradient(135deg, #000, #4a6fa5);
@@ -933,7 +1003,7 @@ article {
 }
 
 .projects_subtitle {
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(16px, 1.5vw, 22px);
     color: #666;
     letter-spacing: 1px;
@@ -1034,7 +1104,7 @@ article {
 }
 
 .project_category {
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(13px, 1vw, 15px);
     font-weight: 600;
     color: #4a6fa5;
@@ -1049,7 +1119,7 @@ article {
 }
 
 .project_desc {
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(14px, 1.1vw, 16px);
     line-height: 1.6;
     color: #444;
@@ -1076,7 +1146,7 @@ article {
     color: #1a1a2e;
     padding: 5px 15px;
     border-radius: 30px;
-    font-family: 'Aboreto', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -1353,7 +1423,7 @@ article {
 }
 
 .form_submit_btn {
-    font-family: 'Aboreto', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 16px;
     font-weight: 400;
     padding: 18px 30px;
@@ -1469,7 +1539,7 @@ article {
 }
 
 .blok_contacts .blok_2_nm h2 {
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 800;
     font-size: clamp(28px, 4vw, 42px);
     background: linear-gradient(135deg, #000, #4a6fa5);
@@ -1645,7 +1715,7 @@ article {
 }
 
 .modal-submit-btn {
-    font-family: 'Aboreto', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 16px;
     font-weight: 400;
     padding: 18px 30px;
@@ -1837,7 +1907,7 @@ article {
 }
 
 .why-card__title {
-    font-family: 'Abhaya Libre', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(17px, 2vw, 20px);
     font-weight: 700;
     color: #2c3e5a;
@@ -1845,7 +1915,7 @@ article {
 }
 
 .why-card__text {
-    font-family: 'Abyssinica SIL', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(14px, 1.6vw, 16px);
     line-height: 1.55;
     color: #555;
@@ -2144,11 +2214,39 @@ article {
         object-fit: contain;
     }
 
-    .blok_1_sp_2 .hero-service-image {
+    /* На мобильных главный скриншот сверху, два дополнительных снизу. */
+    .blok_1_sp_2 .hero-works {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
         width: calc(100% - 30px);
-        margin: 8px auto 0;
-        border-radius: 20px;
-        box-shadow: 0 16px 38px rgba(32, 56, 91, 0.14);
+        max-width: 560px;
+        margin: 8px auto 16px;
+        aspect-ratio: auto;
+    }
+
+    .blok_1_sp_2 .hero-works__shot {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        min-width: 0;
+        padding-top: 20px;
+        border-radius: 12px;
+        transform: none;
+        box-shadow: 0 6px 18px rgba(32, 56, 91, 0.12);
+    }
+
+    .blok_1_sp_2 .hero-works__shot img {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .blok_1_sp_2 .hero-works__shot--front {
+        grid-column: 1 / -1;
+        grid-row: 1;
     }
     
     .blok_1_zg {
@@ -2580,7 +2678,7 @@ article {
     gap: 24px;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
 }
 
@@ -2597,7 +2695,7 @@ article {
 .footer-copy {
     color: #8892b0;
     font-size: 13px;
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     padding-top: 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -2653,7 +2751,7 @@ a.logo-area:hover {
     color: #4a6fa5;
     border: 2px solid #4a6fa5;
     border-radius: 50px;
-    font-family: 'Aboreto', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(13px, 1.1vw, 15px);
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -2673,7 +2771,7 @@ a.logo-area:hover {
 .projects-loading {
     text-align: center;
     padding: 60px 20px;
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     color: #888;
 }
@@ -2735,7 +2833,7 @@ a.logo-area:hover {
 }
 
 .projects-empty__text {
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(14px, 1.2vw, 17px);
     line-height: 1.7;
     color: #777;
@@ -2817,16 +2915,10 @@ a.logo-area:hover {
     }
 
     .logo-area img {
-        width: 52px;
-        min-width: 52px;
-        height: 52px;
-        min-height: 52px;
-        flex: 0 0 52px;
-        object-fit: contain;
+       display: none;
     }
 
     .studio-name {
-        max-width: 145px;
         font-size: 14px;
         line-height: 1.15;
     }
@@ -2908,7 +3000,7 @@ a.logo-area:hover {
         max-width: 560px;
         margin: 0 auto 12px;
         font-family: 'Space Grotesk', sans-serif;
-        font-size: clamp(28px, 8.3vw, 42px);
+        font-size: clamp(32px, 2vw, 42px);
         line-height: 1.08;
         letter-spacing: -0.035em;
     }
@@ -3229,7 +3321,7 @@ a.logo-area:hover {
     padding-top: 14px;
     border-top: 1px solid #e6e9ed;
     color: #365d8d;
-    font-family: 'Jura', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 700;
 }
@@ -3263,15 +3355,11 @@ a.logo-area:hover {
     }
 
     .logo-area img {
-        width: 54px;
-        min-width: 54px;
-        height: 54px;
-        min-height: 54px;
-        flex-basis: 54px;
+        display: none;
     }
 
     .studio-name {
-        max-width: 70px;
+      
         font-size: 11px;
     }
 
@@ -3325,6 +3413,7 @@ a.logo-area:hover {
     }
 
     .logo-area img {
+        display: none;
         height: 54px;
         transition: transform 0.35s ease;
     }
@@ -4003,7 +4092,7 @@ a.logo-area:hover {
 
     .blok_1_zg h1 {
         color: var(--mobile-ink);
-        font-size: clamp(28px, 7.4vw, 42px);
+        font-size: clamp(34px, 2vw, 42px);
         line-height: 1.12;
         letter-spacing: -.035em;
     }
@@ -4069,7 +4158,7 @@ a.logo-area:hover {
 
     .blok_2_nm, .blok_3_nm, .blok_6_nm, .projects_title {
         color: var(--mobile-ink);
-        font-size: clamp(23px, 5.8vw, 32px);
+        font-size: clamp(28px, 5.8vw, 32px);
         line-height: 1.25;
         letter-spacing: -.025em;
     }

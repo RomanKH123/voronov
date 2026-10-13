@@ -53,5 +53,3 @@ Clean-param: yclid&gclid&fbclid&_openstat&from&ref&source
 
 # Параметры фильтров портфолио
 Clean-param: kategory /work.html
-
-Host: voronov-art.ru

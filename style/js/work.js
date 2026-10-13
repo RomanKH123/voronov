@@ -212,9 +212,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // SEO: title и мета-теги
         document.title = work.title + ' — ' + (work.category || 'проект') + ' | Студия Воронова, Краснодар';
 
-        // Обновляем canonical на точный URL с id
+        // Обновляем canonical на точный URL с id (создаём тег, если его нет в статике)
         var canonicalEl = document.querySelector('link[rel="canonical"]');
-        if (canonicalEl) canonicalEl.href = 'https://voronov-art.ru/work_info.html?id=' + work.id;
+        if (!canonicalEl) {
+            canonicalEl = document.createElement('link');
+            canonicalEl.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonicalEl);
+        }
+        canonicalEl.href = 'https://voronov-art.ru/work_info.html?id=' + work.id;
 
         var seoDesc = (work.full_description || work.description || '').substring(0, 160);
         updateMeta('description', seoDesc);
