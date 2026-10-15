@@ -1,4 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const servicesCarousel = document.getElementById('services-carousel');
+    if (servicesCarousel) {
+        const cards = Array.from(servicesCarousel.children);
+        const controls = document.querySelector('.services-carousel-controls');
+        const previous = controls.querySelector('[data-services-prev]');
+        const next = controls.querySelector('[data-services-next]');
+        const counter = controls.querySelector('.services-carousel-counter');
+        let current = 0;
+        const update = () => {
+            const left = servicesCarousel.getBoundingClientRect().left;
+            current = cards.reduce((closest, card, index) =>
+                Math.abs(card.getBoundingClientRect().left - left) <
+                Math.abs(cards[closest].getBoundingClientRect().left - left) ? index : closest, 0);
+            counter.textContent = `${current + 1} / ${cards.length}`;
+            previous.disabled = current === 0;
+            next.disabled = current === cards.length - 1;
+        };
+        const move = direction => {
+            const target = Math.max(0, Math.min(cards.length - 1, current + direction));
+            servicesCarousel.scrollTo({
+                left: servicesCarousel.scrollLeft + cards[target].getBoundingClientRect().left - servicesCarousel.getBoundingClientRect().left,
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+            });
+        };
+        previous.addEventListener('click', () => move(-1));
+        next.addEventListener('click', () => move(1));
+        servicesCarousel.addEventListener('keydown', event => {
+            if (event.target !== servicesCarousel) return;
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault();
+                move(event.key === 'ArrowLeft' ? -1 : 1);
+            }
+        });
+        servicesCarousel.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        controls.hidden = false;
+        update();
+    }
     // Получаем элементы
     const modal = document.getElementById('modal');
     const closeBtn = document.querySelector('.close-modal');

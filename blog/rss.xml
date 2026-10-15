@@ -6,7 +6,7 @@
         <description>Статьи о разработке сайтов, выборе платформ и работе с подрядчиками. Практика студии веб-разработки Воронова из Краснодара.</description>
         <language>ru</language>
         <atom:link href="https://voronov-art.ru/blog/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Sun, 16 Aug 2026 18:00:00 +0300</lastBuildDate>
+        <lastBuildDate>Tue, 13 Oct 2026 12:00:00 +0300</lastBuildDate>
         <pubDate>Sun, 16 Aug 2026 18:00:00 +0300</pubDate>
         <ttl>60</ttl>
         <image>
@@ -15,6 +15,14 @@
             <link>https://voronov-art.ru/blog/</link>
         </image>
 
+        <item>
+            <title>152-ФЗ для сайта: требования и решение для бизнеса</title>
+            <link>https://voronov-art.ru/blog/152-fz-dlya-sajta.html</link>
+            <guid isPermaLink="true">https://voronov-art.ru/blog/152-fz-dlya-sajta.html</guid>
+            <pubDate>Tue, 13 Oct 2026 12:00:00 +0300</pubDate>
+            <description>Требования к формам, согласиям, аналитике и хранению персональных данных. Доработка существующего сайта или разработка нового с учётом 152-ФЗ.</description>
+            <category>Сайт и закон</category>
+        </item>
         <item>
             <title>Сообщество для предпринимателей: идеи и инструменты для бизнеса</title>
             <link>https://voronov-art.ru/blog/pro-biznes-soobshchestvo-vk.html</link>

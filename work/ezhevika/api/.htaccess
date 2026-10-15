@@ -1,0 +1,5 @@
+Options -Indexes
+
+<FilesMatch "^(?!leads\.php$).+">
+    Require all denied
+</FilesMatch>

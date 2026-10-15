@@ -127,25 +127,20 @@
     
     <main>
 
-        <section class="blok_1" id="about">
-            <canvas id="hero3d" class="hero-3d-canvas" aria-hidden="true"></canvas>
-            <div class="blok_1_zg">
-                <p class="hero-eyebrow">Digital-партнёр для предпринимателей</p>
-                <h1 id="about-heading">Запускаем бизнес в интернете с нуля</h1>
-                <h2 class="blok_1_slogan" style="max-width:760px;margin:16px auto 0;font-size:clamp(16px,2.4vw,22px);line-height:1.5;opacity:.92;">
-                    Разбираемся в вашем бизнесе, создаём сайт и выстраиваем основу для продвижения. Вам не придётся самостоятельно выбирать между SEO, рекламой, CRM и десятком других инструментов.
-                </h2>
-                <p class="hero-service-line">Разработка сайтов · SEO-продвижение · Яндекс Директ · аналитика</p>
-                <div class="hero-actions"><a href="#contacts" class="hero-action hero-action--primary">Обсудить запуск</a><a href="#works" class="hero-action">Посмотреть работы</a></div>
-            </div>
-            <div class="blok_1_sp">
-                <div class="blok_1_sp_1">
-                    <div>САЙТ · SEO</div>
-                    <div>РЕКЛАМА · АНАЛИТИКА</div>
-                    <div>CRM · АВТОМАТИЗАЦИЯ</div>
-                    <div>РАЗВИТИЕ ПРОЕКТА</div>
+        <section class="blok_1 home-hero" id="about" aria-labelledby="about-heading">
+            <div class="home-hero__main">
+                <div class="home-hero__copy">
+                    <p class="hero-eyebrow">Веб-студия Воронова · от идеи до запуска</p>
+                    <h1 id="about-heading">Ваш бизнес.<br>Ваш сайт.<br><span>Новый старт.</span></h1>
+                    <p class="home-hero__description">Превращаем идею в сайт, который знакомит с вашим бизнесом и помогает находить клиентов. Берём на себя разработку, продвижение и аналитику.</p>
+                    <div class="hero-actions">
+                        <a href="#contacts" class="hero-action hero-action--primary">Обсудить запуск <span aria-hidden="true">↗</span></a>
+                        <a href="#works" class="hero-action">Посмотреть работы</a>
+                    </div>
+                    <p class="home-hero__note">Начнём с вашей задачи и определим, что нужно бизнесу сейчас.</p>
                 </div>
-                <div class="blok_1_sp_2">
+                <div class="home-hero__portfolio">
+                    <div class="home-hero__portfolio-label"><span>Из идеи — в работающий сайт</span><a href="#works">Наши проекты ↗</a></div>
                     <div class="hero-works" role="img" aria-label="Примеры сайтов, разработанных студией Воронова">
                         <figure class="hero-works__shot hero-works__shot--back-left">
                             <img src="/img/prewu_ezhevika.webp" alt="Сайт для бизнеса проведения праздников" width="1541" height="662" loading="lazy" decoding="async">
@@ -158,6 +153,11 @@
                         </figure>
                     </div>
                 </div>
+            </div>
+            <div class="home-hero__services" aria-label="Направления работы">
+                <div><span class="home-hero__number">01</span><span>Сайт и SEO<small>Основа вашего присутствия</small></span></div>
+                <div><span class="home-hero__number">02</span><span>Реклама и аналитика<small>Привлечение и оценка спроса</small></span></div>
+                <div><span class="home-hero__number">03</span><span>CRM и автоматизация<small>Порядок в работе с клиентами</small></span></div>
             </div>
         </section>
 
@@ -205,7 +205,7 @@
                 Сайт становится основой. SEO, реклама, аналитика и автоматизация подключаются в той последовательности, которая оправдана для вашей модели продаж.
             </div>
             
-            <div class="blok_3_ln">
+            <div class="blok_3_ln services-carousel" id="services-carousel" tabindex="0" role="region" aria-roledescription="карусель" aria-labelledby="services-heading">
                 <article class="ln_1">
                     <h3 class="ln_b_1"><a href="/sozdanie-sajtov/" style="color:inherit;text-decoration:none;">Создание сайтов под ключ</a></h3>
                     <p class="ln_b_2">Проектируем структуру вокруг продукта, аудитории и способа покупки. Формат сайта определяем после разбора задачи.</p>
@@ -239,6 +239,11 @@
                         <a href="#contacts" class="service-card-link">Обсудить автоматизацию <span aria-hidden="true">→</span></a>
                     </div>
                 </article>
+            </div>
+            <div class="services-carousel-controls" hidden>
+                <button type="button" class="services-carousel-arrow" data-services-prev aria-controls="services-carousel" aria-label="Предыдущая карточка"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
+                <span class="services-carousel-counter" aria-live="polite" aria-atomic="true">1 / 3</span>
+                <button type="button" class="services-carousel-arrow" data-services-next aria-controls="services-carousel" aria-label="Следующая карточка"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>
             </div>
             <a href="/sozdanie-sajtov/" class="blok_4_batton" style="display:table;margin:28px auto 0;text-decoration:none;" aria-label="Узнать подробнее об услугах">Все услуги</a>
         </section>

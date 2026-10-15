@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /server/
+Disallow: /storage/
+Disallow: /telegram/
+
+Sitemap: https://ezhevika-loft.ru/sitemap.xml
