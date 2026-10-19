@@ -50,6 +50,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMM — Управление работами</title>
     <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="/CMM/work-order.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -1213,6 +1214,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
         </div>
     </div>
 
+    <script src="/CMM/work-order.js"></script>
     <script>
     var API = '/CMM/api.php';
 
@@ -1224,6 +1226,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
 
     // Загрузка работ
     function loadWorks() {
+        if (window.workOrderDirty && !confirm('Несохранённый порядок будет сброшен. Обновить список?')) return;
         fetch(API + '?action=list')
             .then(function(r) { return r.json(); })
             .then(function(data) {
@@ -1233,6 +1236,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                 count.textContent = data.data.length + ' ' + pluralize(data.data.length, 'работа', 'работы', 'работ');
 
                 if (data.data.length === 0) {
+                    initWorkOrder(list, []);
                     list.innerHTML =
                         '<div class="empty-state">' +
                             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' +
@@ -1272,6 +1276,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                 });
 
                 list.innerHTML = html;
+                initWorkOrder(list, data.data);
             });
     }
 

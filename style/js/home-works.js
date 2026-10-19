@@ -1,90 +1,76 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var container = document.getElementById('projects-by-category');
+    var container = document.getElementById('projects-list');
     if (!container) return;
 
-    fetch('/api/works.php?grouped=1')
-        .then(function(response) { return response.json(); })
+    fetch('/api/works.php')
+        .then(function(response) {
+            if (!response.ok) throw new Error('Failed to load projects');
+            return response.json();
+        })
         .then(function(data) {
-            if (!data.success) {
+            if (!data.success || !Array.isArray(data.data)) {
                 container.innerHTML = errorBlock();
                 return;
             }
 
-            var grouped = data.data;
-            var categories = Object.keys(grouped);
+            var allWorks = data.data;
 
-            if (categories.length === 0) {
+            if (allWorks.length === 0) {
                 container.innerHTML = emptyBlock();
                 return;
             }
 
             container.innerHTML = '';
 
-            categories.forEach(function(category) {
-                var allWorks = grouped[category];
-                if (!allWorks || allWorks.length === 0) return;
+            // Первые шесть работ в порядке, сохранённом в панели портфолио.
+            var worksToShow = allWorks.slice(0, 6);
+            var hasMore = allWorks.length > 6;
 
-                // Показываем только последние 3
-                var worksToShow = allWorks.slice(0, 3);
-                var hasMore = allWorks.length > 3;
+            var section = document.createElement('div');
+            section.className = 'projects_showcase category-section';
 
-                var section = document.createElement('div');
-                section.className = 'projects_showcase category-section';
+            // Сетка карточек
+            var grid = document.createElement('div');
+            grid.className = 'projects_grid';
 
-                // Заголовок категории
-                var header = document.createElement('div');
-                header.className = 'projects_header';
-                header.innerHTML = '<h3 class="projects_title">' + escapeHtml(category) + '</h3>';
-                section.appendChild(header);
+            worksToShow.forEach(function(work) {
+                var link = document.createElement('a');
+                // Карточка всегда ведёт на описание конкретной работы.
+                link.href = '/work_info.html?id=' + encodeURIComponent(work.id);
+                link.className = 'project_card_link';
 
-                // Сетка карточек
-                var grid = document.createElement('div');
-                grid.className = 'projects_grid';
+                var altText = escapeHtml(work.title) + (work.category ? ' — ' + escapeHtml(work.category) : '');
+                var imgHtml = work.image
+                    ? '<div class="project_preview"><img src="' + escapeHtml(work.image) + '" alt="' + altText + '" class="project_image" loading="lazy" onerror="this.parentElement.classList.add(\'project_preview--broken\');this.remove();"></div>'
+                    : '<div class="project_preview project_preview--no-image"><span class="project_preview__placeholder">' + escapeHtml(work.title.charAt(0)) + '</span></div>';
 
-                worksToShow.forEach(function(work) {
-                    var link = document.createElement('a');
-                    // Карточка всегда ведёт на описание конкретной работы.
-                    link.href = '/work_info.html?id=' + encodeURIComponent(work.id);
-                    link.className = 'project_card_link';
+                link.innerHTML =
+                    '<article class="project_card">' +
+                        imgHtml +
+                        '<div class="project_details">' +
+                            '<h3 class="project_name">' + escapeHtml(work.title) + '</h3>' +
+                            '<p class="project_desc">' + escapeHtml(work.description) + '</p>' +
+                        '</div>' +
+                    '</article>';
 
-                    var altText = escapeHtml(work.title) + (work.category ? ' — ' + escapeHtml(work.category) : '');
-                    var imgHtml = work.image
-                        ? '<div class="project_preview"><img src="' + escapeHtml(work.image) + '" alt="' + altText + '" class="project_image" loading="lazy" onerror="this.parentElement.classList.add(\'project_preview--broken\');this.remove();"></div>'
-                        : '<div class="project_preview project_preview--no-image"><span class="project_preview__placeholder">' + escapeHtml(work.title.charAt(0)) + '</span></div>';
-
-                    var categoryBadge = work.category
-                        ? '<span class="project_category">' + escapeHtml(work.category) + '</span>'
-                        : '';
-
-                    link.innerHTML =
-                        '<article class="project_card">' +
-                            imgHtml +
-                            '<div class="project_details">' +
-                                '<h4 class="project_name">' + escapeHtml(work.title) + '</h4>' +
-                                categoryBadge +
-                                '<p class="project_desc">' + escapeHtml(work.description) + '</p>' +
-                            '</div>' +
-                        '</article>';
-
-                    grid.appendChild(link);
-                });
-
-                section.appendChild(grid);
-
-                // Кнопка "Показать все" — только если работ больше 3
-                if (hasMore) {
-                    var btnWrap = document.createElement('div');
-                    btnWrap.className = 'category-more-wrap';
-                    var btn = document.createElement('a');
-                    btn.href = '/work.html?kategory=' + encodeURIComponent(category);
-                    btn.className = 'category-more-btn';
-                    btn.textContent = 'Показать все';
-                    btnWrap.appendChild(btn);
-                    section.appendChild(btnWrap);
-                }
-
-                container.appendChild(section);
+                grid.appendChild(link);
             });
+
+            section.appendChild(grid);
+
+            // Все работы доступны на существующей странице портфолио.
+            if (hasMore) {
+                var btnWrap = document.createElement('div');
+                btnWrap.className = 'category-more-wrap';
+                var btn = document.createElement('a');
+                btn.href = '/work.html';
+                btn.className = 'category-more-btn';
+                btn.textContent = 'Показать все';
+                btnWrap.appendChild(btn);
+                section.appendChild(btnWrap);
+            }
+
+            container.appendChild(section);
 
             // Анимация карточек
             setTimeout(function() {

@@ -1,0 +1,12 @@
+.work-order-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding:16px;border-bottom:1px solid var(--border)}
+.work-order-toolbar p{flex-basis:100%;color:var(--text-muted);font-size:13px;line-height:1.6}
+.work-order-toolbar [role=status]{font-size:13px}
+.work-order-toolbar button:disabled{opacity:.5;cursor:default}
+.work-order-controls{display:flex;align-items:center;gap:3px;margin-top:8px}
+.work-order-controls button{padding:3px 5px;border:1px solid var(--border);border-radius:4px;background:var(--surface-2);color:var(--text);cursor:pointer;min-height:32px}
+.work-order-controls button:disabled{opacity:.3;cursor:default}
+.work-order-controls button:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.work-position{min-width:16px;font-size:12px;text-align:center}
+.work-drag{cursor:grab;padding:4px;user-select:none;font-size:18px}
+.work-dragging{opacity:.45}
+@media(max-width:600px){.work-order-controls{flex-wrap:wrap}.work-order-controls button{min-height:40px;min-width:32px}.work-drag{display:none}}

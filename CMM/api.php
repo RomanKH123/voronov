@@ -57,7 +57,7 @@ function deletePreviewFile($path) {
 switch ($method) {
     case 'GET':
         if ($action === 'list') {
-            $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC");
+            $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC, id DESC");
             $works = $stmt->fetchAll();
             echo json_encode(['success' => true, 'data' => $works]);
         } elseif ($action === 'get' && isset($_GET['id'])) {
@@ -104,6 +104,25 @@ switch ($method) {
         if (!$input) {
             http_response_code(400);
             echo json_encode(['success' => false, 'message' => 'Нет данных']);
+            break;
+        }
+
+        if ($action === 'reorder') {
+            require_once dirname(__DIR__) . '/api/work-order.php';
+            try {
+                saveWorkOrder($pdo, $input['ids'] ?? null);
+                echo json_encode(['success' => true]);
+            } catch (InvalidArgumentException $e) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Некорректный список работ']);
+            } catch (UnexpectedValueException $e) {
+                http_response_code(409);
+                echo json_encode(['success' => false, 'message' => 'Список работ изменился. Обновите страницу и повторите сортировку.']);
+            } catch (Throwable $e) {
+                error_log('Work order save failed: ' . $e->getMessage());
+                http_response_code(500);
+                echo json_encode(['success' => false, 'message' => 'Не удалось сохранить порядок. Попробуйте ещё раз.']);
+            }
             break;
         }
 

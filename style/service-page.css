@@ -27,4 +27,10 @@
 .service-step h3{margin:0 0 8px;color:#203252;font-size:20px}.service-step p{margin:0;color:#52617a;line-height:1.65}
 .service-faq{max-width:900px;margin:0 auto}.service-faq details{margin-bottom:14px;padding:21px 24px;border:1px solid rgba(74,111,165,.14);border-radius:18px;background:#fff}.service-faq summary{cursor:pointer;color:#203252;font-size:18px;font-weight:700}.service-faq p{margin:15px 0 0;color:#45536b;line-height:1.7}
 .service-links a{color:#355f9b;font-weight:700}
+.service-layout .service-heading{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,5vw,36px);font-weight:600;color:#182b46}
+.service-layout .service-section{max-width:1400px;margin:40px auto 0;border-radius:24px}
+.service-layout .service-card{border-radius:20px;box-shadow:0 10px 30px rgba(32,56,91,.06)}
+.service-layout .home-hero h1{font-size:clamp(36px,4.2vw,64px);overflow-wrap:break-word}
+.service-layout .home-hero__copy{min-width:0}
+@media(max-width:767px){.service-layout .home-hero h1{font-size:clamp(32px,8vw,42px)}.service-layout .service-section{margin-top:28px;border-radius:16px}.service-layout .service-heading{font-size:28px}}
 @media(max-width:850px){.service-grid,.service-grid--2,.service-steps{grid-template-columns:1fr}.service-hero{padding-top:55px}.service-section{padding:54px 0}}

@@ -28,14 +28,14 @@ try {
     } elseif (isset($_GET['kategory'])) {
         // Фильтрация по основной категории (Kategory enum)
         $kategory = cleanText($_GET['kategory'], 100);
-        $stmt = $pdo->prepare("SELECT * FROM works WHERE Kategory = :kategory ORDER BY created_at DESC, id DESC");
+        $stmt = $pdo->prepare("SELECT * FROM works WHERE Kategory = :kategory ORDER BY sort_order ASC, created_at DESC, id DESC");
         $stmt->execute([':kategory' => $kategory]);
         $works = $stmt->fetchAll();
 
         echo json_encode(['success' => true, 'data' => $works]);
     } elseif (isset($_GET['grouped'])) {
         // Группировка по Kategory (enum) для главной страницы
-        $stmt = $pdo->query("SELECT * FROM works ORDER BY created_at DESC, id DESC");
+        $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC, id DESC");
         $works = $stmt->fetchAll();
 
         $grouped = [];
@@ -52,7 +52,7 @@ try {
         echo json_encode(['success' => true, 'data' => $grouped]);
     } else {
         // Возвращаем все работы
-        $stmt = $pdo->query("SELECT * FROM works ORDER BY created_at DESC, id DESC");
+        $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC, id DESC");
         $works = $stmt->fetchAll();
 
         echo json_encode(['success' => true, 'data' => $works]);

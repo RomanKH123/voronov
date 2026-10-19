@@ -5,13 +5,12 @@ DirectoryIndex index.html index.php
     RewriteEngine On
     RewriteRule ^\.private(?:/|$) - [F,L]
 
-    # ========== НОВАЯ СТРУКТУРА УСЛУГА + ГОРОД ==========
-    RewriteRule ^lending-krasnodar\.html$ /krasnodar/lending/ [R=301,L,NC]
-    RewriteRule ^korporativnyj-sajt-krasnodar\.html$ /krasnodar/korporativnyj-sajt/ [R=301,L,NC]
-    RewriteRule ^internet-magazin-krasnodar\.html$ /krasnodar/internet-magazin/ [R=301,L,NC]
-    RewriteRule ^(krasnodar|moskva|spb|novosibirsk|ekaterinburg)/(lending|korporativnyj-sajt|internet-magazin)/index\.html$ /$1/$2/ [R=301,L,NC]
-    # Явный HTTPS нужен за reverse proxy: иначе Apache формирует Location с http://.
-    RewriteRule ^(krasnodar|moskva|spb|novosibirsk|ekaterinburg)/?$ https://voronov-art.ru/$1/$1.html [R=301,L,NC]
+    # Городские страницы объединены с главной и страницами услуг.
+    RewriteRule ^lending-krasnodar\.html$ https://voronov-art.ru/sozdanie-sajtov/lending/ [R=301,L,NC]
+    RewriteRule ^korporativnyj-sajt-krasnodar\.html$ https://voronov-art.ru/sozdanie-sajtov/korporativnyj-sajt/ [R=301,L,NC]
+    RewriteRule ^internet-magazin-krasnodar\.html$ https://voronov-art.ru/sozdanie-sajtov/internet-magazin/ [R=301,L,NC]
+    RewriteRule ^(?:krasnodar|moskva|spb|novosibirsk|ekaterinburg)/(lending|korporativnyj-sajt|internet-magazin)(?:/(?:index\.html)?)?$ https://voronov-art.ru/sozdanie-sajtov/$1/ [R=301,L,NC]
+    RewriteRule ^(krasnodar|moskva|spb|novosibirsk|ekaterinburg)(?:/(?:\1\.html|index\.html)?)?$ https://voronov-art.ru/ [R=301,L,NC]
 
     # ========== РЕДИРЕКТЫ УДАЛЁННЫХ СТРАНИЦ (старые) ==========
     # Все /sayt-pod-klyuch-*.html перенаправляем на главную
