@@ -1,4 +1,18 @@
 /* Scoped to the home page; existing carousel and scroll animations stay in charge. */
+.home-details .order-questions { max-width: 1280px; margin: 80px auto 0; padding: 0 22px; }
+.home-details .order-questions__intro { margin: 18px auto 30px; color: #52617a; font-size: 17px; line-height: 1.7; text-align: center; }
+.home-details .order-questions__grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+.home-details .order-questions__grid article { padding: 28px; border: 1px solid #dce7f5; border-radius: 20px; background: #f3f7fd; }
+.home-details .order-questions__grid article:nth-child(3n+1) { background: #e4effc; }
+.home-details .order-questions__icon { display: block; margin-bottom: 18px; font-size: 32px; }
+.home-details .order-questions h3 { margin: 0 0 14px; color: #243d60; font-size: 21px; line-height: 1.35; }
+.home-details .order-questions__grid p { margin: 0; color: #455875; font-size: 15px; line-height: 1.8; }
+.home-details .order-questions > .hero-action { display: flex; width: fit-content; margin: 28px auto 0; gap: 16px; }
+@media(max-width:700px) {
+    .home-details .order-questions { margin-top: 56px; padding: 0 16px; }
+    .home-details .order-questions__grid { grid-template-columns: 1fr; gap: 16px; }
+    .home-details .order-questions__grid article { padding: 24px; }
+}
 .home-details :is(.directions-grid, .reading-grid) { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; max-width: 1280px; margin: 40px auto 0; }
 .home-details :is(.directions-grid, .reading-grid) > article { width: auto; min-width: 0; min-height: 0; margin: 0; padding: 18px; border: 1px solid #dce7f5; border-radius: 24px; background: #fff; cursor: default; }
 .home-details :is(.directions-grid, .reading-grid) > article::before { display: none; }
