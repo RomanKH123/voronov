@@ -297,6 +297,9 @@ main {
 }
 
 .work-detail__link {
+    box-sizing: border-box;
+    border: 0;
+    cursor: pointer;
     display: inline-block;
     width: fit-content;
     padding: 14px 32px;

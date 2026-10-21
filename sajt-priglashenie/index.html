@@ -61,8 +61,11 @@
 
 <link rel="stylesheet" href="/style/service-page.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "name": "Сайт-приглашение в Краснодаре", "description": "Создаём персональные сайты-приглашения на свадьбы и мероприятия в Краснодаре. Собираем историю, программу, адрес и ответы гостей на одной удобной странице.", "serviceType": "Сайт-приглашение", "url": "https://voronov-art.ru/sajt-priglashenie/", "areaServed": {"@type": "City", "name": "Краснодар"}, "provider": {"@type": "Organization", "name": "Студия Воронова", "url": "https://voronov-art.ru/", "telephone": "+79604987864"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://voronov-art.ru/"}, {"@type": "ListItem", "position": 2, "name": "Сайт-приглашение", "item": "https://voronov-art.ru/sajt-priglashenie/"}]}]}</script>
+<link rel="stylesheet" href="/style/promotion.css">
+<link rel="stylesheet" href="/style/information-details.css">
+<link rel="stylesheet" href="/sozdanie-sajtov/details.css">
 </head>
-<body class="service-layout">
+<body class="service-layout information-page creation-page">
 <header class="header-new">
         <a class="logo-area" href="/" style="text-decoration:none;color:inherit">
             <img src="/img/logo_2.png" alt="Студия Воронова">
@@ -73,7 +76,7 @@
 
         <div class="contact-area">
             <a href="tel:+79604987864" class="phone-number">+7 (960) 498 78-64</a>
-            <a class="project-btn" href="#contacts" style="text-decoration:none">Обсудить проект</a>
+            <a class="project-btn" href="#contacts" style="text-decoration:none" data-open-modal aria-haspopup="dialog" aria-controls="modal">Обсудить проект</a>
         </div>
     </header><div class="sticky-menu"><nav class="nav-menu" aria-label="Главная навигация"><a href="/">Главная</a><a href="#about">О нас</a><a href="#services">Об услуге</a><a href="#works">Примеры работ</a><a href="#contacts">Контакты</a></nav></div><main><nav class="service-breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a> / <span>Сайт-приглашение</span></nav><section class="blok_1 home-hero" id="top" aria-labelledby="service-heading">
             <div class="home-hero__main">
@@ -82,7 +85,7 @@
                     <h1 id="service-heading">Сайт-приглашение в Краснодаре</h1>
                     <p class="home-hero__description">Создаём персональные сайты-приглашения на свадьбы и мероприятия в Краснодаре. Собираем историю, программу, адрес и ответы гостей на одной удобной странице.</p>
                     <div class="hero-actions">
-                        <a href="#contacts" class="hero-action hero-action--primary">Обсудить проект <span aria-hidden="true">↗</span></a>
+                        <a href="#contacts" class="hero-action hero-action--primary" data-open-modal aria-haspopup="dialog" aria-controls="modal">Обсудить проект <span aria-hidden="true">↗</span></a>
                         <a href="#works" class="hero-action">Посмотреть работы</a>
                     </div>
                     <p class="home-hero__note">Начнём с вашей задачи и определим, что нужно бизнесу сейчас.</p>
@@ -112,12 +115,12 @@
   <div class="blok_2_zg">Помогаем запускать и развивать проекты в интернете</div>
   <div class="blok_3_tg" style="max-width:900px;margin:0 auto 32px;text-align:center">Объединяем разработку, дизайн, продвижение и аналитику. Сначала разбираем вашу задачу, затем согласуем состав работ, этапы и результат. Общаемся и показываем проект онлайн.</div>
   <div class="blok_5"><div class="blok_3_ln blok_5_ln">
-    <div class="blok_5_1"><h3 class="ln_b_1">От задачи до запуска</h3><p class="ln_b_2">Продумываем структуру и содержание, создаём дизайн, подключаем формы и проверяем проект перед публикацией.</p></div>
-    <div class="blok_5_2"><h3 class="ln_b_1">Понятное сотрудничество</h3><p class="ln_b_2">Фиксируем объём и стоимость до начала работ, согласуем решения и передаём доступы после запуска.</p></div>
+    <div class="blok_5_1"><div class="sticker-icon" aria-hidden="true">🏆</div><h3 class="ln_b_1">От задачи до запуска</h3><p class="ln_b_2">Продумываем структуру и содержание, создаём дизайн, подключаем формы и проверяем проект перед публикацией.</p></div>
+    <div class="blok_5_2"><div class="sticker-icon" aria-hidden="true">🚀</div><h3 class="ln_b_1">Понятное сотрудничество</h3><p class="ln_b_2">Фиксируем объём и стоимость до начала работ, согласуем решения и передаём доступы после запуска.</p></div>
   </div></div>
-</section><div id="services"><section class="service-section"><div class="service-wrap"><h2 class="service-heading">Что входит в сайт-приглашение</h2><div class="service-grid"><article class="service-card"><h3>История и оформление</h3><p>Создаём индивидуальный дизайн под ваше событие. Размещаем фотографии, историю и обращение к гостям.</p></article><article class="service-card"><h3>Программа и место</h3><p>Публикуем дату, расписание, адрес, карту проезда, дресс-код и полезные детали для гостей.</p></article><article class="service-card"><h3>Ответы гостей</h3><p>Добавляем форму подтверждения участия и вопросы о пожеланиях гостей. Состав полей согласуем с вами.</p></article></div></div></section>
-<section class="service-section"><div class="service-wrap"><h2 class="service-heading">Как создаём приглашение</h2><div class="service-grid"><article class="service-card"><h3>Обсуждаем событие</h3><p>Уточняем дату, стиль, программу и необходимые функции. Согласуем стоимость и сроки до начала работ.</p></article><article class="service-card"><h3>Готовим страницу</h3><p>Собираем материалы, создаём дизайн и адаптируем сайт для телефона и компьютера.</p></article><article class="service-card"><h3>Проверяем и публикуем</h3><p>Проверяем тексты, ссылки и отправку ответов. Передаём готовую ссылку для рассылки гостям.</p></article></div></div></section>
-<section class="service-section"><div class="service-wrap"><h2 class="service-heading">Что подготовить для начала</h2><div class="service-grid"><article class="service-card"><h3>Информация</h3><p>Дата и адрес события, программа, пожелания к дресс-коду и контакт организатора.</p></article><article class="service-card"><h3>Материалы</h3><p>Фотографии и история события. Подскажем, какие изображения и тексты подойдут для страницы.</p></article><article class="service-card"><h3>Пожелания</h3><p>Примеры оформления, нужные вопросы для гостей и сроки публикации.</p></article></div></div></section></div><section class="blok_6" id="works">
+</section><div id="services"><section class="service-section"><div class="service-wrap"><h2 class="service-heading">Что входит в сайт-приглашение</h2><div class="service-grid"><article class="service-card"><div class="sticker-icon" aria-hidden="true">🎨</div><h3>История и оформление</h3><p>Создаём индивидуальный дизайн под ваше событие. Размещаем фотографии, историю и обращение к гостям.</p></article><article class="service-card"><div class="sticker-icon" aria-hidden="true">💡</div><h3>Программа и место</h3><p>Публикуем дату, расписание, адрес, карту проезда, дресс-код и полезные детали для гостей.</p></article><article class="service-card"><div class="sticker-icon" aria-hidden="true">💡</div><h3>Ответы гостей</h3><p>Добавляем форму подтверждения участия и вопросы о пожеланиях гостей. Состав полей согласуем с вами.</p></article></div></div></section>
+<section class="service-section"><div class="service-wrap"><h2 class="service-heading">Как создаём приглашение</h2><div class="service-grid"><article class="service-card"><div class="sticker-icon" aria-hidden="true">💡</div><h3>Обсуждаем событие</h3><p>Уточняем дату, стиль, программу и необходимые функции. Согласуем стоимость и сроки до начала работ.</p></article><article class="service-card"><div class="sticker-icon" aria-hidden="true">🗂️</div><h3>Готовим страницу</h3><p>Собираем материалы, создаём дизайн и адаптируем сайт для телефона и компьютера.</p></article><article class="service-card"><div class="sticker-icon" aria-hidden="true">🔎</div><h3>Проверяем и публикуем</h3><p>Проверяем тексты, ссылки и отправку ответов. Передаём готовую ссылку для рассылки гостям.</p></article></div></div></section>
+<section class="service-section"><div class="service-wrap"><h2 class="service-heading">Что подготовить для начала</h2><div class="service-grid"><article class="service-card"><div class="sticker-icon" aria-hidden="true">💡</div><h3>Информация</h3><p>Дата и адрес события, программа, пожелания к дресс-коду и контакт организатора.</p></article><article class="service-card"><div class="sticker-icon" aria-hidden="true">📝</div><h3>Материалы</h3><p>Фотографии и история события. Подскажем, какие изображения и тексты подойдут для страницы.</p></article><article class="service-card"><div class="sticker-icon" aria-hidden="true">💡</div><h3>Пожелания</h3><p>Примеры оформления, нужные вопросы для гостей и сроки публикации.</p></article></div></div></section></div><section class="blok_6" id="works">
             <h2 id="works-heading" class="blok_6_nm">Наши работы</h2>
             <div class="blok_6_txt">Примеры выполненных проектов: сайты, дизайн и доработка. Показываем последние работы студии в одном списке.</div>
 
@@ -205,22 +208,7 @@
                                 <input type="tel" id="phone_main" name="phone" placeholder="+7 (___) ___-__-__ *" required>
                             </div>
                             <div class="form_group">
-                                <input type="email" id="email_main" name="email" placeholder="Email">
-                            </div>
-                            <div class="form_group">
-                                <label class="sr-only" for="business_stage_main">Что вам сейчас нужно?</label>
-                                <select id="business_stage_main" name="business_stage">
-                                    <option value="">Что вам сейчас нужно?</option>
-                                    <option>Запускаю новый бизнес</option>
-                                    <option>Есть бизнес, но нет подходящего сайта</option>
-                                    <option>Есть сайт, но мало обращений</option>
-                                    <option>Нужны SEO или реклама</option>
-                                    <option>Нужно digital-сопровождение</option>
-                                    <option>Другая задача</option>
-                                </select>
-                            </div>
-                            <div class="form_group">
-                                <textarea id="message_main" name="message" rows="3" placeholder="Коротко о бизнесе и задаче"></textarea>
+                                <textarea id="message_main" name="message" rows="3" placeholder="Комментарий" aria-label="Комментарий" maxlength="3000"></textarea>
                             </div>
                             <div class="form_consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;color:#555;margin:12px 0 16px;">
                                 <input type="checkbox" id="consent_main" name="consent" required style="margin-top:3px;flex-shrink:0;">
@@ -273,5 +261,47 @@
 <script src="/style/js/main.js"></script>
 <script src="/style/js/cookie-manager.js"></script>
 <script src="/style/js/home-works.js"></script>
+<script src="/sozdanie-sajtov/details.js" defer></script>
+<script src="/style/js/promotion.js" defer></script>
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="request-modal-title" tabindex="-1">
+        <div class="modal-content">
+            <button type="button" class="close-modal" aria-label="Закрыть форму" style="border:0;background:none;font:inherit;font-size:28px;">&times;</button>
+            <h2 id="request-modal-title" class="modal-title">Оставьте заявку</h2>
+            <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
+
+            <form id="contactForm" class="modal-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя *</label>
+                    <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Номер телефона *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Комментарий</label>
+                    <textarea id="message" name="message" rows="3" maxlength="3000" placeholder="Расскажите о вашей задаче"></textarea>
+                </div>
+
+                <div class="form_consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;color:#555;margin:12px 0 16px;">
+                    <input type="checkbox" id="consent_modal" name="consent" required style="margin-top:3px;flex-shrink:0;">
+                    <label for="consent_modal" style="cursor:pointer;">
+                        Я даю согласие на обработку персональных данных в соответствии с <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#4a6fa5;">Политикой обработки ПДн</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="modal-submit-btn">Отправить заявку</button>
+            </form>
+
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3>Спасибо за заявку!</h3>
+                <p>Мы свяжемся с вами в ближайшее время</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

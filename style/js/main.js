@@ -6,26 +6,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const previous = controls.querySelector('[data-services-prev]');
         const next = controls.querySelector('[data-services-next]');
         const counter = controls.querySelector('.services-carousel-counter');
+        const mobileCarousel = servicesCarousel.classList.contains('client-services__grid');
+        const mobileViewport = window.matchMedia('(max-width: 767px)');
         let current = 0;
+        const positions = () => {
+            const left = servicesCarousel.getBoundingClientRect().left + servicesCarousel.clientLeft;
+            const maximum = Math.max(0, servicesCarousel.scrollWidth - servicesCarousel.clientWidth);
+            return cards.map(card => Math.max(0, Math.min(maximum,
+                servicesCarousel.scrollLeft + card.getBoundingClientRect().left - left)));
+        };
         const update = () => {
-            const left = servicesCarousel.getBoundingClientRect().left;
-            current = cards.reduce((closest, card, index) =>
-                Math.abs(card.getBoundingClientRect().left - left) <
-                Math.abs(cards[closest].getBoundingClientRect().left - left) ? index : closest, 0);
+            const enabled = !mobileCarousel || mobileViewport.matches;
+            controls.hidden = !enabled;
+            servicesCarousel.tabIndex = enabled ? 0 : -1;
+            if (enabled) servicesCarousel.setAttribute('aria-roledescription', 'карусель');
+            else servicesCarousel.removeAttribute('aria-roledescription');
+            const offsets = positions();
+            current = offsets.reduce((closest, offset, index) =>
+                Math.abs(offset - servicesCarousel.scrollLeft) <
+                Math.abs(offsets[closest] - servicesCarousel.scrollLeft) ? index : closest, 0);
             counter.textContent = `${current + 1} / ${cards.length}`;
             previous.disabled = current === 0;
             next.disabled = current === cards.length - 1;
         };
         const move = direction => {
+            update();
             const target = Math.max(0, Math.min(cards.length - 1, current + direction));
             servicesCarousel.scrollTo({
-                left: servicesCarousel.scrollLeft + cards[target].getBoundingClientRect().left - servicesCarousel.getBoundingClientRect().left,
+                left: positions()[target],
                 behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
             });
         };
         previous.addEventListener('click', () => move(-1));
         next.addEventListener('click', () => move(1));
         servicesCarousel.addEventListener('keydown', event => {
+            if (mobileCarousel && !mobileViewport.matches) return;
             if (event.target !== servicesCarousel) return;
             if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
                 event.preventDefault();
@@ -250,12 +265,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== МОДАЛЬНОЕ ОКНО =====
     
+    let modalReturnFocus = null;
+    let modalPreviousOverflow = '';
     function openModal() {
         if (!modal) {
             window.location.href = '/#contacts';
             return;
         }
 
+        modalReturnFocus = document.activeElement;
+        modalPreviousOverflow = document.body.style.overflow;
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
         if (contactForm) {
@@ -270,20 +289,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         // Удаляем все сообщения об ошибках
         document.querySelectorAll('.error-message').forEach(el => el.remove());
+        (modal.querySelector('input') || modal).focus();
     }
     
     function closeModal() {
         modal.classList.remove('show');
-        document.body.style.overflow = '';
+        document.body.style.overflow = modalPreviousOverflow;
+        if (modalReturnFocus) modalReturnFocus.focus();
     }
     
     window.openContactModal = openModal;
 
-    document.querySelectorAll('[data-open-modal]').forEach(trigger => {
-        trigger.addEventListener('click', function(e) {
-            e.preventDefault();
-            openModal();
-        });
+    document.addEventListener('click', function(e) {
+        const trigger = e.target.closest('[data-open-modal]');
+        if (!trigger) return;
+        e.preventDefault();
+        openModal();
     });
 
     // Кнопки для открытия модального окна
@@ -312,6 +333,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     document.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab' && modal && modal.classList.contains('show')) {
+            const focusable = Array.from(modal.querySelectorAll('a[href], button, input, select, textarea, [tabindex="0"]'))
+                .filter(element => !element.disabled && element.getClientRects().length);
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
         if (e.key === 'Escape' && modal && modal.classList.contains('show')) {
             closeModal();
         }
@@ -667,6 +701,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.success) {
+                try { sessionStorage.setItem('lead-submitted', '1'); } catch (_) {}
+                window.dispatchEvent(new Event('lead-submitted'));
                 successCallback();
             } else {
                 if (data.errors) {

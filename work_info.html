@@ -69,8 +69,10 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/106882746" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <link rel="stylesheet" href="/style/work.css">
     <link rel="stylesheet" href="/style/cookie-notice.css">
+<link rel="stylesheet" href="/style/information-details.css">
+<link rel="stylesheet" href="/style/home-details.css">
 </head>
-<body>
+<body class="information-page home-details">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -118,7 +120,7 @@
 
         <div class="contact-area">
             <a href="tel:+79604987864" class="phone-number">+7 (960) 498 78-64</a>
-            <button class="project-btn" onclick="scrollToBlock('contacts')">Обсудить проект</button>
+            <button class="project-btn" data-open-modal aria-haspopup="dialog" aria-controls="modal">Обсудить проект</button>
         </div>
     </header>
     <main>
@@ -209,9 +211,6 @@
                                 <input type="tel" id="phone_main" name="phone" placeholder="+7 (___) ___-__-__ *" required>
                             </div>
                             <div class="form_group">
-                                <input type="email" id="email_main" name="email" placeholder="Email">
-                            </div>
-                            <div class="form_group">
                                 <textarea id="message_main" name="message" rows="3" placeholder="Что нужно разработать?"></textarea>
                             </div>
                             <div class="form_consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;color:#555;margin:12px 0 16px;">
@@ -279,13 +278,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Введите ваш email">
+                    <label for="message">Комментарий</label>
+                    <textarea id="message" name="message" rows="3" maxlength="3000" placeholder="Расскажите о вашей задаче"></textarea>
                 </div>
 
                 <div class="form_consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;color:#555;margin:12px 0 16px;">
-                    <input type="checkbox" id="consent_modal_wi" name="consent" required style="margin-top:3px;flex-shrink:0;">
-                    <label for="consent_modal_wi" style="cursor:pointer;">
+                    <input type="checkbox" id="consent_modal" name="consent" required style="margin-top:3px;flex-shrink:0;">
+                    <label for="consent_modal" style="cursor:pointer;">
                         Я даю согласие на обработку персональных данных в соответствии с <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#4a6fa5;">Политикой обработки ПДн</a>
                     </label>
                 </div>
@@ -310,5 +309,6 @@
         });
     </script>
     <script src="/style/js/cookie-manager.js"></script>
+<script src="/sozdanie-sajtov/details.js" defer></script>
 </body>
 </html>

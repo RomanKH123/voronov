@@ -35,11 +35,13 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Для кого создано сообщество «Про Бизнес»?","acceptedAnswer":{"@type":"Answer","text":"Сообщество адресовано предпринимателям, руководителям и тем, кто планирует открыть или развивать своё дело."}},{"@type":"Question","name":"Какие темы заявлены в сообществе?","acceptedAnswer":{"@type":"Answer","text":"Основные направления — идеи для роста, стратегии развития, инструменты для бизнеса и ориентация на практический результат."}},{"@type":"Question","name":"Где найти сообщество «Про Бизнес»?","acceptedAnswer":{"@type":"Answer","text":"Официальная страница сообщества находится во ВКонтакте по адресу https://vk.ru/club240824131."}}]}
     </script>
+<link rel="stylesheet" href="/style/information-details.css">
+<link rel="stylesheet" href="/style/home-details.css">
 </head>
-<body>
+<body class="information-page home-details">
     <header class="header-new">
         <a href="/" class="logo-area" style="text-decoration:none;color:inherit"><img src="/img/logo_2.png" alt="Студия Воронова"><div class="studio-name"><span>Воронов</span> | Веб-студия</div></a>
-        <div class="contact-area"><a href="tel:+79604987864" class="phone-number">+7 (960) 498 78-64</a><a href="/#contacts" class="project-btn" style="text-decoration:none;display:inline-block">Обсудить проект</a></div>
+        <div class="contact-area"><a href="tel:+79604987864" class="phone-number">+7 (960) 498 78-64</a><a href="/#contacts" class="project-btn" style="text-decoration:none;display:inline-block" data-open-modal aria-haspopup="dialog" aria-controls="modal">Обсудить проект</a></div>
     </header>
     <nav aria-label="Хлебные крошки" style="max-width:860px;margin:20px auto 0;padding:0 20px;font-size:14px;color:#666"><a href="/" style="color:#4a6fa5">Главная</a> / <a href="/blog/" style="color:#4a6fa5">Блог</a> / <span>Сообщество «Про Бизнес»</span></nav>
     <main>
@@ -94,5 +96,46 @@
     <script src="/style/js/main.js"></script>
     <script>document.getElementById('current-year').textContent=new Date().getFullYear();</script>
     <script src="/style/js/cookie-manager.js"></script>
+<script src="/sozdanie-sajtov/details.js" defer></script>
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="request-modal-title" tabindex="-1">
+        <div class="modal-content">
+            <button type="button" class="close-modal" aria-label="Закрыть форму" style="border:0;background:none;font:inherit;font-size:28px;">&times;</button>
+            <h2 id="request-modal-title" class="modal-title">Оставьте заявку</h2>
+            <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
+
+            <form id="contactForm" class="modal-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя *</label>
+                    <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Номер телефона *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Комментарий</label>
+                    <textarea id="message" name="message" rows="3" maxlength="3000" placeholder="Расскажите о вашей задаче"></textarea>
+                </div>
+
+                <div class="form_consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;color:#555;margin:12px 0 16px;">
+                    <input type="checkbox" id="consent_modal" name="consent" required style="margin-top:3px;flex-shrink:0;">
+                    <label for="consent_modal" style="cursor:pointer;">
+                        Я даю согласие на обработку персональных данных в соответствии с <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#4a6fa5;">Политикой обработки ПДн</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="modal-submit-btn">Отправить заявку</button>
+            </form>
+
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3>Спасибо за заявку!</h3>
+                <p>Мы свяжемся с вами в ближайшее время</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

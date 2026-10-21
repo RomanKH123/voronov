@@ -1,0 +1,12 @@
+/* Shared information pages keep their own content and section structure. */
+.information-page .service-grid { align-items: stretch; grid-auto-rows: 1fr; }
+.information-page .service-card { display: flex; flex-direction: column; min-width: 0; }
+.information-page .service-card > .sticker-icon { flex-shrink: 0; }
+.information-page .service-card h3 { overflow-wrap: anywhere; }
+.information-page .service-step { min-width: 0; }
+.information-page .service-intro { text-wrap: pretty; }
+.information-page .service-faq details { transition: border-color .2s, background-color .2s; }
+@media(prefers-reduced-motion:reduce) {
+    .information-page .sticker-icon { animation: none; }
+    .information-page .service-faq details { transition: none; }
+}

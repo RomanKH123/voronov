@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var detailAlt = escapeHtml(work.title) + (work.category ? ' — ' + escapeHtml(work.category) + ', разработка студии Воронова Краснодар' : '');
         var image = work.image ? '<div class="work-detail__image"><img src="' + escapeHtml(work.image) + '" alt="' + detailAlt + '"></div>' : '';
         var category = work.category ? '<span class="work-detail__category">' + escapeHtml(work.category) + '</span>' : '';
-        var link = work.url ? '<a href="' + escapeHtml(work.url) + '" class="work-detail__link" target="_blank">Смотреть проект</a>' : '';
+        var link = '<button type="button" class="work-detail__link" data-open-modal aria-haspopup="dialog" aria-controls="modal">Обсудить разработку <span aria-hidden="true">↗</span></button>';
 
         // SEO: title и мета-теги
         document.title = work.title + ' — ' + (work.category || 'проект') + ' | Студия Воронова, Краснодар';
