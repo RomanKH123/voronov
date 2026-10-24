@@ -184,6 +184,68 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let activeMenuSectionId = null;
 
+    // Keep direct anchor links aligned while asynchronous content changes the layout.
+    function alignInitialAnchor() {
+        let targetId;
+        try {
+            targetId = decodeURIComponent(window.location.hash.slice(1));
+        } catch (_) {
+            return;
+        }
+        const target = targetId && document.getElementById(targetId);
+        if (!target) return;
+
+        let stopped = false;
+        let frame = null;
+        let alignUntil = 0;
+        const interactionEvents = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+        const observer = new ResizeObserver(scheduleAlignment);
+
+        function align() {
+            frame = null;
+            if (stopped) return;
+            // Remove the reveal transform before measuring the anchor position.
+            const previousTransition = target.style.transition;
+            target.style.transition = 'none';
+            target.classList.add('visible');
+            const top = target.getBoundingClientRect().top + window.scrollY -
+                getStickyMenuOffset() - 20;
+            target.style.transition = previousTransition;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+            checkVisibility();
+            highlightActiveMenuItem(targetId);
+            // Native fragment scrolling can finish after DOMContentLoaded/load.
+            // Keep checking briefly after each layout change to correct that race.
+            if (performance.now() < alignUntil) frame = requestAnimationFrame(align);
+        }
+
+        function scheduleAlignment() {
+            alignUntil = performance.now() + 1000;
+            if (!stopped && frame === null) frame = requestAnimationFrame(align);
+        }
+
+        function stopAlignment() {
+            stopped = true;
+            observer.disconnect();
+            if (frame !== null) cancelAnimationFrame(frame);
+            interactionEvents.forEach(type => window.removeEventListener(type, stopAlignment, true));
+            window.removeEventListener('hashchange', stopAlignment);
+            window.removeEventListener('load', scheduleAlignment);
+            window.removeEventListener('pagehide', stopAlignment);
+        }
+
+        interactionEvents.forEach(type => window.addEventListener(type, stopAlignment, { capture: true, passive: true }));
+        window.addEventListener('hashchange', stopAlignment);
+        window.addEventListener('load', scheduleAlignment);
+        window.addEventListener('pagehide', stopAlignment);
+        observer.observe(document.querySelector('main') || document.body);
+        if (stickyMenu) observer.observe(stickyMenu);
+        if (document.fonts) document.fonts.ready.then(scheduleAlignment);
+        scheduleAlignment();
+    }
+
+    alignInitialAnchor();
+
     function highlightActiveMenuItem(activeId) {
         if (activeMenuSectionId === activeId) return;
         activeMenuSectionId = activeId;
