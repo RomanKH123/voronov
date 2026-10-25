@@ -1,3 +1,36 @@
+/* Compact home layout; desktop and portfolio composition stay unchanged. */
+@media (max-width: 768px) {
+    .home-details .header-new { gap: 10px; padding: 6px var(--mobile-gutter); }
+    .home-details .logo-area { min-width: 0; flex: 1 1 auto; }
+    .home-details .logo-area img { display: block; width: auto; height: 40px; flex-shrink: 0; }
+    .home-details .studio-name { font-size: 14px; line-height: 1.2; white-space: nowrap; }
+    .home-details .contact-area { display: none; }
+    .home-details .project-btn { min-height: 44px; padding: 8px 12px; font-size: 12px; white-space: nowrap; }
+    .home-details .sticky-menu { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 10px; padding: 3px var(--mobile-gutter) 5px; }
+    .home-details .mobile-menu-toggle { width: 100%; margin: 0; min-height: 44px; padding-block: 7px; }
+    .home-details .sticky-menu .nav-menu { grid-column: 1 / -1; padding-inline: 0; }
+    .home-details .blok_1.home-hero { padding-top: 22px; }
+    .home-details .home-hero__main { gap: 16px; }
+    .home-details .home-hero .hero-eyebrow { margin-bottom: 12px; }
+    .home-details .home-hero h1 { font-size: clamp(36px, 10.5vw, 58px); line-height: 1.04; }
+    .home-details .home-hero h1 span { padding-bottom: 0; }
+    .home-details .home-hero__description { margin-top: 14px; font-size: 16px; line-height: 1.55; }
+    .home-details .home-hero .hero-actions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-top: 16px; }
+    .home-details .home-hero .hero-action { min-height: 48px; padding: 10px 8px; gap: 6px; }
+    .home-details .home-hero__note { margin-top: 8px; }
+    .home-details .home-hero__portfolio { padding-top: 0; }
+    .home-details .home-hero__portfolio-label { gap: 0 8px; margin-bottom: 10px; }
+    .home-details .home-hero__services { margin-top: 16px; padding-block: 4px; }
+    .home-details .home-hero__services > div { padding-block: 10px; }
+    .home-details .home-hero__services > div > span:last-child { min-width: 0; }
+    .home-details .home-hero__services small { flex-basis: 100%; overflow-wrap: break-word; }
+    .home-details .scroll-to-top { width: 44px; height: 44px; right: calc(12px + env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+    .home-details:has(.cookie-consent.show) .scroll-to-top { visibility: hidden; pointer-events: none; }
+    .home-details .site-footer { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+    .home-details .footer-copy { overflow-wrap: anywhere; }
+    .home-details .cookie-consent { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* Scoped to the home page; existing carousel and scroll animations stay in charge. */
 .home-details .order-questions { max-width: 1280px; margin: 80px auto 0; padding: 0 22px; }
 .home-details .order-questions__intro { margin: 18px auto 30px; color: #52617a; font-size: 17px; line-height: 1.7; text-align: center; }
