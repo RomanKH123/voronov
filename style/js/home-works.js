@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             grid.className = 'projects_grid';
 
             worksToShow.forEach(function(work) {
+                work = Object.assign({}, work, { image: PortfolioSecurity.imageUrl(work.image) });
                 var link = document.createElement('a');
                 // Карточка всегда ведёт на описание конкретной работы.
                 link.href = '/work_info.html?id=' + encodeURIComponent(work.id);
@@ -118,9 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function escapeHtml(str) {
-        if (!str) return '';
-        var div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
+        return PortfolioSecurity.escapeHtml(str);
     }
 });

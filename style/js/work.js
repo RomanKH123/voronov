@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var itemListElements = [];
 
         works.forEach(function(work, index) {
+            work = Object.assign({}, work, { image: PortfolioSecurity.imageUrl(work.image) });
             var card = document.createElement('a');
             card.href = projectUrl(work.id);
             card.className = 'work-card';
@@ -204,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderWorkInfo(work) {
+        work = Object.assign({}, work, { image: PortfolioSecurity.imageUrl(work.image) });
         var detailAlt = escapeHtml(work.title) + (work.category ? ' — ' + escapeHtml(work.category) + ', разработка студии Воронова Краснодар' : '');
         var image = work.image ? '<div class="work-detail__image"><img src="' + escapeHtml(work.image) + '" alt="' + detailAlt + '"></div>' : '';
         var category = work.category ? '<span class="work-detail__category">' + escapeHtml(work.category) + '</span>' : '';
@@ -226,10 +228,10 @@ document.addEventListener('DOMContentLoaded', function() {
         updateMeta('og:title', work.title + ' — Студия Воронова', true);
         updateMeta('og:description', work.description, true);
         updateMeta('og:url', 'https://voronov-art.ru/work_info.html?id=' + work.id, true);
-        if (work.image) updateMeta('og:image', 'https://voronov-art.ru' + work.image, true);
+        if (work.image) updateMeta('og:image', work.image, true);
         updateMeta('twitter:title', work.title + ' — Студия Воронова', true);
         updateMeta('twitter:description', work.description, true);
-        if (work.image) updateMeta('twitter:image', 'https://voronov-art.ru' + work.image, true);
+        if (work.image) updateMeta('twitter:image', work.image, true);
 
         // Обновляем хлебные крошки: добавляем категорию и название работы (с микроразметкой)
         var breadcrumbs = document.getElementById('work-info-breadcrumbs');
@@ -320,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "itemListElement": breadcrumbItems
             }
         };
-        if (work.image) ldData.image = "https://voronov-art.ru" + work.image;
+        if (work.image) ldData.image = work.image;
         if (work.category) ldData.keywords = work.category;
 
         var ldScript = document.createElement('script');
@@ -344,9 +346,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function escapeHtml(str) {
-        if (!str) return '';
-        var div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
+        return PortfolioSecurity.escapeHtml(str);
     }
 });

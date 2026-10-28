@@ -1,14 +1,9 @@
 <?php
-require_once dirname(__DIR__) . '/api/bootstrap.php';
-startSecureSession('/CMM');
+require_once __DIR__ . '/auth.php';
 header('Content-Type: application/json; charset=utf-8');
 
 // Проверка авторизации
-if (!isset($_SESSION['cmm_auth']) || $_SESSION['cmm_auth'] !== true) {
-    http_response_code(401);
-    echo json_encode(['success' => false, 'message' => 'Не авторизован']);
-    exit;
-}
+cmmRequireAuth();
 enforceSameOrigin();
 enforceRateLimit('cmm-upload', 30, 600);
 

@@ -1,22 +1,10 @@
 <?php
-require_once dirname(__DIR__) . '/api/bootstrap.php';
-startSecureSession('/CMM');
+require_once __DIR__ . '/auth.php';
+require_once dirname(__DIR__) . '/api/portfolio-validation.php';
 header('Content-Type: application/json; charset=utf-8');
 
 // Проверка авторизации
-if (!isset($_SESSION['cmm_auth']) || $_SESSION['cmm_auth'] !== true) {
-    http_response_code(401);
-    echo json_encode(['success' => false, 'message' => 'Не авторизован']);
-    exit;
-}
-
-try {
-    $pdo = db();
-} catch (Throwable $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Ошибка подключения к БД']);
-    exit;
-}
+$pdo = cmmRequireAuth();
 
 $method = $_SERVER['REQUEST_METHOD'];
 $action = isset($_GET['action']) ? $_GET['action'] : '';
@@ -172,6 +160,10 @@ switch ($method) {
         $image = trim($input['image'] ?? '');
         $url = trim($input['url'] ?? '');
 
+        if (!validPortfolioImage($image)) {
+            jsonResponse(['success' => false, 'message' => 'Недопустимый адрес изображения'], 400);
+        }
+
         if ($title === '') {
             http_response_code(400);
             echo json_encode(['success' => false, 'message' => 'Название обязательно']);
@@ -252,6 +244,10 @@ switch ($method) {
         $full_description = trim($input['full_description'] ?? '');
         $image = trim($input['image'] ?? '');
         $url = trim($input['url'] ?? '');
+
+        if (!validPortfolioImage($image)) {
+            jsonResponse(['success' => false, 'message' => 'Недопустимый адрес изображения'], 400);
+        }
 
         if ($title === '') {
             http_response_code(400);

@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/api/bootstrap.php';
+require_once __DIR__ . '/auth.php';
 startSecureSession('/CMM');
 $config = appConfig();
 
@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'], $_POST['pass
         $_SESSION['cmm_user_login'] = $user['login'];
         $_SESSION['cmm_user_name'] = $user['name'];
         $_SESSION['cmm_user_role'] = $user['role'];
+        $_SESSION['cmm_auth_fingerprint'] = cmmAuthFingerprint($user);
         header('Location: /CMM/');
         exit;
     } else {
@@ -38,10 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'], $_POST['pass
     }
 }
 
-$is_auth = isset($_SESSION['cmm_auth']) && $_SESSION['cmm_auth'] === true;
+try {
+    $is_auth = cmmSessionValid($pdo);
+} catch (Throwable $error) {
+    http_response_code(503);
+    exit('Сервис временно недоступен');
+}
 $current_user_role = isset($_SESSION['cmm_user_role']) ? $_SESSION['cmm_user_role'] : '';
 $current_user_name = isset($_SESSION['cmm_user_name']) ? $_SESSION['cmm_user_name'] : '';
-$current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
+$current_page = ($_GET['page'] ?? '') === 'users' && $current_user_role === 'admin' ? 'users' : 'works';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -1194,7 +1200,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
 
                 <div class="form-group">
                     <label id="u-password-label">Пароль *</label>
-                    <input type="password" id="u-password" class="form-input" placeholder="Минимум 6 символов" autocomplete="new-password">
+                    <input type="password" id="u-password" class="form-input" placeholder="Минимум 12 символов" autocomplete="new-password">
                     <div class="password-hint" id="u-password-hint">Пароль будет зашифрован (bcrypt) перед сохранением в БД</div>
                 </div>
 
@@ -1214,6 +1220,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
         </div>
     </div>
 
+    <script src="/style/js/portfolio-security.js?v=20261028-security-1"></script>
     <script src="/CMM/work-order.js"></script>
     <script>
     var API = '/CMM/api.php';
@@ -1248,27 +1255,28 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                 }
 
                 var html = '';
-                data.data.forEach(function(w) {
-                    var imgHtml = w.image
-                        ? '<img src="' + esc(w.image) + '" alt="" class="table-img">'
+                data.data.forEach(function(w, index) {
+                    var imageUrl = PortfolioSecurity.imageUrl(w.image);
+                    var imgHtml = imageUrl
+                        ? '<img src="' + esc(imageUrl) + '" alt="" class="table-img">'
                         : '<div class="table-img-placeholder">&#128247;</div>';
 
-                    var urlShort = w.url ? (w.url.length > 18 ? w.url.substring(0, 18) + '...' : w.url) : '&mdash;';
+                    var urlShort = w.url ? (w.url.length > 18 ? w.url.substring(0, 18) + '...' : w.url) : '—';
 
                     html +=
-                        '<div class="table-row" data-id="' + w.id + '">' +
+                        '<div class="table-row" data-id="' + Number(w.id) + '">' +
                             '<div class="col-img">' + imgHtml + '</div>' +
                             '<div>' +
                                 '<div class="table-title">' + esc(w.title) + '</div>' +
                                 '<div class="table-desc">' + esc(w.description) + '</div>' +
                             '</div>' +
                             '<div class="col-cat">' + (w.category ? '<span class="table-badge">' + esc(w.category) + '</span>' : '&mdash;') + '</div>' +
-                            '<div class="col-url" title="' + esc(w.url) + '">' + urlShort + '</div>' +
+                            '<div class="col-url" title="' + esc(w.url) + '">' + esc(urlShort) + '</div>' +
                             '<div class="table-actions">' +
-                                '<button onclick="editWork(' + w.id + ')" title="Редактировать">' +
+                                '<button data-edit-work="' + index + '" title="Редактировать">' +
                                     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
                                 '</button>' +
-                                '<button class="delete-btn" onclick="deleteWork(' + w.id + ', \'' + esc(w.title).replace(/'/g, "\\'") + '\')" title="Удалить">' +
+                                '<button class="delete-btn" data-delete-work="' + index + '" title="Удалить">' +
                                     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>' +
                                 '</button>' +
                             '</div>' +
@@ -1276,6 +1284,15 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                 });
 
                 list.innerHTML = html;
+                list.querySelectorAll('[data-edit-work]').forEach(function(button) {
+                    button.addEventListener('click', function() { editWork(Number(data.data[button.dataset.editWork].id)); });
+                });
+                list.querySelectorAll('[data-delete-work]').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var work = data.data[button.dataset.deleteWork];
+                        deleteWork(Number(work.id), work.title);
+                    });
+                });
                 initWorkOrder(list, data.data);
             });
     }
@@ -1431,10 +1448,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
 
     // Экранирование
     function esc(str) {
-        if (!str) return '';
-        var d = document.createElement('div');
-        d.textContent = str;
-        return d.innerHTML;
+        return PortfolioSecurity.escapeHtml(str);
     }
 
     // ===== ПОЛЬЗОВАТЕЛИ =====
@@ -1462,7 +1476,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                 }
 
                 var html = '';
-                data.data.forEach(function(u) {
+                data.data.forEach(function(u, index) {
                     var initial = (u.name || u.login).charAt(0).toUpperCase();
                     var roleBadge = u.role === 'admin'
                         ? '<span class="role-badge role-badge--admin">Админ</span>'
@@ -1471,18 +1485,18 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
 
                     html +=
                         '<div class="table-row">' +
-                            '<div class="col-id">' + u.id + '</div>' +
+                            '<div class="col-id">' + Number(u.id) + '</div>' +
                             '<div>' +
                                 '<div class="table-title">' + esc(u.login) + '</div>' +
                             '</div>' +
                             '<div>' + esc(u.name || '&mdash;') + '</div>' +
                             '<div class="col-role">' + roleBadge + '</div>' +
-                            '<div class="col-date">' + dateStr + '</div>' +
+                            '<div class="col-date">' + esc(dateStr) + '</div>' +
                             '<div class="table-actions">' +
-                                '<button onclick="editUser(' + u.id + ')" title="Редактировать">' +
+                                '<button data-edit-user="' + index + '" title="Редактировать">' +
                                     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
                                 '</button>' +
-                                '<button class="delete-btn" onclick="deleteUser(' + u.id + ', \'' + esc(u.login).replace(/'/g, "\\'") + '\')" title="Удалить">' +
+                                '<button class="delete-btn" data-delete-user="' + index + '" title="Удалить">' +
                                     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>' +
                                 '</button>' +
                             '</div>' +
@@ -1490,6 +1504,15 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
                 });
 
                 list.innerHTML = html;
+                list.querySelectorAll('[data-edit-user]').forEach(function(button) {
+                    button.addEventListener('click', function() { editUser(Number(data.data[button.dataset.editUser].id)); });
+                });
+                list.querySelectorAll('[data-delete-user]').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var user = data.data[button.dataset.deleteUser];
+                        deleteUser(Number(user.id), user.login);
+                    });
+                });
             });
     }
 
@@ -1534,12 +1557,12 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
         var id = document.getElementById('u-id').value;
         var password = document.getElementById('u-password').value;
 
-        if (!id && password.length < 6) {
-            toast('Пароль должен быть не менее 6 символов', 'error');
+        if (!id && password.length < 12) {
+            toast('Пароль должен быть не менее 12 символов', 'error');
             return false;
         }
-        if (id && password && password.length < 6) {
-            toast('Пароль должен быть не менее 6 символов', 'error');
+        if (id && password && password.length < 12) {
+            toast('Пароль должен быть не менее 12 символов', 'error');
             return false;
         }
 
@@ -1714,7 +1737,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'works';
         document.getElementById('dropzone-content').style.display = 'none';
         document.getElementById('dropzone-loading').style.display = 'none';
         document.getElementById('dropzone-preview').style.display = 'block';
-        document.getElementById('dropzone-img').src = path;
+        document.getElementById('dropzone-img').src = PortfolioSecurity.imageUrl(path);
     }
 
     function resetDropzone() {

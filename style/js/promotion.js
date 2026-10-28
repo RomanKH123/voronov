@@ -105,5 +105,5 @@
         dialog.showModal();
         document.body.style.overflow = 'hidden';
     };
-    setTimeout(show, 7000);
+    setTimeout(show, 20000);
 })();
