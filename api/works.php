@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/portfolio-images.php';
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -24,19 +25,19 @@ try {
             exit;
         }
 
-        echo json_encode(['success' => true, 'data' => $work]);
+        echo json_encode(['success' => true, 'data' => portfolioWebpRecord($work)]);
     } elseif (isset($_GET['kategory'])) {
         // Фильтрация по основной категории (Kategory enum)
         $kategory = cleanText($_GET['kategory'], 100);
         $stmt = $pdo->prepare("SELECT * FROM works WHERE Kategory = :kategory ORDER BY sort_order ASC, created_at DESC, id DESC");
         $stmt->execute([':kategory' => $kategory]);
-        $works = $stmt->fetchAll();
+        $works = array_map('portfolioWebpRecord', $stmt->fetchAll());
 
         echo json_encode(['success' => true, 'data' => $works]);
     } elseif (isset($_GET['grouped'])) {
         // Группировка по Kategory (enum) для главной страницы
         $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC, id DESC");
-        $works = $stmt->fetchAll();
+        $works = array_map('portfolioWebpRecord', $stmt->fetchAll());
 
         $grouped = [];
         foreach ($works as $work) {
@@ -53,7 +54,7 @@ try {
     } else {
         // Возвращаем все работы
         $stmt = $pdo->query("SELECT * FROM works ORDER BY sort_order ASC, created_at DESC, id DESC");
-        $works = $stmt->fetchAll();
+        $works = array_map('portfolioWebpRecord', $stmt->fetchAll());
 
         echo json_encode(['success' => true, 'data' => $works]);
     }

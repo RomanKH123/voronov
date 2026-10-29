@@ -178,6 +178,9 @@ if (!move_uploaded_file($file['tmp_name'], $filePath)) {
 
 // Автоматическая конвертация в WebP
 $webpCreated = convertToWebp($filePath, 85);
+if ($webpCreated) {
+    $fileName = preg_replace('/\.(png|jpe?g|gif)$/i', '.webp', $fileName);
+}
 
 echo json_encode([
     'success' => true,

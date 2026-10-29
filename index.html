@@ -16,14 +16,14 @@
     <meta property="og:description" content="Помогаем бизнесу в Краснодаре привлекать клиентов из интернета: SEO-продвижение сайтов, Яндекс Директ, разработка и доработка сайтов, аналитика и CRM.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://voronov-art.ru/">
-    <meta property="og:image" content="https://voronov-art.ru/img/logo_2.png">
+    <meta property="og:image" content="https://voronov-art.ru/img/logo_2.webp">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="Студия Воронова">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Продвижение бизнеса и сайтов в Краснодаре — Студия Воронова">
     <meta name="twitter:description" content="Помогаем бизнесу в Краснодаре привлекать клиентов из интернета: SEO-продвижение сайтов, Яндекс Директ, разработка и доработка сайтов, аналитика и CRM.">
-    <meta name="twitter:image" content="https://voronov-art.ru/img/logo_2.png">
+    <meta name="twitter:image" content="https://voronov-art.ru/img/logo_2.webp">
 
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -40,7 +40,8 @@
     <link rel="dns-prefetch" href="https://mc.yandex.ru">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="/style/main.css">
-    <link rel="stylesheet" href="/style/home-details.css">
+    <link rel="stylesheet" href="/style/home-details.css?v=20261029-sticky-cta">
+    <link rel="stylesheet" href="/style/home-mascot.css?v=20261029">
 
     <!-- Analytics is loaded by cookie-manager.js only after explicit consent. -->
 
@@ -50,7 +51,7 @@
         "@type": "Organization",
         "name": "Студия веб-разработки Воронова",
         "url": "https://voronov-art.ru/",
-        "logo": "https://voronov-art.ru/img/logo_2.png",
+        "logo": "https://voronov-art.ru/img/logo_2.webp",
         "telephone": "+79604987864",
         "email": "info@voronov-art.ru",
         "description": "Продвижение бизнеса и сайтов в Краснодаре: SEO, Яндекс Директ, разработка и доработка сайтов, аналитика и CRM.",
@@ -74,7 +75,7 @@
             "name": "Студия веб-разработки Воронова",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://voronov-art.ru/img/logo_2.png"
+                "url": "https://voronov-art.ru/img/logo_2.webp"
             }
         }
     }
@@ -101,7 +102,7 @@
 
     <header class="header-new">
         <div class="logo-area">
-            <img src="/img/logo_2.png" alt="Студия Воронова">
+            <img src="/img/logo_2.webp" alt="Студия Воронова">
             <div class="studio-name">
                 <span>Воронов</span> | Веб-студия
             </div>
@@ -144,20 +145,17 @@
                     </div>
                     <p class="home-hero__note">Начнём с вашей задачи и определим, что нужно бизнесу сейчас.</p>
                 </div>
-                <div class="home-hero__portfolio">
-                    <div class="home-hero__portfolio-label"><span>Сайты как инструмент развития бизнеса</span><a href="#works">Наши проекты ↗</a></div>
-                    <div class="hero-works" role="img" aria-label="Примеры сайтов, разработанных студией Воронова">
-                        <figure class="hero-works__shot hero-works__shot--back-left">
-                            <img src="/img/prewu_ezhevika.webp" alt="Сайт для бизнеса проведения праздников" width="1541" height="662" loading="lazy" decoding="async">
-                        </figure>
-                        <figure class="hero-works__shot hero-works__shot--back-right">
-                            <img src="/img/prewu_kropremavto.webp" alt="Сайт под ключ для автосалона и бизнеса с нуля" width="2560" height="1440" loading="lazy" decoding="async">
-                        </figure>
-                        <figure class="hero-works__shot hero-works__shot--front">
-                            <img src="/img/prewu_rempc.webp" alt="Сайт бизнеса ремонта ПК от студии продвижения бизнеса" width="1903" height="922" decoding="async" fetchpriority="high">
-                        </figure>
+                <figure class="home-mascot" aria-labelledby="home-mascot-caption">
+                    <div class="home-mascot__halo" aria-hidden="true"></div>
+                    <div class="home-mascot__orbit home-mascot__orbit--outer" aria-hidden="true"></div>
+                    <div class="home-mascot__orbit home-mascot__orbit--inner" aria-hidden="true"></div>
+                    <span class="home-mascot__spark home-mascot__spark--one" aria-hidden="true"></span>
+                    <span class="home-mascot__spark home-mascot__spark--two" aria-hidden="true"></span>
+                    <div class="home-mascot__bird">
+                        <img src="/img/brand/blue-crow.webp" alt="Синяя ворона — фирменный персонаж Студии Воронова" width="1254" height="1254" decoding="async" fetchpriority="high">
                     </div>
-                </div>
+                    <figcaption id="home-mascot-caption"><span class="home-mascot__caption-mark" aria-hidden="true"></span>Смотрим шире. Находим решения.</figcaption>
+                </figure>
             </div>
             <div class="home-hero__services" aria-label="Направления работы">
                 <div><span class="home-hero__number">01</span><span>Сайт и SEO<small>Основа вашего присутствия</small></span></div>
@@ -677,7 +675,7 @@
             <p class="footer-copy">© <span id="current-year">2026</span> Студия Воронова — продвижение бизнеса и сайтов в Краснодаре. <a href="/privacy-policy.html#requisites" style="color:inherit;text-decoration:underline;">Реквизиты исполнителя</a>.</p>
         </div>
     </footer>
-    <script src="/style/js/main.js?v=20261024-contacts-2"></script>
+    <script src="/style/js/main.js?v=20261029-sticky-cta"></script>
     <script src="/style/js/cookie-manager.js"></script>
     <script src="/style/js/portfolio-security.js?v=20261028-security-1"></script>
     <script src="/style/js/home-works.js?v=20261028-security-1"></script>
@@ -692,6 +690,6 @@
 });
     </script>
 <script src="/sozdanie-sajtov/details.js" defer></script>
-<script src="/style/js/promotion.js" defer></script>
+<script src="/style/js/promotion.js?v=20261029-webp" defer></script>
 </body>
 </html>

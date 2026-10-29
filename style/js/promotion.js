@@ -22,7 +22,7 @@
     dialog.innerHTML = `
         <button class="promotion__close" type="button" aria-label="Закрыть акцию">×</button>
         <div class="promotion__layout">
-            <img class="promotion__image" src="/img/chatbot-promotion.png" width="1254" height="1254" alt="Акция до конца года: чат-бот для уведомлений о новых заявках при разработке сайта.">
+            <img class="promotion__image" src="/img/chatbot-promotion.webp" width="1254" height="1254" alt="Акция до конца года: чат-бот для уведомлений о новых заявках при разработке сайта.">
             <div class="promotion__content">
                 <span class="promotion__badge">Акция при разработке сайта</span>
                 <h2 id="promotion-title">Заявки с сайта —<br>сразу в ваш чат</h2>

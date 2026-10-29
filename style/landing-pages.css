@@ -1,4 +1,9 @@
 /* Shared layout primitives; each landing has its own content and composition. */
+.hero-start-price { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; width: fit-content; max-width: 100%; box-sizing: border-box; margin-top: 22px; padding: 12px 18px; border: 1px solid #cddff4; border-radius: 16px; background: #ffffffbf; }
+.hero-start-price__label { color: #627a9b; font-size: 12px; line-height: 1.6; }
+.hero-start-price__label b { display: block; color: #243d60; font-size: 15px; font-weight: 600; }
+.hero-start-price strong { color: #355f9b; font-size: clamp(30px, 3vw, 40px); line-height: 1.2; letter-spacing: -.035em; white-space: nowrap; }
+@media (max-width: 600px) { .hero-start-price { margin-top: 16px; padding: 10px 14px; gap: 8px 18px; } }
 .service-layout .home-hero { padding-top: 42px; background: radial-gradient(ellipse at 90% 25%, var(--landing-wash, #e1edfc), transparent 60%); }
 .service-layout .home-hero__main { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(28px, 4vw, 64px); min-height: 450px; }
 .service-layout .home-hero__copy { padding-bottom: 18px; }

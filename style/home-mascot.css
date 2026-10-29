@@ -1,0 +1,51 @@
+/* Brand character: used only by the home page. */
+.home-mascot {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 0 30px;
+    isolation: isolate;
+}
+.home-mascot__halo {
+    position: absolute;
+    z-index: -2;
+    inset: 9% 1% 12%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 48% 42%, #f9fcff 5%, #deebfcaa 40%, #c2d9fa66 63%, transparent 73%);
+    pointer-events: none;
+}
+.home-mascot__orbit { position: absolute; z-index: -1; border: 1px solid #86abd038; border-radius: 50%; pointer-events: none; }
+.home-mascot__orbit--outer { width: 93%; height: 66%; top: 14%; transform: rotate(-32deg); }
+.home-mascot__orbit--inner { width: 80%; height: 75%; top: 11%; border-color: #ffffffb3; transform: rotate(24deg); }
+.home-mascot__bird { position: relative; width: 90%; transform-origin: 50% 88%; }
+.home-mascot__bird::after { content: ''; position: absolute; z-index: -1; bottom: 3%; left: 27%; width: 40%; height: 4%; background: #2b4e7d24; border-radius: 50%; filter: blur(12px); }
+.home-mascot__bird img { display: block; width: 100%; height: auto; transform: scaleX(-1); filter: drop-shadow(0 20px 20px #254e7d12); }
+.home-mascot__spark { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #88abd7; box-shadow: 0 0 0 6px #b7d2f526; pointer-events: none; }
+.home-mascot__spark--one { left: 8%; top: 33%; }
+.home-mascot__spark--two { right: 8%; bottom: 29%; width: 5px; height: 5px; background: #adc6e5; }
+.home-mascot figcaption { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 6px 0 0; color: #607996; font-size: 12px; line-height: 1.6; letter-spacing: .025em; text-align: center; }
+.home-mascot__caption-mark { width: 22px; height: 1px; background: #94afd0; flex-shrink: 0; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .home-mascot__bird { animation: home-crow-breathe 6s ease-in-out infinite; }
+    .home-mascot:hover .home-mascot__bird { animation-play-state: paused; }
+    @keyframes home-crow-breathe {
+        0%, 100% { transform: translateY(0) rotate(-.4deg); }
+        50% { transform: translateY(-7px) rotate(.4deg); }
+    }
+}
+@media (max-width: 1024px) {
+    .home-mascot { max-width: 520px; }
+}
+@media (max-width: 768px) {
+    .home-mascot { max-width: 440px; padding-bottom: 8px; }
+    .home-mascot__bird { width: 87%; }
+    .home-mascot figcaption { margin-top: 0; font-size: 11px; }
+    .home-mascot__spark--one { left: 7%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .home-mascot__bird { animation: none; }
+}

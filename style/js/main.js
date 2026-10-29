@@ -83,18 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
             menuToggle.innerHTML = '<span class="mobile-menu-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span><span>Меню</span>';
             stickyMenu.insertBefore(menuToggle, navigation);
 
-            // Keep the original modal trigger and its listeners when changing layouts.
+            // Keep one modal trigger in the sticky menu on every screen size.
             if (document.body.classList.contains('home-details')) {
                 const contactArea = document.querySelector('.header-new .contact-area');
                 const projectButton = contactArea?.querySelector('.project-btn');
                 if (projectButton) {
-                    const mobileLayout = window.matchMedia('(max-width: 768px)');
-                    const placeProjectButton = () => {
-                        if (mobileLayout.matches) stickyMenu.insertBefore(projectButton, navigation);
-                        else contactArea.appendChild(projectButton);
-                    };
-                    mobileLayout.addEventListener('change', placeProjectButton);
-                    placeProjectButton();
+                    stickyMenu.insertBefore(projectButton, navigation);
                 }
             }
 
