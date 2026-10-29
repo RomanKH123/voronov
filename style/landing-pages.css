@@ -1,0 +1,85 @@
+/* Shared layout primitives; each landing has its own content and composition. */
+.service-layout .home-hero { padding-top: 42px; background: radial-gradient(ellipse at 90% 25%, var(--landing-wash, #e1edfc), transparent 60%); }
+.service-layout .home-hero__main { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(28px, 4vw, 64px); min-height: 450px; }
+.service-layout .home-hero__copy { padding-bottom: 18px; }
+.service-layout .home-hero h1 { font-size: clamp(36px, 3.8vw, 57px); line-height: 1.09; letter-spacing: -.045em; text-wrap: balance; }
+.service-layout .home-hero h1 span { color: var(--landing-accent, #4a6fa5); }
+.service-layout .home-hero h1 span::after { display: none; }
+.service-layout .home-hero__description { max-width: 540px; margin-top: 22px; font-size: 17px; line-height: 1.7; }
+.service-layout .home-hero .hero-eyebrow { margin-bottom: 20px; color: var(--landing-accent, #4a6fa5); }
+.service-layout .home-hero .hero-actions { flex-wrap: wrap; gap: 14px 24px; margin-top: 26px; }
+.service-layout .home-hero__note { max-width: 480px; font-size: 13px; }
+.service-layout .home-hero__services { gap: 20px; margin-top: 22px; }
+.service-layout .home-hero__services > div { flex: 1; min-width: 0; }
+.service-layout .home-hero__services small { font-size: 12px; line-height: 1.6; }
+.landing-art { min-width: 0; padding: 0; }
+.landing-art__label { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: 0 0 14px; color: #627a9b; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; }
+.landing-art__label span:last-child { color: var(--landing-accent, #4a6fa5); }
+.landing-mockup { margin: 0; overflow: hidden; border: 1px solid #dce5f1; border-radius: 22px; background: #fff; box-shadow: 0 20px 48px #243d6014; }
+.landing-mockup img { display: block; width: 100%; height: auto; }
+.landing-mockup figcaption { display: flex; justify-content: space-between; gap: 12px; padding: 15px 20px; font-size: 12px; line-height: 1.6; color: #53647a; border-top: 1px solid #e5ebf3; }
+.landing-mockup figcaption strong { color: #243d60; font-weight: 600; }
+.landing-art__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.landing-art__tags span { padding: 8px 12px; border: 1px solid #dbe5f2; border-radius: 999px; background: #ffffffa8; font-size: 12px; line-height: 1.4; color: #455875; }
+.landing-art__note { margin: 14px 0 0; color: #687990; font-size: 12px; line-height: 1.6; }
+.landing-art--browser .landing-mockup { padding: 10px; background: #edf2f8; }
+.landing-art--browser .landing-mockup img { border-radius: 13px; }
+.landing-art--browser .landing-mockup figcaption { border: 0; padding-bottom: 5px; }
+.landing-feature { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(24px, 5vw, 64px); }
+.landing-feature .service-heading, .landing-feature .service-intro { text-align: left; margin-left: 0; }
+.landing-feature .service-intro { font-size: 17px; margin-bottom: 24px; }
+.landing-feature__eyebrow { margin: 0 0 16px; color: var(--landing-accent, #4a6fa5); text-transform: uppercase; letter-spacing: .1em; font-size: 11px; font-weight: 600; }
+.landing-feature__points { display: grid; gap: 16px; padding: 0; margin: 24px 0 0; list-style: none; }
+.landing-feature__points li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; color: #52617a; font-size: 15px; line-height: 1.65; }
+.landing-feature__points li > span { color: var(--landing-accent, #4a6fa5); font-size: 12px; padding-top: 3px; }
+.landing-feature__points strong { display: block; color: #243d60; font-size: 17px; margin-bottom: 4px; }
+.landing-feature__link { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; margin-top: 22px; color: #355f9b; font-weight: 600; font-size: 14px; }
+.landing-report { padding: clamp(20px, 3vw, 36px); border: 1px solid #dae5f3; border-radius: 22px; background: #fff; box-shadow: 0 18px 40px #243d600a; }
+.landing-report__top { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 18px; margin-bottom: 8px; border-bottom: 1px solid #e5ebf3; color: #243d60; font-size: 14px; }
+.landing-report__top span { color: #687990; font-size: 11px; }
+.landing-report__row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 17px 0; border-bottom: 1px solid #edf1f7; font-size: 14px; color: #455875; }
+.landing-report__row small { display: block; margin-top: 4px; font-size: 12px; color: #687990; line-height: 1.6; }
+.landing-report__row b { border-radius: 7px; padding: 6px 8px; background: #edf3fc; color: #45668e; font-size: 10px; font-weight: 500; }
+.landing-report__row b.priority { background: #fff0e7; color: #98603b; }
+.landing-report__footer { margin: 18px 0 0; font-size: 12px; line-height: 1.7; color: #687990; }
+.landing-ad { padding: 28px; border: 1px solid #dce5f1; border-radius: 20px; background: #fff; }
+.landing-ad__label { display: inline-block; margin-bottom: 20px; padding: 6px 10px; border-radius: 7px; background: #f4f0dc; color: #7a6b35; font-size: 11px; }
+.landing-ad__url { margin: 0 0 10px; font-size: 12px; color: #63816c; }
+.landing-ad h2 { margin: 0 0 12px; font-size: 24px; line-height: 1.3; color: #355f9b; }
+.landing-ad p { font-size: 14px; line-height: 1.7; color: #52617a; }
+.landing-ad__links { display: flex; gap: 16px; margin-top: 22px; font-size: 12px; color: #45668e; }
+.landing-invitation { padding: 36px 26px; text-align: center; border-radius: 24px; border: 1px solid #e6dbe4; background: #fbf7f5; box-shadow: 0 20px 48px #63465a0f; }
+.landing-invitation__eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: 10px; color: #90747d; }
+.landing-invitation h2 { font-family: Georgia, serif; font-size: clamp(34px, 4vw, 52px); font-weight: 400; line-height: 1.15; color: #725866; margin: 24px 0; }
+.landing-invitation__date { font-family: Georgia, serif; font-size: 23px; color: #90747d; }
+.landing-invitation__line { width: 50px; height: 1px; background: #c9b1bd; margin: 26px auto; }
+.landing-invitation p { color: #8b7780; font-size: 13px; line-height: 1.8; }
+.landing-invitation__rsvp { display: inline-block; margin-top: 14px; padding: 12px 22px; border: 1px solid #c9b1bd; border-radius: 999px; font-size: 12px; color: #725866; }
+.landing-curriculum { padding: 28px; border-radius: 22px; border: 1px solid #d9deef; background: #f6f5fc; }
+.landing-curriculum h2 { margin: 12px 0 24px; font-size: 29px; color: #343d62; line-height: 1.25; }
+.landing-curriculum__item { display: flex; align-items: center; gap: 16px; margin-top: 12px; padding: 17px; background: #fff; border-radius: 12px; font-size: 14px; color: #4f5775; }
+.landing-curriculum__item span { font-size: 11px; color: #8d93af; }
+.landing-commerce { --landing-accent: #486e66; --landing-wash: #e5f0e9; }
+.landing-invite { --landing-accent: #946b80; --landing-wash: #f2e9ed; }
+.landing-education { --landing-accent: #6a669c; --landing-wash: #eae8f7; }
+.landing-advertising { --landing-accent: #92783f; --landing-wash: #f4efd9; }
+@media (max-width: 1000px) {
+    .service-layout .home-hero__main { grid-template-columns: 1fr; gap: 26px; }
+    .landing-art { width: 100%; max-width: 680px; margin: 0 auto; }
+    .landing-feature { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .service-layout .home-hero { padding: 28px 20px 0; }
+    .service-layout .home-hero h1 { font-size: clamp(32px, 8.8vw, 46px); }
+    .service-layout .home-hero .hero-actions { display: flex; align-items: stretch; gap: 8px 20px; }
+    .service-layout .home-hero .hero-action { min-height: 48px; font-size: 13px; }
+    .service-layout .home-hero__description { font-size: 16px; }
+    .service-layout .home-hero__services { flex-direction: column; padding-top: 12px; gap: 0; }
+    .service-layout .home-hero__services > div { padding: 14px 0; }
+    .service-layout .home-hero__services > div > span:last-child { display: block; }
+    .service-layout .home-hero__services small { margin-top: 4px; font-size: 12px; }
+    .landing-mockup { border-radius: 16px; }
+    .landing-mockup figcaption { flex-direction: column; gap: 2px; padding: 12px 16px; }
+    .landing-art__label { font-size: 10px; }
+    .landing-ad { padding: 22px; }
+}
