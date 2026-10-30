@@ -27,6 +27,45 @@ main {
     padding: 30px 40px 60px;
 }
 
+/* Return actions stay available while reading a project or browsing the grid. */
+.work-return-nav {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 16px;
+    padding: 10px;
+    border: 1px solid #dce5f2;
+    border-radius: 16px;
+    background: #fffffff2;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 20px #243d6008;
+}
+.work-return-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 10px 18px;
+    border-radius: 11px;
+    font: 600 14px/1.4 Inter, sans-serif;
+    text-decoration: none;
+}
+.work-return-nav__back { color: #fff; background: #4a6fa5; }
+.work-return-nav__home { color: #4a6fa5; background: #f0f5fc; }
+.work-return-nav a > span { font-size: 21px; line-height: 1; }
+.work-return-nav a:hover { filter: brightness(.95); }
+.work-return-nav a:focus-visible { outline: 3px solid #7850b2; outline-offset: 3px; }
+@media (max-width: 640px) {
+    .work-return-nav { gap: 8px; padding: 8px; border-radius: 14px; }
+    .work-return-nav a { flex: 1; gap: 7px; padding: 10px 8px; font-size: 12px; }
+}
+
 /* ===== ХЛЕБНЫЕ КРОШКИ ===== */
 .breadcrumbs {
     display: flex;

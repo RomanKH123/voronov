@@ -262,26 +262,15 @@
             <h2 id="request-modal-title" class="modal-title">Оставьте заявку</h2>
             <p class="modal-subtitle">Мы свяжемся с вами в ближайшее время</p>
 
-            <form id="contactForm" class="modal-form">
-                <div class="form-group">
-                    <label for="name">Ваше имя *</label>
-                    <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
-                </div>
+            <form id="contactForm" class="modal-form"><div class="form-group"><label for="name">Ваше имя *</label><input type="text" id="name" name="name" autocomplete="name" required></div>
+<div class="form-group"><label for="phone">Телефон *</label><input type="tel" id="phone" name="phone" autocomplete="tel" required></div>
 
-                <div class="form-group">
-                    <label for="phone">Номер телефона *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
-                </div>
 
-                <div class="form-group">
-                    <label for="message">Комментарий</label>
-                    <textarea id="message" name="message" rows="3" maxlength="3000" placeholder="Расскажите о вашей задаче"></textarea>
-                </div>
 
                 <div class="form_consent" style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;color:#555;margin:12px 0 16px;">
                     <input type="checkbox" id="consent_modal" name="consent" required style="margin-top:3px;flex-shrink:0;">
                     <label for="consent_modal" style="cursor:pointer;">
-                        Я даю согласие на обработку персональных данных в соответствии с <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#4a6fa5;">Политикой обработки ПДн</a>
+                        Я даю согласие на обработку <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#4a6fa5;">персональных данных</a>
                     </label>
                 </div>
 

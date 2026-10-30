@@ -2,6 +2,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const workGrid = document.querySelector('.work-grid');
     const workInfo = document.querySelector('.work-info');
 
+    // Restore the previous page and its scroll position when coming from this site.
+    // Direct and external visits always have a working portfolio link.
+    const returnLinks = document.querySelectorAll('[data-work-back]');
+    let previousPage = null;
+    try {
+        const current = new URL(window.location.href);
+        const referrer = new URL(document.referrer);
+        if (referrer.origin === current.origin && referrer.href !== current.href) {
+            previousPage = referrer;
+        }
+    } catch (_) { /* No usable referrer: retain the portfolio fallback. */ }
+    returnLinks.forEach(link => {
+        if (previousPage) {
+            link.href = previousPage.pathname + previousPage.search + previousPage.hash;
+            link.lastChild.textContent = ' Назад';
+        }
+        link.addEventListener('click', event => {
+            if (previousPage && window.history.length > 1 && event.button === 0 &&
+                !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) {
+                event.preventDefault();
+                window.history.back();
+            }
+        });
+    });
+
     function projectUrl(id) {
         return '/work_info.html?id=' + encodeURIComponent(id);
     }
@@ -205,6 +230,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderWorkInfo(work) {
+        if (!previousPage && work.category) {
+            returnLinks.forEach(link => {
+                link.href = '/work.html?kategory=' + encodeURIComponent(work.category);
+            });
+        }
         work = Object.assign({}, work, { image: PortfolioSecurity.imageUrl(work.image) });
         var detailAlt = escapeHtml(work.title) + (work.category ? ' — ' + escapeHtml(work.category) + ', разработка студии Воронова Краснодар' : '');
         var image = work.image ? '<div class="work-detail__image"><img src="' + escapeHtml(work.image) + '" alt="' + detailAlt + '"></div>' : '';
