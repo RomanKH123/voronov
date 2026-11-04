@@ -5,6 +5,9 @@ DirectoryIndex index.html index.php
     RewriteEngine On
     RewriteRule ^\.private(?:/|$) - [F,L]
 
+    # Направления вне текущей специализации студии больше не предлагаются.
+    RewriteRule ^(?:yandex-direct|dly_inobiznesa|sajt-priglashenie)(?:/(?:index\.html)?)?$ - [G,L,NC]
+
     # Городские страницы объединены с главной и страницами услуг.
     RewriteRule ^lending-krasnodar\.html$ https://voronov-art.ru/sozdanie-sajtov/lending/ [R=301,L,NC]
     RewriteRule ^korporativnyj-sajt-krasnodar\.html$ https://voronov-art.ru/sozdanie-sajtov/korporativnyj-sajt/ [R=301,L,NC]
@@ -130,5 +133,6 @@ ServerSignature Off
 
 # ========== КАСТОМНЫЕ СТРАНИЦЫ ОШИБОК ==========
 ErrorDocument 404 /404.html
+ErrorDocument 410 /404.html
 ErrorDocument 403 /404.html
 ErrorDocument 500 /404.html
