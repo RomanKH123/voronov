@@ -69,3 +69,41 @@
 @media (prefers-reduced-motion: reduce) {
     :is(.home-details, .service-layout) .home-pricing__button { transition: none; transform: none; }
 }
+
+.home-details .home-package__benefit { display: flex; gap: 16px; margin-top: 24px; padding: 24px; border: 1px solid #c9dcf4; border-radius: 20px; background: #e8f1fc; }
+.home-details .home-package__benefit h3 { margin: 0 0 14px; color: #243d60; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.35; }
+.home-details .home-package__benefit p { margin: 0 0 12px; color: #455875; font-size: 15px; line-height: 1.7; }
+.home-details .home-package__benefit p:last-child { margin-bottom: 0; }
+.home-details .home-package__benefit strong { color: #243d60; text-decoration: underline; text-decoration-color: #6d9cdb; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+/* Homepage package: a clear offer, included deliverables and a shared benefit. */
+.home-details #start-package { grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); align-items: stretch; gap: clamp(24px, 4vw, 48px); padding: clamp(20px, 3vw, 40px); background: radial-gradient(ellipse at top right, #dceaff, transparent 65%), #f5f8fd; }
+.home-details #start-package .home-package__summary { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(24px, 3vw, 40px); background: radial-gradient(ellipse at top right, #4e80bf, transparent 65%), linear-gradient(155deg, #294f83, #142d50); }
+.home-details #start-package .home-package__summary > .home-pricing__eyebrow { font-size: 10px; line-height: 1.6; }
+.home-details #start-package .home-package__description { margin-bottom: 28px; font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; }
+.home-details #start-package .home-package__price-label { margin: auto 0 0; color: #c7d9f2; font-size: 13px; }
+.home-details #start-package .home-package__price { margin: 6px 0 24px; font-size: clamp(38px, 4.5vw, 64px); }
+.home-details #start-package .home-package__button { min-height: 56px; border-radius: 14px; }
+.home-details #start-package .home-package__footnote { margin: 16px 0 0; color: #c7d9f2; font-size: 12px; line-height: 1.65; }
+.home-details #start-package .home-package__details { min-width: 0; padding-block: 12px; }
+.home-details #start-package .home-package__kicker { margin: 0 0 12px; color: #45668e; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.home-details #start-package .home-package__details > h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.2; letter-spacing: -.025em; }
+.home-details #start-package .home-package__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.home-details #start-package .home-package__list li { flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; border-color: #dce7f5; background: #fff; }
+.home-details #start-package .home-package__list strong { display: block; font-size: 15px; line-height: 1.45; }
+.home-details #start-package .home-package__list small { display: block; margin-top: 6px; color: #52617a; font-size: 12px; line-height: 1.6; }
+.home-details #start-package .home-package__item-icon { flex: 0 0 auto; width: 44px; height: 44px; font-size: 24px; }
+.home-details #start-package .home-package__benefit h3 { margin-bottom: 10px; font-size: 20px; }
+.home-details #start-package .home-package__benefit p { font-size: 13px; }
+.home-details .home-package__benefit-mark { flex-shrink: 0; color: #355f9b; font-size: 32px; line-height: 1; }
+@media (max-width: 900px) {
+    .home-details #start-package { grid-template-columns: minmax(0, 1fr); }
+    .home-details #start-package .home-package__summary { align-items: stretch; }
+    .home-details #start-package .home-package__summary > .home-pricing__eyebrow { align-self: flex-start; }
+}
+@media (max-width: 440px) {
+    .home-details #start-package { padding: 16px; gap: 24px; }
+    .home-details #start-package .home-package__list { grid-template-columns: minmax(0, 1fr); }
+    .home-details #start-package .home-package__list li { flex-direction: row; align-items: center; padding: 16px; }
+    .home-details #start-package .home-package__benefit { gap: 10px; padding: 18px 14px; }
+}

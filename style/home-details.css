@@ -345,6 +345,10 @@
 .home-details .why-card .home-detail-icon { margin: 0 auto 18px; }
 .home-details .why-card .sticker-icon { font-size: 2.5rem; margin-bottom: 18px; }
 .home-details :is(.blok_4_1, .blok_4_2, .blok_4_3) { border-radius: 20px; }
+.home-details .home-related-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 12px 24px; margin: 28px auto 0; font-size: 14px; line-height: 1.7; }
+.home-details .home-related-links > span { color: #52617a; }
+.home-details .home-related-links a { color: #294d7d; text-decoration: underline; text-underline-offset: 4px; }
+.home-details .home-related-links--reading { max-width: 1240px; padding: 0 20px; margin-bottom: 40px; }
 .home-details a:focus-visible { outline: 2px solid #4a6fa5; outline-offset: 4px; border-radius: 3px; }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .home-details .is-lit > .home-detail-icon { transform: translateY(-3px); background: #e0edfc; }
