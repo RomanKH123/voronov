@@ -1,0 +1,31 @@
+/* Shared content edges; cards keep their own interior padding. */
+.home-aligned { --home-content-width: 1216px; --home-page-gutter: 22px; }
+.home-aligned main > :is(section:not(.home-hero), aside, nav) {
+    box-sizing: border-box;
+    width: calc(100% - 2 * var(--home-page-gutter));
+    max-width: var(--home-content-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+.home-aligned main > :is(.blok_about, .blok_2, .blok_3, .blok_6, .home-additions, .site-faq, .blok_contacts) {
+    padding-left: 0;
+    padding-right: 0;
+}
+.home-aligned .audience-section .studio-intro,
+.home-aligned #services .client-services__grid,
+.home-aligned #contacts .contacts_content {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+.home-aligned #works .projects_showcase { padding-left: 0; padding-right: 0; }
+.home-aligned .home-hero { padding-left: var(--home-page-gutter); padding-right: var(--home-page-gutter); }
+.home-aligned .home-hero__main,
+.home-aligned .home-hero__services { max-width: var(--home-content-width); margin-left: auto; margin-right: auto; }
+.home-aligned .header-new { padding-left: max(var(--home-page-gutter), calc((100% - var(--home-content-width)) / 2)); padding-right: max(var(--home-page-gutter), calc((100% - var(--home-content-width)) / 2)); }
+.home-aligned .footer-inner { max-width: var(--home-content-width); }
+@media (max-width: 767px) {
+    .home-aligned { --home-page-gutter: 16px; }
+}

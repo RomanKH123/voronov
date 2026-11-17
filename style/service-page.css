@@ -20,6 +20,7 @@
 .service-card h2 a,.service-card h3 a{color:inherit;text-decoration:none}.service-card h2 a:hover,.service-card h3 a:hover{text-decoration:underline}
 .service-card p,.service-card li{color:#45536b;line-height:1.65}
 .service-card ul{margin:15px 0 0;padding-left:20px}
+.service-card .service-card__price{margin:-4px 0 10px;color:#355f9b;font:600 16px/1.4 Inter,sans-serif;letter-spacing:.01em}
 .service-note{max-width:900px;margin:32px auto 0;padding:24px 28px;border-left:4px solid #4a6fa5;border-radius:4px 18px 18px 4px;background:#fff;color:#34435f;font-size:17px;line-height:1.7}
 .service-steps{counter-reset:service-step;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .service-step{position:relative;padding:25px 26px 25px 72px;border-radius:20px;background:#fff}

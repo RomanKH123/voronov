@@ -1,0 +1,65 @@
+.home-details .home-additions { max-width: 1280px; width: calc(100% - 44px); margin: 72px auto 0; padding: 0; color: #243d60; scroll-margin-top: 110px; }
+.home-additions h2 { margin: 0; text-align: center; font: 600 clamp(28px, 3.5vw, 40px)/1.2 'Space Grotesk', Inter, sans-serif; letter-spacing: -.025em; }
+.home-additions__intro { max-width: 760px; margin: 18px auto 30px; text-align: center; color: #52617a; font: 400 16px/1.7 Inter, sans-serif; }
+.home-additions__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.home-additions__card { min-width: 0; border: 1px solid #dce7f5; border-radius: 24px; background: #ffffffd9; overflow: hidden; }
+.home-additions__link { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; height: 100%; padding: 26px; color: inherit; text-decoration: none; }
+.home-additions__link:hover { color: #243d60; background: #f7faff; }
+.home-additions__link:focus-visible { outline: 3px solid #4a6fa5; outline-offset: -4px; border-radius: 24px; }
+.home-additions h3 { margin: 0; font: 600 23px/1.3 'Space Grotesk', Inter, sans-serif; letter-spacing: -.02em; }
+.home-additions__link > p { margin: 0; color: #52617a; font: 400 15px/1.7 Inter, sans-serif; }
+.home-additions__more { display: inline-flex; gap: 8px; margin-top: auto; padding-top: 8px; color: #4a6fa5; font: 600 14px/1.5 Inter, sans-serif; }
+.home-additions__card--article .home-additions__link { padding: 18px; }
+.home-additions__cover { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 15px; background: #deebfc; }
+.home-additions__all { display: block; width: fit-content; margin: 26px auto 0; padding: 10px 0; color: #4a6fa5; font: 600 15px/1.5 Inter, sans-serif; }
+.home-additions__all:focus-visible { outline: 3px solid #4a6fa5; outline-offset: 4px; }
+.home-additions--services .home-additions__card { background: linear-gradient(145deg, #fff, #f8fbff); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.home-additions--services .home-additions__link { gap: 18px; padding: 18px 22px 22px; }
+.home-additions--services .home-additions__link:hover { background: transparent; }
+.home-service-visual { align-self: stretch; height: 180px; margin: 0 -4px 4px; overflow: hidden; border-radius: 18px; background: #e7effb; }
+.home-service-visual img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .45s ease; }
+.home-additions--services .home-additions__card:nth-child(3n + 2) .home-service-visual { background: #eee9f8; }
+.home-additions--services .home-additions__card:nth-child(3n) .home-service-visual { background: #e5f3ed; }
+.home-additions--services h3 { font-size: 24px; }
+.home-additions--services .home-additions__more { align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 18px; border-top: 1px solid #dce7f5; }
+.home-additions--services .home-additions__more > span { display: grid; place-items: center; flex: 0 0 32px; width: 32px; height: 32px; border: 1px solid #d1e0f3; border-radius: 50%; background: #edf4fd; color: #355f9b; font-size: 19px; transition: background .25s, color .25s; }
+@media (hover: hover) and (pointer: fine) {
+    .home-additions--services .home-additions__card:hover { transform: translateY(-5px); border-color: #a8c2e2; box-shadow: 0 14px 32px #243d6012; }
+    .home-additions--services .home-additions__card:hover .home-service-visual img { transform: scale(1.045); }
+    .home-additions--services .home-additions__card:hover .home-additions__more > span { background: #355f9b; color: #fff; }
+}
+@media (max-width: 1000px) {
+    .home-additions__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+@media (max-width: 767px) {
+    .home-details .home-additions { width: calc(100% - 32px); margin-top: 48px; }
+    .home-additions h2 { font-size: 28px; }
+    .home-additions__intro { font-size: 15px; margin-bottom: 24px; }
+    .home-additions__group + .home-additions__group { margin-top: 34px; }
+    .home-additions__group-title { margin-bottom: 14px; font-size: 12px; }
+    .home-additions__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .home-additions__link { padding: 24px; gap: 14px; }
+    .home-additions h3 { font-size: 22px; }
+    .home-additions--services .home-additions__link { display: grid; grid-template-columns: minmax(0, 1fr) 100px; align-items: center; gap: 16px; padding: 22px; }
+    .home-additions--services .home-service-visual { grid-column: 2; grid-row: 1; width: 100px; height: 100px; margin: 0; border-radius: 18px; }
+    .home-additions--services h3 { grid-column: 1; grid-row: 1; font-size: 22px; overflow-wrap: break-word; }
+    .home-additions--services .home-additions__link > p { grid-column: 1 / -1; font-size: 14px; }
+    .home-additions--services .home-additions__more { grid-column: 1 / -1; padding-top: 14px; font-size: 13px; }
+}
+@media (max-width: 359px) {
+    .home-additions--services .home-additions__link { grid-template-columns: minmax(0, 1fr) 80px; padding: 18px; gap: 14px; }
+    .home-additions--services .home-service-visual { width: 80px; height: 90px; }
+    .home-additions--services h3 { font-size: 20px; }
+}
+/* Услуги с ценами: группы направлений и подпись с ценой под названием */
+.home-additions__group + .home-additions__group { margin-top: 44px; }
+.home-additions__group-title { margin: 0 0 18px; color: #627a9b; font: 600 13px/1.5 Inter, sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+.home-additions__group-note { margin: 16px 0 0; color: #52617a; font: 400 14px/1.7 Inter, sans-serif; }
+.home-additions--services .home-service-price { margin: -10px 0 0; color: #355f9b; font: 600 16px/1.4 Inter, sans-serif; }
+.home-additions--services .home-service-price + p { margin-top: -8px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .home-additions--services .home-additions__card,
+    .home-additions--services .home-service-visual img,
+    .home-additions--services .home-additions__more > span { transition: none; transform: none; }
+}

@@ -1,0 +1,73 @@
+/* A quieter pass over the existing homepage, without changing its section order. */
+.home-refined main > :is(section:not(.home-hero), aside) { margin-top: 88px; }
+.home-refined .home-hero { padding-top: 56px; padding-bottom: 24px; }
+.home-refined .home-hero__main { min-height: 470px; }
+.home-refined .home-hero__description { max-width: 570px; line-height: 1.7; }
+.home-refined .home-hero__note { max-width: 510px; line-height: 1.6; }
+.home-refined .home-section-intro { max-width: 760px; margin-bottom: 28px; }
+.home-refined #start-package .home-section-intro h2 { margin: 0 0 12px; font: 600 clamp(26px, 3vw, 34px)/1.2 'Space Grotesk', Inter, sans-serif; color: #243d60; }
+.home-refined .home-section-intro p { margin: 0; font: 400 15px/1.65 Inter, sans-serif; color: #52617a; }
+.home-refined #start-package .home-package__summary { min-height: 430px; }
+.home-refined #start-package .home-package__description { font-size: 17px; margin-bottom: 24px; }
+.home-refined #start-package .home-package__price { font-size: clamp(38px, 4vw, 52px); }
+.home-refined #start-package .home-package__list li { justify-content: flex-start; gap: 0; text-align: left; }
+.home-refined #start-package .home-package__list li > span { width: 100%; min-width: 0; }
+.home-refined #start-package .home-package__details { container-type: inline-size; }
+.home-refined #start-package .home-package__details > h3 { font-size: clamp(22px, 5.6cqi, 32px); line-height: 1.3; text-wrap: balance; }
+.home-refined .home-package__title-name { display: inline-block; white-space: nowrap; }
+.home-refined .home-package__saving { box-shadow: none; }
+.home-refined .studio-intro__icon { display: none; }
+.home-refined .studio-intro .studio-intro__step { padding: 20px 22px; box-shadow: none; transform: none; animation: none; }
+.home-refined .studio-intro .studio-intro__step h3 { font-size: 18px; }
+.home-refined #services .client-services__grid { margin-top: 28px; }
+.home-refined #services .client-service { min-height: 0; height: auto; padding: 26px; box-shadow: none; border-radius: 24px; }
+.home-refined #services .client-service:nth-child(1) { background: #e3eefb; }
+.home-refined #services .client-service:nth-child(2) { background: #ffffffd9; }
+.home-refined #services .client-service:nth-child(3) { background: #eaf2fc; }
+.home-refined #services .client-service__top { margin-bottom: 16px; }
+.home-refined #services .client-service__tag { padding: 0; border: 0; background: none; font-size: 11px; color: #627a9b; }
+.home-refined #services .client-service .ln_b_1 { font-size: 24px; line-height: 1.3; margin: 0 0 14px; }
+.home-refined #services .client-service .ln_b_2 { margin: 0; font-size: 15px; line-height: 1.7; }
+.home-refined .home-additions__card { box-shadow: none; }
+.home-refined .home-additions--services .home-additions__card:hover { box-shadow: 0 8px 20px #243d600a; transform: translateY(-3px); }
+.home-refined #contacts :is(.contact_info, .contact_form_card) { box-shadow: none; }
+.home-refined #contacts :is(.contact_info, .contact_form_card)::before,
+.home-refined #contacts :is(.contact_info, .contact_form_card)::after { display: none; }
+.home-refined #contacts .contact_icon { background: transparent; box-shadow: none; color: #426387; border-radius: 0; }
+.home-refined #contacts .contact_icon svg { display: block; width: 24px; height: 24px; }
+.home-refined #contacts .contact_item { display: grid; grid-template-columns: 40px 110px minmax(0, 1fr); gap: 8px 16px; box-sizing: border-box; }
+.home-refined #contacts .contact_icon { grid-column: 1; grid-row: 1; width: 40px; height: 40px; }
+.home-refined #contacts .contact_label { grid-column: 2; min-width: 0; margin: 0; }
+.home-refined #contacts .contact_value { grid-column: 3; min-width: 0; overflow-wrap: anywhere; line-height: 1.5; }
+.home-refined #contacts .contact_item:hover { transform: none; box-shadow: none; }
+.home-refined #contacts .contact_item:hover .contact_icon { transform: none; box-shadow: none; }
+@media (max-width: 1000px) and (min-width: 768px) {
+}
+@media (max-width: 767px) {
+    .home-refined main > :is(section:not(.home-hero), aside) { margin-top: 64px; }
+    .home-refined .home-hero { padding-top: 30px; padding-bottom: 0; }
+    .home-refined .home-hero__main { min-height: 0; }
+    .home-refined .home-hero__copy { padding-bottom: 0; }
+    .home-refined .home-mascot { max-width: 260px; padding-bottom: 0; }
+    .home-refined .home-hero__description { font-size: 16px; line-height: 1.65; }
+    .home-refined .home-hero__note { font-size: 12px; }
+    .home-refined #start-package .home-package__summary { min-height: 0; }
+    .home-refined .home-section-intro { margin-bottom: 22px; }
+    .home-refined .audience-section .studio-intro { padding: 24px; margin-bottom: 0; gap: 24px; }
+    .home-refined .studio-intro .studio-intro__step { padding: 18px; }
+    .home-refined #services .client-service { padding: 24px; }
+    .home-refined #services .client-service .ln_b_1 { font-size: 23px; }
+    .home-refined .site-faq { padding-top: 12px; padding-bottom: 12px; }
+    .home-refined #contacts { padding-top: 28px; padding-bottom: 28px; }
+    .home-refined #contacts .contact_item { grid-template-columns: 32px minmax(0, 1fr); gap: 4px 12px; padding: 14px 12px; }
+    .home-refined #contacts .contact_icon { grid-row: 1 / 3; width: 32px; height: 32px; align-self: start; }
+    .home-refined #contacts .contact_label { grid-row: 1; font-size: 13px; line-height: 1.5; }
+    .home-refined #contacts .contact_value { grid-column: 2; grid-row: 2; font-size: 14px; }
+}
+
+/* Keep breathing room between sections, while the package note stays attached. */
+.home-refined main > .home-package__saving { margin-top: 24px; }
+.home-refined main > :is(.blok_about, .blok_6, .blok_3, .blok_2, .blok_contacts),
+.home-refined #services .client-service { opacity: 1; transform: none; }
+.home-refined #audience { background: transparent; box-shadow: none; }
+.home-refined #audience::before { display: none; }
