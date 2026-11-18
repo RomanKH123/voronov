@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             navigation.addEventListener('click', event => {
                 if (event.target.closest('a')) closeMobileMenu();
-            });
+            }, { capture: true });
 
             document.addEventListener('keydown', event => {
                 if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const activationLine = window.scrollY + getStickyMenuOffset() + Math.min(120, window.innerHeight * 0.2);
         const atPageBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-        let currentSection = trackedSections[0];
+        let currentSection = null;
 
         for (const section of trackedSections) {
             if (activationLine >= section.offsetTop) currentSection = section;
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (atPageBottom) currentSection = trackedSections[trackedSections.length - 1];
-        highlightActiveMenuItem(currentSection.id);
+        highlightActiveMenuItem(currentSection?.id ?? null);
     }
     
     // ===== ФУНКЦИИ ДЛЯ СТРЕЛКИ ПОДЪЁМА =====
