@@ -56,6 +56,7 @@ DirectoryIndex index.html index.php
     <FilesMatch "\.webp$">
         Header set Content-Type "image/webp"
     </FilesMatch>
+    Header always set X-Robots-Tag "noindex" "expr=%{REQUEST_URI} =~ m#^/work(?:/|$)#i"
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set X-XSS-Protection "1; mode=block"

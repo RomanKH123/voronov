@@ -14,8 +14,6 @@ Disallow: /data/
 Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /.env
-Disallow: /work/*/temp/
-Disallow: /work/*/tmp/
 Disallow: /*.md$
 Disallow: /*.json$
 Disallow: /*.lock$
